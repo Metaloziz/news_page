@@ -1,0 +1,10 @@
+@import "src/styles/mixin";
+@import "src/styles/variables";
+
+.container {
+  @include displayCenter();
+  flex-wrap: wrap;
+  gap: 10px;
+  border: black 1px solid;
+  height: auto;
+}

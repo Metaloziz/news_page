@@ -1,0 +1,21 @@
+@import "src/styles/mixin";
+@import "src/styles/variables";
+
+
+.main {
+  @include displayCenter();
+  justify-content: space-between;
+
+  .container {
+    @include displayCenter();
+    justify-content: flex-start;
+    gap: 10px;
+
+    .path {
+      height: 40px;
+      width: 180px;
+      background-color: $main_color_second;
+      @include displayCenter();
+    }
+  }
+}

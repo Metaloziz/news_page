@@ -1,0 +1,19 @@
+@import "src/styles/variables";
+@import "src/styles/mixin";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  gap: 10px;
+
+  .header {
+    width: auto;
+    height: 30vh;
+    background-color: $main_color_first;
+    color: $text_color;
+    font-size: 25px;
+    @include displayCenter()
+  }
+}
+

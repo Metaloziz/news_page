@@ -1,0 +1,27 @@
+@import "src/styles/variables";
+@import "src/styles/mixin";
+
+.container {
+  background-color: $main_color_second;
+
+  height: 200px;
+  width: 200px;
+
+  img {
+    height: 100px;
+    width: 100%;
+  }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 5px;
+
+    .footer {
+      @include displayCenter();
+      justify-content: space-between;
+    }
+  }
+
+}
