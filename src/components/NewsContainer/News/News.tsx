@@ -1,27 +1,27 @@
 import style from "./News.module.scss";
 import {FC} from "react";
-import {NewsType} from "../data";
+import {NewsType} from "api/data";
 
 type NewsPropsType = { data: Omit<NewsType, 'id'> }
 
 export const News: FC<NewsPropsType> = ({
                                           data: {
-                                            title,
-                                            someNumber,
-                                            description,
-                                            date, imgAdress
+                                            date,
+                                            image_1,
+                                            name,
+                                            fullText_1,
+                                            views
                                           }
                                         }) => {
   return (
     <div className={style.container}>
-      <div><img alt={'ava'}
-                src={imgAdress}/>
+      <div><img alt={'ava'} src={image_1}/>
       </div>
       <div className={style.body}>
-        <div>{title}</div>
-        <div>{description}</div>
+        <div>{name}</div>
+        <div>{fullText_1}</div>
         <div className={style.footer}>
-          <div>{someNumber}</div>
+          <div>{views}</div>
           <div>{date}</div>
         </div>
       </div>

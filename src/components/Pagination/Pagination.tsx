@@ -5,8 +5,8 @@ import {
   currentPageSelector,
   totalCountSelector
 } from "utils/selectors/selectors";
-import {setCurrentPageAC} from "store/mainPage_reducer";
 import {Buttons} from "components/Pagination/Buttons";
+import {setCurrentPageAC} from 'store/pagination_reducer';
 
 
 export const Pagination: FC = (): ReactElement => {
@@ -19,7 +19,6 @@ export const Pagination: FC = (): ReactElement => {
   const setCurrentPage = (page: number): void => {
     dispatch(setCurrentPageAC(page))
   }
-
 
   return (<Buttons
     setCurrentPage={setCurrentPage}

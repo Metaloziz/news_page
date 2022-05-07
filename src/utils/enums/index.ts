@@ -11,3 +11,8 @@ export enum Paths {
   MAIN = 'main',
   CURRENT_NEWS = 'current_news'
 }
+
+export enum RequestSource {
+  NEWS = 'news',
+  DATA = 'data'
+}
