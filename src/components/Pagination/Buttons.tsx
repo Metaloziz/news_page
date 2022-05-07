@@ -12,6 +12,8 @@ export type ButtonsPropsType = {
   setCurrentPage: (currentPage: number) => void;
 };
 
+const $main_color_first = '#2F5A53'
+
 export const Buttons: FC<ButtonsPropsType> = memo(
   ({setCurrentPage, currentPage, pagesCount, totalCount}): ReactElement => {
     const {One, Two, Four, Three} = ButtonsPagination;
@@ -23,7 +25,7 @@ export const Buttons: FC<ButtonsPropsType> = memo(
         <Button
           name={index.toString()}
           key={index}
-          style={{background: currentPage === index ? 'red' : undefined}}
+          style={{background: currentPage === index ? $main_color_first : undefined}}
           onClick={() => setCurrentPage(index)}
         />,
       );

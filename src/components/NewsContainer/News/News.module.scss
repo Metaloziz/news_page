@@ -19,7 +19,7 @@
     margin: 5px;
 
     .footer {
-      @include displayCenter();
+      @include displayContentCenter();
       justify-content: space-between;
     }
   }

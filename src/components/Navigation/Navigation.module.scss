@@ -3,11 +3,11 @@
 
 
 .main {
-  @include displayCenter();
+  @include displayContentCenter();
   justify-content: space-between;
 
   .container {
-    @include displayCenter();
+    @include displayContentCenter();
     justify-content: flex-start;
     gap: 10px;
 
@@ -15,7 +15,7 @@
       height: 40px;
       width: 180px;
       background-color: $main_color_second;
-      @include displayCenter();
+      @include displayContentCenter();
     }
   }
 }
