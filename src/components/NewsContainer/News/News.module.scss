@@ -3,9 +3,9 @@
 
 .container {
   background-color: $main_color_second;
-
   height: 200px;
   width: 200px;
+  cursor: pointer;
 
   img {
     height: 100px;
@@ -23,5 +23,4 @@
       justify-content: space-between;
     }
   }
-
 }

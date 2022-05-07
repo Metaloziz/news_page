@@ -1,0 +1,18 @@
+@import "src/styles/mixin";
+@import "src/styles/variables";
+
+.container {
+  @include container();
+
+  img {
+    height: 30vh;
+    width: auto;
+  }
+
+  .description {
+    min-height: 30vh;
+    width: auto;
+    background-color: $main_color_second;
+    padding: 10px;
+  }
+}

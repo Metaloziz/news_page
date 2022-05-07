@@ -2,10 +2,7 @@
 @import "../../styles/mixin";
 
 .container {
-  display: flex;
-  flex-direction: column;
-  margin: 20px;
-  gap: 10px;
+  @include container();
 
   .header {
     width: auto;
