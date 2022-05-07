@@ -1,24 +1,30 @@
-import { FC, memo, ReactElement } from 'react';
+import {FC, ReactElement} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {
+  countNewsOnPageSelector,
+  currentPageSelector,
+  totalCountSelector
+} from "utils/selectors/selectors";
+import {setCurrentPageAC} from "store/mainPage_reducer";
+import {Buttons} from "components/Pagination/Buttons";
 
-import { Buttons } from './Buttons';
-import style from './Pagination.module.scss';
 
-export type PaginationPropsType = {
-  currentPage: number;
-  pagesCount: number;
-  totalCount: number;
-  setCurrentPage: (pageNumber: number) => void;
-};
+export const Pagination: FC = (): ReactElement => {
 
-export const Pagination: FC<PaginationPropsType> = memo(
-  ({ currentPage, pagesCount, setCurrentPage, totalCount }): ReactElement => (
-    <div className={style.mainBlock}>
-      <Buttons
-        setCurrentPage={setCurrentPage}
-        currentPage={currentPage}
-        pagesCount={pagesCount}
-        totalCount={totalCount}
-      />
-    </div>
-  ),
-);
+  const dispatch = useDispatch()
+  const currentPage = useSelector(currentPageSelector)
+  const totalCountNews = useSelector(totalCountSelector)
+  const countNewsOnPage = useSelector(countNewsOnPageSelector)
+
+  const setCurrentPage = (page: number): void => {
+    dispatch(setCurrentPageAC(page))
+  }
+
+
+  return (<Buttons
+    setCurrentPage={setCurrentPage}
+    currentPage={currentPage}
+    pagesCount={countNewsOnPage}
+    totalCount={totalCountNews}
+  />)
+}

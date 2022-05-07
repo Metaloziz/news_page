@@ -2,7 +2,7 @@
 @import "src/styles/variables";
 
 .container {
-  @include displayCenter();
+  @include displayContentCenter();
   flex-wrap: wrap;
   gap: 10px;
   border: black 1px solid;

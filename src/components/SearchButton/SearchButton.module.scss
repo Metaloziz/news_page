@@ -1,7 +1,7 @@
 @import "src/styles/mixin";
 
 .container {
-  @include displayCenter();
+  @include displayContentCenter();
   height: 50px;
   width: 300px;
   background-color: rgba(139, 0, 0, 0.68);

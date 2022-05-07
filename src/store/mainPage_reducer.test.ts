@@ -13,13 +13,15 @@ const initialState: InitialStateType = {
   totalCountNews: 100
 }
 
+describe('main page', () => {
+  test('set current page', () => {
 
-test('set current page', () => {
+    const action = setCurrentPageAC(newCurrentPage)
 
-  const action = setCurrentPageAC(newCurrentPage)
+    const endState = main_reducer(initialState, action)
 
-  const endState = main_reducer(initialState, action)
+    expect(initialState).not.toBe(endState)
+    expect(endState.currentPage).toBe(newCurrentPage)
+  })
 
-  expect(initialState).not.toBe(endState)
-  expect(endState.currentPage).toBe(newCurrentPage)
 })
