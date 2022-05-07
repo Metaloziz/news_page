@@ -1,4 +1,4 @@
-import style from './MainPage.module.scss'
+import style from 'pages/MainPage/MainPage.module.scss'
 import {Navigation} from "components/Navigation/Navigation";
 import {NewsContainer} from "components/NewsContainer/NewsContainer";
 import {Pagination} from "components/Pagination/Pagination";

@@ -1,6 +1,6 @@
 import {
   getNewsAC, getNewsTC,
-  NewsInitialStateType, news_reducer,
+  NewsInitialStateType, news_reducer, setCurrentNewsAC,
 } from "store/news_reducer";
 import {NewsType} from "api/data";
 import {
@@ -11,6 +11,7 @@ import {
 let NewsData: NewsType[]
 let paginationInitialState: PaginationInitialStateType
 let firstItem: number = 0
+let currentNewsId: number = 10
 beforeEach(() => {
   NewsData = [
     {
@@ -58,7 +59,40 @@ beforeEach(() => {
 
 
 const newsInitialState: NewsInitialStateType = {
-  news: []
+  news: [{
+    id: currentNewsId,
+    name: '',
+    subtitle_1: '',
+    fullText_1: '',
+    image_1: '',
+    subtitle_2: '',
+    fullText_2: '',
+    image_2: '',
+    fullText_3: '',
+    image_3: '',
+    link: '',
+    date: '',
+    subtitle_3: '',
+    section: 0,
+    views: 0
+  }],
+  currentNews: {
+    id: 0,
+    name: '',
+    subtitle_1: '',
+    fullText_1: '',
+    image_1: '',
+    subtitle_2: '',
+    fullText_2: '',
+    image_2: '',
+    fullText_3: '',
+    image_3: '',
+    link: '',
+    date: '',
+    subtitle_3: '',
+    section: 0,
+    views: 0
+  }
 }
 
 describe('news page', () => {
@@ -82,4 +116,16 @@ describe('news page', () => {
     expect(endState.totalCountNews).toBe(NewsData.length)
   })
 
+  test('set current news', () => {
+
+    const currentNews = newsInitialState.news.find(item => item.id === currentNewsId)
+
+    const action = setCurrentNewsAC(currentNewsId)
+
+    const endState = news_reducer(newsInitialState, action)
+
+    expect(newsInitialState).not.toBe(endState)
+    expect(endState.currentNews).toBe(currentNews)
+    expect(endState.currentNews.id).toBe(currentNewsId)
+  })
 })

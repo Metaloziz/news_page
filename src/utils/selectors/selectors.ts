@@ -6,3 +6,4 @@ export const countNewsOnPageSelector = (state: RootState) => state.pagination_re
 
 
 export const newsSelector = (state: RootState) => state.news_reducer.news
+export const currentNewsSelector = (state: RootState) => state.news_reducer.currentNews

@@ -5,7 +5,8 @@
 .pnp.js
 /.idea
 .env
-
+/db.json
+/.env
 # testing
 /coverage
 
