@@ -67,7 +67,7 @@ export const initialState: NewsInitialStateType = {
 export const getNewsTC = createAsyncThunk('news/getNewsTC', async () => {
   try {
     const res = await appRequest.getAllNews()
-    return res.data
+    return res.data.Data
   } catch (e) {
 
     console.warn(e)

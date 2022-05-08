@@ -13,6 +13,5 @@ export enum Paths {
 }
 
 export enum RequestSource {
-  NEWS = 'news',
-  DATA = 'data'
+  NEWS = '/news',
 }
