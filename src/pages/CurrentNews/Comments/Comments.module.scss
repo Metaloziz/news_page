@@ -1,0 +1,18 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixin';
+
+.container {
+  height: auto;
+  width: auto;
+  background-color: $main_color_second;
+  @include displayContentCenter();
+  flex-direction: column;
+  row-gap: 10px;
+  column-gap: 10px;
+
+  .comment {
+    width: 80%;
+    height: auto;
+    background-color: aquamarine;
+  }
+}

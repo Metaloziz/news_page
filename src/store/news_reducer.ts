@@ -1,11 +1,21 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {NewsType} from "api/data";
-import {newsRequests} from "api/api";
+import {commentsRequests, newsRequests} from "api/api";
+import {setPreviousPageAC} from "store/single_pagination_reducer";
 
+
+export type CommentType = {
+  id: number,
+  author: string,
+  text: string,
+  news_id: number,
+  date: string
+}
 
 export type NewsInitialStateType = {
   news: NewsType[]
   currentNews: NewsType
+  comments: CommentType[]
 }
 
 export const initialState: NewsInitialStateType = {
@@ -61,13 +71,41 @@ export const initialState: NewsInitialStateType = {
     subtitle_3: '',
     section: 0,
     views: 0
-  }
+  },
+  comments: [
+    {
+      id: 0,
+      author: 'author',
+      text: 'text',
+      date: 'date',
+      news_id: 0
+    }, {
+      id: 1,
+      author: 'author',
+      text: 'text',
+      date: 'date',
+      news_id: 2
+    }
+  ]
 }
 
-export const getNewsPartTC = createAsyncThunk('news/getNewsTC', async (pageNumber: number) => {
+export const getNewsPartTC = createAsyncThunk('news/getNewsTC', async (pageNumber: number, {dispatch}) => {
   try {
     const res = await newsRequests.getNewsPart(pageNumber)
+    if (res.data.Data === null) {
+      dispatch(setPreviousPageAC())  // костыль, мне нужна длинна массива без его полной загрузки
+    }
     return res.data.Data
+  } catch (e) {
+    console.warn(e)
+    return null
+  }
+})
+
+export const getCommentsNewsTC = createAsyncThunk('news/getCommentsNewsTC', async (newsId: number) => {
+  try {
+    const res = await commentsRequests.getNewsComments(newsId)
+    return res.data.data
   } catch (e) {
     console.warn(e)
     return null
@@ -85,7 +123,6 @@ export const addNewsViewsValueTC = createAsyncThunk('news/addNewsViewsValueTC', 
   }
 })
 
-
 export const mainSlice = createSlice({
   name: 'news',
   initialState: initialState,
@@ -100,6 +137,9 @@ export const mainSlice = createSlice({
         state.currentNews = currentNews
       }
 
+    },
+    removeCommentsAC: (state) => {
+      state.comments = []
     }
   },
   extraReducers: (builder) => {
@@ -108,10 +148,17 @@ export const mainSlice = createSlice({
         state.news = action.payload
       }
     })
+    builder.addCase(getCommentsNewsTC.fulfilled, (state, action) => {
+      if (action.payload) {
+        state.comments = action.payload
+      } else {
+        state.comments = []
+      }
+    })
   }
 })
 
-export const {getNewsAC, setCurrentNewsAC} = mainSlice.actions
+export const {getNewsAC, setCurrentNewsAC, removeCommentsAC} = mainSlice.actions
 export const news_reducer = mainSlice.reducer
 
 

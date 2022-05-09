@@ -1,6 +1,11 @@
 import {
-  getNewsAC, getNewsPartTC,
-  NewsInitialStateType, news_reducer, setCurrentNewsAC,
+  getNewsAC,
+  getNewsPartTC,
+  NewsInitialStateType,
+  news_reducer,
+  setCurrentNewsAC,
+  getCommentsNewsTC,
+  CommentType, removeCommentsAC,
 } from "store/news_reducer";
 import {NewsType} from "api/data";
 import {
@@ -13,6 +18,7 @@ let paginationInitialState: PaginationInitialStateType
 let firstItem: number = 0
 let currentNewsId: number = 10
 let pageNumber: number = 1
+let comments: CommentType[]
 beforeEach(() => {
   NewsData = [
     {
@@ -56,6 +62,22 @@ beforeEach(() => {
     totalCountNews: 1,
     currentPage: 1
   }
+
+  comments = [
+    {
+      id: 0,
+      author: 'author',
+      text: 'text',
+      date: 'date',
+      news_id: 0
+    }, {
+      id: 1,
+      author: 'author',
+      text: 'text',
+      date: 'date',
+      news_id: 2
+    }
+  ]
 })
 
 
@@ -93,10 +115,19 @@ const newsInitialState: NewsInitialStateType = {
     subtitle_3: '',
     section: 0,
     views: 0
-  }
+  },
+  comments: [
+    {
+      id: 0,
+      author: '',
+      text: '',
+      date: '',
+      news_id: 0
+    }
+  ]
 }
 
-describe('news page', () => {
+describe('news reducer', () => {
   test('set all news', () => {
 
     const action = getNewsAC(NewsData)
@@ -128,5 +159,25 @@ describe('news page', () => {
     expect(newsInitialState).not.toBe(endState)
     expect(endState.currentNews).toBe(currentNews)
     expect(endState.currentNews.id).toBe(currentNewsId)
+  })
+
+  test('set news comments', () => {
+
+    const action = getCommentsNewsTC.fulfilled(comments, '', 1)
+
+    const endState = news_reducer(newsInitialState, action)
+
+    expect(newsInitialState).not.toBe(endState)
+    expect(endState.comments).toBe(comments)
+
+  })
+
+  test('remove comments', () => {
+
+    const action = removeCommentsAC()
+    const endState = news_reducer(newsInitialState, action)
+
+    expect(newsInitialState).not.toBe(endState)
+    expect(!!endState.comments.length).toBeTruthy()
   })
 })
