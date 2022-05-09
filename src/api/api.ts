@@ -12,6 +12,11 @@ export const newsRequests = {
   addNewsViewsValue: (newsId: number) => instance.patch(`/news/${newsId}`),
 }
 
+
+export type AddCommentPayloadType = Pick<CommentType, 'author' | 'news_id' | 'text'>
+
 export const commentsRequests = {
-  getNewsComments: (newsId: number) => instance.get<{ data: CommentType[] }>(`${RequestSource.NEWS}/${newsId}${RequestSource.COMMENTS}`)
+  getComments: (newsId: number) => instance.get<{ data: CommentType[] }>(`${RequestSource.NEWS}/${newsId}${RequestSource.COMMENTS}`),
+  removeComment: (commentId: number) => instance.delete(`${RequestSource.COMMENTS}/${commentId}`),
+  addComment: (payload: AddCommentPayloadType) => instance.post(RequestSource.COMMENTS, payload),
 }
