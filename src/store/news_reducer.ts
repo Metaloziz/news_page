@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {NewsType} from "api/data";
-import {appRequest} from "api/api";
+import {newsRequests} from "api/api";
 
 
 export type NewsInitialStateType = {
@@ -66,8 +66,19 @@ export const initialState: NewsInitialStateType = {
 
 export const getNewsPartTC = createAsyncThunk('news/getNewsTC', async (pageNumber: number) => {
   try {
-    const res = await appRequest.getNewsPart(pageNumber)
+    const res = await newsRequests.getNewsPart(pageNumber)
     return res.data.Data
+  } catch (e) {
+    console.warn(e)
+    return null
+  }
+})
+
+export const addNewsViewsValueTC = createAsyncThunk('news/addNewsViewsValueTC', async (newsId: number) => {
+  try {
+    const res = await newsRequests.addNewsViewsValue(newsId)
+    console.log(res.status)
+    return null
   } catch (e) {
     console.warn(e)
     return null

@@ -5,7 +5,6 @@ import {NewsType} from "api/data";
 export type NewsPropsType = {
   data: NewsType
   setCurrentNews: (id: number) => void
-
 }
 
 export const News: FC<NewsPropsType> = memo(({
@@ -28,7 +27,7 @@ export const News: FC<NewsPropsType> = memo(({
           <div>{name}</div>
           <div>{fullText_1}</div>
           <div className={style.footer}>
-            <div>{views}</div>
+            <div>views: {views}</div>
             <div>{date}</div>
           </div>
         </div>

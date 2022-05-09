@@ -14,7 +14,6 @@ export const MainPage: FC = () => {
       <Navigation/>
       <NewsContainer/>
       <SinglePagination/>
-      {/*<Pagination/>*/}
       <Footer/>
     </div>
   )

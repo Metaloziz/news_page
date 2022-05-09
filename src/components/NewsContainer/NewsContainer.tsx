@@ -3,7 +3,11 @@ import {News} from "./News/News";
 import {useSelector} from "react-redux";
 import {newsSelector, numberPageSelector} from "utils/selectors/selectors";
 import {FC, useCallback, useEffect} from "react";
-import {getNewsPartTC, setCurrentNewsAC} from "store/news_reducer";
+import {
+  addNewsViewsValueTC,
+  getNewsPartTC,
+  setCurrentNewsAC
+} from "store/news_reducer";
 import {useAppDispatch} from "store/store";
 import {useNavigate} from "react-router-dom";
 import {Paths} from "utils/enums/enums";
@@ -20,14 +24,14 @@ export const NewsContainer: FC = () => {
     dispatch(getNewsPartTC(pageNumber))
   }, [dispatch, pageNumber])
 
-  const setCurrentNews = useCallback((id: number) => {
-    dispatch(setCurrentNewsAC(id))
+  const setCurrentNews = useCallback((newsId: number) => {
+    dispatch(setCurrentNewsAC(newsId))
+    dispatch(addNewsViewsValueTC(newsId))
   }, [dispatch])
 
   const newsHandler = () => {
     navigate(`/${Paths.CURRENT_NEWS}`);
   }
-
 
   return (
     <div className={style.container} onClick={newsHandler}>
