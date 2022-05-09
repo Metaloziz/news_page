@@ -1,9 +1,9 @@
 import style from 'pages/MainPage/MainPage.module.scss'
 import {Navigation} from "components/Navigation/Navigation";
 import {NewsContainer} from "components/NewsContainer/NewsContainer";
-import {Pagination} from "components/Pagination/Pagination";
 import {FC} from "react";
 import {Footer} from "components/Footer/Footer";
+import {SinglePagination} from "components/SinglePagination/SinglePagination";
 
 
 export const MainPage: FC = () => {
@@ -13,7 +13,8 @@ export const MainPage: FC = () => {
       <div className={style.header}>НОВОСТИ - текст</div>
       <Navigation/>
       <NewsContainer/>
-      <Pagination/>
+      <SinglePagination/>
+      {/*<Pagination/>*/}
       <Footer/>
     </div>
   )

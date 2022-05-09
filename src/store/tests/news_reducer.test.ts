@@ -1,5 +1,5 @@
 import {
-  getNewsAC, getNewsTC,
+  getNewsAC, getNewsPartTC,
   NewsInitialStateType, news_reducer, setCurrentNewsAC,
 } from "store/news_reducer";
 import {NewsType} from "api/data";
@@ -12,6 +12,7 @@ let NewsData: NewsType[]
 let paginationInitialState: PaginationInitialStateType
 let firstItem: number = 0
 let currentNewsId: number = 10
+let pageNumber: number = 1
 beforeEach(() => {
   NewsData = [
     {
@@ -108,7 +109,7 @@ describe('news page', () => {
   })
 
   test('set data about news to the pagination', () => {
-    const action = getNewsTC.fulfilled(NewsData, '')
+    const action = getNewsPartTC.fulfilled(NewsData, '', pageNumber)
 
     const endState = pagination_reducer(paginationInitialState, action)
 

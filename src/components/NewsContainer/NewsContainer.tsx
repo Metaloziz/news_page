@@ -1,26 +1,24 @@
 import style from './NewsContainer.module.scss'
 import {News} from "./News/News";
 import {useSelector} from "react-redux";
-import {currentPageSelector, newsSelector} from "utils/selectors/selectors";
+import {newsSelector, numberPageSelector} from "utils/selectors/selectors";
 import {FC, useCallback, useEffect} from "react";
-import {getNewsTC, setCurrentNewsAC} from "store/news_reducer";
+import {getNewsPartTC, setCurrentNewsAC} from "store/news_reducer";
 import {useAppDispatch} from "store/store";
 import {useNavigate} from "react-router-dom";
-import {Paths} from "utils/enums";
+import {Paths} from "utils/enums/enums";
 
 
 export const NewsContainer: FC = () => {
 
   const news = useSelector(newsSelector)
-  const currentPage = useSelector(currentPageSelector)
+  const pageNumber = useSelector(numberPageSelector)
   const dispatch = useAppDispatch()
-  let navigate = useNavigate();
-
-  const currentNews = news[currentPage]
+  const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(getNewsTC())
-  }, [dispatch])
+    dispatch(getNewsPartTC(pageNumber))
+  }, [dispatch, pageNumber])
 
   const setCurrentNews = useCallback((id: number) => {
     dispatch(setCurrentNewsAC(id))
@@ -33,10 +31,9 @@ export const NewsContainer: FC = () => {
 
   return (
     <div className={style.container} onClick={newsHandler}>
-      <News data={currentNews} setCurrentNews={setCurrentNews}/>
-      {/*{news.map(({id, ...news}) => {*/}
-      {/*  return <News key={id} data={news}/>*/}
-      {/*})}*/}
+      {news.map((news) => {
+        return <News key={news.id} data={news} setCurrentNews={setCurrentNews}/>
+      })}
     </div>
   );
 };

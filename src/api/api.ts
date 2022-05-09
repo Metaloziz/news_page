@@ -1,10 +1,10 @@
 import axios from "axios";
 import {NewsPayloadType, NewsType} from "api/data";
-import {RequestSource} from "utils/enums";
+import {newsOnPage} from "utils/consts";
+import {RequestSource} from "utils/enums/enums";
 
 export const instance = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
-  // withCredentials: true,
   headers: {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "*",
@@ -13,8 +13,9 @@ export const instance = axios.create({
   }
 })
 
+
 export const appRequest = {
-  getAllNews: () => instance.get<{ Data: NewsType[] }>(RequestSource.NEWS),
+  getNewsPart: (pageNumber: number) => instance.get<{ Data: NewsType[] }>(`${RequestSource.NEWS}?page=${pageNumber}&limit=${newsOnPage}`),
   createNews: (newNews: NewsPayloadType) => instance.post<{ id: number }>('/news', newNews),
   deleteNews: (newsId: number) => instance.delete<{ id: number }>(`/news/${newsId}`),
 }

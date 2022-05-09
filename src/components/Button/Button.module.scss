@@ -16,14 +16,9 @@
 
   &:disabled {
     background-color: gray;
-
-    &:hover {
-      color: darkred;
-    }
   }
 
   &:hover {
-    color: $main_color_first;
     cursor: pointer;
   }
 }

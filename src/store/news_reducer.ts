@@ -64,12 +64,11 @@ export const initialState: NewsInitialStateType = {
   }
 }
 
-export const getNewsTC = createAsyncThunk('news/getNewsTC', async () => {
+export const getNewsPartTC = createAsyncThunk('news/getNewsTC', async (pageNumber: number) => {
   try {
-    const res = await appRequest.getAllNews()
+    const res = await appRequest.getNewsPart(pageNumber)
     return res.data.Data
   } catch (e) {
-
     console.warn(e)
     return null
   }
@@ -93,7 +92,7 @@ export const mainSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(getNewsTC.fulfilled, (state, action) => {
+    builder.addCase(getNewsPartTC.fulfilled, (state, action) => {
       if (action.payload) {
         state.news = action.payload
       }

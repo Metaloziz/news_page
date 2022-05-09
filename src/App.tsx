@@ -1,8 +1,8 @@
 import React from 'react'
 import {MainPage} from "pages/MainPage/MainPage"
 import {Navigate, Route, Routes} from 'react-router-dom'
-import {Paths} from "utils/enums";
 import {CurrentNews} from "pages/CurrentNews/CurrentNews";
+import {Paths} from "utils/enums/enums";
 
 
 function App() {

@@ -1,0 +1,1 @@
+export const newsOnPage = 4

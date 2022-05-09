@@ -1,9 +1,11 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {getNewsTC} from "store/news_reducer";
+import {getNewsPartTC} from "store/news_reducer";
 
+
+// не используется на главной странице, пока
 
 export const initialState: PaginationInitialStateType = {
-  countNewsOnPage: 1,
+  countNewsOnPage: 2,
   totalCountNews: 1,
   currentPage: 1
 }
@@ -17,7 +19,7 @@ export const mainSlice = createSlice({
     },
   },
   extraReducers: builder => {
-    builder.addCase(getNewsTC.fulfilled, (state, action) => {
+    builder.addCase(getNewsPartTC.fulfilled, (state, action) => {
       if (action.payload) {
         state.totalCountNews = action.payload.length
       }
