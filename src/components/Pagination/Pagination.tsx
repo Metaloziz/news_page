@@ -4,7 +4,7 @@ import {
   countNewsOnPageSelector,
   currentPageSelector,
   totalCountSelector
-} from "utils/selectors/selectors";
+} from "utils/selectors";
 import {Buttons} from "components/Pagination/Buttons";
 import {setCurrentPageAC} from 'store/pagination_reducer';
 

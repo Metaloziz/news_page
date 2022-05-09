@@ -1,9 +1,9 @@
 import React, {FC, memo, useCallback} from 'react';
 import style from "./Comments.module.scss";
 import {useSelector} from "react-redux";
-import {commentsNewsSelector} from "utils/selectors/selectors";
+import {commentsNewsSelector} from "utils/selectors";
 import {useAppDispatch} from "store/store";
-import {useEffectOnce} from "utils/hooks/hooks";
+import {useEffectOnce} from "utils/hooks";
 import {
   CommentForm,
   CommentFormType,

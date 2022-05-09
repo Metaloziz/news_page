@@ -2,7 +2,7 @@ import React from 'react';
 import {Button} from "components/Button/Button";
 import {useAppDispatch} from "store/store";
 import {useSelector} from "react-redux";
-import {newsLengthSelector, numberPageSelector} from "utils/selectors/selectors";
+import {newsLengthSelector, numberPageSelector} from "utils/selectors";
 import {setNextPageAC, setPreviousPageAC} from "store/single_pagination_reducer";
 import {newsOnPage} from "utils/consts";
 

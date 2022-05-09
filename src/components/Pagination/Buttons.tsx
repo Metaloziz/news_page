@@ -3,7 +3,7 @@ import {FC, memo, ReactElement} from 'react';
 import style from './Pagination.module.scss';
 
 import {Button} from "components/Button/Button";
-import {ButtonsPagination} from "utils/enums/enums";
+import {ButtonsPagination} from "utils/enums";
 
 export type ButtonsPropsType = {
   currentPage: number;

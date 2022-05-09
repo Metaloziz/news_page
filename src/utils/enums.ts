@@ -9,7 +9,8 @@ export enum ButtonsPagination {
 
 export enum Paths {
   MAIN = 'main',
-  CURRENT_NEWS = 'current_news'
+  CURRENT_NEWS = 'current_news',
+  CREATE_NEWS = 'create_news'
 }
 
 export enum RequestSource {

@@ -1,6 +1,6 @@
 import {NewsPayloadType, NewsType} from "api/data";
 import {newsOnPage} from "utils/consts";
-import {RequestSource} from "utils/enums/enums";
+import {RequestSource} from "utils/enums";
 import {instance} from "api/instance";
 import {CommentType} from "store/news_reducer";
 
