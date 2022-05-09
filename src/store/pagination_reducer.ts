@@ -1,6 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {getNewsPartTC} from "store/news_reducer";
-
+import {getNewsPartTC} from "store/thunks/news_thunks";
 
 // не используется на главной странице, пока
 

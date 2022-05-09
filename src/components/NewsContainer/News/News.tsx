@@ -2,9 +2,10 @@ import style from "./News.module.scss";
 import {FC, memo} from "react";
 import {NewsType} from "api/data";
 
-export type NewsPropsType = {
+type NewsPropsType = {
   data: NewsType
   setCurrentNews: (id: number) => void
+  newsRouteHandle: () => void
 }
 
 export const News: FC<NewsPropsType> = memo(({
@@ -15,12 +16,16 @@ export const News: FC<NewsPropsType> = memo(({
                                                  name,
                                                  fullText_1,
                                                  views
-                                               }, setCurrentNews
+                                               }, setCurrentNews, newsRouteHandle
                                              }) => {
 
+    const newsHandle = () => {
+      setCurrentNews(id)
+      newsRouteHandle()
+    }
 
     return (
-      <div className={style.container} onClick={() => setCurrentNews(id)}>
+      <div className={style.container} onClick={newsHandle}>
         <div><img alt={'ava'} src={image_1}/>
         </div>
         <div className={style.body}>

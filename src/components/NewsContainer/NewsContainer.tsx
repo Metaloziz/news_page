@@ -4,13 +4,17 @@ import {useSelector} from "react-redux";
 import {newsSelector, numberPageSelector} from "utils/selectors/selectors";
 import {FC, useCallback, useEffect} from "react";
 import {
-  addNewsViewsValueTC,
-  getNewsPartTC,
   setCurrentNewsAC
 } from "store/news_reducer";
 import {useAppDispatch} from "store/store";
 import {useNavigate} from "react-router-dom";
 import {Paths} from "utils/enums/enums";
+import {Button} from "components/Button/Button";
+import {
+  addNewsViewsValueTC,
+  getNewsPartTC,
+  removeNewsTC
+} from "store/thunks/news_thunks";
 
 
 export const NewsContainer: FC = () => {
@@ -29,14 +33,24 @@ export const NewsContainer: FC = () => {
     dispatch(addNewsViewsValueTC(newsId))
   }, [dispatch])
 
-  const newsHandler = () => {
+  const newsRouteHandle = () => {
     navigate(`/${Paths.CURRENT_NEWS}`);
   }
 
+  const removeNews = (newsId: number) => {
+    dispatch(removeNewsTC(newsId))
+  }
+
   return (
-    <div className={style.container} onClick={newsHandler}>
+    <div className={style.container}>
       {news.map((news) => {
-        return <News key={news.id} data={news} setCurrentNews={setCurrentNews}/>
+        return <div key={news.id}>
+          <Button name={'удалить'} onClick={() => removeNews(news.id)}/>
+          <News
+            data={news}
+            newsRouteHandle={newsRouteHandle}
+            setCurrentNews={setCurrentNews}/>
+        </div>
       })}
     </div>
   );

@@ -1,22 +1,6 @@
-import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {NewsType} from "api/data";
-import {AddCommentPayloadType, commentsRequests, newsRequests} from "api/api";
-import {setPreviousPageAC} from "store/single_pagination_reducer";
-import {RootState} from "store/store";
-
-export type CommentType = {
-  id: number,
-  author: string,
-  text: string,
-  news_id: number,
-  date: string
-}
-
-export type NewsInitialStateType = {
-  news: NewsType[]
-  currentNews: NewsType
-  comments: CommentType[]
-}
+import {getCommentsNewsTC, getNewsPartTC} from "store/thunks/news_thunks";
 
 export const initialState: NewsInitialStateType = {
   news: [
@@ -89,67 +73,6 @@ export const initialState: NewsInitialStateType = {
   ]
 }
 
-export const getNewsPartTC = createAsyncThunk('news/getNewsTC', async (pageNumber: number, {dispatch}) => {
-  try {
-    const res = await newsRequests.getNewsPart(pageNumber)
-    if (res.data.Data === null) {
-      dispatch(setPreviousPageAC())  // костыль, мне нужна длинна массива без его полной загрузки
-    }
-    return res.data.Data
-  } catch (e) {
-    console.warn(e)
-    return null
-  }
-})
-
-export const getCommentsNewsTC = createAsyncThunk('news/getCommentsNewsTC', async (newsId: number) => {
-  try {
-    const res = await commentsRequests.getComments(newsId)
-    return res.data.data
-  } catch (e) {
-    console.warn(e)
-    return null
-  }
-})
-
-export const addNewsViewsValueTC = createAsyncThunk('news/addNewsViewsValueTC', async (newsId: number) => {
-  try {
-    const responce = await newsRequests.addNewsViewsValue(newsId)
-    return null
-  } catch (e) {
-    console.warn(e)
-    return null
-  }
-})
-
-export const removeCommentTC = createAsyncThunk('news/removeCommentTC', async (commentId: number, {
-  dispatch,
-  getState
-}) => {
-
-  const state = getState() as RootState
-  const newsId = state.news_reducer.currentNews.id
-  try {
-    const responce = await commentsRequests.removeComment(commentId)
-    dispatch(getCommentsNewsTC(newsId))
-    return null
-  } catch (e) {
-    console.warn(e)
-    return null
-  }
-})
-
-export const addCommentTC = createAsyncThunk('news/addCommentTC', async (comment: AddCommentPayloadType, {dispatch}) => {
-  try {
-    const responce = await commentsRequests.addComment(comment)
-    dispatch(getCommentsNewsTC(comment.news_id))
-    return null
-  } catch (e) {
-    console.warn(e)
-    return null
-  }
-})
-
 export const mainSlice = createSlice({
   name: 'news',
   initialState: initialState,
@@ -188,4 +111,17 @@ export const mainSlice = createSlice({
 export const {getNewsAC, setCurrentNewsAC, removeCommentsAC} = mainSlice.actions
 export const news_reducer = mainSlice.reducer
 
+// types
+export type CommentType = {
+  id: number,
+  author: string,
+  text: string,
+  news_id: number,
+  date: string
+}
 
+export type NewsInitialStateType = {
+  news: NewsType[]
+  currentNews: NewsType
+  comments: CommentType[]
+}

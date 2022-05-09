@@ -3,13 +3,17 @@ import style from "./Comments.module.scss";
 import {useSelector} from "react-redux";
 import {commentsNewsSelector} from "utils/selectors/selectors";
 import {useAppDispatch} from "store/store";
-import {addCommentTC, getCommentsNewsTC, removeCommentTC} from "store/news_reducer";
 import {useEffectOnce} from "utils/hooks/hooks";
 import {
   CommentForm,
   CommentFormType,
 } from "pages/CurrentNews/Comments/CommentForm/CommentForm";
 import {Comment} from "pages/CurrentNews/Comments/Comment/Comment";
+import {
+  addCommentTC,
+  getCommentsNewsTC,
+  removeCommentTC
+} from "store/thunks/news_thunks";
 
 
 type CommentsPropsType = {

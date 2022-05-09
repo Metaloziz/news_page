@@ -1,10 +1,8 @@
 import {
   getNewsAC,
-  getNewsPartTC,
   NewsInitialStateType,
   news_reducer,
   setCurrentNewsAC,
-  getCommentsNewsTC,
   CommentType, removeCommentsAC,
 } from "store/news_reducer";
 import {NewsType} from "api/data";
@@ -12,6 +10,7 @@ import {
   pagination_reducer,
   PaginationInitialStateType
 } from "store/pagination_reducer";
+import {getCommentsNewsTC, getNewsPartTC} from "store/thunks/news_thunks";
 
 let NewsData: NewsType[]
 let paginationInitialState: PaginationInitialStateType
@@ -178,6 +177,6 @@ describe('news reducer', () => {
     const endState = news_reducer(newsInitialState, action)
 
     expect(newsInitialState).not.toBe(endState)
-    expect(!!endState.comments.length).toBeTruthy()
+    expect(!!endState.comments.length).toBeFalsy()
   })
 })
