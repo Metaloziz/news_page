@@ -1,17 +1,18 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {getNewsPartTC} from "store/thunks/news_thunks";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
+import { getNewsPartTC } from 'store/thunks/news_thunks'
 
 // не используется на главной странице, пока
 
 export const initialState: PaginationInitialStateType = {
   countNewsOnPage: 2,
   totalCountNews: 1,
-  currentPage: 1
+  currentPage: 1,
 }
 
 export const mainSlice = createSlice({
   name: 'pagination',
-  initialState: initialState,
+  initialState,
   reducers: {
     setCurrentPageAC: (state, action: PayloadAction<number>) => {
       state.currentPage = action.payload
@@ -23,12 +24,11 @@ export const mainSlice = createSlice({
         state.totalCountNews = action.payload.length
       }
     })
-  }
+  },
 })
 
-export const {setCurrentPageAC} = mainSlice.actions
-export const pagination_reducer = mainSlice.reducer
-
+export const { setCurrentPageAC } = mainSlice.actions
+export const paginationReducer = mainSlice.reducer
 
 // types
 export type PaginationInitialStateType = {

@@ -1,6 +1,9 @@
-import style from "./News.module.scss";
-import {FC, memo} from "react";
-import {NewsType} from "api/data";
+/* eslint-disable */
+import { FC, memo } from 'react'
+
+import style from './News.module.scss'
+
+import { NewsType } from 'api/data'
 
 type NewsPropsType = {
   data: NewsType
@@ -8,25 +11,21 @@ type NewsPropsType = {
   newsRouteHandle: () => void
 }
 
-export const News: FC<NewsPropsType> = memo(({
-                                               data: {
-                                                 id,
-                                                 date,
-                                                 image_1,
-                                                 name,
-                                                 fullText_1,
-                                                 views
-                                               }, setCurrentNews, newsRouteHandle
-                                             }) => {
-
-    const newsHandle = () => {
+export const News: FC<NewsPropsType> = memo(
+  ({
+    data: { id, date, image_1, name, fullText_1, views },
+    setCurrentNews,
+    newsRouteHandle,
+  }) => {
+    const newsHandle = (): void => {
       setCurrentNews(id)
       newsRouteHandle()
     }
 
     return (
       <div className={style.container} onClick={newsHandle}>
-        <div><img alt={'ava'} src={image_1}/>
+        <div>
+          <img alt="ava" src={image_1} />
         </div>
         <div className={style.body}>
           <div>{name}</div>
@@ -37,6 +36,6 @@ export const News: FC<NewsPropsType> = memo(({
           </div>
         </div>
       </div>
-    );
-  }
+    )
+  },
 )

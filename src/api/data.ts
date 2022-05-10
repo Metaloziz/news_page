@@ -1,23 +1,23 @@
 export type NewsType = {
-  id: number;
-  name: string;
-  subtitle_1: string;
-  subtitle_2: string;
-  subtitle_3: string;
-  image_1: string;
-  image_2: string;
-  image_3: string;
-  fullText_1: string;
-  fullText_2: string;
-  fullText_3: string;
-  link: string;
-  date: string;
-  views: number;
-  section: number;
+  id: number
+  name: string
+  subtitle_1: string
+  subtitle_2: string
+  subtitle_3: string
+  image_1: string
+  image_2: string
+  image_3: string
+  fullText_1: string
+  fullText_2: string
+  fullText_3: string
+  link: string
+  date: string
+  views: number
+  section: number
 }
 
-export const image = 'https://static.vecteezy.com/system/resources/thumbnails/004/216/831/small/3d-world-news-background-loop-free-video.jpg'
-
+export const image =
+  'https://static.vecteezy.com/system/resources/thumbnails/004/216/831/small/3d-world-news-background-loop-free-video.jpg'
 
 export const NewsData: NewsType[] = [
   {
@@ -35,7 +35,7 @@ export const NewsData: NewsType[] = [
     date: '9 November 2016 16:16:02 GMT',
     subtitle_3: 'text',
     section: 1,
-    views: 11
+    views: 11,
   },
   {
     id: 2,
@@ -52,7 +52,7 @@ export const NewsData: NewsType[] = [
     date: '9 November 2016 16:16:02 GMT',
     subtitle_3: 'text',
     section: 1,
-    views: 11
+    views: 11,
   },
   {
     id: 3,
@@ -69,12 +69,11 @@ export const NewsData: NewsType[] = [
     date: '9 November 2016 16:16:02 GMT',
     subtitle_3: 'text',
     section: 1,
-    views: 11
+    views: 11,
   },
 ]
 
-
-export type NewsPayloadType = {
+export type NewsBodyType = {
   name: string
   subtitle_1: string
   full_text_1: string
@@ -83,7 +82,12 @@ export type NewsPayloadType = {
   subtitle_3?: string
   full_text_3?: string
   section: number
-  // file?: any // need change
   date: string
   image_1: string
 }
+
+export type NewsFileType = {
+  file: File
+}
+
+export type FormType = NewsBodyType & NewsFileType

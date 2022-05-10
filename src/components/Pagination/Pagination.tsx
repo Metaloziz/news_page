@@ -1,16 +1,16 @@
-import {FC, ReactElement} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import { FC, ReactElement } from 'react'
+
+import { useDispatch, useSelector } from 'react-redux'
+
+import { Buttons } from 'components/Pagination/Buttons'
+import { setCurrentPageAC } from 'store/pagination_reducer'
 import {
   countNewsOnPageSelector,
   currentPageSelector,
-  totalCountSelector
-} from "utils/selectors";
-import {Buttons} from "components/Pagination/Buttons";
-import {setCurrentPageAC} from 'store/pagination_reducer';
-
+  totalCountSelector,
+} from 'utils/selectors'
 
 export const Pagination: FC = (): ReactElement => {
-
   const dispatch = useDispatch()
   const currentPage = useSelector(currentPageSelector)
   const totalCountNews = useSelector(totalCountSelector)
@@ -20,10 +20,12 @@ export const Pagination: FC = (): ReactElement => {
     dispatch(setCurrentPageAC(page))
   }
 
-  return (<Buttons
-    setCurrentPage={setCurrentPage}
-    currentPage={currentPage}
-    pagesCount={countNewsOnPage}
-    totalCount={totalCountNews}
-  />)
+  return (
+    <Buttons
+      setCurrentPage={setCurrentPage}
+      currentPage={currentPage}
+      pagesCount={countNewsOnPage}
+      totalCount={totalCountNews}
+    />
+  )
 }

@@ -1,6 +1,7 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {NewsType} from "api/data";
-import {getCommentsNewsTC, getNewsPartTC} from "store/thunks/news_thunks";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
+import { NewsType } from 'api/data'
+import { getCommentsNewsTC, getNewsPartTC } from 'store/thunks/news_thunks'
 
 export const initialState: NewsInitialStateType = {
   news: [
@@ -19,7 +20,7 @@ export const initialState: NewsInitialStateType = {
       date: '',
       subtitle_3: '',
       section: 0,
-      views: 0
+      views: 0,
     },
     {
       id: 1,
@@ -36,7 +37,7 @@ export const initialState: NewsInitialStateType = {
       date: '',
       subtitle_3: '',
       section: 0,
-      views: 0
+      views: 0,
     },
   ],
   currentNews: {
@@ -54,7 +55,7 @@ export const initialState: NewsInitialStateType = {
     date: '',
     subtitle_3: '',
     section: 0,
-    views: 0
+    views: 0,
   },
   comments: [
     {
@@ -62,37 +63,36 @@ export const initialState: NewsInitialStateType = {
       author: 'author',
       text: 'text',
       date: 'date',
-      news_id: 0
-    }, {
+      news_id: 0,
+    },
+    {
       id: 1,
       author: 'author',
       text: 'text',
       date: 'date',
-      news_id: 2
-    }
-  ]
+      news_id: 2,
+    },
+  ],
 }
 
 export const mainSlice = createSlice({
   name: 'news',
-  initialState: initialState,
+  initialState,
   reducers: {
     getNewsAC: (state, action: PayloadAction<NewsType[]>) => {
       state.news = action.payload
     },
     setCurrentNewsAC: (state, action: PayloadAction<number>) => {
-
-      const currentNews = state.news.find((item) => item.id === action.payload)
+      const currentNews = state.news.find(item => item.id === action.payload)
       if (currentNews) {
         state.currentNews = currentNews
       }
-
     },
-    removeCommentsAC: (state) => {
+    removeCommentsAC: state => {
       state.comments = []
-    }
+    },
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder.addCase(getNewsPartTC.fulfilled, (state, action) => {
       if (action.payload) {
         state.news = action.payload
@@ -105,18 +105,18 @@ export const mainSlice = createSlice({
         state.comments = []
       }
     })
-  }
+  },
 })
 
-export const {getNewsAC, setCurrentNewsAC, removeCommentsAC} = mainSlice.actions
-export const news_reducer = mainSlice.reducer
+export const { getNewsAC, setCurrentNewsAC, removeCommentsAC } = mainSlice.actions
+export const newsReducer = mainSlice.reducer
 
 // types
 export type CommentType = {
-  id: number,
-  author: string,
-  text: string,
-  news_id: number,
+  id: number
+  author: string
+  text: string
+  news_id: number
   date: string
 }
 

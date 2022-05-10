@@ -1,1 +1,1 @@
-export const newsOnPage = 4
+export const NEWS_ON_PAGE = 4

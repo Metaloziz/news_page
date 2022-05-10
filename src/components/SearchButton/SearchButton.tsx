@@ -1,4 +1,5 @@
+import { FC } from 'react'
+
 import style from './SearchButton.module.scss'
 
-
-export const SearchButton = () => <div className={style.container}>Поиск</div>;
+export const SearchButton: FC = () => <div className={style.container}>Поиск</div>

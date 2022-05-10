@@ -1,17 +1,16 @@
-import React from 'react';
-import {Button} from "components/Button/Button";
-import {useNavigate} from "react-router-dom";
-import {Paths} from "utils/enums";
+import React, { FC } from 'react'
 
-export const MainPageNavigate = () => {
+import { useNavigate } from 'react-router-dom'
 
-  const navigate = useNavigate();
+import { Button } from 'components/Button/Button'
+import { Paths } from 'utils/enums'
 
-  const newsHandler = () => {
-    navigate(`/${Paths.MAIN}`);
+export const MainPageNavigate: FC = () => {
+  const navigate = useNavigate()
+
+  const newsHandler = (): void => {
+    navigate(`/${Paths.MAIN}`)
   }
 
-  return (
-    <Button name={'назад'} onClick={newsHandler}/>
-  );
-};
+  return <Button name="назад" onClick={newsHandler} />
+}
