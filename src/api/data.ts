@@ -2,14 +2,14 @@ export type NewsType = {
   id: number;
   name: string;
   subtitle_1: string;
-  fullText_1: string;
-  image_1: string;
   subtitle_2: string;
-  fullText_2: string;
-  image_2: string;
   subtitle_3: string;
-  fullText_3: string;
+  image_1: string;
+  image_2: string;
   image_3: string;
+  fullText_1: string;
+  fullText_2: string;
+  fullText_3: string;
   link: string;
   date: string;
   views: number;
@@ -75,12 +75,15 @@ export const NewsData: NewsType[] = [
 
 
 export type NewsPayloadType = {
-  name: string;
-  subtitle_1: string;
-  fullText_1: string;
+  name: string
+  subtitle_1: string
+  full_text_1: string
   subtitle_2?: string
-  fullText_2?: string
+  full_text_2?: string
   subtitle_3?: string
-  fullText_3?: string
-  section: number;
+  full_text_3?: string
+  section: number
+  // file?: any // need change
+  date: string
+  image_1: string
 }

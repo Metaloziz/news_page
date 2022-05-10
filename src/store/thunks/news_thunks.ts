@@ -2,6 +2,7 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import {AddCommentPayloadType, commentsRequests, newsRequests} from "api/api";
 import {RootState} from "store/store";
 import {setPreviousPageAC} from "store/single_pagination_reducer";
+import {NewsPayloadType} from "api/data";
 
 export const getNewsPartTC = createAsyncThunk('news/getNewsTC', async (pageNumber: number, {dispatch}) => {
   try {
@@ -70,6 +71,25 @@ export const addCommentTC = createAsyncThunk('news/addCommentTC', async (comment
   try {
     const responce = await commentsRequests.addComment(comment)
     dispatch(getCommentsNewsTC(comment.news_id))
+    return null
+  } catch (e) {
+    console.warn(e)
+    return null
+  }
+})
+
+
+export const createNewsTC = createAsyncThunk('news/createNewsTC', async (news: NewsPayloadType, {
+  dispatch,
+  getState
+}) => {
+
+  const state = getState() as RootState
+  const currentPage = state.single_pagination_reducer.currentPage
+
+  try {
+    const responce = await newsRequests.createNews(news)
+    dispatch(getNewsPartTC(currentPage))
     return null
   } catch (e) {
     console.warn(e)
