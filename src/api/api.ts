@@ -11,13 +11,14 @@ export type NewsPayloadType = {
 export const newsRequests = {
   createNews: (news: NewsPayloadType) => {
     const formDataObject = new FormData()
-    const blob = new Blob([news.file], { type: 'image/' })
+    const blob = new Blob([news.file], { type: 'image/jpg' })
 
-    formDataObject.append('file', 'new Blob})')
+    formDataObject.append('body', JSON.stringify(news.body))
+    // formDataObject.append('file', blob)
 
     return instance.post(`${RequestSource.NEWS}/`, formDataObject, {
       headers: {
-        'Content-Type': 'multipart/form-data',
+        // 'Content-Type': 'multipart/form-data',
       },
     })
   },

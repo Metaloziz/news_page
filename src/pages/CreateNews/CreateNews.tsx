@@ -7,8 +7,11 @@ import style from './CreateNews.module.scss'
 import { NewsPayloadType } from 'api/api'
 import { FormType } from 'api/data'
 import { Button } from 'components/Button/Button'
+import { MainPageNavigate } from 'components/MainPageNavigate/MainPageNavigate'
 import { useAppDispatch } from 'store/store'
 import { createNewsTC } from 'store/thunks/news_thunks'
+
+const NEXT_MONTH = 1
 
 export const CreateNews: FC = () => {
   const dispatch = useAppDispatch()
@@ -28,13 +31,14 @@ export const CreateNews: FC = () => {
     }
 
     dispatch(createNewsTC(news))
-    console.log(news)
   }
 
-  const date = `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()}`
-
+  const date = `${new Date().getFullYear()}-${
+    new Date().getMonth() + NEXT_MONTH
+  }-${new Date().getDate()}`
   return (
     <div className={style.container}>
+      <MainPageNavigate />
       Создать новость:
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
