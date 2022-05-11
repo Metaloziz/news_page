@@ -14,10 +14,9 @@ export type AddCommentPayloadType = Pick<CommentType, 'author' | 'news_id' | 'te
 export const newsRequests = {
   createNews: (news: NewsPayloadType) => {
     const formDataObject = new FormData()
-    const blob = new Blob([news.file], { type: 'image/jpg' })
 
     formDataObject.append('body', JSON.stringify(news.body))
-    // formDataObject.append('file', blob)
+    formDataObject.append('file', news.file)
 
     return instance.post(`${RequestSource.NEWS}/`, formDataObject, {
       headers: {

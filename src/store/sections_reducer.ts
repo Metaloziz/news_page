@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 import { getSectionsTC } from 'store/thunks/sections_thunks'
 
@@ -9,11 +9,7 @@ export const initialState: SectionsInitialStateType = {
 export const mainSlice = createSlice({
   name: 'sections',
   initialState,
-  reducers: {
-    // getSectionsAC: (state, action: PayloadAction<SectionType[]>) => {
-    //   state.sections = action.payload
-    // },
-  },
+  reducers: {},
   extraReducers: builder => {
     builder.addCase(getSectionsTC.fulfilled, (state, action) => {
       if (action.payload) {
@@ -23,7 +19,6 @@ export const mainSlice = createSlice({
   },
 })
 
-// export const { getSectionsAC } = mainSlice.actions
 export const sectionsReducer = mainSlice.reducer
 
 // types
