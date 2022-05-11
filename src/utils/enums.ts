@@ -16,4 +16,5 @@ export enum Paths {
 export enum RequestSource {
   NEWS = '/news',
   COMMENTS = '/comments',
+  SECTIONS = '/sections',
 }

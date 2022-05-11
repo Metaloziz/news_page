@@ -1,6 +1,11 @@
-import { NewsType } from 'api/data'
 import { CommentType } from 'store/news_reducer'
+import { SectionType } from 'store/sections_reducer'
 import { RootState } from 'store/store'
+import { NewsType } from 'store/types/types'
+
+// sections
+export const sectionsSelector = (state: RootState): SectionType[] =>
+  state.sections.sections
 
 // pagination
 export const currentPageSelector = (state: RootState): number =>

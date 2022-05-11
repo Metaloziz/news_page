@@ -3,7 +3,7 @@ import { FC, memo } from 'react'
 
 import style from './News.module.scss'
 
-import { NewsType } from 'api/data'
+import { NewsType } from "store/types/types";
 
 type NewsPropsType = {
   data: NewsType

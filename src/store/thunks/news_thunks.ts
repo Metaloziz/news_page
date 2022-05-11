@@ -6,7 +6,6 @@ import {
   NewsPayloadType,
   newsRequests,
 } from 'api/api'
-import { NewsBodyType } from 'api/data'
 import { setPreviousPageAC } from 'store/single_pagination_reducer'
 import { RootState } from 'store/store'
 

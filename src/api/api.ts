@@ -1,12 +1,15 @@
-import { NewsFileType, NewsBodyType, NewsType } from 'api/data'
 import { instance } from 'api/instance'
 import { CommentType } from 'store/news_reducer'
+import { SectionType } from 'store/sections_reducer'
+import { NewsBodyType, NewsFileType, NewsType } from 'store/types/types'
 import { NEWS_ON_PAGE } from 'utils/consts'
 import { RequestSource } from 'utils/enums'
 
 export type NewsPayloadType = {
   body: NewsBodyType
 } & NewsFileType
+
+export type AddCommentPayloadType = Pick<CommentType, 'author' | 'news_id' | 'text'>
 
 export const newsRequests = {
   createNews: (news: NewsPayloadType) => {
@@ -18,7 +21,7 @@ export const newsRequests = {
 
     return instance.post(`${RequestSource.NEWS}/`, formDataObject, {
       headers: {
-        // 'Content-Type': 'multipart/form-data',
+        'Content-Type': 'multipart/form-data',
       },
     })
   },
@@ -33,8 +36,6 @@ export const newsRequests = {
     instance.patch(`${RequestSource.NEWS}/${newsId}`),
 }
 
-export type AddCommentPayloadType = Pick<CommentType, 'author' | 'news_id' | 'text'>
-
 export const commentsRequests = {
   getComments: (newsId: number) =>
     instance.get<{ data: CommentType[] }>(
@@ -44,4 +45,8 @@ export const commentsRequests = {
     instance.delete(`${RequestSource.COMMENTS}/${commentId}`),
   addComment: (payload: AddCommentPayloadType) =>
     instance.post(`${RequestSource.COMMENTS}/`, payload),
+}
+
+export const sectionsRequests = {
+  getSections: () => instance.get<{ Data: SectionType[] }>(`${RequestSource.SECTIONS}/`),
 }

@@ -1,0 +1,7 @@
+@import "src/styles/mixin";
+
+
+.container {
+  @include container();
+  background-color: aquamarine;
+}

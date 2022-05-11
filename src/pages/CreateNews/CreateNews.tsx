@@ -5,11 +5,11 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import style from './CreateNews.module.scss'
 
 import { NewsPayloadType } from 'api/api'
-import { FormType } from 'api/data'
 import { Button } from 'components/Button/Button'
 import { NavLinkComponent } from 'components/NavlinkComponent/NavLinkComponent'
 import { useAppDispatch } from 'store/store'
 import { createNewsTC } from 'store/thunks/news_thunks'
+import { FormType } from 'store/types/types'
 import { Paths } from 'utils/enums'
 
 const NEXT_MONTH = 1

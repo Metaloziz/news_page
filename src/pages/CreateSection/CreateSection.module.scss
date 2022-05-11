@@ -1,0 +1,19 @@
+@import "src/styles/mixin";
+@import "src/styles/variables";
+
+.container {
+  @include container();
+
+  .create {
+    width: 40%;
+    height: 50%;
+    background-color: $main_color_second;
+  }
+
+  .list {
+    width: 40%;
+    height: 50%;
+    background-color: $main_color_second;
+  }
+
+}

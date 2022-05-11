@@ -1,4 +1,3 @@
-import { NewsType } from 'api/data'
 import {
   getNewsAC,
   NewsInitialStateType,
@@ -9,6 +8,7 @@ import {
 } from 'store/news_reducer'
 import { paginationReducer, PaginationInitialStateType } from 'store/pagination_reducer'
 import { getCommentsNewsTC, getNewsPartTC } from 'store/thunks/news_thunks'
+import { NewsType } from 'store/types/types'
 
 let NewsData: NewsType[]
 let paginationInitialState: PaginationInitialStateType
