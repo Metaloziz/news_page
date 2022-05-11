@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { sectionsRequests } from 'api/api'
+import { SectionType } from 'store/sections_reducer'
 
 export const getSectionsTC = createAsyncThunk('sections/getSectionsTC', async () => {
   try {
@@ -31,6 +32,20 @@ export const removeSectionTC = createAsyncThunk(
   async (id: number, { dispatch }) => {
     try {
       const response = await sectionsRequests.removeSection(id)
+      dispatch(getSectionsTC())
+      return response.data.id
+    } catch (e) {
+      console.warn(e)
+      return null
+    }
+  },
+)
+
+export const changeSectionTC = createAsyncThunk(
+  'sections/changeSectionTC',
+  async (section: SectionType, { dispatch }) => {
+    try {
+      const response = await sectionsRequests.changeSection(section)
       dispatch(getSectionsTC())
       return response.data.id
     } catch (e) {

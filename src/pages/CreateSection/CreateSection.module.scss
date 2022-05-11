@@ -4,9 +4,16 @@
 .container {
   @include container();
 
+  .body {
+    @include container();
+    flex-direction: row;
+
+  }
+
   .create {
-    width: 40%;
-    height: 50%;
+    margin-bottom: 10px;
+    width: auto;
+    height: auto;
     background-color: $main_color_second;
   }
 

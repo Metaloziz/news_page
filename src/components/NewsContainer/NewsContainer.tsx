@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect } from 'react'
+import React, { FC, useCallback, useEffect } from 'react'
 
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -25,7 +25,7 @@ export const NewsContainer: FC = () => {
 
   useEffect(() => {
     dispatch(getNewsPartTC(pageNumber))
-  }, [dispatch, pageNumber])
+  }, [pageNumber])
 
   const setCurrentNews = useCallback(
     (newsId: number) => {

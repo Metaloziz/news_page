@@ -10,9 +10,8 @@ import { NavLinkComponent } from 'components/NavlinkComponent/NavLinkComponent'
 import { useAppDispatch } from 'store/store'
 import { createNewsTC } from 'store/thunks/news_thunks'
 import { FormType } from 'store/types/types'
+import { TODAY_DATE } from 'utils/consts'
 import { Paths } from 'utils/enums'
-
-const NEXT_MONTH = 1
 
 export const CreateNews: FC = () => {
   const dispatch = useAppDispatch()
@@ -34,9 +33,6 @@ export const CreateNews: FC = () => {
     dispatch(createNewsTC(news))
   }
 
-  const date = `${new Date().getFullYear()}-${
-    new Date().getMonth() + NEXT_MONTH
-  }-${new Date().getDate()}`
   return (
     <div className={style.container}>
       <NavLinkComponent nameButton="на главную" path={Paths.MAIN} />
@@ -52,7 +48,7 @@ export const CreateNews: FC = () => {
         </div>
         <div>
           <label>date </label>
-          <input {...register('date')} placeholder="date" value={date} />
+          <input {...register('date')} placeholder="date" value={TODAY_DATE} />
           {errors.date && <span>This field is required</span>}
         </div>
         <div>
