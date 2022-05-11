@@ -51,4 +51,6 @@ export const sectionsRequests = {
   getSections: () => instance.get<{ Data: SectionType[] }>(`${RequestSource.SECTIONS}/`),
   createSection: (name: string) =>
     instance.post<{ id: number }>(`${RequestSource.SECTIONS}/`, { name }),
+  removeSection: (id: number) =>
+    instance.delete<{ id: number }>(`${RequestSource.SECTIONS}/${id}`),
 }

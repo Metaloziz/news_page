@@ -25,3 +25,17 @@ export const createSectionsTC = createAsyncThunk(
     }
   },
 )
+
+export const removeSectionTC = createAsyncThunk(
+  'sections/removeSectionTC',
+  async (id: number, { dispatch }) => {
+    try {
+      const response = await sectionsRequests.removeSection(id)
+      dispatch(getSectionsTC())
+      return response.data.id
+    } catch (e) {
+      console.warn(e)
+      return null
+    }
+  },
+)
