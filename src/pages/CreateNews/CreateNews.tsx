@@ -7,9 +7,10 @@ import style from './CreateNews.module.scss'
 import { NewsPayloadType } from 'api/api'
 import { FormType } from 'api/data'
 import { Button } from 'components/Button/Button'
-import { MainPageNavigate } from 'components/MainPageNavigate/MainPageNavigate'
+import { NavLinkComponent } from 'components/NavlinkComponent/NavLinkComponent'
 import { useAppDispatch } from 'store/store'
 import { createNewsTC } from 'store/thunks/news_thunks'
+import { Paths } from 'utils/enums'
 
 const NEXT_MONTH = 1
 
@@ -38,7 +39,7 @@ export const CreateNews: FC = () => {
   }-${new Date().getDate()}`
   return (
     <div className={style.container}>
-      <MainPageNavigate />
+      <NavLinkComponent nameButton="на главную" path={Paths.MAIN} />
       Создать новость:
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
