@@ -11,3 +11,17 @@ export const getSectionsTC = createAsyncThunk('sections/getSectionsTC', async ()
     return null
   }
 })
+
+export const createSectionsTC = createAsyncThunk(
+  'sections/createSectionsTC',
+  async (name: string, { dispatch }) => {
+    try {
+      const response = await sectionsRequests.createSection(name)
+      dispatch(getSectionsTC())
+      return response.data.id
+    } catch (e) {
+      console.warn(e)
+      return null
+    }
+  },
+)
