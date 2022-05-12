@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { getSectionsTC } from 'store/thunks/sections_thunks'
+import { deleteSectionTC, getSectionsTC } from 'store/thunks/sections_thunks'
 
 export const initialState: SectionsInitialStateType = {
   sections: [{ id: 0, name: 'default' }],
@@ -14,6 +14,11 @@ export const mainSlice = createSlice({
     builder.addCase(getSectionsTC.fulfilled, (state, action) => {
       if (action.payload) {
         state.sections = action.payload
+      }
+    })
+    builder.addCase(deleteSectionTC.fulfilled, (state, action) => {
+      if (action.payload) {
+        state.sections = state.sections.filter(({ id }) => id !== action.payload)
       }
     })
   },

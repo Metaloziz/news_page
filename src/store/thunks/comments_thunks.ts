@@ -7,8 +7,8 @@ export const getCommentsNewsTC = createAsyncThunk(
   'news/getCommentsNewsTC',
   async (newsId: number) => {
     try {
-      const responce = await commentsRequests.getComments(newsId)
-      return responce.data.data
+      const response = await commentsRequests.getComments(newsId)
+      return response.data.data
     } catch (e) {
       console.warn(e)
       return null
@@ -17,12 +17,12 @@ export const getCommentsNewsTC = createAsyncThunk(
 )
 export const deleteCommentTC = createAsyncThunk(
   'news/deleteCommentTC',
-  async (commentId: number, { dispatch, getState }) => {
-    const state = getState() as RootState
-    const newsId = state.news.currentNews.id
+  async (commentId: number) => {
     try {
-      const responce = await commentsRequests.deleteComment(commentId)
-      dispatch(getCommentsNewsTC(newsId))
+      const response = await commentsRequests.deleteComment(commentId)
+      if (response.data.id === commentId) {
+        return response.data.id
+      }
       return null
     } catch (e) {
       console.warn(e)

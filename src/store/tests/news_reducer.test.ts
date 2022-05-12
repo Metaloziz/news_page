@@ -10,18 +10,75 @@ import {
   paginationReducer,
   PaginationInitialStateType,
 } from 'store/reducers/pagination_reducer'
-import { getCommentsNewsTC } from 'store/thunks/comments_thunks'
+import { deleteCommentTC, getCommentsNewsTC } from 'store/thunks/comments_thunks'
 import { getNewsPartTC } from 'store/thunks/news_thunks'
 import { NewsType } from 'store/types/types'
 
-let NewsData: NewsType[]
-let paginationInitialState: PaginationInitialStateType
 const firstItem: number = 0
 const currentNewsId: number = 10
+const currentCommentId: number = 1
 const pageNumber: number = 1
+let paginationInitialState: PaginationInitialStateType
+let newsInitialState: NewsInitialStateType
+let NewsData: NewsType[]
 let comments: CommentType[]
 
 beforeEach(() => {
+  newsInitialState = {
+    news: [
+      {
+        id: currentNewsId,
+        name: '',
+        subtitle_1: '',
+        fullText_1: '',
+        image_1: '',
+        subtitle_2: '',
+        fullText_2: '',
+        image_2: '',
+        fullText_3: '',
+        image_3: '',
+        link: '',
+        date: '',
+        subtitle_3: '',
+        section: 0,
+        views: 0,
+      },
+    ],
+    currentNews: {
+      id: 0,
+      name: '',
+      subtitle_1: '',
+      fullText_1: '',
+      image_1: '',
+      subtitle_2: '',
+      fullText_2: '',
+      image_2: '',
+      fullText_3: '',
+      image_3: '',
+      link: '',
+      date: '',
+      subtitle_3: '',
+      section: 0,
+      views: 0,
+    },
+    comments: [
+      {
+        id: 0,
+        author: '',
+        text: '',
+        date: '',
+        news_id: 0,
+      },
+      {
+        id: currentCommentId,
+        author: '',
+        text: '',
+        date: '',
+        news_id: 1,
+      },
+    ],
+  }
+
   NewsData = [
     {
       id: 1,
@@ -83,61 +140,12 @@ beforeEach(() => {
   ]
 })
 
-const newsInitialState: NewsInitialStateType = {
-  news: [
-    {
-      id: currentNewsId,
-      name: '',
-      subtitle_1: '',
-      fullText_1: '',
-      image_1: '',
-      subtitle_2: '',
-      fullText_2: '',
-      image_2: '',
-      fullText_3: '',
-      image_3: '',
-      link: '',
-      date: '',
-      subtitle_3: '',
-      section: 0,
-      views: 0,
-    },
-  ],
-  currentNews: {
-    id: 0,
-    name: '',
-    subtitle_1: '',
-    fullText_1: '',
-    image_1: '',
-    subtitle_2: '',
-    fullText_2: '',
-    image_2: '',
-    fullText_3: '',
-    image_3: '',
-    link: '',
-    date: '',
-    subtitle_3: '',
-    section: 0,
-    views: 0,
-  },
-  comments: [
-    {
-      id: 0,
-      author: '',
-      text: '',
-      date: '',
-      news_id: 0,
-    },
-  ],
-}
-
 describe('news reducer', () => {
   test('should set all news', () => {
     const action = getNewsAC(NewsData)
 
     const endState = newsReducer(newsInitialState, action)
 
-    expect(newsInitialState).not.toBe(endState)
     expect(endState.news.length).toBe(NewsData.length)
     expect(endState.news[firstItem]).toBe(NewsData[firstItem])
   })
@@ -147,7 +155,6 @@ describe('news reducer', () => {
 
     const endState = paginationReducer(paginationInitialState, action)
 
-    expect(newsInitialState).not.toBe(endState)
     expect(endState.totalCountNews).toBe(NewsData.length)
   })
 
@@ -158,7 +165,6 @@ describe('news reducer', () => {
 
     const endState = newsReducer(newsInitialState, action)
 
-    expect(newsInitialState).not.toBe(endState)
     expect(endState.currentNews).toBe(currentNews)
     expect(endState.currentNews.id).toBe(currentNewsId)
   })
@@ -169,15 +175,23 @@ describe('news reducer', () => {
 
     const endState = newsReducer(newsInitialState, action)
 
-    expect(newsInitialState).not.toBe(endState)
     expect(endState.comments).toBe(comments)
   })
 
-  test('should remove comments', () => {
+  test('should delete comments', () => {
     const action = removeCommentsAC()
     const endState = newsReducer(newsInitialState, action)
 
-    expect(newsInitialState).not.toBe(endState)
     expect(!!endState.comments.length).toBeFalsy()
+  })
+
+  test('should delete current comments', () => {
+    const action = deleteCommentTC.fulfilled(currentCommentId, '', currentCommentId)
+
+    const endState = newsReducer(newsInitialState, action)
+
+    const currentComment = endState.comments.find(({ id }) => id === currentCommentId)
+
+    expect(currentComment).toBeUndefined()
   })
 })

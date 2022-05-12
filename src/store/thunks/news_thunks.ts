@@ -5,14 +5,14 @@ import { setPreviousPageAC } from 'store/reducers/single_pagination_reducer'
 import { RootState } from 'store/store'
 
 export const getNewsPartTC = createAsyncThunk(
-  'news/getNewsTC',
+  'news/getNewsPartTC',
   async (pageNumber: number, { dispatch }) => {
     try {
-      const res = await newsRequests.getNewsPart(pageNumber)
-      if (res.data.Data === null) {
+      const response = await newsRequests.getNewsPart(pageNumber)
+      if (response.data.Data === null) {
         dispatch(setPreviousPageAC()) // костыль, мне нужна длинна массива без его полной загрузки
       }
-      return res.data.Data
+      return response.data.Data
     } catch (e) {
       console.warn(e)
       return null
@@ -26,7 +26,7 @@ export const deleteNewsTC = createAsyncThunk(
     const { currentPage } = state.singlePagination
 
     try {
-      const responce = await newsRequests.deleteNews(newsId)
+      const response = await newsRequests.deleteNews(newsId)
       dispatch(getNewsPartTC(currentPage))
       return null
     } catch (e) {
@@ -39,7 +39,7 @@ export const addNewsViewsValueTC = createAsyncThunk(
   'news/addNewsViewsValueTC',
   async (newsId: number) => {
     try {
-      const responce = await newsRequests.addNewsViewsValue(newsId)
+      const response = await newsRequests.addNewsViewsValue(newsId)
       return null
     } catch (e) {
       console.warn(e)
@@ -55,7 +55,7 @@ export const postNewsTC = createAsyncThunk(
     const { currentPage } = state.singlePagination
 
     try {
-      const responce = await newsRequests.postNews(news)
+      const response = await newsRequests.postNews(news)
       dispatch(getNewsPartTC(currentPage))
       return null
     } catch (e) {

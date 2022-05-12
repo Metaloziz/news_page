@@ -29,11 +29,15 @@ export const postSectionsTC = createAsyncThunk(
 
 export const deleteSectionTC = createAsyncThunk(
   'sections/removeSectionTC',
-  async (id: number, { dispatch }) => {
+  async (sectionId: number) => {
     try {
-      const response = await sectionsRequests.deleteSection(id)
-      dispatch(getSectionsTC())
-      return response.data.id
+      const response = await sectionsRequests.deleteSection(sectionId)
+
+      if (response.data.id === sectionId) {
+        return response.data.id
+      }
+
+      return null
     } catch (e) {
       console.warn(e)
       return null

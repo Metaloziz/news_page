@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { getCommentsNewsTC } from 'store/thunks/comments_thunks'
+import { deleteCommentTC, getCommentsNewsTC } from 'store/thunks/comments_thunks'
 import { getNewsPartTC } from 'store/thunks/news_thunks'
 import { NewsType } from 'store/types/types'
 
@@ -65,7 +65,7 @@ export const mainSlice = createSlice({
   reducers: {
     getNewsAC: (state, action: PayloadAction<NewsType[]>) => {
       state.news = action.payload
-    },
+    }, // пока не используется
     setCurrentNewsAC: (state, action: PayloadAction<number>) => {
       const currentNews = state.news.find(item => item.id === action.payload)
       if (currentNews) {
@@ -87,6 +87,11 @@ export const mainSlice = createSlice({
         state.comments = action.payload
       } else {
         state.comments = []
+      }
+    })
+    builder.addCase(deleteCommentTC.fulfilled, (state, action) => {
+      if (action.payload) {
+        state.comments = state.comments.filter(comment => comment.id !== action.payload)
       }
     })
   },

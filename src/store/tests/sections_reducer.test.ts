@@ -3,20 +3,22 @@ import {
   sectionsReducer,
   SectionType,
 } from 'store/reducers/sections_reducer'
-import { getSectionsTC } from 'store/thunks/sections_thunks'
+import { deleteSectionTC, getSectionsTC } from 'store/thunks/sections_thunks'
 
 let sections: SectionType[]
 
 let initialState: SectionsInitialStateType
 
+const sectionId: number = 1
+
 beforeEach(() => {
   initialState = {
-    sections: [],
+    sections: [{ id: 0, name: 'default' }],
   }
 
   sections = [
-    { id: 0, name: 'default' },
     { id: 1, name: 'default' },
+    { id: 2, name: 'default' },
   ]
 })
 
@@ -26,7 +28,16 @@ describe('sections reducer', () => {
 
     const endState = sectionsReducer(initialState, action)
 
-    expect(endState).not.toBe(initialState)
     expect(endState.sections).toBe(sections)
+  })
+
+  test('should delete current section', () => {
+    const action = deleteSectionTC.fulfilled(sectionId, '', sectionId)
+
+    const endState = sectionsReducer(initialState, action)
+
+    const currentSection = endState.sections.find(({ id }) => id === sectionId)
+
+    expect(currentSection).toBeUndefined()
   })
 })
