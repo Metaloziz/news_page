@@ -11,10 +11,10 @@ import {
 } from 'pages/CurrentNews/Comments/CommentForm/CommentForm'
 import { useAppDispatch } from 'store/store'
 import {
-  addCommentTC,
+  deleteCommentTC,
   getCommentsNewsTC,
-  removeCommentTC,
-} from 'store/thunks/news_thunks'
+  postCommentTC,
+} from 'store/thunks/comments_thunks'
 import { useEffectOnce } from 'utils/hooks'
 import { commentsNewsSelector } from 'utils/selectors'
 
@@ -33,16 +33,16 @@ export const Comments: FC<CommentsPropsType> = memo(({ newsId }) => {
     dispatch(getCommentsNewsTC(newsId))
   })
 
-  const removeComment = useCallback(
+  const deleteComment = useCallback(
     (commentId: number) => {
-      dispatch(removeCommentTC(commentId))
+      dispatch(deleteCommentTC(commentId))
     },
     [dispatch],
   )
 
-  const addComment = useCallback(
+  const postComment = useCallback(
     (comment: CommentFormType) => {
-      dispatch(addCommentTC({ ...comment, news_id: newsId }))
+      dispatch(postCommentTC({ ...comment, news_id: newsId }))
     },
     [dispatch, newsId],
   )
@@ -51,9 +51,9 @@ export const Comments: FC<CommentsPropsType> = memo(({ newsId }) => {
     <div className={style.container}>
       Comments:
       {comments.map(comment => (
-        <Comment key={comment.id} comment={comment} removeComment={removeComment} />
+        <Comment key={comment.id} comment={comment} deleteComment={deleteComment} />
       ))}
-      <CommentForm addComment={addComment} />
+      <CommentForm postComment={postComment} />
     </div>
   )
 })

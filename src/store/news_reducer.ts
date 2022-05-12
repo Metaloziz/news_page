@@ -1,29 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { getCommentsNewsTC, getNewsPartTC } from 'store/thunks/news_thunks'
+import { getCommentsNewsTC } from 'store/thunks/comments_thunks'
+import { getNewsPartTC } from 'store/thunks/news_thunks'
 import { NewsType } from 'store/types/types'
 
 export const initialState: NewsInitialStateType = {
   news: [
     {
       id: 0,
-      name: '',
-      subtitle_1: '',
-      fullText_1: '',
-      image_1: '',
-      subtitle_2: '',
-      fullText_2: '',
-      image_2: '',
-      fullText_3: '',
-      image_3: '',
-      link: '',
-      date: '',
-      subtitle_3: '',
-      section: 0,
-      views: 0,
-    },
-    {
-      id: 1,
       name: '',
       subtitle_1: '',
       fullText_1: '',

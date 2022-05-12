@@ -8,7 +8,7 @@ export type NewsPayloadType = {
 } & NewsFileType
 
 export const newsRequests = {
-  createNews: (news: NewsPayloadType) => {
+  postNews: (news: NewsPayloadType) => {
     const formDataObject = new FormData()
 
     formDataObject.append('body', JSON.stringify(news.body))

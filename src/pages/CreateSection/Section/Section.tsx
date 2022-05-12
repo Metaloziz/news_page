@@ -7,16 +7,16 @@ import { SectionType } from 'store/sections_reducer'
 
 type SectionPropsType = {
   section: SectionType
-  removeSection: (id: number) => void
+  deleteSection: (id: number) => void
 }
-export const Section: FC<SectionPropsType> = ({ section, removeSection }) => {
+export const Section: FC<SectionPropsType> = ({ section, deleteSection }) => {
   console.log()
 
   return (
     <div className={style.container}>
       <div>{section.id}</div>
       <div>{section.name}</div>
-      <Button name="удалить" onClick={() => removeSection(section.id)} />
+      <Button name="удалить" onClick={() => deleteSection(section.id)} />
     </div>
   )
 }

@@ -8,17 +8,18 @@ import { CommentType } from 'store/news_reducer'
 export type CommentFormType = Pick<CommentType, 'author' | 'text'>
 
 type CommentFormPropsType = {
-  addComment: (comment: CommentFormType) => void
+  postComment: (comment: CommentFormType) => void
 }
 
-export const CommentForm: FC<CommentFormPropsType> = memo(({ addComment }) => {
+export const CommentForm: FC<CommentFormPropsType> = memo(({ postComment }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<CommentFormType>()
+
   const onSubmit: SubmitHandler<CommentFormType> = data => {
-    addComment(data)
+    postComment(data)
   }
 
   return (

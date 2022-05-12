@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-import { AddCommentPayloadType, commentsRequests } from 'api/commentsRequests'
 import { NewsPayloadType, newsRequests } from 'api/newsRequests'
 import { setPreviousPageAC } from 'store/single_pagination_reducer'
 import { RootState } from 'store/store'
@@ -20,8 +19,8 @@ export const getNewsPartTC = createAsyncThunk(
     }
   },
 )
-export const removeNewsTC = createAsyncThunk(
-  'news/removeNewsTC',
+export const deleteNewsTC = createAsyncThunk(
+  'news/deleteNewsTC',
   async (newsId: number, { dispatch, getState }) => {
     const state = getState() as RootState
     const { currentPage } = state.singlePagination
@@ -30,18 +29,6 @@ export const removeNewsTC = createAsyncThunk(
       const responce = await newsRequests.deleteNews(newsId)
       dispatch(getNewsPartTC(currentPage))
       return null
-    } catch (e) {
-      console.warn(e)
-      return null
-    }
-  },
-)
-export const getCommentsNewsTC = createAsyncThunk(
-  'news/getCommentsNewsTC',
-  async (newsId: number) => {
-    try {
-      const responce = await commentsRequests.getComments(newsId)
-      return responce.data.data
     } catch (e) {
       console.warn(e)
       return null
@@ -60,43 +47,15 @@ export const addNewsViewsValueTC = createAsyncThunk(
     }
   },
 )
-export const removeCommentTC = createAsyncThunk(
-  'news/removeCommentTC',
-  async (commentId: number, { dispatch, getState }) => {
-    const state = getState() as RootState
-    const newsId = state.news.currentNews.id
-    try {
-      const responce = await commentsRequests.removeComment(commentId)
-      dispatch(getCommentsNewsTC(newsId))
-      return null
-    } catch (e) {
-      console.warn(e)
-      return null
-    }
-  },
-)
-export const addCommentTC = createAsyncThunk(
-  'news/addCommentTC',
-  async (comment: AddCommentPayloadType, { dispatch }) => {
-    try {
-      const responce = await commentsRequests.addComment(comment)
-      dispatch(getCommentsNewsTC(comment.news_id))
-      return null
-    } catch (e) {
-      console.warn(e)
-      return null
-    }
-  },
-)
 
-export const createNewsTC = createAsyncThunk(
-  'news/createNewsTC',
+export const postNewsTC = createAsyncThunk(
+  'news/postNewsTC',
   async (news: NewsPayloadType, { dispatch, getState }) => {
     const state = getState() as RootState
     const { currentPage } = state.singlePagination
 
     try {
-      const responce = await newsRequests.createNews(news)
+      const responce = await newsRequests.postNews(news)
       dispatch(getNewsPartTC(currentPage))
       return null
     } catch (e) {

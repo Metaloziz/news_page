@@ -7,7 +7,8 @@ import {
   removeCommentsAC,
 } from 'store/news_reducer'
 import { paginationReducer, PaginationInitialStateType } from 'store/pagination_reducer'
-import { getCommentsNewsTC, getNewsPartTC } from 'store/thunks/news_thunks'
+import { getCommentsNewsTC } from 'store/thunks/comments_thunks'
+import { getNewsPartTC } from 'store/thunks/news_thunks'
 import { NewsType } from 'store/types/types'
 
 let NewsData: NewsType[]

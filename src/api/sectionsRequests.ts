@@ -5,10 +5,10 @@ import { RequestSource } from 'utils/enums'
 export const sectionsRequests = {
   getSections: () => instance.get<{ Data: SectionType[] }>(`${RequestSource.SECTIONS}/`),
 
-  createSection: (name: string) =>
+  postSection: (name: string) =>
     instance.post<{ id: number }>(`${RequestSource.SECTIONS}/`, { name }),
 
-  removeSection: (id: number) =>
+  deleteSection: (id: number) =>
     instance.delete<{ id: number }>(`${RequestSource.SECTIONS}/${id}`),
 
   changeSection: ({ id, name }: SectionType) =>

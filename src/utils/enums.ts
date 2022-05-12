@@ -6,7 +6,7 @@ export enum ButtonsPagination {
   Four,
 }
 
-export enum Paths {
+export enum Path {
   MAIN = 'main',
   CURRENT_NEWS = 'current_news',
   CREATE_NEWS = 'create_news',

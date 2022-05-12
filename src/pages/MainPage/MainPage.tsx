@@ -6,13 +6,13 @@ import { NavLinkComponent } from 'components/NavlinkComponent/NavLinkComponent'
 import { NewsContainer } from 'components/NewsContainer/NewsContainer'
 import { SinglePagination } from 'components/SinglePagination/SinglePagination'
 import style from 'pages/MainPage/MainPage.module.scss'
-import { Paths } from 'utils/enums'
+import { Path } from 'utils/enums'
 
 export const MainPage: FC = () => (
   <div className={style.container}>
     <div className={style.header}>НОВОСТИ - текст</div>
     <Navigation />
-    <NavLinkComponent nameButton="создать новость" path={Paths.CREATE_NEWS} />
+    <NavLinkComponent nameButton="создать новость" path={Path.CREATE_NEWS} />
     <NewsContainer />
     <SinglePagination />
     <Footer />

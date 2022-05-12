@@ -8,10 +8,10 @@ import { NewsPayloadType } from 'api/newsRequests'
 import { Button } from 'components/Button/Button'
 import { NavLinkComponent } from 'components/NavlinkComponent/NavLinkComponent'
 import { useAppDispatch } from 'store/store'
-import { createNewsTC } from 'store/thunks/news_thunks'
+import { postNewsTC } from 'store/thunks/news_thunks'
 import { FormType } from 'store/types/types'
 import { TODAY_DATE } from 'utils/consts'
-import { Paths } from 'utils/enums'
+import { Path } from 'utils/enums'
 
 export const CreateNews: FC = () => {
   const dispatch = useAppDispatch()
@@ -21,21 +21,18 @@ export const CreateNews: FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormType>()
+
   const onSubmit: SubmitHandler<FormType> = data => {
     data.section = Number(data.section)
+
     const { file, ...body } = data
 
-    const news: NewsPayloadType = {
-      body,
-      file,
-    }
-
-    dispatch(createNewsTC(news))
+    dispatch(postNewsTC({ body, file }))
   }
 
   return (
     <div className={style.container}>
-      <NavLinkComponent nameButton="на главную" path={Paths.MAIN} />
+      <NavLinkComponent nameButton="на главную" path={Path.MAIN} />
       Создать новость:
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>

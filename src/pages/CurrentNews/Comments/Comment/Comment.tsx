@@ -6,25 +6,28 @@ import { CommentType } from 'store/news_reducer'
 
 type CommentPropsType = {
   comment: Omit<CommentType, 'news_id'>
-  removeComment: (commentId: number) => void
+  deleteComment: (commentId: number) => void
 }
 
-export const Comment: FC<CommentPropsType> = ({ comment, removeComment }) => (
+export const Comment: FC<CommentPropsType> = ({
+  comment: { author, date, text, id },
+  deleteComment,
+}) => (
   <div className={style.comment}>
     <div>
       <div>
         <h3>author: </h3>
-        {comment.author}
+        {author}
       </div>
       <div>
         <h4>text: </h4>
-        {comment.text}
+        {text}
       </div>
       <div>
         <h5>date: </h5>
-        {comment.date}
+        {date}
       </div>
     </div>
-    <Button name="удалить" onClick={() => removeComment(comment.id)} />
+    <Button name="удалить" onClick={() => deleteComment(id)} />
   </div>
 )

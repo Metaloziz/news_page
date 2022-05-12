@@ -13,11 +13,11 @@ export const getSectionsTC = createAsyncThunk('sections/getSectionsTC', async ()
   }
 })
 
-export const createSectionsTC = createAsyncThunk(
+export const postSectionsTC = createAsyncThunk(
   'sections/createSectionsTC',
   async (name: string, { dispatch }) => {
     try {
-      const response = await sectionsRequests.createSection(name)
+      const response = await sectionsRequests.postSection(name)
       dispatch(getSectionsTC())
       return response.data.id
     } catch (e) {
@@ -27,11 +27,11 @@ export const createSectionsTC = createAsyncThunk(
   },
 )
 
-export const removeSectionTC = createAsyncThunk(
+export const deleteSectionTC = createAsyncThunk(
   'sections/removeSectionTC',
   async (id: number, { dispatch }) => {
     try {
-      const response = await sectionsRequests.removeSection(id)
+      const response = await sectionsRequests.deleteSection(id)
       dispatch(getSectionsTC())
       return response.data.id
     } catch (e) {

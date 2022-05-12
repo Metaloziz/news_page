@@ -12,9 +12,9 @@ import { useAppDispatch } from 'store/store'
 import {
   addNewsViewsValueTC,
   getNewsPartTC,
-  removeNewsTC,
+  deleteNewsTC,
 } from 'store/thunks/news_thunks'
-import { Paths } from 'utils/enums'
+import { Path } from 'utils/enums'
 import { newsSelector, numberPageSelector } from 'utils/selectors'
 
 export const NewsContainer: FC = () => {
@@ -36,11 +36,11 @@ export const NewsContainer: FC = () => {
   )
 
   const newsRouteHandle = (): void => {
-    navigate(`/${Paths.CURRENT_NEWS}`)
+    navigate(`/${Path.CURRENT_NEWS}`)
   }
 
   const removeNews = (newsId: number): void => {
-    dispatch(removeNewsTC(newsId))
+    dispatch(deleteNewsTC(newsId))
   }
 
   return (

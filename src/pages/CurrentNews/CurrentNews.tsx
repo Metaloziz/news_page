@@ -7,7 +7,7 @@ import style from './CurrentNews.module.scss'
 import { NavLinkComponent } from 'components/NavlinkComponent/NavLinkComponent'
 import { Comments } from 'pages/CurrentNews/Comments/Comments'
 import { NewsPreview } from 'pages/CurrentNews/NewsPreview/NewsPreview'
-import { Paths } from 'utils/enums'
+import { Path } from 'utils/enums'
 import { currentNewsSelector } from 'utils/selectors'
 
 export const CurrentNews: FC = () => {
@@ -16,7 +16,7 @@ export const CurrentNews: FC = () => {
   return (
     <div className={style.container}>
       <div>{`HOME -------------> Новости -------------> ${news.name}`}</div>
-      <NavLinkComponent nameButton="на главную" path={Paths.MAIN} />
+      <NavLinkComponent nameButton="на главную" path={Path.MAIN} />
       <img alt="logo" src={news.image_1} />
       <h3>{news.name}</h3>
       <div>{`количество просмотров: ${news.views}`}</div>

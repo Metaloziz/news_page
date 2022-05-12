@@ -11,11 +11,11 @@ import { SectionType } from 'store/sections_reducer'
 import { useAppDispatch } from 'store/store'
 import {
   changeSectionTC,
-  createSectionsTC,
+  postSectionsTC,
   getSectionsTC,
-  removeSectionTC,
+  deleteSectionTC,
 } from 'store/thunks/sections_thunks'
-import { Paths } from 'utils/enums'
+import { Path } from 'utils/enums'
 import { sectionsSelector } from 'utils/selectors'
 
 export const CreateSection: FC = () => {
@@ -27,32 +27,32 @@ export const CreateSection: FC = () => {
     dispatch(getSectionsTC())
   }, [])
 
-  const createSection = (section: SectionType): void => {
-    dispatch(createSectionsTC(section.name))
+  const postSection = (section: SectionType): void => {
+    dispatch(postSectionsTC(section.name))
   }
 
   const changeSection = (section: SectionType): void => {
     dispatch(changeSectionTC(section))
   }
 
-  const removeSection = (id: number): void => {
-    dispatch(removeSectionTC(id))
+  const deleteSection = (id: number): void => {
+    dispatch(deleteSectionTC(id))
   }
 
   return (
     <div className={style.container}>
-      <NavLinkComponent nameButton="на главную" path={Paths.MAIN} />
+      <NavLinkComponent nameButton="на главную" path={Path.MAIN} />
       <div className={style.body}>
         <div>
           <div className={style.create}>
             создать
-            <NewSectionForm mode="add" createSection={createSection} />
+            <NewSectionForm mode="add" setSectionData={postSection} />
           </div>
           <div className={style.create}>
             редактировать
             <NewSectionForm
               mode="edit"
-              createSection={changeSection}
+              setSectionData={changeSection}
               sectionsId={sectionId}
             />
           </div>
@@ -60,7 +60,7 @@ export const CreateSection: FC = () => {
         <div className={style.list}>
           все секции:
           {sections.map(section => (
-            <Section key={section.id} section={section} removeSection={removeSection} />
+            <Section key={section.id} section={section} deleteSection={deleteSection} />
           ))}
         </div>
       </div>

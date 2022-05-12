@@ -5,7 +5,7 @@ import {
   SinglePaginationReducerType,
 } from 'store/single_pagination_reducer'
 
-const ONE: number = 1
+const DIFFERENCE_COUNTER_PAGES: number = 1
 
 const paginationInitialState: SinglePaginationReducerType = {
   currentPage: 1,
@@ -18,7 +18,9 @@ describe('single_pagination_reducer', () => {
     const endState = singlePaginationReducer(paginationInitialState, action)
 
     expect(paginationInitialState).not.toBe(endState)
-    expect(endState.currentPage).toBe(paginationInitialState.currentPage + ONE)
+    expect(endState.currentPage).toBe(
+      paginationInitialState.currentPage + DIFFERENCE_COUNTER_PAGES,
+    )
   })
 
   test('set previous page', () => {
@@ -27,6 +29,8 @@ describe('single_pagination_reducer', () => {
     const endState = singlePaginationReducer(paginationInitialState, action)
 
     expect(paginationInitialState).not.toBe(endState)
-    expect(endState.currentPage).toBe(paginationInitialState.currentPage - ONE)
+    expect(endState.currentPage).toBe(
+      paginationInitialState.currentPage - DIFFERENCE_COUNTER_PAGES,
+    )
   })
 })

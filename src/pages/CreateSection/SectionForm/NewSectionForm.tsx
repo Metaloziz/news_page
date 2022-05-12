@@ -6,13 +6,13 @@ import { Button } from 'components/Button/Button'
 import { SectionType } from 'store/sections_reducer'
 
 type SectionFormPropsType = {
-  createSection: (data: SectionType) => void
+  setSectionData: (data: SectionType) => void
   mode: 'add' | 'edit'
   sectionsId?: number[]
 }
 
 export const NewSectionForm: FC<SectionFormPropsType> = ({
-  createSection,
+  setSectionData,
   mode,
   sectionsId,
 }) => {
@@ -23,7 +23,7 @@ export const NewSectionForm: FC<SectionFormPropsType> = ({
   } = useForm<SectionType>()
 
   const onSubmit: SubmitHandler<SectionType> = data => {
-    createSection(data)
+    setSectionData(data)
   }
 
   const select =
