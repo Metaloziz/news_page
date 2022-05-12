@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { deleteCommentTC, getCommentsNewsTC } from 'store/thunks/comments_thunks'
-import { getNewsPartTC } from 'store/thunks/news_thunks'
+import { deleteNewsTC, getNewsPartTC } from 'store/thunks/news_thunks'
 import { NewsType } from 'store/types/types'
 
 export const initialState: NewsInitialStateType = {
@@ -92,6 +92,11 @@ export const mainSlice = createSlice({
     builder.addCase(deleteCommentTC.fulfilled, (state, action) => {
       if (action.payload) {
         state.comments = state.comments.filter(comment => comment.id !== action.payload)
+      }
+    })
+    builder.addCase(deleteNewsTC.fulfilled, (state, action) => {
+      if (action.payload) {
+        state.news = state.news.filter(comment => comment.id !== action.payload)
       }
     })
   },

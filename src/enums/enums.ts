@@ -7,6 +7,7 @@ export enum ButtonsPagination {
 }
 
 export enum Path {
+  DEFAULT = '/',
   MAIN = 'main',
   CURRENT_NEWS = 'current_news',
   CREATE_NEWS = 'create_news',

@@ -11,7 +11,7 @@ import {
   PaginationInitialStateType,
 } from 'store/reducers/pagination_reducer'
 import { deleteCommentTC, getCommentsNewsTC } from 'store/thunks/comments_thunks'
-import { getNewsPartTC } from 'store/thunks/news_thunks'
+import { deleteNewsTC, getNewsPartTC } from 'store/thunks/news_thunks'
 import { NewsType } from 'store/types/types'
 
 const firstItem: number = 0
@@ -170,8 +170,7 @@ describe('news reducer', () => {
   })
 
   test('should set news comments', () => {
-    const NEWS_ID = 1
-    const action = getCommentsNewsTC.fulfilled(comments, '', NEWS_ID)
+    const action = getCommentsNewsTC.fulfilled(comments, '', currentNewsId)
 
     const endState = newsReducer(newsInitialState, action)
 
@@ -193,5 +192,15 @@ describe('news reducer', () => {
     const currentComment = endState.comments.find(({ id }) => id === currentCommentId)
 
     expect(currentComment).toBeUndefined()
+  })
+
+  test('should delete current news', () => {
+    const action = deleteNewsTC.fulfilled(currentNewsId, '', currentNewsId)
+
+    const endState = newsReducer(newsInitialState, action)
+
+    const currentNews = endState.news.find(({ id }) => id === currentNewsId)
+
+    expect(currentNews).toBeUndefined()
   })
 })

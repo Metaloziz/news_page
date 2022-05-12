@@ -9,8 +9,12 @@ export const getNewsPartTC = createAsyncThunk(
   async (pageNumber: number, { dispatch }) => {
     try {
       const response = await newsRequests.getNewsPart(pageNumber)
+
+      console.log(response.headers)
+      console.log(response.headers['content-length'])
+
       if (response.data.Data === null) {
-        dispatch(setPreviousPageAC()) // костыль, мне нужна длинна массива без его полной загрузки
+        dispatch(setPreviousPageAC()) // костыль, длину нужно достать из headers
       }
       return response.data.Data
     } catch (e) {
@@ -21,13 +25,14 @@ export const getNewsPartTC = createAsyncThunk(
 )
 export const deleteNewsTC = createAsyncThunk(
   'news/deleteNewsTC',
-  async (newsId: number, { dispatch, getState }) => {
-    const state = getState() as RootState
-    const { currentPage } = state.singlePagination
-
+  async (newsId: number) => {
     try {
       const response = await newsRequests.deleteNews(newsId)
-      dispatch(getNewsPartTC(currentPage))
+
+      if (response.data.id === newsId) {
+        return response.data.id
+      }
+
       return null
     } catch (e) {
       console.warn(e)
