@@ -1,6 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { deleteCommentTC, getCommentsNewsTC } from 'store/thunks/comments_thunks'
+import {
+  deleteCommentTC,
+  getCommentsNewsTC,
+  getCurrentCommentTC,
+} from 'store/thunks/comments_thunks'
 import {
   addNewsViewsValueTC,
   deleteNewsTC,
@@ -108,6 +112,11 @@ export const mainSlice = createSlice({
       if (action.payload) {
         const indexElement = findIndexElement(state.news, action.payload)
         state.news[indexElement].views += 1
+      }
+    })
+    builder.addCase(getCurrentCommentTC.fulfilled, (state, action) => {
+      if (action.payload) {
+        state.comments.push(action.payload)
       }
     })
   },

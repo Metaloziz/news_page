@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-import { PostCommentPayloadType, commentsRequests } from 'api/commentsRequests'
-import { RootState } from 'store/store'
+import { commentsRequests, PostCommentPayloadType } from 'api/commentsRequests'
 
 export const getCommentsNewsTC = createAsyncThunk(
   'news/getCommentsNewsTC',
@@ -30,12 +29,27 @@ export const deleteCommentTC = createAsyncThunk(
     }
   },
 )
+export const getCurrentCommentTC = createAsyncThunk(
+  'news/getCurrentCommentTC',
+  async (commentId: number) => {
+    try {
+      const response = await commentsRequests.getCurrentComment(commentId)
+      if (response.data.id === commentId) {
+        return response.data
+      }
+      return null
+    } catch (e) {
+      console.warn(e)
+      return null
+    }
+  },
+)
 export const postCommentTC = createAsyncThunk(
   'news/postCommentTC',
   async (comment: PostCommentPayloadType, { dispatch }) => {
     try {
-      const responce = await commentsRequests.postComment(comment)
-      dispatch(getCommentsNewsTC(comment.news_id))
+      const response = await commentsRequests.postComment(comment)
+      dispatch(getCurrentCommentTC(response.data.id))
       return null
     } catch (e) {
       console.warn(e)

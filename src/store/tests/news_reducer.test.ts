@@ -10,7 +10,11 @@ import {
   paginationReducer,
   PaginationInitialStateType,
 } from 'store/reducers/pagination_reducer'
-import { deleteCommentTC, getCommentsNewsTC } from 'store/thunks/comments_thunks'
+import {
+  deleteCommentTC,
+  getCommentsNewsTC,
+  getCurrentCommentTC,
+} from 'store/thunks/comments_thunks'
 import {
   addNewsViewsValueTC,
   deleteNewsTC,
@@ -28,6 +32,7 @@ let paginationInitialState: PaginationInitialStateType
 let newsInitialState: NewsInitialStateType
 let NewsData: NewsType[]
 let comments: CommentType[]
+let newComment: CommentType
 
 beforeEach(() => {
   newsInitialState = {
@@ -144,6 +149,14 @@ beforeEach(() => {
       news_id: 2,
     },
   ]
+
+  newComment = {
+    id: 2,
+    author: 'author',
+    text: 'text',
+    date: 'date',
+    news_id: 0,
+  }
 })
 
 describe('news reducer', () => {
@@ -198,6 +211,16 @@ describe('news reducer', () => {
     const currentComment = endState.comments.find(({ id }) => id === currentCommentId)
 
     expect(currentComment).toBeUndefined()
+  })
+
+  test('should added current comment', () => {
+    const action = getCurrentCommentTC.fulfilled(newComment, '', newComment.id)
+
+    const endState = newsReducer(newsInitialState, action)
+
+    const currentComment = endState.comments.find(({ id }) => id === newComment.id)
+
+    expect(!!currentComment).toBeTruthy()
   })
 
   test('should delete current news', () => {

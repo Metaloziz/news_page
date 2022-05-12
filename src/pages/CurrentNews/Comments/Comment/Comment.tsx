@@ -1,6 +1,7 @@
 import { FC } from 'react'
 
 import { Button } from 'components/Button/Button'
+import { FIRST_DATE_ELEMENT, LAST_DATE_ELEMENT } from 'constants/constants'
 import style from 'pages/CurrentNews/Comments/Comments.module.scss'
 import { CommentType } from 'store/reducers/news_reducer'
 
@@ -25,7 +26,7 @@ export const Comment: FC<CommentPropsType> = ({
       </div>
       <div>
         <h5>date: </h5>
-        {date}
+        {date.slice(FIRST_DATE_ELEMENT, LAST_DATE_ELEMENT)}
       </div>
     </div>
     <Button name="удалить" onClick={() => deleteComment(id)} />

@@ -14,5 +14,7 @@ export const commentsRequests = {
     instance.delete<{ id: number }>(`${RequestSource.COMMENTS}/${commentId}`),
 
   postComment: (comment: PostCommentPayloadType) =>
-    instance.post(`${RequestSource.COMMENTS}/`, comment),
+    instance.post<{ id: number }>(`${RequestSource.COMMENTS}/`, comment),
+  getCurrentComment: (commentId: number) =>
+    instance.get<CommentType>(`${RequestSource.COMMENTS}/${commentId}`),
 }
