@@ -11,13 +11,19 @@ import {
   PaginationInitialStateType,
 } from 'store/reducers/pagination_reducer'
 import { deleteCommentTC, getCommentsNewsTC } from 'store/thunks/comments_thunks'
-import { deleteNewsTC, getNewsPartTC } from 'store/thunks/news_thunks'
+import {
+  addNewsViewsValueTC,
+  deleteNewsTC,
+  getNewsPartTC,
+} from 'store/thunks/news_thunks'
 import { NewsType } from 'store/types/types'
+import { findIndexElement } from 'utils/utils'
 
 const firstItem: number = 0
 const currentNewsId: number = 10
 const currentCommentId: number = 1
 const pageNumber: number = 1
+const countViewsSeparator: number = 1
 let paginationInitialState: PaginationInitialStateType
 let newsInitialState: NewsInitialStateType
 let NewsData: NewsType[]
@@ -202,5 +208,17 @@ describe('news reducer', () => {
     const currentNews = endState.news.find(({ id }) => id === currentNewsId)
 
     expect(currentNews).toBeUndefined()
+  })
+
+  test('should added one count to news view', () => {
+    const action = addNewsViewsValueTC.fulfilled(currentNewsId, '', currentNewsId)
+
+    const endState = newsReducer(newsInitialState, action)
+
+    const indexElement = findIndexElement(endState.news, currentNewsId)
+
+    expect(endState.news[indexElement].views).toBe(
+      newsInitialState.news[indexElement].views + countViewsSeparator,
+    )
   })
 })

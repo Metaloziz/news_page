@@ -45,6 +45,9 @@ export const addNewsViewsValueTC = createAsyncThunk(
   async (newsId: number) => {
     try {
       const response = await newsRequests.addNewsViewsValue(newsId)
+      if (response.data.id === newsId) {
+        return response.data.id
+      }
       return null
     } catch (e) {
       console.warn(e)
