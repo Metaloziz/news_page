@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 
 import style from './CreateNews.module.scss'
 
-import { NewsPayloadType } from 'api/api'
+import { NewsPayloadType } from 'api/newsRequests'
 import { Button } from 'components/Button/Button'
 import { NavLinkComponent } from 'components/NavlinkComponent/NavLinkComponent'
 import { useAppDispatch } from 'store/store'

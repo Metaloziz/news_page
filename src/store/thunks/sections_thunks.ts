@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-import { sectionsRequests } from 'api/api'
+import { sectionsRequests } from 'api/sectionsRequests'
 import { SectionType } from 'store/sections_reducer'
 
 export const getSectionsTC = createAsyncThunk('sections/getSectionsTC', async () => {

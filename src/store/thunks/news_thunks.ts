@@ -1,11 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-import {
-  AddCommentPayloadType,
-  commentsRequests,
-  NewsPayloadType,
-  newsRequests,
-} from 'api/api'
+import { AddCommentPayloadType, commentsRequests } from 'api/commentsRequests'
+import { NewsPayloadType, newsRequests } from 'api/newsRequests'
 import { setPreviousPageAC } from 'store/single_pagination_reducer'
 import { RootState } from 'store/store'
 
