@@ -1,6 +1,6 @@
 import { instance } from 'api/instance'
-import { SectionType } from 'store/sections_reducer'
-import { RequestSource } from 'utils/enums'
+import { RequestSource } from 'enums/enums'
+import { SectionType } from 'store/reducers/sections_reducer'
 
 export const sectionsRequests = {
   getSections: () => instance.get<{ Data: SectionType[] }>(`${RequestSource.SECTIONS}/`),

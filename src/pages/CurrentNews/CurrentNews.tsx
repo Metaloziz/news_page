@@ -5,13 +5,13 @@ import { useSelector } from 'react-redux'
 import style from './CurrentNews.module.scss'
 
 import { NavLinkComponent } from 'components/NavlinkComponent/NavLinkComponent'
+import { Path } from 'enums/enums'
 import { Comments } from 'pages/CurrentNews/Comments/Comments'
 import { NewsPreview } from 'pages/CurrentNews/NewsPreview/NewsPreview'
-import { Path } from 'utils/enums'
-import { currentNewsSelector } from 'utils/selectors'
+import { selectorCurrentNews } from 'store/selectors/news'
 
 export const CurrentNews: FC = () => {
-  const news = useSelector(currentNewsSelector)
+  const news = useSelector(selectorCurrentNews)
 
   return (
     <div className={style.container}>

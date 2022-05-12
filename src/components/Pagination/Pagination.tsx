@@ -3,18 +3,18 @@ import { FC, ReactElement } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Buttons } from 'components/Pagination/Buttons'
-import { setCurrentPageAC } from 'store/pagination_reducer'
+import { setCurrentPageAC } from 'store/reducers/pagination_reducer'
 import {
-  countNewsOnPageSelector,
-  currentPageSelector,
-  totalCountSelector,
-} from 'utils/selectors'
+  selectCountNewsOnPage,
+  selectorCurrentPage,
+  selectorTotalCount,
+} from 'store/selectors/pagination'
 
 export const Pagination: FC = (): ReactElement => {
   const dispatch = useDispatch()
-  const currentPage = useSelector(currentPageSelector)
-  const totalCountNews = useSelector(totalCountSelector)
-  const countNewsOnPage = useSelector(countNewsOnPageSelector)
+  const currentPage = useSelector(selectorCurrentPage)
+  const totalCountNews = useSelector(selectorTotalCount)
+  const countNewsOnPage = useSelector(selectCountNewsOnPage)
 
   const setCurrentPage = (page: number): void => {
     dispatch(setCurrentPageAC(page))

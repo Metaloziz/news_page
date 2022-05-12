@@ -3,22 +3,25 @@ import { FC } from 'react'
 import { useSelector } from 'react-redux'
 
 import { Button } from 'components/Button/Button'
-import { setNextPageAC, setPreviousPageAC } from 'store/single_pagination_reducer'
+import { FIRST_PAGE_PAGINATION, NEWS_ON_PAGE } from 'constants/constants'
+import {
+  setNextPageAC,
+  setPreviousPageAC,
+} from 'store/reducers/single_pagination_reducer'
+import { selectorNews } from 'store/selectors/news'
+import { selectorNumberPage } from 'store/selectors/singlePagination'
 import { useAppDispatch } from 'store/store'
-import { NEWS_ON_PAGE } from 'utils/consts'
-import { newsLengthSelector, numberPageSelector } from 'utils/selectors'
-
-const FIRST_PAGE = 1
 
 export const SinglePagination: FC = () => {
   const dispatch = useAppDispatch()
-  const pageNumber = useSelector(numberPageSelector)
-  const newsLength = useSelector(newsLengthSelector)
 
-  const previousPageHandle = (): void => {
+  const news = useSelector(selectorNews)
+  const pageNumber = useSelector(selectorNumberPage)
+
+  const setPreviousPage = (): void => {
     dispatch(setPreviousPageAC())
   }
-  const nextPageHandle = (): void => {
+  const setNextPage = (): void => {
     dispatch(setNextPageAC())
   }
 
@@ -26,11 +29,11 @@ export const SinglePagination: FC = () => {
     <div>
       <Button
         name="<<"
-        onClick={previousPageHandle}
-        disabled={pageNumber === FIRST_PAGE}
+        onClick={setPreviousPage}
+        disabled={pageNumber === FIRST_PAGE_PAGINATION}
       />
       <h3>page number: {pageNumber}</h3>
-      <Button name=">>" onClick={nextPageHandle} disabled={newsLength < NEWS_ON_PAGE} />
+      <Button name=">>" onClick={setNextPage} disabled={news.length < NEWS_ON_PAGE} />
     </div>
   )
 }

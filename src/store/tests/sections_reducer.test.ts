@@ -2,7 +2,7 @@ import {
   SectionsInitialStateType,
   sectionsReducer,
   SectionType,
-} from 'store/sections_reducer'
+} from 'store/reducers/sections_reducer'
 import { getSectionsTC } from 'store/thunks/sections_thunks'
 
 let sections: SectionType[]
@@ -21,7 +21,7 @@ beforeEach(() => {
 })
 
 describe('sections reducer', () => {
-  test('get all sections', () => {
+  test('should get all sections', () => {
     const action = getSectionsTC.fulfilled(sections, '')
 
     const endState = sectionsReducer(initialState, action)

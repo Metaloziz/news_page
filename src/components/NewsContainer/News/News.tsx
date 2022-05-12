@@ -17,13 +17,14 @@ export const News: FC<NewsPropsType> = memo(
     setCurrentNews,
     newsRouteHandle,
   }) => {
-    const newsHandle = (): void => {
+
+    const openCurrentNews = (): void => {
       setCurrentNews(id)
       newsRouteHandle()
     }
 
     return (
-      <div className={style.container} onClick={newsHandle}>
+      <div className={style.container} onClick={openCurrentNews}>
         <div>
           <img alt="ava" src={image_1} />
         </div>

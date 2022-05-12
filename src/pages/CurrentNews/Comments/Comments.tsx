@@ -1,37 +1,35 @@
-import { FC, memo, useCallback } from 'react'
+import { FC, memo, useCallback, useEffect } from 'react'
 
 import { useSelector } from 'react-redux'
 
 import style from './Comments.module.scss'
 
+import { FIRST_INDEX_NEWS } from 'constants/constants'
 import { Comment } from 'pages/CurrentNews/Comments/Comment/Comment'
 import {
   CommentForm,
   CommentFormType,
 } from 'pages/CurrentNews/Comments/CommentForm/CommentForm'
+import { selectorCommentsNews } from 'store/selectors/news'
 import { useAppDispatch } from 'store/store'
 import {
   deleteCommentTC,
   getCommentsNewsTC,
   postCommentTC,
 } from 'store/thunks/comments_thunks'
-import { useEffectOnce } from 'utils/hooks'
-import { commentsNewsSelector } from 'utils/selectors'
 
 type CommentsPropsType = {
   newsId: number
 }
 
-const FIRST_NEWS = 0
-
 export const Comments: FC<CommentsPropsType> = memo(({ newsId }) => {
-  const comments = useSelector(commentsNewsSelector)
+  const comments = useSelector(selectorCommentsNews)
   const dispatch = useAppDispatch()
 
-  useEffectOnce(() => {
-    if (newsId === FIRST_NEWS) return // чем заменить useEffect ?
+  useEffect(() => {
+    if (newsId === FIRST_INDEX_NEWS) return
     dispatch(getCommentsNewsTC(newsId))
-  })
+  }, [])
 
   const deleteComment = useCallback(
     (commentId: number) => {

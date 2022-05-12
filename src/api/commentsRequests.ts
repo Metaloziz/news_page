@@ -1,6 +1,6 @@
 import { instance } from 'api/instance'
-import { CommentType } from 'store/news_reducer'
-import { RequestSource } from 'utils/enums'
+import { RequestSource } from 'enums/enums'
+import { CommentType } from 'store/reducers/news_reducer'
 
 export type PostCommentPayloadType = Pick<CommentType, 'author' | 'news_id' | 'text'>
 

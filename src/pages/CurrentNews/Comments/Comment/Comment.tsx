@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 import { Button } from 'components/Button/Button'
 import style from 'pages/CurrentNews/Comments/Comments.module.scss'
-import { CommentType } from 'store/news_reducer'
+import { CommentType } from 'store/reducers/news_reducer'
 
 type CommentPropsType = {
   comment: Omit<CommentType, 'news_id'>

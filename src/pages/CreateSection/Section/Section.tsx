@@ -3,7 +3,7 @@ import { FC } from 'react'
 import style from './Section.module.scss'
 
 import { Button } from 'components/Button/Button'
-import { SectionType } from 'store/sections_reducer'
+import { SectionType } from 'store/reducers/sections_reducer'
 
 type SectionPropsType = {
   section: SectionType

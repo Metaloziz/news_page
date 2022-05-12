@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect } from 'react'
+import { FC, useCallback, useEffect } from 'react'
 
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -7,21 +7,24 @@ import { News } from './News/News'
 import style from './NewsContainer.module.scss'
 
 import { Button } from 'components/Button/Button'
-import { setCurrentNewsAC } from 'store/news_reducer'
+import { Path } from 'enums/enums'
+import { setCurrentNewsAC } from 'store/reducers/news_reducer'
+import { selectorNews } from 'store/selectors/news'
+import { selectorNumberPage } from 'store/selectors/singlePagination'
 import { useAppDispatch } from 'store/store'
 import {
   addNewsViewsValueTC,
   getNewsPartTC,
   deleteNewsTC,
 } from 'store/thunks/news_thunks'
-import { Path } from 'utils/enums'
-import { newsSelector, numberPageSelector } from 'utils/selectors'
 
 export const NewsContainer: FC = () => {
-  const newsArray = useSelector(newsSelector)
-  const pageNumber = useSelector(numberPageSelector)
   const dispatch = useAppDispatch()
+
   const navigate = useNavigate()
+
+  const news = useSelector(selectorNews)
+  const pageNumber = useSelector(selectorNumberPage)
 
   useEffect(() => {
     dispatch(getNewsPartTC(pageNumber))
@@ -45,11 +48,11 @@ export const NewsContainer: FC = () => {
 
   return (
     <div className={style.container}>
-      {newsArray.map(news => (
-        <div key={news.id}>
-          <Button name="удалить" onClick={() => removeNews(news.id)} />
+      {news.map(newsItem => (
+        <div key={newsItem.id}>
+          <Button name="удалить" onClick={() => removeNews(newsItem.id)} />
           <News
-            data={news}
+            data={newsItem}
             newsRouteHandle={newsRouteHandle}
             setCurrentNews={setCurrentNews}
           />

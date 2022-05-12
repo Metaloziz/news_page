@@ -3,7 +3,7 @@ import React, { FC, memo } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
 import { Button } from 'components/Button/Button'
-import { CommentType } from 'store/news_reducer'
+import { CommentType } from 'store/reducers/news_reducer'
 
 export type CommentFormType = Pick<CommentType, 'author' | 'text'>
 

@@ -3,7 +3,7 @@ import {
   setPreviousPageAC,
   singlePaginationReducer,
   SinglePaginationReducerType,
-} from 'store/single_pagination_reducer'
+} from 'store/reducers/single_pagination_reducer'
 
 const DIFFERENCE_COUNTER_PAGES: number = 1
 
@@ -12,7 +12,7 @@ const paginationInitialState: SinglePaginationReducerType = {
 }
 
 describe('single_pagination_reducer', () => {
-  test('set next page', () => {
+  test('should set next page', () => {
     const action = setNextPageAC()
 
     const endState = singlePaginationReducer(paginationInitialState, action)
@@ -23,7 +23,7 @@ describe('single_pagination_reducer', () => {
     )
   })
 
-  test('set previous page', () => {
+  test('should set previous page', () => {
     const action = setPreviousPageAC()
 
     const endState = singlePaginationReducer(paginationInitialState, action)

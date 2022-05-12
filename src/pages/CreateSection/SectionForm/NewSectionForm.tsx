@@ -3,7 +3,7 @@ import React, { FC } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
 import { Button } from 'components/Button/Button'
-import { SectionType } from 'store/sections_reducer'
+import { SectionType } from 'store/reducers/sections_reducer'
 
 type SectionFormPropsType = {
   setSectionData: (data: SectionType) => void

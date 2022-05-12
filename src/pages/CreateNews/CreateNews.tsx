@@ -4,14 +4,13 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 
 import style from './CreateNews.module.scss'
 
-import { NewsPayloadType } from 'api/newsRequests'
 import { Button } from 'components/Button/Button'
 import { NavLinkComponent } from 'components/NavlinkComponent/NavLinkComponent'
+import { Path } from 'enums/enums'
 import { useAppDispatch } from 'store/store'
 import { postNewsTC } from 'store/thunks/news_thunks'
 import { FormType } from 'store/types/types'
-import { TODAY_DATE } from 'utils/consts'
-import { Path } from 'utils/enums'
+import { TODAY_DATE } from 'utils/utils'
 
 export const CreateNews: FC = () => {
   const dispatch = useAppDispatch()
@@ -45,7 +44,7 @@ export const CreateNews: FC = () => {
         </div>
         <div>
           <label>date </label>
-          <input {...register('date')} placeholder="date" value={TODAY_DATE} />
+          <input {...register('date')} placeholder="date" value={TODAY_DATE()} />
           {errors.date && <span>This field is required</span>}
         </div>
         <div>

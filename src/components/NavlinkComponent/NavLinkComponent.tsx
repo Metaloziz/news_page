@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
@@ -12,9 +12,9 @@ type NavLinkComponentPropsType = {
 export const NavLinkComponent: FC<NavLinkComponentPropsType> = ({ nameButton, path }) => {
   const navigate = useNavigate()
 
-  const pageRouteHandler = (): void => {
+  const onNavigateButtonClick = (): void => {
     navigate(`/${path}`)
   }
 
-  return <Button name={nameButton} onClick={pageRouteHandler} />
+  return <Button name={nameButton} onClick={onNavigateButtonClick} />
 }

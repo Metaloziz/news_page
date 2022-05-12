@@ -1,7 +1,7 @@
 import { instance } from 'api/instance'
+import { NEWS_ON_PAGE } from 'constants/constants'
+import { RequestSource } from 'enums/enums'
 import { NewsBodyType, NewsFileType, NewsType } from 'store/types/types'
-import { NEWS_ON_PAGE } from 'utils/consts'
-import { RequestSource } from 'utils/enums'
 
 export type NewsPayloadType = {
   body: NewsBodyType

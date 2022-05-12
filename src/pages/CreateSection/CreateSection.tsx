@@ -5,9 +5,11 @@ import { useSelector } from 'react-redux'
 import style from './CreateSection.module.scss'
 
 import { NavLinkComponent } from 'components/NavlinkComponent/NavLinkComponent'
+import { Path } from 'enums/enums'
 import { Section } from 'pages/CreateSection/Section/Section'
 import { NewSectionForm } from 'pages/CreateSection/SectionForm/NewSectionForm'
-import { SectionType } from 'store/sections_reducer'
+import { SectionType } from 'store/reducers/sections_reducer'
+import { selectorSections } from 'store/selectors/sections'
 import { useAppDispatch } from 'store/store'
 import {
   changeSectionTC,
@@ -15,11 +17,9 @@ import {
   getSectionsTC,
   deleteSectionTC,
 } from 'store/thunks/sections_thunks'
-import { Path } from 'utils/enums'
-import { sectionsSelector } from 'utils/selectors'
 
 export const CreateSection: FC = () => {
-  const sections = useSelector(sectionsSelector)
+  const sections = useSelector(selectorSections)
   const sectionId = sections.map(section => section.id)
   const dispatch = useAppDispatch()
 

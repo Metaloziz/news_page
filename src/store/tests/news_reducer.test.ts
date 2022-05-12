@@ -5,8 +5,11 @@ import {
   setCurrentNewsAC,
   CommentType,
   removeCommentsAC,
-} from 'store/news_reducer'
-import { paginationReducer, PaginationInitialStateType } from 'store/pagination_reducer'
+} from 'store/reducers/news_reducer'
+import {
+  paginationReducer,
+  PaginationInitialStateType,
+} from 'store/reducers/pagination_reducer'
 import { getCommentsNewsTC } from 'store/thunks/comments_thunks'
 import { getNewsPartTC } from 'store/thunks/news_thunks'
 import { NewsType } from 'store/types/types'
@@ -17,6 +20,7 @@ const firstItem: number = 0
 const currentNewsId: number = 10
 const pageNumber: number = 1
 let comments: CommentType[]
+
 beforeEach(() => {
   NewsData = [
     {
@@ -128,7 +132,7 @@ const newsInitialState: NewsInitialStateType = {
 }
 
 describe('news reducer', () => {
-  test('set all news', () => {
+  test('should set all news', () => {
     const action = getNewsAC(NewsData)
 
     const endState = newsReducer(newsInitialState, action)
@@ -138,7 +142,7 @@ describe('news reducer', () => {
     expect(endState.news[firstItem]).toBe(NewsData[firstItem])
   })
 
-  test('set data about news to the pagination', () => {
+  test('should set data about news to the pagination', () => {
     const action = getNewsPartTC.fulfilled(NewsData, '', pageNumber)
 
     const endState = paginationReducer(paginationInitialState, action)
@@ -147,7 +151,7 @@ describe('news reducer', () => {
     expect(endState.totalCountNews).toBe(NewsData.length)
   })
 
-  test('set current news', () => {
+  test('should set current news', () => {
     const currentNews = newsInitialState.news.find(item => item.id === currentNewsId)
 
     const action = setCurrentNewsAC(currentNewsId)
@@ -159,7 +163,7 @@ describe('news reducer', () => {
     expect(endState.currentNews.id).toBe(currentNewsId)
   })
 
-  test('set news comments', () => {
+  test('should set news comments', () => {
     const NEWS_ID = 1
     const action = getCommentsNewsTC.fulfilled(comments, '', NEWS_ID)
 
@@ -169,7 +173,7 @@ describe('news reducer', () => {
     expect(endState.comments).toBe(comments)
   })
 
-  test('remove comments', () => {
+  test('should remove comments', () => {
     const action = removeCommentsAC()
     const endState = newsReducer(newsInitialState, action)
 

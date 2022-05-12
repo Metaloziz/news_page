@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { NewsPayloadType, newsRequests } from 'api/newsRequests'
-import { setPreviousPageAC } from 'store/single_pagination_reducer'
+import { setPreviousPageAC } from 'store/reducers/single_pagination_reducer'
 import { RootState } from 'store/store'
 
 export const getNewsPartTC = createAsyncThunk(

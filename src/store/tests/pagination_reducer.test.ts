@@ -2,7 +2,7 @@ import {
   paginationReducer,
   PaginationInitialStateType,
   setCurrentPageAC,
-} from 'store/pagination_reducer'
+} from 'store/reducers/pagination_reducer'
 
 const newCurrentPage: number = 10
 
@@ -12,8 +12,8 @@ const paginationInitialState: PaginationInitialStateType = {
   currentPage: 1,
 }
 
-describe('main page', () => {
-  test('set current page', () => {
+describe('pagination reducer', () => {
+  test('should set current page', () => {
     const action = setCurrentPageAC(newCurrentPage)
 
     const endState = paginationReducer(paginationInitialState, action)
