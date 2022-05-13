@@ -1,6 +1,3 @@
-export const image =
-  'https://static.vecteezy.com/system/resources/thumbnails/004/216/831/small/3d-world-news-background-loop-free-video.jpg'
-
 export type NewsType = {
   id: number
   name: string
@@ -21,10 +18,10 @@ export type NewsType = {
 export type NewsBodyType = {
   name: string
   subtitle_1: string
-  full_text_1: string
   subtitle_2?: string
-  full_text_2?: string
   subtitle_3?: string
+  full_text_1: string
+  full_text_2?: string
   full_text_3?: string
   section: number
   date: string

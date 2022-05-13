@@ -23,6 +23,8 @@ export enum RequestSource {
 
 export enum StatusCode {
   SUCCESS = 204,
+  POST_NEWS_SUCCESS = 201,
+  GET_NEWS_BY_ID_SUCCESS = 200,
 }
 
 export enum DeBounceTimer {

@@ -18,10 +18,15 @@ export const mainSlice = createSlice({
     setPagesCountAC: (state, action: PayloadAction<number>) => {
       state.pagesCount = action.payload
     },
+    setFirstPageAC: state => {
+      // как обойтись без создания этого метода ?
+      state.currentPage = initialState.currentPage
+    },
   },
 })
 
-export const { setPreviousPageAC, setNextPageAC, setPagesCountAC } = mainSlice.actions
+export const { setPreviousPageAC, setNextPageAC, setPagesCountAC, setFirstPageAC } =
+  mainSlice.actions
 export const singlePaginationReducer = mainSlice.reducer
 
 // types

@@ -8,10 +8,25 @@ import {
 import {
   addNewsViewsValueTC,
   deleteNewsTC,
+  getNewsByIdTC,
   getNewsPartTC,
 } from 'store/thunks/news_thunks'
 import { NewsType } from 'store/types/types'
 import { findIndexElement } from 'utils/utils'
+
+export type CommentType = {
+  id: number
+  author: string
+  text: string
+  news_id: number
+  date: string
+}
+
+export type NewsInitialStateType = {
+  news: NewsType[]
+  currentNews: NewsType
+  comments: CommentType[]
+}
 
 export const initialState: NewsInitialStateType = {
   news: [
@@ -95,6 +110,11 @@ export const mainSlice = createSlice({
         state.comments = []
       }
     })
+    builder.addCase(getCurrentCommentTC.fulfilled, (state, action) => {
+      if (action.payload) {
+        state.comments.push(action.payload)
+      }
+    })
     builder.addCase(deleteCommentTC.fulfilled, (state, action) => {
       if (action.payload) {
         state.comments = state.comments.filter(comment => comment.id !== action.payload)
@@ -111,9 +131,9 @@ export const mainSlice = createSlice({
         state.news[indexElement].views += 1
       }
     })
-    builder.addCase(getCurrentCommentTC.fulfilled, (state, action) => {
+    builder.addCase(getNewsByIdTC.fulfilled, (state, action) => {
       if (action.payload) {
-        state.comments.push(action.payload)
+        state.news.push(action.payload)
       }
     })
   },
@@ -121,18 +141,3 @@ export const mainSlice = createSlice({
 
 export const { setCurrentNewsAC, removeCommentsAC } = mainSlice.actions
 export const newsReducer = mainSlice.reducer
-
-// types
-export type CommentType = {
-  id: number
-  author: string
-  text: string
-  news_id: number
-  date: string
-}
-
-export type NewsInitialStateType = {
-  news: NewsType[]
-  currentNews: NewsType
-  comments: CommentType[]
-}

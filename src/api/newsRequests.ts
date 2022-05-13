@@ -14,7 +14,7 @@ export const newsRequests = {
     formDataObject.append('body', JSON.stringify(news.body))
     formDataObject.append('file', news.file)
 
-    return instance.post(`${RequestSource.NEWS}/`, formDataObject, {
+    return instance.post<{ id: number }>(`${RequestSource.NEWS}/`, formDataObject, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -36,4 +36,6 @@ export const newsRequests = {
     instance.get<{ Data: NewsType[] }>(
       `${RequestSource.NEWS}/${RequestSource.SEARCH}?search_query="${keyWord}"`,
     ),
+  getNewsById: (newsId: number) =>
+    instance.get<NewsType>(`${RequestSource.NEWS}/${newsId}`),
 }

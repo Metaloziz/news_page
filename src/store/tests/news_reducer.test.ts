@@ -17,6 +17,7 @@ import {
 import {
   addNewsViewsValueTC,
   deleteNewsTC,
+  getNewsByIdTC,
   getNewsPartTC,
 } from 'store/thunks/news_thunks'
 import { NewsType } from 'store/types/types'
@@ -29,7 +30,8 @@ const pageNumber: number = 1
 const countViewsSeparator: number = 1
 let paginationInitialState: PaginationInitialStateType
 let newsInitialState: NewsInitialStateType
-let NewsData: NewsType[]
+let newsData: NewsType[]
+let newNews: NewsType
 let comments: CommentType[]
 let newComment: CommentType
 
@@ -89,7 +91,7 @@ beforeEach(() => {
     ],
   }
 
-  NewsData = [
+  newsData = [
     {
       id: 1,
       name: 'JS',
@@ -156,24 +158,41 @@ beforeEach(() => {
     date: 'date',
     news_id: 0,
   }
+  newNews = {
+    id: 100,
+    name: 'TS',
+    subtitle_1: 'text',
+    fullText_1: 'text',
+    image_1: 'img',
+    subtitle_2: 'text',
+    fullText_2: 'text',
+    image_2: 'img',
+    fullText_3: 'text',
+    image_3: 'img',
+    link: 'some link',
+    date: '9 November 2016 16:16:02 GMT',
+    subtitle_3: 'text',
+    section: 1,
+    views: 11,
+  }
 })
 
 describe('news reducer', () => {
   test('should set all news', () => {
-    const action = getNewsPartTC.fulfilled(NewsData, '', pageNumber)
+    const action = getNewsPartTC.fulfilled(newsData, '', pageNumber)
 
     const endState = newsReducer(newsInitialState, action)
 
-    expect(endState.news.length).toBe(NewsData.length)
-    expect(endState.news[firstItem]).toBe(NewsData[firstItem])
+    expect(endState.news.length).toBe(newsData.length)
+    expect(endState.news[firstItem]).toBe(newsData[firstItem])
   })
 
   test('should set data about news to the pagination', () => {
-    const action = getNewsPartTC.fulfilled(NewsData, '', pageNumber)
+    const action = getNewsPartTC.fulfilled(newsData, '', pageNumber)
 
     const endState = paginationReducer(paginationInitialState, action)
 
-    expect(endState.totalCountNews).toBe(NewsData.length)
+    expect(endState.totalCountNews).toBe(newsData.length)
   })
 
   test('should set current news', () => {
@@ -242,5 +261,15 @@ describe('news reducer', () => {
     expect(endState.news[indexElement].views).toBe(
       newsInitialState.news[indexElement].views + countViewsSeparator,
     )
+  })
+
+  test('should add one news to state', () => {
+    const action = getNewsByIdTC.fulfilled(newNews, '', newNews.id)
+
+    const endState = newsReducer(newsInitialState, action)
+
+    const indexElement = findIndexElement(endState.news, newNews.id)
+
+    expect(endState.news[indexElement]).toBe(newNews)
   })
 })
