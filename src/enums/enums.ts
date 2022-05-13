@@ -23,3 +23,7 @@ export enum RequestSource {
 export enum StatusCode {
   SUCCESS = 204,
 }
+
+export enum DeBounceTimer {
+  SEARCH_DELAY = 1500,
+}

@@ -2,12 +2,11 @@ import { FC } from 'react'
 
 import { useSelector } from 'react-redux'
 
-import { SearchButton } from '../SearchButton/SearchButton'
-
 import style from './Navigation.module.scss'
 
 import { Button } from 'components/Button/Button'
 import { NavLinkComponent } from 'components/NavlinkComponent/NavLinkComponent'
+import { SearchField } from 'components/SearchField/SearchField'
 import { Path } from 'enums/enums'
 import { setCurrentSectionAC } from 'store/reducers/sections_reducer'
 import { selectorIdActiveSection, selectorSections } from 'store/selectors/sections'
@@ -39,7 +38,7 @@ export const Navigation: FC = () => {
         ))}
         <NavLinkComponent nameButton="создать секцию" path={Path.CREATE_SECTION} />
       </div>
-      <SearchButton />
+      <SearchField />
     </div>
   )
 }
