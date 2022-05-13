@@ -1,14 +1,13 @@
 import {
-  getNewsAC,
+  CommentType,
   NewsInitialStateType,
   newsReducer,
-  setCurrentNewsAC,
-  CommentType,
   removeCommentsAC,
+  setCurrentNewsAC,
 } from 'store/reducers/news_reducer'
 import {
-  paginationReducer,
   PaginationInitialStateType,
+  paginationReducer,
 } from 'store/reducers/pagination_reducer'
 import {
   deleteCommentTC,
@@ -161,7 +160,7 @@ beforeEach(() => {
 
 describe('news reducer', () => {
   test('should set all news', () => {
-    const action = getNewsAC(NewsData)
+    const action = getNewsPartTC.fulfilled(NewsData, '', pageNumber)
 
     const endState = newsReducer(newsInitialState, action)
 

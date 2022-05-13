@@ -18,6 +18,7 @@ export enum RequestSource {
   NEWS = '/news',
   COMMENTS = '/comments',
   SECTIONS = '/sections',
+  SEARCH = 'search',
 }
 
 export enum StatusCode {

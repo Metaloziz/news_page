@@ -11,18 +11,23 @@ import { Path } from 'enums/enums'
 import { setCurrentSectionAC } from 'store/reducers/sections_reducer'
 import { selectorIdActiveSection, selectorSections } from 'store/selectors/sections'
 import { useAppDispatch } from 'store/store'
+import { getNewsByKeyWordTC } from 'store/thunks/news_thunks'
 
 export const Navigation: FC = () => {
-  const sections = useSelector(selectorSections)
-  const activeSection = useSelector(selectorIdActiveSection)
-
   const dispatch = useAppDispatch()
+
+  const activeSection = useSelector(selectorIdActiveSection)
+  const sections = useSelector(selectorSections)
 
   const isActiveStyle = (id: number): string =>
     ` ${style.path}  ${activeSection === id ? style.active : null}`
 
   const setCurrentSection = (sectionId: number): void => {
     dispatch(setCurrentSectionAC(sectionId))
+  }
+
+  const getNewsByKeyWord = (keyWord: string): void => {
+    dispatch(getNewsByKeyWordTC(keyWord))
   }
 
   return (
@@ -38,7 +43,7 @@ export const Navigation: FC = () => {
         ))}
         <NavLinkComponent nameButton="создать секцию" path={Path.CREATE_SECTION} />
       </div>
-      <SearchField />
+      <SearchField getNewsByKeyWord={getNewsByKeyWord} />
     </div>
   )
 }

@@ -4,13 +4,20 @@ import style from './SearchField.module.scss'
 
 import { DebounceSearchField } from 'components/DebounceSearchField/DebounceSearchField'
 
-export const SearchField: FC = () => {
+type SearchFieldPropsType = {
+  getNewsByKeyWord: (keyWord: string) => void
+}
+
+export const SearchField: FC<SearchFieldPropsType> = ({ getNewsByKeyWord }) => {
   const searchByKeyWord = useCallback((word: string): void => {
-    console.log(word)
+    getNewsByKeyWord(word)
   }, [])
 
   return (
     <div className={style.container}>
+      <div>
+        <h5>поиск новости по ключевому слову:</h5>
+      </div>
       <DebounceSearchField searchValue={searchByKeyWord} />
     </div>
   )

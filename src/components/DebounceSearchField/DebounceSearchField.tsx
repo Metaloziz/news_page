@@ -22,7 +22,6 @@ type DefaultInputPropsType = DetailedHTMLProps<
 type DebounceSearchFieldPropsType = DefaultInputPropsType &
   RefAttributes<HTMLInputElement> & {
     searchValue: (value: string) => void
-    width?: string
   }
 
 export const DebounceSearchField: FC<DebounceSearchFieldPropsType> = memo(

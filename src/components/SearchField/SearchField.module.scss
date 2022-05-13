@@ -2,7 +2,9 @@
 
 .container {
   @include displayContentCenter();
-  height: 50px;
+  flex-direction: column;
+  height: auto;
   width: 300px;
   background-color: rgba(139, 0, 0, 0.68);
+  padding: 10px;
 }

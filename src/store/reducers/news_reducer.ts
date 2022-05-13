@@ -72,9 +72,6 @@ export const mainSlice = createSlice({
   name: 'news',
   initialState,
   reducers: {
-    getNewsAC: (state, action: PayloadAction<NewsType[]>) => {
-      state.news = action.payload
-    }, // пока не используется
     setCurrentNewsAC: (state, action: PayloadAction<number>) => {
       const currentNews = state.news.find(item => item.id === action.payload)
       if (currentNews) {
@@ -122,7 +119,7 @@ export const mainSlice = createSlice({
   },
 })
 
-export const { getNewsAC, setCurrentNewsAC, removeCommentsAC } = mainSlice.actions
+export const { setCurrentNewsAC, removeCommentsAC } = mainSlice.actions
 export const newsReducer = mainSlice.reducer
 
 // types

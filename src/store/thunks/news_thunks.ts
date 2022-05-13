@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { NewsPayloadType, newsRequests } from 'api/newsRequests'
+import { NEWS_ON_PAGE } from 'constants/constants'
 import { setPagesCountAC } from 'store/reducers/single_pagination_reducer'
 import { RootState } from 'store/store'
 
@@ -67,7 +68,25 @@ export const postNewsTC = createAsyncThunk(
 
     try {
       const response = await newsRequests.postNews(news)
-      dispatch(getNewsPartTC(currentPage))
+      dispatch(getNewsPartTC(currentPage)) // исправить
+      return null
+    } catch (e) {
+      console.warn(e)
+      return null
+    }
+  },
+)
+export const getNewsByKeyWordTC = createAsyncThunk(
+  'news/getNewsByKeyWordTC',
+  async (keyWord: string, { dispatch }) => {
+    try {
+      const {
+        data: { Data },
+      } = await newsRequests.getNewsByKeyWord(keyWord)
+      if (Data) {
+        const pageCount = Data.length / NEWS_ON_PAGE
+        dispatch(getNewsPartTC.fulfilled(Data, '', pageCount))
+      }
       return null
     } catch (e) {
       console.warn(e)
