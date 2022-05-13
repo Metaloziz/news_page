@@ -15,11 +15,17 @@ export const getSectionsTC = createAsyncThunk('sections/getSectionsTC', async ()
 
 export const postSectionsTC = createAsyncThunk(
   'sections/createSectionsTC',
-  async (name: string, { dispatch }) => {
+  async (name: string) => {
     try {
-      const response = await sectionsRequests.postSection(name)
-      dispatch(getSectionsTC())
-      return response.data.id
+      const {
+        data: { id },
+      } = await sectionsRequests.postSection(name)
+      if (id) {
+        return { id, name }
+      }
+
+      // dispatch(getSectionsTC()) // косяк
+      return null
     } catch (e) {
       console.warn(e)
       return null

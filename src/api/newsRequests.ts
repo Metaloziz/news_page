@@ -1,5 +1,5 @@
 import { instance } from 'api/instance'
-import { NEWS_ON_PAGE } from 'constants/constants'
+import { ALL_SECTION_ID, NEWS_ON_PAGE } from 'constants/constants'
 import { RequestSource } from 'enums/enums'
 import { NewsBodyType, NewsFileType, NewsType } from 'store/types/types'
 
@@ -21,9 +21,9 @@ export const newsRequests = {
     })
   },
 
-  getNewsPart: (pageNumber: number) =>
+  getNewsPart: (pageNumber: number, section: number = ALL_SECTION_ID) =>
     instance.get<{ Data: NewsType[] }>(
-      `${RequestSource.NEWS}/?page=${pageNumber}&limit=${NEWS_ON_PAGE}`,
+      `${RequestSource.NEWS}/?page=${pageNumber}&limit=${NEWS_ON_PAGE}&section_id=${section}`,
     ),
 
   deleteNews: (newsId: number) =>

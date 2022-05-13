@@ -5,9 +5,13 @@
 .main {
   @include displayContentCenter();
   justify-content: space-between;
+  border: black 1px solid;
 
   .container {
     @include displayContentCenter();
+    flex-wrap: wrap;
+    width: 50vw;
+    height: auto;
     justify-content: flex-start;
     gap: 10px;
 
@@ -16,6 +20,11 @@
       width: 180px;
       background-color: $main_color_second;
       @include displayContentCenter();
+
+    }
+
+    .active {
+      background-color: rgba(139, 0, 0, 0.56);
     }
   }
 }

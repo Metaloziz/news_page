@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 
 import { useSelector } from 'react-redux'
 
@@ -13,19 +13,15 @@ import { selectorSections } from 'store/selectors/sections'
 import { useAppDispatch } from 'store/store'
 import {
   changeSectionTC,
-  postSectionsTC,
-  getSectionsTC,
   deleteSectionTC,
+  postSectionsTC,
 } from 'store/thunks/sections_thunks'
 
 export const CreateSection: FC = () => {
-  const sections = useSelector(selectorSections)
-  const sectionId = sections.map(section => section.id)
   const dispatch = useAppDispatch()
 
-  useEffect(() => {
-    dispatch(getSectionsTC())
-  }, [])
+  const sections = useSelector(selectorSections)
+  const sectionId = sections.map(section => section.id)
 
   const postSection = (section: SectionType): void => {
     dispatch(postSectionsTC(section.name))
