@@ -1,13 +1,13 @@
-import { FC } from 'react'
+import { FC, useCallback } from 'react'
 
 import { useSelector } from 'react-redux'
 
-import style from './CreateSection.module.scss'
+import style from './CreateSectionPage.module.scss'
 
 import { NavLinkComponent } from 'components/NavlinkComponent/NavLinkComponent'
 import { Path } from 'enums/enums'
-import { Section } from 'pages/CreateSection/Section/Section'
-import { NewSectionForm } from 'pages/CreateSection/SectionForm/NewSectionForm'
+import { Section } from 'pages/CreateSectionPage/Section/Section'
+import { NewSectionForm } from 'pages/CreateSectionPage/SectionForm/NewSectionForm'
 import { SectionType } from 'store/reducers/sections_reducer'
 import { selectorSections } from 'store/selectors/sections'
 import { useAppDispatch } from 'store/store'
@@ -17,23 +17,24 @@ import {
   postSectionsTC,
 } from 'store/thunks/sections_thunks'
 
-export const CreateSection: FC = () => {
+export const CreateSectionPage: FC = () => {
   const dispatch = useAppDispatch()
 
   const sections = useSelector(selectorSections)
-  const sectionId = sections.map(section => section.id)
 
-  const postSection = (section: SectionType): void => {
+  const sectionsId = sections.map(section => section.id)
+
+  const postSection = useCallback((section: SectionType): void => {
     dispatch(postSectionsTC(section.name))
-  }
+  }, [])
 
-  const changeSection = (section: SectionType): void => {
+  const changeSection = useCallback((section: SectionType): void => {
     dispatch(changeSectionTC(section))
-  }
+  }, [])
 
-  const deleteSection = (id: number): void => {
+  const deleteSection = useCallback((id: number): void => {
     dispatch(deleteSectionTC(id))
-  }
+  }, [])
 
   return (
     <div className={style.container}>
@@ -41,20 +42,20 @@ export const CreateSection: FC = () => {
       <div className={style.body}>
         <div>
           <div className={style.create}>
-            создать
+            <span>создать</span>
             <NewSectionForm mode="add" setSectionData={postSection} />
           </div>
           <div className={style.create}>
-            редактировать
+            <span>редактировать</span>
             <NewSectionForm
               mode="edit"
               setSectionData={changeSection}
-              sectionsId={sectionId}
+              sectionsId={sectionsId}
             />
           </div>
         </div>
         <div className={style.list}>
-          все секции:
+          <span>все секции:</span>
           {sections.map(section => (
             <Section key={section.id} section={section} deleteSection={deleteSection} />
           ))}

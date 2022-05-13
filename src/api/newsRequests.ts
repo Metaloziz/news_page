@@ -36,6 +36,7 @@ export const newsRequests = {
     instance.get<{ Data: NewsType[] }>(
       `${RequestSource.NEWS}/${RequestSource.SEARCH}?search_query="${keyWord}"`,
     ),
+
   getNewsById: (newsId: number) =>
     instance.get<NewsType>(`${RequestSource.NEWS}/${newsId}`),
 }

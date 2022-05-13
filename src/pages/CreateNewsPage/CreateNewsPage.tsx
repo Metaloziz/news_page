@@ -1,19 +1,23 @@
 import React, { FC } from 'react'
 
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { useSelector } from 'react-redux'
 
-import style from './CreateNews.module.scss'
+import style from './CreateNewsPage.module.scss'
 
 import { Button } from 'components/Button/Button'
 import { NavLinkComponent } from 'components/NavlinkComponent/NavLinkComponent'
 import { Path } from 'enums/enums'
+import { selectorSections } from 'store/selectors/sections'
 import { useAppDispatch } from 'store/store'
 import { postNewsTC } from 'store/thunks/news_thunks'
 import { FormType } from 'store/types/types'
 import { TODAY_DATE } from 'utils/utils'
 
-export const CreateNews: FC = () => {
+export const CreateNewsPage: FC = () => {
   const dispatch = useAppDispatch()
+
+  const sections = useSelector(selectorSections)
 
   const {
     register,
@@ -32,14 +36,16 @@ export const CreateNews: FC = () => {
   return (
     <div className={style.container}>
       <NavLinkComponent nameButton="на главную" path={Path.MAIN} />
-      Создать новость:
+      <span>Создать новость:</span>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label htmlFor="section">section </label>
           <select id="section" defaultValue={1} {...register('section')}>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
+            {sections.map(({ name, id }) => (
+              <option key={id} value={id}>
+                {id} - {name}
+              </option>
+            ))}
           </select>
         </div>
         <div>
@@ -49,7 +55,7 @@ export const CreateNews: FC = () => {
         </div>
         <div>
           <label>name </label>
-          <input {...register('name')} placeholder="name" required value="test" />
+          <input {...register('name')} placeholder="name" required defaultValue="test" />
           {errors.name && <span>This field is required</span>}
         </div>
         <div>
@@ -58,7 +64,7 @@ export const CreateNews: FC = () => {
             {...register('subtitle_1')}
             placeholder="subtitle_1"
             required
-            value="test"
+            defaultValue="test"
           />
           {errors.subtitle_1 && <span>This field is required</span>}
         </div>
@@ -68,13 +74,13 @@ export const CreateNews: FC = () => {
             {...register('full_text_1')}
             placeholder="full_text_1"
             required
-            value="test"
+            defaultValue="test"
           />
           {errors.full_text_1 && <span>This field is required</span>}
         </div>
         <div>
           <label>image_1 </label>
-          <input {...register('image_1')} placeholder="image_1" value="test" />
+          <input {...register('image_1')} placeholder="image_1" defaultValue="test" />
           {errors.image_1 && <span>This field is required</span>}
         </div>
         <div>

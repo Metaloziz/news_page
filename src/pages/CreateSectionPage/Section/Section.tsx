@@ -1,8 +1,7 @@
 import { FC } from 'react'
 
-import style from './Section.module.scss'
-
 import { Button } from 'components/Button/Button'
+import style from 'pages/CreateSectionPage/Section/Section.module.scss'
 import { SectionType } from 'store/reducers/sections_reducer'
 
 type SectionPropsType = {
