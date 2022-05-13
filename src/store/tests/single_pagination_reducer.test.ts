@@ -1,14 +1,17 @@
 import {
   setNextPageAC,
+  setPagesCountAC,
   setPreviousPageAC,
   singlePaginationReducer,
   SinglePaginationReducerType,
 } from 'store/reducers/single_pagination_reducer'
 
 const DIFFERENCE_COUNTER_PAGES: number = 1
+const newPagesCount: number = 10
 
 const paginationInitialState: SinglePaginationReducerType = {
   currentPage: 1,
+  pagesCount: 1,
 }
 
 describe('single_pagination_reducer', () => {
@@ -28,9 +31,16 @@ describe('single_pagination_reducer', () => {
 
     const endState = singlePaginationReducer(paginationInitialState, action)
 
-    expect(paginationInitialState).not.toBe(endState)
     expect(endState.currentPage).toBe(
       paginationInitialState.currentPage - DIFFERENCE_COUNTER_PAGES,
     )
+  })
+
+  test('should set pages count', () => {
+    const action = setPagesCountAC(newPagesCount)
+
+    const endState = singlePaginationReducer(paginationInitialState, action)
+
+    expect(endState.pagesCount).toBe(newPagesCount)
   })
 })

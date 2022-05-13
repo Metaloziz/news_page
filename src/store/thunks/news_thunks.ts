@@ -1,22 +1,22 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { NewsPayloadType, newsRequests } from 'api/newsRequests'
-import { setPreviousPageAC } from 'store/reducers/single_pagination_reducer'
+import { setPagesCountAC } from 'store/reducers/single_pagination_reducer'
 import { RootState } from 'store/store'
 
 export const getNewsPartTC = createAsyncThunk(
   'news/getNewsPartTC',
   async (pageNumber: number, { dispatch }) => {
     try {
-      const response = await newsRequests.getNewsPart(pageNumber)
+      const {
+        data: { Data },
+        headers: { pages },
+      } = await newsRequests.getNewsPart(pageNumber)
 
-      console.log(response.headers)
-      console.log(response.headers['content-length'])
-
-      if (response.data.Data === null) {
-        dispatch(setPreviousPageAC()) // костыль, длину нужно достать из headers
+      if (Data) {
+        dispatch(setPagesCountAC(Number(pages)))
       }
-      return response.data.Data
+      return Data
     } catch (e) {
       console.warn(e)
       return null
