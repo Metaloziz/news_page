@@ -5,6 +5,7 @@ import {
   setCurrentSectionAC,
 } from 'store/reducers/sections_reducer'
 import {
+  changeSectionTC,
   deleteSectionTC,
   getSectionsTC,
   postSectionsTC,
@@ -12,10 +13,12 @@ import {
 
 let sections: SectionType[]
 let newSection: SectionType
+let changedSection: SectionType
 
 let initialState: SectionsInitialStateType
 
 const sectionId: number = 1
+const FIRST_ITEM: number = 0
 
 beforeEach(() => {
   initialState = {
@@ -23,6 +26,8 @@ beforeEach(() => {
     defaultSection: { id: 0, name: 'все' },
     activeSectionId: 0,
   }
+
+  changedSection = { id: 0, name: 'new name' }
 
   sections = [
     { id: 1, name: 'default' },
@@ -38,7 +43,7 @@ describe('sections reducer', () => {
 
     const endState = sectionsReducer(initialState, action)
 
-    expect(endState.sections).toBe(sections)
+    expect(endState.sections.length).toBe(initialState.sections.length + sections.length)
   })
 
   test('should delete current section', () => {
@@ -67,5 +72,13 @@ describe('sections reducer', () => {
     const endState = sectionsReducer(initialState, action)
 
     expect(endState.activeSectionId).toBe(sectionId)
+  })
+
+  test('should change section', () => {
+    const action = changeSectionTC.fulfilled(changedSection, '', changedSection)
+
+    const endState = sectionsReducer(initialState, action)
+
+    expect(endState.sections[FIRST_ITEM].name).toBe(changedSection.name)
   })
 })

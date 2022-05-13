@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { sectionsRequests } from 'api/sectionsRequests'
+import { StatusCode } from 'enums/enums'
 import { SectionType } from 'store/reducers/sections_reducer'
 
 export const getSectionsTC = createAsyncThunk('sections/getSectionsTC', async () => {
@@ -24,7 +25,6 @@ export const postSectionsTC = createAsyncThunk(
         return { id, name }
       }
 
-      // dispatch(getSectionsTC()) // косяк
       return null
     } catch (e) {
       console.warn(e)
@@ -53,11 +53,13 @@ export const deleteSectionTC = createAsyncThunk(
 
 export const changeSectionTC = createAsyncThunk(
   'sections/changeSectionTC',
-  async (section: SectionType, { dispatch }) => {
+  async (section: SectionType) => {
     try {
       const response = await sectionsRequests.changeSection(section)
-      dispatch(getSectionsTC())
-      return response.data.id
+      if (response.status === StatusCode.SUCCESS) {
+        return section
+      }
+      return null
     } catch (e) {
       console.warn(e)
       return null

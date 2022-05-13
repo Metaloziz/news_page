@@ -23,7 +23,7 @@ export const NewSectionForm: FC<SectionFormPropsType> = ({
   } = useForm<SectionType>()
 
   const onSubmit: SubmitHandler<SectionType> = data => {
-    setSectionData(data)
+    setSectionData({ ...data, id: Number(data.id) })
   }
 
   const select =

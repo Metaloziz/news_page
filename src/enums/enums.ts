@@ -19,3 +19,7 @@ export enum RequestSource {
   COMMENTS = '/comments',
   SECTIONS = '/sections',
 }
+
+export enum StatusCode {
+  SUCCESS = 204,
+}

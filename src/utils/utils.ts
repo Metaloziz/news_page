@@ -8,5 +8,6 @@ export const TODAY_DATE = (): string =>
 export const findIndexElement = (array: any[], elementId: number): number =>
   array.findIndex(el => el.id === elementId)
 
+// надо придумать формулу
 // export const findElement = <T>(array: T[], elementId: number): T | undefined =>
 //   array.find(el => el.id === elementId)
