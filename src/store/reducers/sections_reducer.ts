@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import {
   deleteSectionTC,
@@ -15,7 +15,11 @@ export const initialState: SectionsInitialStateType = {
 export const mainSlice = createSlice({
   name: 'sections',
   initialState,
-  reducers: {},
+  reducers: {
+    setCurrentSectionAC: (state, action: PayloadAction<number>) => {
+      state.activeSectionId = action.payload
+    },
+  },
   extraReducers: builder => {
     builder.addCase(getSectionsTC.fulfilled, (state, action) => {
       if (action.payload) {
@@ -35,6 +39,7 @@ export const mainSlice = createSlice({
   },
 })
 
+export const { setCurrentSectionAC } = mainSlice.actions
 export const sectionsReducer = mainSlice.reducer
 
 // types

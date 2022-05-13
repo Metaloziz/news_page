@@ -10,6 +10,7 @@ import { Button } from 'components/Button/Button'
 import { Path } from 'enums/enums'
 import { setCurrentNewsAC } from 'store/reducers/news_reducer'
 import { selectorNews } from 'store/selectors/news'
+import { selectorIdActiveSection } from 'store/selectors/sections'
 import { selectorNumberPage } from 'store/selectors/singlePagination'
 import { useAppDispatch } from 'store/store'
 import {
@@ -25,10 +26,11 @@ export const NewsContainer: FC = () => {
 
   const news = useSelector(selectorNews)
   const pageNumber = useSelector(selectorNumberPage)
+  const activeSection = useSelector(selectorIdActiveSection)
 
   useEffect(() => {
     dispatch(getNewsPartTC(pageNumber))
-  }, [pageNumber])
+  }, [pageNumber, activeSection])
 
   const setCurrentNews = useCallback(
     (newsId: number) => {

@@ -2,6 +2,7 @@ import {
   SectionsInitialStateType,
   sectionsReducer,
   SectionType,
+  setCurrentSectionAC,
 } from 'store/reducers/sections_reducer'
 import {
   deleteSectionTC,
@@ -58,5 +59,13 @@ describe('sections reducer', () => {
     const currentSection = endState.sections.find(({ id }) => id === newSection.id)
 
     expect(currentSection).toBe(newSection)
+  })
+
+  test('should set active section ID', () => {
+    const action = setCurrentSectionAC(sectionId)
+
+    const endState = sectionsReducer(initialState, action)
+
+    expect(endState.activeSectionId).toBe(sectionId)
   })
 })

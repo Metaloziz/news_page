@@ -6,12 +6,16 @@ import { RootState } from 'store/store'
 
 export const getNewsPartTC = createAsyncThunk(
   'news/getNewsPartTC',
-  async (pageNumber: number, { dispatch }) => {
+  async (pageNumber: number, { dispatch, getState }) => {
+    const {
+      sections: { activeSectionId },
+    } = getState() as RootState
+
     try {
       const {
         data: { Data },
         headers: { pages },
-      } = await newsRequests.getNewsPart(pageNumber)
+      } = await newsRequests.getNewsPart(pageNumber, activeSectionId)
 
       if (Data) {
         dispatch(setPagesCountAC(Number(pages)))
@@ -55,7 +59,6 @@ export const addNewsViewsValueTC = createAsyncThunk(
     }
   },
 )
-
 export const postNewsTC = createAsyncThunk(
   'news/postNewsTC',
   async (news: NewsPayloadType, { dispatch, getState }) => {

@@ -13,7 +13,7 @@ type NewsPropsType = {
 
 export const News: FC<NewsPropsType> = memo(
   ({
-    data: { id, date, image_1, name, fullText_1, views },
+    data: { id, date, image_1, name, fullText_1, views, section },
     setCurrentNews,
     newsRouteHandle,
   }) => {
@@ -35,6 +35,7 @@ export const News: FC<NewsPropsType> = memo(
             <div>views: {views}</div>
             <div>{date}</div>
           </div>
+          <h4>section: {section}</h4>
         </div>
       </div>
     )
