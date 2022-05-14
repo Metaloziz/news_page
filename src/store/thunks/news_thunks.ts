@@ -5,6 +5,8 @@ import { NEWS_ON_PAGE } from 'constants/constants'
 import { StatusCode } from 'enums/enums'
 import { setFirstPageAC, setPagesCountAC } from 'store/reducers/single_pagination_reducer'
 import { RootState } from 'store/store'
+import { ResponseErrorType } from 'store/thunks/comments_thunks'
+import { setError } from 'utils/utils'
 
 export const getNewsPartTC = createAsyncThunk(
   'news/getNewsPartTC',
@@ -23,8 +25,8 @@ export const getNewsPartTC = createAsyncThunk(
         dispatch(setPagesCountAC(Number(pages)))
       }
       return Data
-    } catch (e) {
-      console.warn(e)
+    } catch (error) {
+      setError(dispatch, error as ResponseErrorType)
       return null
     }
   },
@@ -32,7 +34,7 @@ export const getNewsPartTC = createAsyncThunk(
 
 export const getNewsByIdTC = createAsyncThunk(
   'news/getNewsByIdTC',
-  async (newsId: number) => {
+  async (newsId: number, { dispatch }) => {
     try {
       const { data, status } = await newsRequests.getNewsById(newsId)
 
@@ -40,8 +42,8 @@ export const getNewsByIdTC = createAsyncThunk(
         return data
       }
       return null
-    } catch (e) {
-      console.warn(e)
+    } catch (error) {
+      setError(dispatch, error as ResponseErrorType)
       return null
     }
   },
@@ -49,7 +51,7 @@ export const getNewsByIdTC = createAsyncThunk(
 
 export const deleteNewsTC = createAsyncThunk(
   'news/deleteNewsTC',
-  async (newsId: number) => {
+  async (newsId: number, { dispatch }) => {
     try {
       const response = await newsRequests.deleteNews(newsId)
 
@@ -58,8 +60,8 @@ export const deleteNewsTC = createAsyncThunk(
       }
 
       return null
-    } catch (e) {
-      console.warn(e)
+    } catch (error) {
+      setError(dispatch, error as ResponseErrorType)
       return null
     }
   },
@@ -67,15 +69,15 @@ export const deleteNewsTC = createAsyncThunk(
 
 export const addNewsViewsValueTC = createAsyncThunk(
   'news/addNewsViewsValueTC',
-  async (newsId: number) => {
+  async (newsId: number, { dispatch }) => {
     try {
       const response = await newsRequests.addNewsViewsValue(newsId)
       if (response.data.id === newsId) {
         return response.data.id
       }
       return null
-    } catch (e) {
-      console.warn(e)
+    } catch (error) {
+      setError(dispatch, error as ResponseErrorType)
       return null
     }
   },
@@ -90,8 +92,8 @@ export const postNewsTC = createAsyncThunk(
         dispatch(getNewsByIdTC(response.data.id))
       }
       return null
-    } catch (e) {
-      console.warn(e)
+    } catch (error) {
+      setError(dispatch, error as ResponseErrorType)
       return null
     }
   },
@@ -111,8 +113,8 @@ export const getNewsByKeyWordTC = createAsyncThunk(
         dispatch(getNewsPartTC.fulfilled(Data, '', pageCount))
       }
       return null
-    } catch (e) {
-      console.warn(e)
+    } catch (error) {
+      setError(dispatch, error as ResponseErrorType)
       return null
     }
   },

@@ -29,4 +29,5 @@ export enum StatusCode {
 
 export enum DeBounceTimer {
   SEARCH_DELAY = 1500,
+  CLOSE_ERROR = 5000,
 }

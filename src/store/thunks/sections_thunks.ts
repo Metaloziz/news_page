@@ -3,20 +3,25 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { sectionsRequests } from 'api/sectionsRequests'
 import { StatusCode } from 'enums/enums'
 import { SectionType } from 'store/reducers/sections_reducer'
+import { ResponseErrorType } from 'store/thunks/comments_thunks'
+import { setError } from 'utils/utils'
 
-export const getSectionsTC = createAsyncThunk('sections/getSectionsTC', async () => {
-  try {
-    const response = await sectionsRequests.getSections()
-    return response.data.Data
-  } catch (e) {
-    console.warn(e)
-    return null
-  }
-})
+export const getSectionsTC = createAsyncThunk(
+  'sections/getSectionsTC',
+  async (_, { dispatch }) => {
+    try {
+      const response = await sectionsRequests.getSections()
+      return response.data.Data
+    } catch (error) {
+      setError(dispatch, error as ResponseErrorType)
+      return null
+    }
+  },
+)
 
 export const postSectionsTC = createAsyncThunk(
   'sections/createSectionsTC',
-  async (name: string) => {
+  async (name: string, { dispatch }) => {
     try {
       const {
         data: { id },
@@ -26,8 +31,9 @@ export const postSectionsTC = createAsyncThunk(
       }
 
       return null
-    } catch (e) {
-      console.warn(e)
+    } catch (error) {
+      setError(dispatch, error as ResponseErrorType)
+
       return null
     }
   },
@@ -35,7 +41,7 @@ export const postSectionsTC = createAsyncThunk(
 
 export const deleteSectionTC = createAsyncThunk(
   'sections/removeSectionTC',
-  async (sectionId: number) => {
+  async (sectionId: number, { dispatch }) => {
     try {
       const response = await sectionsRequests.deleteSection(sectionId)
 
@@ -44,8 +50,9 @@ export const deleteSectionTC = createAsyncThunk(
       }
 
       return null
-    } catch (e) {
-      console.warn(e)
+    } catch (error) {
+      setError(dispatch, error as ResponseErrorType)
+
       return null
     }
   },
@@ -53,15 +60,16 @@ export const deleteSectionTC = createAsyncThunk(
 
 export const changeSectionTC = createAsyncThunk(
   'sections/changeSectionTC',
-  async (section: SectionType) => {
+  async (section: SectionType, { dispatch }) => {
     try {
       const response = await sectionsRequests.changeSection(section)
       if (response.status === StatusCode.SUCCESS) {
         return section
       }
       return null
-    } catch (e) {
-      console.warn(e)
+    } catch (error) {
+      setError(dispatch, error as ResponseErrorType)
+
       return null
     }
   },

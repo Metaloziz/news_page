@@ -5,14 +5,14 @@ export type InitialAppStateType = {
   errorMessage: string
 }
 
-export const initialAppState: InitialAppStateType = {
+export const initialState: InitialAppStateType = {
   isError: false,
   errorMessage: '',
 }
 
 export const mainSlice = createSlice({
   name: 'app',
-  initialState: initialAppState,
+  initialState,
   reducers: {
     setErrorTrueAC: (state, action: PayloadAction<string>) => {
       state.errorMessage = action.payload
