@@ -7,6 +7,7 @@ import style from './CreateNewsPage.module.scss'
 
 import { Button } from 'components/Button/Button'
 import { NavLinkComponent } from 'components/NavlinkComponent/NavLinkComponent'
+import { IMAGE } from 'constants/constants'
 import { Path } from 'enums/enums'
 import { selectorSections } from 'store/selectors/sections'
 import { useAppDispatch } from 'store/store'
@@ -80,7 +81,7 @@ export const CreateNewsPage: FC = () => {
         </div>
         <div>
           <label>image_1 </label>
-          <input {...register('image_1')} placeholder="image_1" defaultValue="test" />
+          <input {...register('image_1')} placeholder="image_1" defaultValue={IMAGE} />
           {errors.image_1 && <span>This field is required</span>}
         </div>
         <div>

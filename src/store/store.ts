@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
 
+import { appReducer } from 'store/reducers/app_reducer'
 import { newsReducer } from 'store/reducers/news_reducer'
 import { paginationReducer } from 'store/reducers/pagination_reducer'
 import { sectionsReducer } from 'store/reducers/sections_reducer'
@@ -13,6 +14,7 @@ export const store = configureStore({
     pagination: paginationReducer,
     singlePagination: singlePaginationReducer,
     sections: sectionsReducer,
+    app: appReducer,
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunkMiddleware),
 })
