@@ -1,5 +1,7 @@
+import { NEWS_BY_SEARCHING, NEWS_BY_SECTIONS } from 'constants/constants'
 import {
   appReducer,
+  changeNewsTypeViewAC,
   InitialAppStateType,
   setErrorFalseAC,
   setErrorTrueAC,
@@ -12,6 +14,7 @@ beforeEach(() => {
   appInitialState = {
     isError: false,
     errorMessage: '',
+    newsTypeView: NEWS_BY_SECTIONS,
   }
 
   errorMessage = 'some error'
@@ -34,5 +37,13 @@ describe('app reducer', () => {
 
     expect(endState.isError).toBeFalsy()
     expect(endState.errorMessage).toBe(appInitialState.errorMessage)
+  })
+
+  test('should change view mod', () => {
+    const action = changeNewsTypeViewAC(NEWS_BY_SEARCHING)
+
+    const endState = appReducer(appInitialState, action)
+
+    expect(endState.newsTypeView).toBe(NEWS_BY_SEARCHING)
   })
 })

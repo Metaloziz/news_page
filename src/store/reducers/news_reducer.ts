@@ -6,7 +6,7 @@ import {
   getNewsByIdTC,
   getNewsPartTC,
 } from 'store/thunks/news_thunks'
-import { NewsType } from 'store/types/types'
+import { NewsType } from 'store/types/news_type'
 import { findIndexElement } from 'utils/utils'
 
 export type CommentType = {

@@ -1,7 +1,7 @@
 import { instance } from 'api/instance'
 import { ALL_SECTION_ID, NEWS_ON_PAGE } from 'constants/constants'
 import { RequestSource } from 'enums/enums'
-import { NewsBodyType, NewsFileType, NewsType } from 'store/types/types'
+import { NewsBodyType, NewsFileType, NewsType } from 'store/types/news_type'
 
 export type NewsPayloadType = {
   body: NewsBodyType

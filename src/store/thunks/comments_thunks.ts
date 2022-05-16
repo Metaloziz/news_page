@@ -1,11 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { commentsRequests, PostCommentPayloadType } from 'api/commentsRequests'
+import { ResponseErrorType } from 'store/types/response_error_type'
 import { setError } from 'utils/utils'
-
-export type ResponseErrorType = {
-  response: { data: { message: string } }
-}
 
 export const getCommentsNewsTC = createAsyncThunk(
   'comments/getCommentsNewsTC',
@@ -54,7 +51,7 @@ export const postCommentTC = createAsyncThunk(
   async (comment: PostCommentPayloadType, { dispatch }) => {
     try {
       const response = await commentsRequests.postComment(comment)
-      dispatch(getCurrentCommentTC(response.data.id))
+      dispatch(getCurrentCommentTC(response.data.id)) // потом улучшить, чтобы не было запроса
       return null
     } catch (error) {
       setError(dispatch, error as ResponseErrorType)

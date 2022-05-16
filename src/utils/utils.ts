@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux'
 
 import { setErrorTrueAC } from 'store/reducers/app_reducer'
-import { ResponseErrorType } from 'store/thunks/comments_thunks'
+import { ResponseErrorType } from 'store/types/response_error_type'
 
 const NEXT_MONTH = 1
 

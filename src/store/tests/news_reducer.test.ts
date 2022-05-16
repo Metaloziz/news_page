@@ -13,7 +13,7 @@ import {
   getNewsByIdTC,
   getNewsPartTC,
 } from 'store/thunks/news_thunks'
-import { NewsType } from 'store/types/types'
+import { NewsType } from 'store/types/news_type'
 import { findIndexElement } from 'utils/utils'
 
 const firstItem: number = 0
@@ -63,22 +63,6 @@ beforeEach(() => {
       section: 0,
       views: 0,
     },
-    // comments: [
-    //   {
-    //     id: 0,
-    //     author: '',
-    //     text: '',
-    //     date: '',
-    //     news_id: 0,
-    //   },
-    //   {
-    //     id: currentCommentId,
-    //     author: '',
-    //     text: '',
-    //     date: '',
-    //     news_id: 1,
-    //   },
-    // ],
   }
 
   newsData = [

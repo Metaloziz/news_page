@@ -11,7 +11,7 @@ import { Path } from 'enums/enums'
 import { setCurrentSectionAC } from 'store/reducers/sections_reducer'
 import { selectorIdActiveSection, selectorSections } from 'store/selectors/sections'
 import { useAppDispatch } from 'store/store'
-import { getNewsByKeyWordTC } from 'store/thunks/news_thunks'
+import { getNewsByKeyWordTC } from 'store/thunks/search_news_thunks'
 
 export const Navigation: FC = () => {
   const dispatch = useAppDispatch()

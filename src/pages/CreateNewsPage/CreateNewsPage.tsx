@@ -12,7 +12,7 @@ import { Path } from 'enums/enums'
 import { selectorSections } from 'store/selectors/sections'
 import { useAppDispatch } from 'store/store'
 import { postNewsTC } from 'store/thunks/news_thunks'
-import { FormType } from 'store/types/types'
+import { FormType } from 'store/types/news_type'
 import { TODAY_DATE } from 'utils/utils'
 
 export const CreateNewsPage: FC = () => {

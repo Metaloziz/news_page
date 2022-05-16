@@ -1,11 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { NewsPayloadType, newsRequests } from 'api/newsRequests'
-import { NEWS_ON_PAGE } from 'constants/constants'
 import { StatusCode } from 'enums/enums'
-import { setFirstPageAC, setPagesCountAC } from 'store/reducers/single_pagination_reducer'
+import { setPagesCountAC } from 'store/reducers/single_pagination_reducer'
 import { RootState } from 'store/store'
-import { ResponseErrorType } from 'store/thunks/comments_thunks'
+import { ResponseErrorType } from 'store/types/response_error_type'
 import { setError } from 'utils/utils'
 
 export const getNewsPartTC = createAsyncThunk(
@@ -90,27 +89,6 @@ export const postNewsTC = createAsyncThunk(
       const response = await newsRequests.postNews(news)
       if (response.status === StatusCode.POST_NEWS_SUCCESS) {
         dispatch(getNewsByIdTC(response.data.id))
-      }
-      return null
-    } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
-      return null
-    }
-  },
-)
-
-export const getNewsByKeyWordTC = createAsyncThunk(
-  'news/getNewsByKeyWordTC',
-  async (keyWord: string, { dispatch }) => {
-    try {
-      const {
-        data: { Data },
-      } = await newsRequests.getNewsByKeyWord(keyWord)
-      if (Data) {
-        const pageCount = Math.round(Data.length / NEWS_ON_PAGE)
-        dispatch(setPagesCountAC(pageCount)) // доделать, так как сетается больше 4 новостей
-        dispatch(setFirstPageAC())
-        dispatch(getNewsPartTC.fulfilled(Data, '', pageCount))
       }
       return null
     } catch (error) {

@@ -30,5 +30,4 @@ export type NewsBodyType = {
 export type NewsFileType = {
   file: File
 }
-
 export type FormType = NewsBodyType & NewsFileType
