@@ -1,11 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import {
-  deleteCommentTC,
-  getCommentsNewsTC,
-  getCurrentCommentTC,
-} from 'store/thunks/comments_thunks'
-import {
   addNewsViewsValueTC,
   deleteNewsTC,
   getNewsByIdTC,
@@ -25,7 +20,6 @@ export type CommentType = {
 export type NewsInitialStateType = {
   news: NewsType[]
   currentNews: NewsType
-  comments: CommentType[]
 }
 
 export const initialState: NewsInitialStateType = {
@@ -65,22 +59,6 @@ export const initialState: NewsInitialStateType = {
     section: 0,
     views: 0,
   },
-  comments: [
-    {
-      id: 0,
-      author: 'author',
-      text: 'text',
-      date: 'date',
-      news_id: 0,
-    },
-    {
-      id: 1,
-      author: 'author',
-      text: 'text',
-      date: 'date',
-      news_id: 2,
-    },
-  ],
 }
 
 export const mainSlice = createSlice({
@@ -93,31 +71,11 @@ export const mainSlice = createSlice({
         state.currentNews = currentNews
       }
     },
-    removeCommentsAC: state => {
-      state.comments = []
-    },
   },
   extraReducers: builder => {
     builder.addCase(getNewsPartTC.fulfilled, (state, action) => {
       if (action.payload) {
         state.news = action.payload
-      }
-    })
-    builder.addCase(getCommentsNewsTC.fulfilled, (state, action) => {
-      if (action.payload) {
-        state.comments = action.payload
-      } else {
-        state.comments = []
-      }
-    })
-    builder.addCase(getCurrentCommentTC.fulfilled, (state, action) => {
-      if (action.payload) {
-        state.comments.push(action.payload)
-      }
-    })
-    builder.addCase(deleteCommentTC.fulfilled, (state, action) => {
-      if (action.payload) {
-        state.comments = state.comments.filter(comment => comment.id !== action.payload)
       }
     })
     builder.addCase(deleteNewsTC.fulfilled, (state, action) => {
@@ -139,5 +97,5 @@ export const mainSlice = createSlice({
   },
 })
 
-export const { setCurrentNewsAC, removeCommentsAC } = mainSlice.actions
+export const { setCurrentNewsAC } = mainSlice.actions
 export const newsReducer = mainSlice.reducer

@@ -10,7 +10,7 @@ import {
   CommentForm,
   CommentFormType,
 } from 'pages/CurrentNews/Comments/CommentForm/CommentForm'
-import { selectorCommentsNews } from 'store/selectors/news'
+import { selectorCommentsNews } from 'store/selectors/comments'
 import { useAppDispatch } from 'store/store'
 import {
   deleteCommentTC,

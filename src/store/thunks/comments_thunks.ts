@@ -8,7 +8,7 @@ export type ResponseErrorType = {
 }
 
 export const getCommentsNewsTC = createAsyncThunk(
-  'news/getCommentsNewsTC',
+  'comments/getCommentsNewsTC',
   async (newsId: number, { dispatch }) => {
     try {
       const response = await commentsRequests.getComments(newsId)
@@ -20,7 +20,7 @@ export const getCommentsNewsTC = createAsyncThunk(
   },
 )
 export const deleteCommentTC = createAsyncThunk(
-  'news/deleteCommentTC',
+  'comments/deleteCommentTC',
   async (commentId: number, { dispatch }) => {
     try {
       const response = await commentsRequests.deleteComment(commentId)
@@ -35,7 +35,7 @@ export const deleteCommentTC = createAsyncThunk(
   },
 )
 export const getCurrentCommentTC = createAsyncThunk(
-  'news/getCurrentCommentTC',
+  'comments/getCurrentCommentTC',
   async (commentId: number, { dispatch }) => {
     try {
       const response = await commentsRequests.getCurrentComment(commentId)
@@ -50,7 +50,7 @@ export const getCurrentCommentTC = createAsyncThunk(
   },
 )
 export const postCommentTC = createAsyncThunk(
-  'news/postCommentTC',
+  'comments/postCommentTC',
   async (comment: PostCommentPayloadType, { dispatch }) => {
     try {
       const response = await commentsRequests.postComment(comment)
