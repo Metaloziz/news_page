@@ -24,5 +24,9 @@ export const setError = (dispatch: Dispatch, errorData: ResponseErrorType): void
     },
   } = errorData
 
-  dispatch(setErrorTrueAC(message))
+  if (message) {
+    dispatch(setErrorTrueAC(message))
+  } else {
+    dispatch(setErrorTrueAC('some error'))
+  }
 }

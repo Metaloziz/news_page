@@ -7,7 +7,9 @@ import style from './Navigation.module.scss'
 import { Button } from 'components/Button/Button'
 import { NavLinkComponent } from 'components/NavlinkComponent/NavLinkComponent'
 import { SearchField } from 'components/SearchField/SearchField'
+import { NEWS_BY_SEARCHING, NEWS_BY_SECTIONS } from 'constants/constants'
 import { Path } from 'enums/enums'
+import { changeNewsTypeViewAC } from 'store/reducers/app_reducer'
 import { setCurrentSectionAC } from 'store/reducers/sections_reducer'
 import { selectorIdActiveSection, selectorSections } from 'store/selectors/sections'
 import { useAppDispatch } from 'store/store'
@@ -24,10 +26,13 @@ export const Navigation: FC = () => {
 
   const setCurrentSection = (sectionId: number): void => {
     dispatch(setCurrentSectionAC(sectionId))
+    dispatch(changeNewsTypeViewAC(NEWS_BY_SECTIONS))
   }
 
   const getNewsByKeyWord = (keyWord: string): void => {
     dispatch(getNewsByKeyWordTC(keyWord))
+
+    dispatch(changeNewsTypeViewAC(NEWS_BY_SEARCHING))
   }
 
   return (

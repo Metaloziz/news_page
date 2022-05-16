@@ -3,7 +3,7 @@ import { FC } from 'react'
 import { Button } from 'components/Button/Button'
 import { FIRST_DATE_ELEMENT, LAST_DATE_ELEMENT } from 'constants/constants'
 import style from 'pages/CurrentNews/Comments/Comments.module.scss'
-import { CommentType } from 'store/reducers/news_reducer'
+import { CommentType } from 'store/reducers/section_news_reducer'
 
 type CommentPropsType = {
   comment: Omit<CommentType, 'news_id'>

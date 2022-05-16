@@ -5,23 +5,26 @@ import { useSelector } from 'react-redux'
 import { Button } from 'components/Button/Button'
 import { FIRST_PAGE_PAGINATION } from 'constants/constants'
 import {
-  setNextPageAC,
-  setPreviousPageAC,
-} from 'store/reducers/single_pagination_reducer'
-import { selectorCountPage, selectorNumberPage } from 'store/selectors/singlePagination'
+  setNextPageSearchNewsAC,
+  setPreviewPageSearchNewsAC,
+} from 'store/reducers/search_news_reducer'
+import {
+  selectorCountPageSearchNews,
+  selectorCurrentPageSearchNews,
+} from 'store/selectors/searchNews'
 import { useAppDispatch } from 'store/store'
 
-export const SinglePagination: FC = () => {
+export const SinglePaginationSearchNews: FC = () => {
   const dispatch = useAppDispatch()
 
-  const pagesCount = useSelector(selectorCountPage)
-  const pageNumber = useSelector(selectorNumberPage)
+  const pagesCount = useSelector(selectorCountPageSearchNews)
+  const pageNumber = useSelector(selectorCurrentPageSearchNews)
 
   const setPreviousPage = (): void => {
-    dispatch(setPreviousPageAC())
+    dispatch(setPreviewPageSearchNewsAC())
   }
   const setNextPage = (): void => {
-    dispatch(setNextPageAC())
+    dispatch(setNextPageSearchNewsAC())
   }
 
   return (
@@ -31,7 +34,7 @@ export const SinglePagination: FC = () => {
         onClick={setPreviousPage}
         disabled={pageNumber === FIRST_PAGE_PAGINATION}
       />
-      <h3>page number: {pageNumber}</h3>
+      <h3>page number Search news: {pageNumber}</h3>
       <Button name=">>" onClick={setNextPage} disabled={pageNumber === pagesCount} />
     </div>
   )

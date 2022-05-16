@@ -1,12 +1,12 @@
 import {
-  NewsInitialStateType,
-  newsReducer,
-  setCurrentNewsAC,
-} from 'store/reducers/news_reducer'
-import {
   PaginationInitialStateType,
   paginationReducer,
 } from 'store/reducers/pagination_reducer'
+import {
+  NewsInitialStateType,
+  sectionNewsReducer,
+  setCurrentNewsAC,
+} from 'store/reducers/section_news_reducer'
 import {
   addNewsViewsValueTC,
   deleteNewsTC,
@@ -127,11 +127,11 @@ beforeEach(() => {
   }
 })
 
-describe('news reducer', () => {
+describe('section news reducer', () => {
   test('should set all news', () => {
     const action = getNewsPartTC.fulfilled(newsData, '', pageNumber)
 
-    const endState = newsReducer(newsInitialState, action)
+    const endState = sectionNewsReducer(newsInitialState, action)
 
     expect(endState.news.length).toBe(newsData.length)
     expect(endState.news[firstItem]).toBe(newsData[firstItem])
@@ -150,7 +150,7 @@ describe('news reducer', () => {
 
     const action = setCurrentNewsAC(currentNewsId)
 
-    const endState = newsReducer(newsInitialState, action)
+    const endState = sectionNewsReducer(newsInitialState, action)
 
     expect(endState.currentNews).toBe(currentNews)
     expect(endState.currentNews.id).toBe(currentNewsId)
@@ -159,7 +159,7 @@ describe('news reducer', () => {
   test('should delete current news', () => {
     const action = deleteNewsTC.fulfilled(currentNewsId, '', currentNewsId)
 
-    const endState = newsReducer(newsInitialState, action)
+    const endState = sectionNewsReducer(newsInitialState, action)
 
     const currentNews = endState.news.find(({ id }) => id === currentNewsId)
 
@@ -169,7 +169,7 @@ describe('news reducer', () => {
   test('should added one count to news view', () => {
     const action = addNewsViewsValueTC.fulfilled(currentNewsId, '', currentNewsId)
 
-    const endState = newsReducer(newsInitialState, action)
+    const endState = sectionNewsReducer(newsInitialState, action)
 
     const indexElement = findIndexElement(endState.news, currentNewsId)
 
@@ -181,7 +181,7 @@ describe('news reducer', () => {
   test('should add one news to state', () => {
     const action = getNewsByIdTC.fulfilled(newNews, '', newNews.id)
 
-    const endState = newsReducer(newsInitialState, action)
+    const endState = sectionNewsReducer(newsInitialState, action)
 
     const indexElement = findIndexElement(endState.news, newNews.id)
 

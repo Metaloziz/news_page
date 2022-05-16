@@ -14,7 +14,7 @@ beforeEach(() => {
   appInitialState = {
     isError: false,
     errorMessage: '',
-    newsTypeView: NEWS_BY_SECTIONS,
+    newsModeView: NEWS_BY_SECTIONS,
   }
 
   errorMessage = 'some error'
@@ -28,6 +28,14 @@ describe('app reducer', () => {
 
     expect(endState.isError).toBeTruthy()
     expect(endState.errorMessage).toBe(errorMessage)
+  })
+
+  test('should set default error message', () => {
+    const action = setErrorTrueAC('')
+
+    const endState = appReducer(appInitialState, action)
+
+    expect(endState.isError).toBeTruthy()
   })
 
   test('should set error false', () => {
@@ -44,6 +52,6 @@ describe('app reducer', () => {
 
     const endState = appReducer(appInitialState, action)
 
-    expect(endState.newsTypeView).toBe(NEWS_BY_SEARCHING)
+    expect(endState.newsModeView).toBe(NEWS_BY_SEARCHING)
   })
 })

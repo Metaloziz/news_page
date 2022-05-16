@@ -2,18 +2,18 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { NEWS_BY_SEARCHING, NEWS_BY_SECTIONS } from 'constants/constants'
 
-type NewsViewType = typeof NEWS_BY_SECTIONS | typeof NEWS_BY_SEARCHING
+export type NewsViewType = typeof NEWS_BY_SECTIONS | typeof NEWS_BY_SEARCHING
 
 export type InitialAppStateType = {
   isError: boolean
   errorMessage: string
-  newsTypeView: NewsViewType
+  newsModeView: NewsViewType
 }
 
 export const initialState: InitialAppStateType = {
   isError: false,
   errorMessage: '',
-  newsTypeView: NEWS_BY_SECTIONS,
+  newsModeView: NEWS_BY_SECTIONS,
 }
 
 export const mainSlice = createSlice({
@@ -29,7 +29,8 @@ export const mainSlice = createSlice({
       state.isError = false
     },
     changeNewsTypeViewAC: (state, action: PayloadAction<NewsViewType>) => {
-      state.newsTypeView = action.payload
+      if (state.newsModeView === action.payload) return
+      state.newsModeView = action.payload
     },
   },
 })

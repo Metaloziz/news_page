@@ -3,7 +3,7 @@ import {
   commentsReducer,
   removeCommentsAC,
 } from 'store/reducers/comments_reducer'
-import { CommentType } from 'store/reducers/news_reducer'
+import { CommentType } from 'store/reducers/section_news_reducer'
 import {
   deleteCommentTC,
   getCommentsNewsTC,

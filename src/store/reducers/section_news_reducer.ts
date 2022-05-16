@@ -62,7 +62,7 @@ export const initialState: NewsInitialStateType = {
 }
 
 export const mainSlice = createSlice({
-  name: 'news',
+  name: 'section_news',
   initialState,
   reducers: {
     setCurrentNewsAC: (state, action: PayloadAction<number>) => {
@@ -98,4 +98,4 @@ export const mainSlice = createSlice({
 })
 
 export const { setCurrentNewsAC } = mainSlice.actions
-export const newsReducer = mainSlice.reducer
+export const sectionNewsReducer = mainSlice.reducer

@@ -7,16 +7,25 @@ import { News } from './News/News'
 import style from './NewsContainer.module.scss'
 
 import { Button } from 'components/Button/Button'
+import { SinglePaginationSearchNews } from 'components/SinglePaginationSearchNews/SinglePaginationSearchNews'
+import { SinglePaginationSectionNews } from 'components/SinglePaginationSectionNews/SinglePaginationSectionNews'
+import { NEWS_BY_SECTIONS } from 'constants/constants'
 import { Path } from 'enums/enums'
-import { setCurrentNewsAC } from 'store/reducers/news_reducer'
+import { setPartSearchNewsAC } from 'store/reducers/search_news_reducer'
+import { setCurrentNewsAC } from 'store/reducers/section_news_reducer'
+import { selectorNewsTypeView } from 'store/selectors/app'
 import { selectorNews } from 'store/selectors/news'
+import {
+  selectorCurrentPageSearchNews,
+  selectorPartSearchNews,
+} from 'store/selectors/searchNews'
 import { selectorIdActiveSection } from 'store/selectors/sections'
 import { selectorNumberPage } from 'store/selectors/singlePagination'
 import { useAppDispatch } from 'store/store'
 import {
   addNewsViewsValueTC,
-  getNewsPartTC,
   deleteNewsTC,
+  getNewsPartTC,
 } from 'store/thunks/news_thunks'
 
 export const NewsContainer: FC = () => {
@@ -24,13 +33,24 @@ export const NewsContainer: FC = () => {
 
   const navigate = useNavigate()
 
-  const news = useSelector(selectorNews)
+  const viewMode = useSelector(selectorNewsTypeView)
+
+  const news =
+    viewMode === NEWS_BY_SECTIONS
+      ? useSelector(selectorNews)
+      : useSelector(selectorPartSearchNews)
+
   const pageNumber = useSelector(selectorNumberPage)
   const activeSection = useSelector(selectorIdActiveSection)
+  const pageNumberSearchNews = useSelector(selectorCurrentPageSearchNews)
 
   useEffect(() => {
     dispatch(getNewsPartTC(pageNumber))
   }, [pageNumber, activeSection])
+
+  useEffect(() => {
+    dispatch(setPartSearchNewsAC())
+  }, [pageNumberSearchNews])
 
   const setCurrentNews = useCallback(
     (newsId: number) => {
@@ -49,17 +69,24 @@ export const NewsContainer: FC = () => {
   }
 
   return (
-    <div className={style.container}>
-      {news.map(newsItem => (
-        <div key={newsItem.id}>
-          <Button name="удалить" onClick={() => removeNews(newsItem.id)} />
-          <News
-            data={newsItem}
-            newsRouteHandle={newsRouteHandle}
-            setCurrentNews={setCurrentNews}
-          />
-        </div>
-      ))}
+    <div>
+      <div className={style.container}>
+        {news.map(newsItem => (
+          <div key={newsItem.id}>
+            <Button name="удалить" onClick={() => removeNews(newsItem.id)} />
+            <News
+              data={newsItem}
+              newsRouteHandle={newsRouteHandle}
+              setCurrentNews={setCurrentNews}
+            />
+          </div>
+        ))}
+      </div>
+      {viewMode === NEWS_BY_SECTIONS ? (
+        <SinglePaginationSectionNews />
+      ) : (
+        <SinglePaginationSearchNews />
+      )}
     </div>
   )
 }
