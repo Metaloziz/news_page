@@ -1,0 +1,31 @@
+@import "src/styles/mixin";
+@import "src/styles/variables";
+
+.container {
+  @include container();
+  margin: 0;
+  width: auto;
+  min-height: 30vh;
+  background-color: $main_background_color;
+  flex-direction: row;
+  align-items: start;
+  padding-top: 20px;
+
+  .text {
+    @include container();
+    margin: 0 5% 2% 2%;
+    max-width: 60%;
+
+    h3 {
+      color: $main_color_first;
+    }
+
+  }
+
+  .image {
+    max-width: 40%;
+    width: auto;
+    min-width: 200px;
+    max-height: 200px;
+  }
+}

@@ -10,7 +10,7 @@
   .container {
     @include displayContentCenter();
     flex-wrap: wrap;
-    width: 50vw;
+    width: 40vw;
     height: auto;
     justify-content: flex-start;
     gap: 10px;

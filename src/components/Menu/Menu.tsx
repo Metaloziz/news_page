@@ -9,8 +9,9 @@ import { selectorIsAdminMode } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
 
 export const Menu: FC = () => {
-  const isAdmin = useSelector(selectorIsAdminMode)
   const dispatch = useAppDispatch()
+
+  const isAdmin = useSelector(selectorIsAdminMode)
 
   const switchIsAdminMode = (): void => {
     if (isAdmin) {

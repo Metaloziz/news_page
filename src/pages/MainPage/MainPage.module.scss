@@ -3,14 +3,9 @@
 
 .container {
   @include container();
-
-  .header {
-    width: auto;
-    height: 30vh;
-    background-color: $main_color_first;
-    color: $text_color;
-    font-size: 25px;
-    @include displayContentCenter()
-  }
+  margin: 0;
+  border: #1C1D25 1px solid;
+  height: 100vh;
+  width: 70vw;
 }
 

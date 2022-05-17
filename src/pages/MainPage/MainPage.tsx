@@ -3,12 +3,12 @@ import { FC } from 'react'
 import style from './MainPage.module.scss'
 
 import { Footer, Navigation, NewsContainer } from 'components'
+import { Header } from 'components/Header/Header'
 
 export const MainPage: FC = () => (
   <div className={style.container}>
-    <div className={style.header}>НОВОСТИ - текст</div>
+    <Header />
     <Navigation />
-
     <NewsContainer />
     <Footer />
   </div>

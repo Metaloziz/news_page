@@ -1,8 +1,8 @@
 @import "src/styles/mixin";
+@import "src/styles/variables";
 
 .container {
-  //position: absolute;
-  width: 300px;
+  width: 250px;
   height: 500px;
-  background-color: #2F5A53;
+  background-color: $main_background_color;
 }
