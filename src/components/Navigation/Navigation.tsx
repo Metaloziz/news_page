@@ -21,9 +21,9 @@ import { getNewsByKeyWordTC } from 'store/thunks'
 export const Navigation: FC = () => {
   const dispatch = useAppDispatch()
 
-  const activeSection = useSelector(selectorIdActiveSection)
   const sections = useSelector(selectorSections)
   const isAdmin = useSelector(selectorIsAdminMode)
+  const activeSection = useSelector(selectorIdActiveSection)
 
   const isActiveStyle = (id: number): string =>
     ` ${style.path}  ${activeSection === id ? style.active : null}`
@@ -52,10 +52,7 @@ export const Navigation: FC = () => {
           />
         ))}
         {isAdmin && (
-          <div>
-            <NavLinkComponent nameButton="создать секцию" path={Path.CREATE_SECTION} />
-            <NavLinkComponent nameButton="создать новость" path={Path.CREATE_NEWS} />
-          </div>
+          <NavLinkComponent nameButton="создать секцию" path={Path.CREATE_SECTION} />
         )}
       </div>
       <SearchField getNewsByKeyWord={getNewsByKeyWord} />

@@ -55,7 +55,7 @@ export const CreateNewsPage: FC = () => {
         </div>
         <div>
           <label>name </label>
-          <input {...register('name')} placeholder="name" required defaultValue="test" />
+          <input {...register('name')} placeholder="name" required defaultValue="name" />
           {errors.name && <span>This field is required</span>}
         </div>
         <div>
@@ -64,7 +64,7 @@ export const CreateNewsPage: FC = () => {
             {...register('subtitle_1')}
             placeholder="subtitle_1"
             required
-            defaultValue="test"
+            defaultValue="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aperiam aspernatur commodi consequatur cumque error esse est eveniet exercitationem facere, labore laboriosam, nobis, odio qui quia quibusdam quidem sapiente tempora?"
           />
           {errors.subtitle_1 && <span>This field is required</span>}
         </div>
@@ -74,7 +74,7 @@ export const CreateNewsPage: FC = () => {
             {...register('full_text_1')}
             placeholder="full_text_1"
             required
-            defaultValue="test"
+            defaultValue="full_text_1"
           />
           {errors.full_text_1 && <span>This field is required</span>}
         </div>

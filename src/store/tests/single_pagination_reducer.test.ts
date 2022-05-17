@@ -4,12 +4,12 @@ import {
   setPreviousPageAC,
   singlePaginationReducer,
 } from 'store/reducers'
-import { SinglePaginationReducerType } from 'store/types'
+import { SinglePaginationInitialStateType } from 'store/types'
 
 const DIFFERENCE_COUNTER_PAGES: number = 1
 const newPagesCount: number = 10
 
-const paginationInitialState: SinglePaginationReducerType = {
+const paginationInitialState: SinglePaginationInitialStateType = {
   currentPage: 1,
   pagesCount: 1,
 }

@@ -1,0 +1,7 @@
+@import "src/styles/variables";
+@import "src/styles/mixin";
+
+.container {
+  @include container();
+  flex-direction: row;
+}

@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes, DetailedHTMLProps, FC } from 'react'
 
 import style from './Button.module.scss'
 
-type DefaultButtonPropsType = DetailedHTMLProps<
+export type DefaultButtonPropsType = DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
 >

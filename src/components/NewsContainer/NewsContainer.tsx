@@ -5,10 +5,9 @@ import { useNavigate } from 'react-router-dom'
 
 import { News } from './News'
 import style from './NewsContainer.module.scss'
+import { Pagination } from './Pagination/Pagination'
 
-import { Button } from 'components/Button/Button'
-import { SinglePaginationSearchNews } from 'components/SinglePaginationSearchNews'
-import { SinglePaginationSectionNews } from 'components/SinglePaginationSectionNews'
+import { NavLinkComponent } from 'components/NavlinkComponent'
 import { NEWS_BY_SECTIONS } from 'constants/constants'
 import { Path } from 'enums/enums'
 import { setCurrentNewsAC, setPartSearchNewsAC } from 'store/reducers'
@@ -61,29 +60,28 @@ export const NewsContainer: FC = () => {
     navigate(`/${Path.CURRENT_NEWS}`)
   }
 
-  const removeNews = (newsId: number): void => {
+  const deleteNews = (newsId: number): void => {
     dispatch(deleteNewsTC(newsId))
   }
 
   return (
-    <div>
-      <div className={style.container}>
+    <div className={style.container}>
+      {isAdmin && (
+        <NavLinkComponent nameButton="создать новость" path={Path.CREATE_NEWS} />
+      )}
+      <div className={style.body}>
         {news.map(newsItem => (
-          <div key={newsItem.id}>
-            {isAdmin && <Button name="удалить" onClick={() => removeNews(newsItem.id)} />}
-            <News
-              data={newsItem}
-              newsRouteHandle={newsRouteHandle}
-              setCurrentNews={setCurrentNews}
-            />
-          </div>
+          <News
+            key={newsItem.id}
+            data={newsItem}
+            newsRouteHandle={newsRouteHandle}
+            setCurrentNews={setCurrentNews}
+            isAdmin={isAdmin}
+            deleteNews={deleteNews}
+          />
         ))}
       </div>
-      {viewMode === NEWS_BY_SECTIONS ? (
-        <SinglePaginationSectionNews />
-      ) : (
-        <SinglePaginationSearchNews />
-      )}
+      <Pagination viewMode={viewMode} />
     </div>
   )
 }

@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { SinglePaginationReducerType } from 'store/types'
+import { SinglePaginationInitialStateType } from 'store/types'
 
-const initialState: SinglePaginationReducerType = {
+const initialState: SinglePaginationInitialStateType = {
   currentPage: 1,
   pagesCount: 1,
 }

@@ -2,6 +2,8 @@ import { FC } from 'react'
 
 import { useSelector } from 'react-redux'
 
+import style from './SinglePaginationSectionNews.module.scss'
+
 import { Button } from 'components/Button/Button'
 import { FIRST_PAGE_PAGINATION } from 'constants/constants'
 import {
@@ -25,7 +27,7 @@ export const SinglePaginationSectionNews: FC = () => {
   }
 
   return (
-    <div>
+    <div className={style.container}>
       <Button
         name="<<"
         onClick={setPreviousPage}
