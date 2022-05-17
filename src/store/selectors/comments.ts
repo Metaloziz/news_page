@@ -1,5 +1,5 @@
-import { CommentType } from 'store/reducers/section_news_reducer'
 import { RootState } from 'store/store'
+import { CommentType } from 'store/types'
 
 export const selectorCommentsNews = (state: RootState): CommentType[] =>
   state.comments.comments

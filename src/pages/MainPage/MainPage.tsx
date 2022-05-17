@@ -1,11 +1,9 @@
 import { FC } from 'react'
 
-import { Footer } from 'components/Footer/Footer'
-import { Navigation } from 'components/Navigation/Navigation'
-import { NavLinkComponent } from 'components/NavlinkComponent/NavLinkComponent'
-import { NewsContainer } from 'components/NewsContainer/NewsContainer'
+import style from './MainPage.module.scss'
+
+import { Footer, Navigation, NavLinkComponent, NewsContainer } from 'components'
 import { Path } from 'enums/enums'
-import style from 'pages/MainPage/MainPage.module.scss'
 
 export const MainPage: FC = () => (
   <div className={style.container}>

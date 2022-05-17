@@ -3,10 +3,7 @@ import { FC } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
 import { Path } from 'enums/enums'
-import { CreateNewsPage } from 'pages/CreateNewsPage/CreateNewsPage'
-import { CreateSectionPage } from 'pages/CreateSectionPage/CreateSectionPage'
-import { CurrentNews } from 'pages/CurrentNews/CurrentNews'
-import { MainPage } from 'pages/MainPage/MainPage'
+import { CreateNewsPage, CreateSectionPage, CurrentNews, MainPage } from 'pages'
 
 export const RoutesComponent: FC = () => (
   <div>

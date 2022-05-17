@@ -1,0 +1,7 @@
+export * from './app_reducer'
+export * from './comments_reducer'
+export * from './pagination_reducer'
+export * from './search_news_reducer'
+export * from './sections_reducer'
+export * from './section_news_reducer'
+export * from './single_pagination_reducer'

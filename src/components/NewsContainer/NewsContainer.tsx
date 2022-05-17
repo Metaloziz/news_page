@@ -3,30 +3,25 @@ import { FC, useCallback, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { News } from './News/News'
+import { News } from './News'
 import style from './NewsContainer.module.scss'
 
 import { Button } from 'components/Button/Button'
-import { SinglePaginationSearchNews } from 'components/SinglePaginationSearchNews/SinglePaginationSearchNews'
-import { SinglePaginationSectionNews } from 'components/SinglePaginationSectionNews/SinglePaginationSectionNews'
+import { SinglePaginationSearchNews } from 'components/SinglePaginationSearchNews'
+import { SinglePaginationSectionNews } from 'components/SinglePaginationSectionNews'
 import { NEWS_BY_SECTIONS } from 'constants/constants'
 import { Path } from 'enums/enums'
-import { setPartSearchNewsAC } from 'store/reducers/search_news_reducer'
-import { setCurrentNewsAC } from 'store/reducers/section_news_reducer'
-import { selectorNewsTypeView } from 'store/selectors/app'
-import { selectorNews } from 'store/selectors/news'
+import { setCurrentNewsAC, setPartSearchNewsAC } from 'store/reducers'
 import {
   selectorCurrentPageSearchNews,
+  selectorIdActiveSection,
+  selectorNews,
+  selectorNewsTypeView,
+  selectorNumberPage,
   selectorPartSearchNews,
-} from 'store/selectors/searchNews'
-import { selectorIdActiveSection } from 'store/selectors/sections'
-import { selectorNumberPage } from 'store/selectors/singlePagination'
+} from 'store/selectors'
 import { useAppDispatch } from 'store/store'
-import {
-  addNewsViewsValueTC,
-  deleteNewsTC,
-  getNewsPartTC,
-} from 'store/thunks/news_thunks'
+import { addNewsViewsValueTC, deleteNewsTC, getNewsPartTC } from 'store/thunks'
 
 export const NewsContainer: FC = () => {
   const dispatch = useAppDispatch()

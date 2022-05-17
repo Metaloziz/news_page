@@ -2,10 +2,10 @@ import { NEWS_BY_SEARCHING, NEWS_BY_SECTIONS } from 'constants/constants'
 import {
   appReducer,
   changeNewsTypeViewAC,
-  InitialAppStateType,
   setErrorFalseAC,
   setErrorTrueAC,
-} from 'store/reducers/app_reducer'
+} from 'store/reducers'
+import { InitialAppStateType } from 'store/types'
 
 let appInitialState: InitialAppStateType
 let errorMessage: string

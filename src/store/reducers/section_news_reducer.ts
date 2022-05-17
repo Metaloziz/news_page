@@ -6,23 +6,10 @@ import {
   getNewsByIdTC,
   getNewsPartTC,
 } from 'store/thunks/news_thunks'
-import { NewsType } from 'store/types/news_type'
+import { NewsInitialStateType } from 'store/types'
 import { findIndexElement } from 'utils/utils'
 
-export type CommentType = {
-  id: number
-  author: string
-  text: string
-  news_id: number
-  date: string
-}
-
-export type NewsInitialStateType = {
-  news: NewsType[]
-  currentNews: NewsType
-}
-
-export const initialState: NewsInitialStateType = {
+const initialState: NewsInitialStateType = {
   news: [
     {
       id: 0,
@@ -61,7 +48,7 @@ export const initialState: NewsInitialStateType = {
   },
 }
 
-export const mainSlice = createSlice({
+const mainSlice = createSlice({
   name: 'section_news',
   initialState,
   reducers: {

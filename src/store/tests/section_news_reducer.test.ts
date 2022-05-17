@@ -1,19 +1,16 @@
 import {
   PaginationInitialStateType,
   paginationReducer,
-} from 'store/reducers/pagination_reducer'
-import {
-  NewsInitialStateType,
   sectionNewsReducer,
   setCurrentNewsAC,
-} from 'store/reducers/section_news_reducer'
+} from 'store/reducers'
 import {
   addNewsViewsValueTC,
   deleteNewsTC,
   getNewsByIdTC,
   getNewsPartTC,
-} from 'store/thunks/news_thunks'
-import { NewsType } from 'store/types/news_type'
+} from 'store/thunks'
+import { NewsInitialStateType, NewsType } from 'store/types'
 import { findIndexElement } from 'utils/utils'
 
 const firstItem: number = 0

@@ -1,12 +1,12 @@
 import { NEWS_ON_PAGE } from 'constants/constants'
 import {
-  SearchNewsInitialStateType,
   searchNewsReducer,
   setNextPageSearchNewsAC,
   setPartSearchNewsAC,
   setPreviewPageSearchNewsAC,
-} from 'store/reducers/search_news_reducer'
-import { getNewsByKeyWordTC } from 'store/thunks/search_news_thunks'
+} from 'store/reducers'
+import { getNewsByKeyWordTC } from 'store/thunks'
+import { SearchNewsInitialStateType } from 'store/types'
 import { NewsType } from 'store/types/news_type'
 
 let searchNewsInitialState: SearchNewsInitialStateType

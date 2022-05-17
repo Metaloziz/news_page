@@ -1,5 +1,5 @@
-import { SectionType } from 'store/reducers/sections_reducer'
 import { RootState } from 'store/store'
+import { SectionType } from 'store/types/section_type'
 
 export const selectorSections = (state: RootState): SectionType[] =>
   state.sections.sections

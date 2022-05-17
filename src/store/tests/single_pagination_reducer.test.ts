@@ -3,8 +3,8 @@ import {
   setPagesCountAC,
   setPreviousPageAC,
   singlePaginationReducer,
-  SinglePaginationReducerType,
-} from 'store/reducers/single_pagination_reducer'
+} from 'store/reducers'
+import { SinglePaginationReducerType } from 'store/types'
 
 const DIFFERENCE_COUNTER_PAGES: number = 1
 const newPagesCount: number = 10

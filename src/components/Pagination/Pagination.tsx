@@ -2,7 +2,8 @@ import { FC, ReactElement } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Buttons } from 'components/Pagination/Buttons'
+import { Buttons } from './Buttons'
+
 import { setCurrentPageAC } from 'store/reducers/pagination_reducer'
 import {
   selectCountNewsOnPage,

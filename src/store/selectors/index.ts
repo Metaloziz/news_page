@@ -1,0 +1,7 @@
+export * from './app'
+export * from './news'
+export * from './comments'
+export * from './pagination'
+export * from './sections'
+export * from './searchNews'
+export * from './singlePagination'

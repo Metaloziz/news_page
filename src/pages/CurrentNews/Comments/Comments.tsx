@@ -2,15 +2,12 @@ import { FC, memo, useCallback, useEffect } from 'react'
 
 import { useSelector } from 'react-redux'
 
+import { Comment } from './Comment/Comment'
+import { CommentForm, CommentFormType } from './CommentForm/CommentForm'
 import style from './Comments.module.scss'
 
 import { FIRST_INDEX_NEWS } from 'constants/constants'
-import { Comment } from 'pages/CurrentNews/Comments/Comment/Comment'
-import {
-  CommentForm,
-  CommentFormType,
-} from 'pages/CurrentNews/Comments/CommentForm/CommentForm'
-import { selectorCommentsNews } from 'store/selectors/comments'
+import { selectorCommentsNews } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
 import {
   deleteCommentTC,

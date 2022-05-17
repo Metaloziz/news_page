@@ -2,8 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { sectionsRequests } from 'api/sectionsRequests'
 import { StatusCode } from 'enums/enums'
-import { SectionType } from 'store/reducers/sections_reducer'
 import { ResponseErrorType } from 'store/types/response_error_type'
+import { SectionType } from 'store/types/section_type'
 import { setError } from 'utils/utils'
 
 export const getSectionsTC = createAsyncThunk(

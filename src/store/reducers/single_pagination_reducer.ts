@@ -1,11 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-export const initialState: SinglePaginationReducerType = {
+import { SinglePaginationReducerType } from 'store/types'
+
+const initialState: SinglePaginationReducerType = {
   currentPage: 1,
   pagesCount: 1,
 }
 
-export const mainSlice = createSlice({
+const mainSlice = createSlice({
   name: 'single_pagination',
   initialState,
   reducers: {
@@ -28,9 +30,3 @@ export const mainSlice = createSlice({
 export const { setPreviousPageAC, setNextPageAC, setPagesCountAC, setFirstPageAC } =
   mainSlice.actions
 export const singlePaginationReducer = mainSlice.reducer
-
-// types
-export type SinglePaginationReducerType = {
-  currentPage: number
-  pagesCount: number
-}

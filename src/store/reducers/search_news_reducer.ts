@@ -2,20 +2,9 @@ import { createSlice } from '@reduxjs/toolkit'
 
 import { NEWS_ON_PAGE } from 'constants/constants'
 import { getNewsByKeyWordTC } from 'store/thunks/search_news_thunks'
-import { NewsType } from 'store/types/news_type'
+import { SearchNewsInitialStateType } from 'store/types'
 
-export type SearchNewsInitialStateType = {
-  news: NewsType[]
-  partNews: NewsType[]
-  currentPage: number
-  pageCount: number
-  part: {
-    firstElementIndex: number
-    lastElementIndex: number
-  }
-}
-
-export const initialState: SearchNewsInitialStateType = {
+const initialState: SearchNewsInitialStateType = {
   news: [
     {
       id: 0,
@@ -44,7 +33,7 @@ export const initialState: SearchNewsInitialStateType = {
   },
 }
 
-export const mainSlice = createSlice({
+const mainSlice = createSlice({
   name: 'search_news',
   initialState,
   reducers: {

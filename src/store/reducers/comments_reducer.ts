@@ -1,24 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import {
-  deleteCommentTC,
-  getCommentsNewsTC,
-  getCurrentCommentTC,
-} from 'store/thunks/comments_thunks'
+import { deleteCommentTC, getCommentsNewsTC, getCurrentCommentTC } from 'store/thunks'
+import { CommentsInitialStateType } from 'store/types'
 
-export type CommentType = {
-  id: number
-  author: string
-  text: string
-  news_id: number
-  date: string
-}
-
-export type CommentsInitialStateType = {
-  comments: CommentType[]
-}
-
-export const initialState: CommentsInitialStateType = {
+const initialState: CommentsInitialStateType = {
   comments: [
     {
       id: 0,
@@ -37,7 +22,7 @@ export const initialState: CommentsInitialStateType = {
   ],
 }
 
-export const mainSlice = createSlice({
+const mainSlice = createSlice({
   name: 'comments',
   initialState,
   reducers: {

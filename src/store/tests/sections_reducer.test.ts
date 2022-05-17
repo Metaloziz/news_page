@@ -1,15 +1,11 @@
-import {
-  SectionsInitialStateType,
-  sectionsReducer,
-  SectionType,
-  setCurrentSectionAC,
-} from 'store/reducers/sections_reducer'
+import { sectionsReducer, setCurrentSectionAC } from 'store/reducers'
 import {
   changeSectionTC,
   deleteSectionTC,
   getSectionsTC,
   postSectionsTC,
-} from 'store/thunks/sections_thunks'
+} from 'store/thunks'
+import { SectionsInitialStateType, SectionType } from 'store/types'
 
 let sections: SectionType[]
 let newSection: SectionType

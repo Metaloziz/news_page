@@ -2,13 +2,13 @@ import { FC } from 'react'
 
 import { useSelector } from 'react-redux'
 
+import { Comments } from './Comments/Comments'
 import style from './CurrentNews.module.scss'
+import { NewsPreview } from './NewsPreview/NewsPreview'
 
-import { NavLinkComponent } from 'components/NavlinkComponent/NavLinkComponent'
+import { NavLinkComponent } from 'components'
 import { Path } from 'enums/enums'
-import { Comments } from 'pages/CurrentNews/Comments/Comments'
-import { NewsPreview } from 'pages/CurrentNews/NewsPreview/NewsPreview'
-import { selectorCurrentNews } from 'store/selectors/news'
+import { selectorCurrentNews } from 'store/selectors'
 
 export const CurrentNews: FC = () => {
   const news = useSelector(selectorCurrentNews)

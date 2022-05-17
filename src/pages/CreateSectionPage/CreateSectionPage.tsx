@@ -3,19 +3,15 @@ import { FC, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 
 import style from './CreateSectionPage.module.scss'
+import { Section } from './Section/Section'
+import { NewSectionForm } from './SectionForm/NewSectionForm'
 
-import { NavLinkComponent } from 'components/NavlinkComponent/NavLinkComponent'
+import { NavLinkComponent } from 'components'
 import { Path } from 'enums/enums'
-import { Section } from 'pages/CreateSectionPage/Section/Section'
-import { NewSectionForm } from 'pages/CreateSectionPage/SectionForm/NewSectionForm'
-import { SectionType } from 'store/reducers/sections_reducer'
-import { selectorSections } from 'store/selectors/sections'
+import { selectorSections } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
-import {
-  changeSectionTC,
-  deleteSectionTC,
-  postSectionsTC,
-} from 'store/thunks/sections_thunks'
+import { changeSectionTC, deleteSectionTC, postSectionsTC } from 'store/thunks'
+import { SectionType } from 'store/types'
 
 export const CreateSectionPage: FC = () => {
   const dispatch = useAppDispatch()

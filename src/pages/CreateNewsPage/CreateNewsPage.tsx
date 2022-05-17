@@ -5,13 +5,12 @@ import { useSelector } from 'react-redux'
 
 import style from './CreateNewsPage.module.scss'
 
-import { Button } from 'components/Button/Button'
-import { NavLinkComponent } from 'components/NavlinkComponent/NavLinkComponent'
+import { Button, NavLinkComponent } from 'components'
 import { IMAGE } from 'constants/constants'
 import { Path } from 'enums/enums'
-import { selectorSections } from 'store/selectors/sections'
+import { selectorSections } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
-import { postNewsTC } from 'store/thunks/news_thunks'
+import { postNewsTC } from 'store/thunks'
 import { FormType } from 'store/types/news_type'
 import { TODAY_DATE } from 'utils/utils'
 

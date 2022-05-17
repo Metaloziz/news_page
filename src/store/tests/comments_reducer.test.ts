@@ -1,14 +1,6 @@
-import {
-  CommentsInitialStateType,
-  commentsReducer,
-  removeCommentsAC,
-} from 'store/reducers/comments_reducer'
-import { CommentType } from 'store/reducers/section_news_reducer'
-import {
-  deleteCommentTC,
-  getCommentsNewsTC,
-  getCurrentCommentTC,
-} from 'store/thunks/comments_thunks'
+import { commentsReducer, removeCommentsAC } from 'store/reducers'
+import { deleteCommentTC, getCommentsNewsTC, getCurrentCommentTC } from 'store/thunks'
+import { CommentsInitialStateType, CommentType } from 'store/types'
 
 const currentNewsId: number = 10
 const currentCommentId: number = 1

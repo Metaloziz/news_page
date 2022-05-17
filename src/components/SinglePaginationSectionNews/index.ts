@@ -1,0 +1,1 @@
+export { SinglePaginationSectionNews } from './SinglePaginationSectionNews'

@@ -6,15 +6,17 @@ import {
   getSectionsTC,
   postSectionsTC,
 } from 'store/thunks/sections_thunks'
+import { SectionsInitialStateType } from 'store/types'
+import { SectionType } from 'store/types/section_type'
 import { findIndexElement } from 'utils/utils'
 
-export const initialState: SectionsInitialStateType = {
+const initialState: SectionsInitialStateType = {
   sections: [{ id: 0, name: 'все' }],
   defaultSection: { id: 0, name: 'все' },
   activeSectionId: 0,
 }
 
-export const mainSlice = createSlice({
+const mainSlice = createSlice({
   name: 'sections',
   initialState,
   reducers: {
@@ -52,15 +54,3 @@ export const mainSlice = createSlice({
 
 export const { setCurrentSectionAC } = mainSlice.actions
 export const sectionsReducer = mainSlice.reducer
-
-// types
-export type SectionType = {
-  id: number
-  name: string
-}
-
-export type SectionsInitialStateType = {
-  sections: SectionType[]
-  defaultSection: SectionType
-  activeSectionId: number
-}

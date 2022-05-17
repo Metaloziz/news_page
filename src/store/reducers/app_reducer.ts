@@ -1,22 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { NEWS_BY_SEARCHING, NEWS_BY_SECTIONS } from 'constants/constants'
+import { NEWS_BY_SECTIONS } from 'constants/constants'
+import { InitialAppStateType, NewsViewType } from 'store/types'
 
-export type NewsViewType = typeof NEWS_BY_SECTIONS | typeof NEWS_BY_SEARCHING
-
-export type InitialAppStateType = {
-  isError: boolean
-  errorMessage: string
-  newsModeView: NewsViewType
-}
-
-export const initialState: InitialAppStateType = {
+const initialState: InitialAppStateType = {
   isError: false,
   errorMessage: '',
   newsModeView: NEWS_BY_SECTIONS,
 }
 
-export const mainSlice = createSlice({
+const mainSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
