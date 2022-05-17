@@ -1,0 +1,14 @@
+@import "styles/mixin";
+
+.container {
+  @include container();
+  flex-direction: row;
+  //position: relative;
+}
+
+.menu {
+  //position: absolute;
+  width: 300px;
+  height: 700px;
+  background-color: #2F5A53;
+}

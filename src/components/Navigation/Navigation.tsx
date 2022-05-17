@@ -4,16 +4,15 @@ import { useSelector } from 'react-redux'
 
 import style from './Navigation.module.scss'
 
-import { Button } from 'components/Button/Button'
-import { NavLinkComponent } from 'components/NavlinkComponent/NavLinkComponent'
-import { SearchField } from 'components/SearchField/SearchField'
+import { Button } from 'components/Button'
+import { NavLinkComponent } from 'components/NavlinkComponent'
+import { SearchField } from 'components/SearchField'
 import { NEWS_BY_SEARCHING, NEWS_BY_SECTIONS } from 'constants/constants'
 import { Path } from 'enums/enums'
-import { changeNewsTypeViewAC } from 'store/reducers/app_reducer'
-import { setCurrentSectionAC } from 'store/reducers/sections_reducer'
-import { selectorIdActiveSection, selectorSections } from 'store/selectors/sections'
+import { changeNewsTypeViewAC, setCurrentSectionAC, setFirstPageAC } from 'store/reducers'
+import { selectorIdActiveSection, selectorSections } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
-import { getNewsByKeyWordTC } from 'store/thunks/search_news_thunks'
+import { getNewsByKeyWordTC } from 'store/thunks'
 
 export const Navigation: FC = () => {
   const dispatch = useAppDispatch()
@@ -27,6 +26,7 @@ export const Navigation: FC = () => {
   const setCurrentSection = (sectionId: number): void => {
     dispatch(setCurrentSectionAC(sectionId))
     dispatch(changeNewsTypeViewAC(NEWS_BY_SECTIONS))
+    dispatch(setFirstPageAC())
   }
 
   const getNewsByKeyWord = (keyWord: string): void => {
