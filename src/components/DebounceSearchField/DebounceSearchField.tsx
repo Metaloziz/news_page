@@ -28,8 +28,10 @@ export const DebounceSearchField: FC<DebounceSearchFieldPropsType> = memo(
   forwardRef(({ searchValue, ...restProps }, ref): ReactElement => {
     const [value, setValue] = useState('')
 
-    const search = (question: string): void => {
-      searchValue(question)
+    const search = (word: string): void => {
+      if (word) {
+        searchValue(word)
+      }
     }
 
     const debounceSearch = useDebounce(search, DeBounceTimer.SEARCH_DELAY)
@@ -44,7 +46,14 @@ export const DebounceSearchField: FC<DebounceSearchFieldPropsType> = memo(
 
     return (
       <div>
-        <input ref={ref} value={value} onChange={onSearchQuestionChange} {...restProps} />
+        <input
+          ref={ref}
+          value={value}
+          onChange={onSearchQuestionChange}
+          placeholder="Поиск"
+          type="search"
+          {...restProps}
+        />
       </div>
     )
   }),
