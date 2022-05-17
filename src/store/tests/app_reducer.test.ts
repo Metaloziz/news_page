@@ -1,6 +1,7 @@
 import { NEWS_BY_SEARCHING, NEWS_BY_SECTIONS } from 'constants/constants'
 import {
   appReducer,
+  changeIsAdminModeAC,
   changeNewsTypeViewAC,
   setErrorFalseAC,
   setErrorTrueAC,
@@ -9,13 +10,17 @@ import { InitialAppStateType } from 'store/types'
 
 let appInitialState: InitialAppStateType
 let errorMessage: string
+let isAdmin: boolean
 
 beforeEach(() => {
   appInitialState = {
     isError: false,
     errorMessage: '',
     newsModeView: NEWS_BY_SECTIONS,
+    isAdmin: false,
   }
+
+  isAdmin = true
 
   errorMessage = 'some error'
 })
@@ -53,5 +58,13 @@ describe('app reducer', () => {
     const endState = appReducer(appInitialState, action)
 
     expect(endState.newsModeView).toBe(NEWS_BY_SEARCHING)
+  })
+
+  test('should set admin mod', () => {
+    const action = changeIsAdminModeAC(isAdmin)
+
+    const endState = appReducer(appInitialState, action)
+
+    expect(endState.isAdmin).toBe(isAdmin)
   })
 })

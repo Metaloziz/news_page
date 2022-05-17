@@ -21,7 +21,7 @@ const mainSlice = createSlice({
       state.pagesCount = action.payload
     },
     setFirstPageAC: state => {
-      // как обойтись без создания этого метода ?
+      // как обойтись без замыканя ?
       state.currentPage = initialState.currentPage
     },
   },

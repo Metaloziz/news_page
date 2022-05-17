@@ -15,6 +15,7 @@ import { setCurrentNewsAC, setPartSearchNewsAC } from 'store/reducers'
 import {
   selectorCurrentPageSearchNews,
   selectorIdActiveSection,
+  selectorIsAdminMode,
   selectorNews,
   selectorNewsTypeView,
   selectorNumberPage,
@@ -38,6 +39,7 @@ export const NewsContainer: FC = () => {
   const pageNumber = useSelector(selectorNumberPage)
   const activeSection = useSelector(selectorIdActiveSection)
   const pageNumberSearchNews = useSelector(selectorCurrentPageSearchNews)
+  const isAdmin = useSelector(selectorIsAdminMode)
 
   useEffect(() => {
     dispatch(getNewsPartTC(pageNumber))
@@ -68,7 +70,7 @@ export const NewsContainer: FC = () => {
       <div className={style.container}>
         {news.map(newsItem => (
           <div key={newsItem.id}>
-            <Button name="удалить" onClick={() => removeNews(newsItem.id)} />
+            {isAdmin && <Button name="удалить" onClick={() => removeNews(newsItem.id)} />}
             <News
               data={newsItem}
               newsRouteHandle={newsRouteHandle}

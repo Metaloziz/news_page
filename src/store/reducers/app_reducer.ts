@@ -7,6 +7,7 @@ const initialState: InitialAppStateType = {
   isError: false,
   errorMessage: '',
   newsModeView: NEWS_BY_SECTIONS,
+  isAdmin: false,
 }
 
 const mainSlice = createSlice({
@@ -25,8 +26,16 @@ const mainSlice = createSlice({
       if (state.newsModeView === action.payload) return
       state.newsModeView = action.payload
     },
+    changeIsAdminModeAC: (state, action: PayloadAction<boolean>) => {
+      state.isAdmin = action.payload
+    },
   },
 })
 
-export const { setErrorTrueAC, setErrorFalseAC, changeNewsTypeViewAC } = mainSlice.actions
+export const {
+  setErrorTrueAC,
+  setErrorFalseAC,
+  changeNewsTypeViewAC,
+  changeIsAdminModeAC,
+} = mainSlice.actions
 export const appReducer = mainSlice.reducer

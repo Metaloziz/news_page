@@ -5,3 +5,4 @@ export const selectorErrorMessage = (state: RootState): string => state.app.erro
 export const selectorIsError = (state: RootState): boolean => state.app.isError
 export const selectorNewsTypeView = (state: RootState): NewsViewType =>
   state.app.newsModeView
+export const selectorIsAdminMode = (state: RootState): boolean => state.app.isAdmin

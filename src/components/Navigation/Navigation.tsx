@@ -10,7 +10,11 @@ import { SearchField } from 'components/SearchField'
 import { NEWS_BY_SEARCHING, NEWS_BY_SECTIONS } from 'constants/constants'
 import { Path } from 'enums/enums'
 import { changeNewsTypeViewAC, setCurrentSectionAC, setFirstPageAC } from 'store/reducers'
-import { selectorIdActiveSection, selectorSections } from 'store/selectors'
+import {
+  selectorIdActiveSection,
+  selectorIsAdminMode,
+  selectorSections,
+} from 'store/selectors'
 import { useAppDispatch } from 'store/store'
 import { getNewsByKeyWordTC } from 'store/thunks'
 
@@ -19,6 +23,7 @@ export const Navigation: FC = () => {
 
   const activeSection = useSelector(selectorIdActiveSection)
   const sections = useSelector(selectorSections)
+  const isAdmin = useSelector(selectorIsAdminMode)
 
   const isActiveStyle = (id: number): string =>
     ` ${style.path}  ${activeSection === id ? style.active : null}`
@@ -46,7 +51,12 @@ export const Navigation: FC = () => {
             onClick={() => setCurrentSection(id)}
           />
         ))}
-        <NavLinkComponent nameButton="создать секцию" path={Path.CREATE_SECTION} />
+        {isAdmin && (
+          <div>
+            <NavLinkComponent nameButton="создать секцию" path={Path.CREATE_SECTION} />
+            <NavLinkComponent nameButton="создать новость" path={Path.CREATE_NEWS} />
+          </div>
+        )}
       </div>
       <SearchField getNewsByKeyWord={getNewsByKeyWord} />
     </div>
