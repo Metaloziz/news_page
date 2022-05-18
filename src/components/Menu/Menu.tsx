@@ -25,7 +25,7 @@ export const Menu: FC = () => {
       <div>МЕНЮ</div>
       <div>новости</div>
       <h4>режим админа:</h4>
-      <input type="checkbox" onClick={switchIsAdminMode} />
+      <span>вкл\выкл</span> <input type="checkbox" onClick={switchIsAdminMode} />
     </div>
   )
 }

@@ -16,14 +16,14 @@
   }
 
   .text {
-    transform: translateX(35px);
+    transform: translateX(12px);
     color: #E5E5E5;
     font-weight: bold;
   }
 
   .icon {
     position: absolute;
-    transform: translateX(100px);
+    transform: translateX(75px);
     height: 40px;
     width: 40px;
     display: flex;
@@ -41,7 +41,7 @@
   }
 
   &:hover .icon {
-    width: 140px;
+    width: 90px;
     border-left: none;
     transform: translateX(0);
   }

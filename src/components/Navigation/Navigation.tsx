@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux'
 
 import style from './Navigation.module.scss'
 
-import { Button } from 'components/Button'
 import { NavLinkComponent } from 'components/NavlinkComponent'
 import { SearchField } from 'components/SearchField'
+import { SectionButton } from 'components/SectionButton/SectionButton'
 import { NEWS_BY_SEARCHING, NEWS_BY_SECTIONS } from 'constants/constants'
 import { Path } from 'enums/enums'
 import { changeNewsTypeViewAC, setCurrentSectionAC, setFirstPageAC } from 'store/reducers'
@@ -25,8 +25,7 @@ export const Navigation: FC = () => {
   const isAdmin = useSelector(selectorIsAdminMode)
   const activeSection = useSelector(selectorIdActiveSection)
 
-  const isActiveStyle = (id: number): string =>
-    ` ${style.path}  ${activeSection === id ? style.active : null}`
+  const isActiveStyle = (id: number): boolean => id === activeSection
 
   const setCurrentSection = (sectionId: number): void => {
     dispatch(setCurrentSectionAC(sectionId))
@@ -36,7 +35,6 @@ export const Navigation: FC = () => {
 
   const getNewsByKeyWord = (keyWord: string): void => {
     dispatch(getNewsByKeyWordTC(keyWord))
-
     dispatch(changeNewsTypeViewAC(NEWS_BY_SEARCHING))
   }
 
@@ -44,10 +42,10 @@ export const Navigation: FC = () => {
     <div className={style.main}>
       <div className={style.container}>
         {sections.map(({ name, id }) => (
-          <Button
+          <SectionButton
             key={id}
             name={name}
-            className={isActiveStyle(id)}
+            isActive={isActiveStyle(id)}
             onClick={() => setCurrentSection(id)}
           />
         ))}

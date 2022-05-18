@@ -6,7 +6,7 @@ export type DefaultButtonPropsType = DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
 >
-type ButtonCommonType = DefaultButtonPropsType & {
+export type ButtonCommonType = DefaultButtonPropsType & {
   name: string
 }
 

@@ -40,6 +40,7 @@ export const News: FC<NewsPropsType> = memo(
             <h3>{name}</h3>
             <div className={style.text}>{subtitle_1}</div>
           </div>
+          <span>Читать далее</span>
         </div>
       </div>
     )

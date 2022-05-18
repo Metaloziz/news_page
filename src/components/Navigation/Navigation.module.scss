@@ -5,7 +5,7 @@
 .main {
   @include displayContentCenter();
   justify-content: space-between;
-  border: black 1px solid;
+  //border: black 1px solid;
 
   .container {
     @include displayContentCenter();
@@ -16,15 +16,11 @@
     gap: 10px;
 
     .path {
-      height: 40px;
-      width: 180px;
-      background-color: $main_color_second;
-      @include displayContentCenter();
 
     }
 
     .active {
-      background-color: rgba(139, 0, 0, 0.56);
+
     }
   }
 }

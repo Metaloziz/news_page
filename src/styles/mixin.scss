@@ -10,3 +10,13 @@
   //margin: 20px;
   gap: 10px;
 }
+
+@mixin textColumns($columns, $fontSize: 16px) {
+  font-size: $fontSize;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $columns; /* number of lines to show */
+  line-clamp: $columns;
+  -webkit-box-orient: vertical;
+}

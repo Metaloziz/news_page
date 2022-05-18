@@ -1,9 +1,10 @@
 @import "styles/mixin";
+@import "styles/variables";
 
 .container {
   @include container();
   margin: 20px;
   flex-direction: row;
   height: auto;
-  background-color: rgba(173, 66, 66, 0.3);
+  background-color: $back;
 }

@@ -1,0 +1,26 @@
+@import "src/styles/mixin";
+@import "src/styles/variables";
+
+.container {
+  width: 450px;
+  min-height: 225px;
+  background-color: $green;
+  border-radius: 10px;
+  color: $back;
+  padding: 15px;
+  cursor: pointer;
+
+  h1 {
+    margin-bottom: 30px;
+  }
+
+  div {
+    @include textColumns(3, 16px);
+    margin-bottom: 30px;
+  }
+
+  span {
+    display: flex;
+    justify-content: end;
+  }
+}

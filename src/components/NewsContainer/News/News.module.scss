@@ -16,7 +16,6 @@
     display: flex;
     flex-direction: column;
     justify-content: start;
-    //margin: 5px;
     background-color: $back_card;
     border-radius: $border_radius;
 
@@ -33,6 +32,7 @@
         color: $gray;
         @include displayContentCenter();
         justify-content: space-between;
+        margin: 10px 0 10px 0;
       }
 
       h3 {
@@ -41,16 +41,20 @@
       }
 
       .text {
-        font-size: 16px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 4; /* number of lines to show */
-        line-clamp: 4;
-        -webkit-box-orient: vertical;
+        @include textColumns(4);
+        color: $green;
       }
 
     }
 
+  }
+
+  span {
+    color: $gray;
+    margin: 15px 0 15px 25px;
+
+    &:hover {
+      color: $green;
+    }
   }
 }

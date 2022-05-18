@@ -1,22 +1,9 @@
 @import "src/styles/mixin";
 @import "src/styles/variables";
 
-.telegram {
+.container {
   @include displayContentCenter();
-  background-color: $green;
-  margin: 0 auto;
-  width: 700px;
-  height: 50px;
-}
-
-.buttons {
-  display: flex;
   justify-content: space-between;
-
-  div {
-    @include displayContentCenter();
-    background-color: $main_color_second;
-    height: 50px;
-    width: 300px;
-  }
+  flex-wrap: wrap;
+  align-items: center;
 }
