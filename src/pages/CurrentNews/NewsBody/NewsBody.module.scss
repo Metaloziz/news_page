@@ -1,0 +1,37 @@
+@import "src/styles/variables";
+@import "src/styles/mixin";
+
+.container {
+  width: 70%;
+  height: auto;
+  border: #C4C4C4 1px solid;
+
+  .date {
+    color: $gray;
+  }
+
+  h1 {
+    color: $green;
+    font-weight: 600;
+    font-size: 48px;
+  }
+
+  .body {
+    width: 100%;
+    height: auto;
+    background-color: rgba(142, 142, 146, 0.44);
+    @include displayContentCenter();
+    flex-direction: column;
+
+    img {
+      height: 30vh;
+      width: 100%;
+    }
+
+    .description {
+      min-height: 30vh;
+      width: auto;
+      padding: 10px;
+    }
+  }
+}

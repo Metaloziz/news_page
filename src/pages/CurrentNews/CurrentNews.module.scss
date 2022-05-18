@@ -4,21 +4,16 @@
 .container {
   @include container();
 
-  img {
-    height: 30vh;
-    width: auto;
-  }
-
-  .description {
-    min-height: 30vh;
-    width: auto;
-    background-color: $main_color_second;
-    padding: 10px;
+  .body {
+    @include displayContentCenter();
+    flex-direction: row;
+    align-items: start;
+    width: 100%;
   }
 
   .comments {
     height: 100px;
     width: auto;
-    background-color: $main_color_second;
   }
+
 }

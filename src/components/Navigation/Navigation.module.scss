@@ -10,17 +10,9 @@
   .container {
     @include displayContentCenter();
     flex-wrap: wrap;
-    width: 40vw;
+    width: 60vw;
     height: auto;
     justify-content: flex-start;
     gap: 10px;
-
-    .path {
-
-    }
-
-    .active {
-
-    }
   }
 }

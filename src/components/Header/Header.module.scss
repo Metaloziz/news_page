@@ -6,20 +6,18 @@
   margin: 0;
   width: auto;
   min-height: 30vh;
-  //background-color: $main_background_color;
   flex-direction: row;
   align-items: start;
   padding-top: 20px;
 
   .text {
     @include container();
-    margin: 0 5% 2% 2%;
+    margin: 0 5% 2% 0;
     max-width: 60%;
 
     h3 {
       color: $green;
     }
-
   }
 
   .image {
