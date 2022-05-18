@@ -67,7 +67,10 @@ export const NewsContainer: FC = () => {
   return (
     <div className={style.container}>
       {isAdmin && (
-        <NavLinkComponent nameButton="создать новость" path={Path.CREATE_NEWS} />
+        <div>
+          <NavLinkComponent nameButton="создать секцию" path={Path.CREATE_SECTION} />
+          <NavLinkComponent nameButton="создать новость" path={Path.CREATE_NEWS} />
+        </div>
       )}
       <div className={style.body}>
         {news.map(newsItem => (
