@@ -39,3 +39,26 @@
   }
 
 }
+
+.active { // жуткое дублирование, посоветоваться как убрать
+
+  color: $dark;
+
+  &:after {
+    width: 100%;
+    left: 0;
+  }
+
+  &:after {
+    content: "";
+    pointer-events: none;
+    bottom: -2px;
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: $dark;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: width, left;
+  }
+}

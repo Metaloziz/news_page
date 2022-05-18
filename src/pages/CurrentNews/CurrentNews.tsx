@@ -4,12 +4,11 @@ import { useSelector } from 'react-redux'
 
 import { Comments } from './Comments/Comments'
 import style from './CurrentNews.module.scss'
+import { NewsBody } from './NewsBody/NewsBody'
 import { NewsPreview } from './NewsPreview/NewsPreview'
 
-import { Navigation, NavLinkComponent } from 'components'
-import { PopularNewsPreview } from 'components/PopularNewsPreview/PopularNewsPreview'
+import { Navigation, NavLinkComponent, PopularNewsPreview } from 'components'
 import { Path } from 'enums/enums'
-import { NewsBody } from 'pages/CurrentNews/NewsBody/NewsBody'
 import { selectorCurrentNews } from 'store/selectors'
 
 export const CurrentNews: FC = () => {

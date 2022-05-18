@@ -11,7 +11,7 @@ import { Path } from 'enums/enums'
 import { selectorSections } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
 import { postNewsTC } from 'store/thunks'
-import { FormType } from 'store/types/news_type'
+import { FormType } from 'store/types'
 import { TODAY_DATE } from 'utils/utils'
 
 export const CreateNewsPage: FC = () => {
