@@ -39,4 +39,9 @@ export const newsRequests = {
 
   getNewsById: (newsId: number) =>
     instance.get<NewsType>(`${RequestSource.NEWS}/${newsId}`),
+
+  getPopularNews: () =>
+    instance.get<{ Data: NewsType[] }>(
+      `${RequestSource.NEWS}/${RequestSource.POPULAR}?limit=${NEWS_ON_PAGE}`,
+    ),
 }

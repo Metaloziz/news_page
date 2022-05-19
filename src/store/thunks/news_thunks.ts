@@ -37,7 +37,7 @@ export const getNewsByIdTC = createAsyncThunk(
     try {
       const { data, status } = await newsRequests.getNewsById(newsId)
 
-      if (status === StatusCode.GET_NEWS_BY_ID_SUCCESS) {
+      if (status === StatusCode.GET_NEWS_SUCCESS) {
         return data
       }
       return null
