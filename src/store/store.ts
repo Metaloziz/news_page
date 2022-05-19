@@ -5,6 +5,7 @@ import thunkMiddleware from 'redux-thunk'
 import {
   appReducer,
   commentsReducer,
+  currentNewsReducer,
   paginationReducer,
   searchNewsReducer,
   sectionNewsReducer,
@@ -14,13 +15,14 @@ import {
 
 export const store = configureStore({
   reducer: {
-    news: sectionNewsReducer,
+    app: appReducer,
+    sectionNews: sectionNewsReducer,
+    searchNews: searchNewsReducer,
+    currentNews: currentNewsReducer,
+    sections: sectionsReducer,
+    comments: commentsReducer,
     pagination: paginationReducer,
     singlePagination: singlePaginationReducer,
-    sections: sectionsReducer,
-    app: appReducer,
-    comments: commentsReducer,
-    searchNews: searchNewsReducer,
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunkMiddleware),
 })

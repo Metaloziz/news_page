@@ -7,6 +7,7 @@ import { Section } from './Section/Section'
 import { NewSectionForm } from './SectionForm/NewSectionForm'
 
 import { NavLinkComponent } from 'components'
+import { OTHER_SECTION_ID } from 'constants/constants'
 import { Path } from 'enums/enums'
 import { selectorSections } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
@@ -29,7 +30,9 @@ export const CreateSectionPage: FC = () => {
   }, [])
 
   const deleteSection = useCallback((id: number): void => {
-    dispatch(deleteSectionTC(id))
+    if (id !== OTHER_SECTION_ID) {
+      dispatch(deleteSectionTC(id))
+    }
   }, [])
 
   return (

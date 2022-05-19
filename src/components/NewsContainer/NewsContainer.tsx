@@ -50,10 +50,15 @@ export const NewsContainer: FC = () => {
 
   const setCurrentNews = useCallback(
     (newsId: number) => {
-      dispatch(setCurrentNewsAC(newsId))
+      const currentNews = news.find(item => item.id === newsId)
+
+      if (currentNews) {
+        dispatch(setCurrentNewsAC(currentNews))
+      }
+
       dispatch(addNewsViewsValueTC(newsId))
     },
-    [dispatch],
+    [dispatch, news],
   )
 
   const newsRouteHandle = (): void => {

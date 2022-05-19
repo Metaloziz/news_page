@@ -3,6 +3,7 @@ export const NEWS_ON_PAGE = 4
 export const FIRST_INDEX_NEWS = 0
 export const FIRST_PAGE_PAGINATION = 1
 export const ALL_SECTION_ID = 0
+export const OTHER_SECTION_ID = 45
 
 // date
 export const FIRST_DATE_ELEMENT = 0

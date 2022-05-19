@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 import {
   addNewsViewsValueTC,
@@ -6,10 +6,10 @@ import {
   getNewsByIdTC,
   getNewsPartTC,
 } from 'store/thunks/news_thunks'
-import { NewsInitialStateType } from 'store/types'
+import { SectionNewsInitialStateType } from 'store/types'
 import { findIndexElement } from 'utils/utils'
 
-const initialState: NewsInitialStateType = {
+const initialState: SectionNewsInitialStateType = {
   news: [
     {
       id: 0,
@@ -29,36 +29,12 @@ const initialState: NewsInitialStateType = {
       views: 0,
     },
   ],
-  currentNews: {
-    id: 0,
-    name: '',
-    subtitle_1: '',
-    full_text_1: '',
-    image_1: '',
-    subtitle_2: '',
-    full_text_2: '',
-    image_2: '',
-    full_text_3: '',
-    image_3: '',
-    link: '',
-    date: '',
-    subtitle_3: '',
-    section: 0,
-    views: 0,
-  },
 }
 
 const mainSlice = createSlice({
   name: 'section_news',
   initialState,
-  reducers: {
-    setCurrentNewsAC: (state, action: PayloadAction<number>) => {
-      const currentNews = state.news.find(item => item.id === action.payload)
-      if (currentNews) {
-        state.currentNews = currentNews
-      }
-    },
-  },
+  reducers: {},
   extraReducers: builder => {
     builder.addCase(getNewsPartTC.fulfilled, (state, action) => {
       if (action.payload) {
@@ -84,5 +60,4 @@ const mainSlice = createSlice({
   },
 })
 
-export const { setCurrentNewsAC } = mainSlice.actions
 export const sectionNewsReducer = mainSlice.reducer

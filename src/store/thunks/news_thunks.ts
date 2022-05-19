@@ -32,7 +32,7 @@ export const getNewsPartTC = createAsyncThunk(
 )
 
 export const getNewsByIdTC = createAsyncThunk(
-  'news/getNewsByIdTC',
+  'section_news/getNewsByIdTC',
   async (newsId: number, { dispatch }) => {
     try {
       const { data, status } = await newsRequests.getNewsById(newsId)
@@ -49,7 +49,7 @@ export const getNewsByIdTC = createAsyncThunk(
 )
 
 export const deleteNewsTC = createAsyncThunk(
-  'news/deleteNewsTC',
+  'section_news/deleteNewsTC',
   async (newsId: number, { dispatch }) => {
     try {
       const response = await newsRequests.deleteNews(newsId)
@@ -67,7 +67,7 @@ export const deleteNewsTC = createAsyncThunk(
 )
 
 export const addNewsViewsValueTC = createAsyncThunk(
-  'news/addNewsViewsValueTC',
+  'section_news/addNewsViewsValueTC',
   async (newsId: number, { dispatch }) => {
     try {
       const response = await newsRequests.addNewsViewsValue(newsId)
@@ -83,7 +83,7 @@ export const addNewsViewsValueTC = createAsyncThunk(
 )
 
 export const postNewsTC = createAsyncThunk(
-  'news/postNewsTC',
+  'section_news/postNewsTC',
   async (news: NewsPayloadType, { dispatch }) => {
     try {
       const response = await newsRequests.postNews(news)

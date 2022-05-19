@@ -16,8 +16,7 @@ import {
   selectorPartSearchNews,
 } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
-import { addNewsViewsValueTC } from 'store/thunks'
-import { getPopularNewsTC } from 'store/thunks/popular_news_thunks'
+import { addNewsViewsValueTC, getPopularNewsTC } from 'store/thunks'
 
 export const CurrentNews: FC = () => {
   const dispatch = useAppDispatch()
@@ -32,10 +31,15 @@ export const CurrentNews: FC = () => {
 
   const setCurrentNews = useCallback(
     (newsId: number) => {
-      dispatch(setCurrentNewsAC(newsId))
+      const currentNews = popularNews.find(item => item.id === newsId)
+
+      if (currentNews) {
+        dispatch(setCurrentNewsAC(currentNews))
+      }
+
       dispatch(addNewsViewsValueTC(newsId))
     },
-    [dispatch],
+    [dispatch, news],
   )
 
   return (

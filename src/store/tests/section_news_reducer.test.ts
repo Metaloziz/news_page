@@ -2,7 +2,6 @@ import {
   PaginationInitialStateType,
   paginationReducer,
   sectionNewsReducer,
-  setCurrentNewsAC,
 } from 'store/reducers'
 import {
   addNewsViewsValueTC,
@@ -10,7 +9,7 @@ import {
   getNewsByIdTC,
   getNewsPartTC,
 } from 'store/thunks'
-import { NewsInitialStateType, NewsType } from 'store/types'
+import { SectionNewsInitialStateType, NewsType } from 'store/types'
 import { findIndexElement } from 'utils/utils'
 
 const firstItem: number = 0
@@ -18,12 +17,12 @@ const currentNewsId: number = 10
 const pageNumber: number = 1
 const countViewsSeparator: number = 1
 let paginationInitialState: PaginationInitialStateType
-let newsInitialState: NewsInitialStateType
+let sectionNewsInitialState: SectionNewsInitialStateType
 let newsData: NewsType[]
 let newNews: NewsType
 
 beforeEach(() => {
-  newsInitialState = {
+  sectionNewsInitialState = {
     news: [
       {
         id: currentNewsId,
@@ -43,23 +42,6 @@ beforeEach(() => {
         views: 0,
       },
     ],
-    currentNews: {
-      id: 0,
-      name: '',
-      subtitle_1: '',
-      full_text_1: '',
-      image_1: '',
-      subtitle_2: '',
-      full_text_2: '',
-      image_2: '',
-      full_text_3: '',
-      image_3: '',
-      link: '',
-      date: '',
-      subtitle_3: '',
-      section: 0,
-      views: 0,
-    },
   }
 
   newsData = [
@@ -128,7 +110,7 @@ describe('section news reducer', () => {
   test('should set all news', () => {
     const action = getNewsPartTC.fulfilled(newsData, '', pageNumber)
 
-    const endState = sectionNewsReducer(newsInitialState, action)
+    const endState = sectionNewsReducer(sectionNewsInitialState, action)
 
     expect(endState.news.length).toBe(newsData.length)
     expect(endState.news[firstItem]).toBe(newsData[firstItem])
@@ -142,21 +124,10 @@ describe('section news reducer', () => {
     expect(endState.totalCountNews).toBe(newsData.length)
   })
 
-  test('should set current news', () => {
-    const currentNews = newsInitialState.news.find(item => item.id === currentNewsId)
-
-    const action = setCurrentNewsAC(currentNewsId)
-
-    const endState = sectionNewsReducer(newsInitialState, action)
-
-    expect(endState.currentNews).toBe(currentNews)
-    expect(endState.currentNews.id).toBe(currentNewsId)
-  })
-
   test('should delete current news', () => {
     const action = deleteNewsTC.fulfilled(currentNewsId, '', currentNewsId)
 
-    const endState = sectionNewsReducer(newsInitialState, action)
+    const endState = sectionNewsReducer(sectionNewsInitialState, action)
 
     const currentNews = endState.news.find(({ id }) => id === currentNewsId)
 
@@ -166,19 +137,19 @@ describe('section news reducer', () => {
   test('should added one count to news view', () => {
     const action = addNewsViewsValueTC.fulfilled(currentNewsId, '', currentNewsId)
 
-    const endState = sectionNewsReducer(newsInitialState, action)
+    const endState = sectionNewsReducer(sectionNewsInitialState, action)
 
     const indexElement = findIndexElement(endState.news, currentNewsId)
 
     expect(endState.news[indexElement].views).toBe(
-      newsInitialState.news[indexElement].views + countViewsSeparator,
+      sectionNewsInitialState.news[indexElement].views + countViewsSeparator,
     )
   })
 
   test('should add one news to state', () => {
     const action = getNewsByIdTC.fulfilled(newNews, '', newNews.id)
 
-    const endState = sectionNewsReducer(newsInitialState, action)
+    const endState = sectionNewsReducer(sectionNewsInitialState, action)
 
     const indexElement = findIndexElement(endState.news, newNews.id)
 
