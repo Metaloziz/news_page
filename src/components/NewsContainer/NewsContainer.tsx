@@ -3,8 +3,8 @@ import { FC, useCallback, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { News } from './News'
 import style from './NewsContainer.module.scss'
+import { NewsPreview } from './NewsPreview'
 import { Pagination } from './Pagination/Pagination'
 
 import { NavLinkComponent } from 'components/NavlinkComponent'
@@ -74,7 +74,7 @@ export const NewsContainer: FC = () => {
       )}
       <div className={style.body}>
         {news.map(newsItem => (
-          <News
+          <NewsPreview
             key={newsItem.id}
             data={newsItem}
             newsRouteHandle={newsRouteHandle}

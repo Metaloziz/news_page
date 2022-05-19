@@ -88,7 +88,7 @@ export const postNewsTC = createAsyncThunk(
     try {
       const response = await newsRequests.postNews(news)
       if (response.status === StatusCode.POST_NEWS_SUCCESS) {
-        dispatch(getNewsByIdTC(response.data.id))
+        // dispatch(getNewsByIdTC(response.data.id)) // пока не нужно
       }
       return null
     } catch (error) {

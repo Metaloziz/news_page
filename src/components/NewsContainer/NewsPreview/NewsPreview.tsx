@@ -13,9 +13,9 @@ type NewsPropsType = {
   isAdmin: boolean
 }
 
-export const News: FC<NewsPropsType> = memo(
+export const NewsPreview: FC<NewsPropsType> = memo(
   ({
-     data: { id, date, image_1, name, fullText_1, views, section, subtitle_1 },
+     data: { id, date, image_1, name, full_text_1, views },
      setCurrentNews,
      newsRouteHandle, deleteNews, isAdmin,
    }) => {
@@ -38,7 +38,7 @@ export const News: FC<NewsPropsType> = memo(
               <div>просмотров: {views}</div>
             </div>
             <h3>{name}</h3>
-            <div className={style.text}>{subtitle_1}</div>
+            <div className={style.text}>{full_text_1}</div>
           </div>
           <span>Читать далее</span>
         </div>

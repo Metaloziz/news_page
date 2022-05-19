@@ -6,8 +6,9 @@ import { useSelector } from 'react-redux'
 import style from './CreateNewsPage.module.scss'
 
 import { Button, NavLinkComponent } from 'components'
-import { IMAGE } from 'constants/constants'
 import { Path } from 'enums/enums'
+import { NewsBodyForm } from 'pages/CreateNewsPage/NewsBodyForm/NewsBodyForm'
+import { Options } from 'pages/CreateNewsPage/Options/Options'
 import { selectorSections } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
 import { postNewsTC } from 'store/thunks'
@@ -38,55 +39,42 @@ export const CreateNewsPage: FC = () => {
       <NavLinkComponent nameButton="на главную" path={Path.MAIN} />
       <span>Создать новость:</span>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label htmlFor="section">section </label>
-          <select id="section" defaultValue={1} {...register('section')}>
-            {sections.map(({ name, id }) => (
-              <option key={id} value={id}>
-                {id} - {name}
-              </option>
-            ))}
-          </select>
+        <div className={style.header}>
+          <div>
+            <label>date </label>
+            <input {...register('date')} placeholder="date" value={TODAY_DATE()} />
+            {errors.date && <span>This field is required</span>}
+          </div>
+          <div>
+            <label htmlFor="section">section </label>
+            <select id="section" defaultValue={1} {...register('section')}>
+              <Options data={sections} />
+            </select>
+          </div>
         </div>
-        <div>
-          <label>date </label>
-          <input {...register('date')} placeholder="date" value={TODAY_DATE()} />
-          {errors.date && <span>This field is required</span>}
-        </div>
-        <div>
+        <div className={style.name}>
           <label>name </label>
-          <input {...register('name')} placeholder="name" required defaultValue="name" />
+          <input {...register('name')} placeholder="name" required defaultValue="title" />
           {errors.name && <span>This field is required</span>}
         </div>
-        <div>
-          <label>subtitle_1 </label>
-          <input
-            {...register('subtitle_1')}
-            placeholder="subtitle_1"
-            required
-            defaultValue="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aperiam aspernatur commodi consequatur cumque error esse est eveniet exercitationem facere, labore laboriosam, nobis, odio qui quia quibusdam quidem sapiente tempora?"
-          />
-          {errors.subtitle_1 && <span>This field is required</span>}
-        </div>
-        <div>
-          <label>full_text_1 </label>
-          <input
-            {...register('full_text_1')}
-            placeholder="full_text_1"
-            required
-            defaultValue="full_text_1"
-          />
-          {errors.full_text_1 && <span>This field is required</span>}
-        </div>
-        <div>
-          <label>image_1 </label>
-          <input {...register('image_1')} placeholder="image_1" defaultValue={IMAGE} />
-          {errors.image_1 && <span>This field is required</span>}
-        </div>
-        <div>
-          <label>file </label>
-          <input {...register('file')} type="file" />
-        </div>
+        <NewsBodyForm
+          useFormRegisterReturn={register('subtitle_1')}
+          useFormRegisterReturn1={register('full_text_1')}
+          useFormRegisterReturn2={register('image_1')}
+          errors={errors}
+        />
+        <NewsBodyForm
+          useFormRegisterReturn={register('subtitle_2')}
+          useFormRegisterReturn1={register('full_text_2')}
+          useFormRegisterReturn2={register('image_2')}
+          errors={errors}
+        />
+        <NewsBodyForm
+          useFormRegisterReturn={register('subtitle_3')}
+          useFormRegisterReturn1={register('full_text_3')}
+          useFormRegisterReturn2={register('image_3')}
+          errors={errors}
+        />
         <Button name="отправить" type="submit" />
       </form>
     </div>

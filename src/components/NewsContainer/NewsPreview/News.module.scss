@@ -19,8 +19,10 @@
     justify-content: start;
     background-color: $back_card;
     border-radius: $border_radius;
+    width: 100%;
 
     img {
+      object-fit: cover;
       height: 200px;
       width: 100%;
       border-radius: 5px;
@@ -39,15 +41,14 @@
       h3 {
         color: $green;
         font-size: 30px;
+        @include textColumns(2, 36px);
       }
 
       .text {
         @include textColumns(4);
-        color: $green;
+        color: $dark;
       }
-
     }
-
   }
 
   span {

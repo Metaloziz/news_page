@@ -8,7 +8,7 @@ export const ALL_SECTION_ID = 0
 export const FIRST_DATE_ELEMENT = 0
 export const LAST_DATE_ELEMENT = 10
 export const IMAGE =
-  'https://avatars.mds.yandex.net/get-zen_doc/4382045/pub_60a2c859ee910a347363c48a_60a31e0d79be7e2174374b1b/scale_1200'
+  'https://images.squarespace-cdn.com/content/v1/601a6cf9b1349365c8f0312c/1614594192331-X73NFLBOZBCEFD1JKD2Q/christina-wocintechchat-com-YKWLJPpat4o-unsplash.jpg'
 
 // news
 export const NEWS_BY_SECTIONS = 'NEWS_BY_SECTIONS'
