@@ -11,33 +11,12 @@
     gap: 20px;
 
     input, textarea {
-      color: #1C1D25;
-      font-size: 0.9rem;
-      width: 100%;
-      padding-inline: 0.5em;
-      padding-block: 0.7em;
-      border: 2px solid $gray2;
-      border-radius: 10px;
-
-      &:hover {
-        background-color: #ffffff;
-        border-color: $green;
-      }
-
-      &:focus {
-        outline: none;
-        background-color: #ffffff;
-        border-color: $green;
-      }
+      @include inputStyle();
     }
 
     .header {
       @include displayContentCenter();
       justify-content: space-between;
-
-      //input {
-      //  width: 100%;
-      //}
     }
 
     .fullText {

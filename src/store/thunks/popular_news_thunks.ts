@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { newsRequests } from 'api/newsRequests'
 import { StatusCode } from 'enums/enums'
-import { getNewsByKeyWordTC } from 'store/thunks/search_news_thunks'
+import { getSearchNewsTC } from 'store/thunks/search_news_thunks'
 import { ResponseErrorType } from 'store/types'
 import { setError } from 'utils/utils'
 
@@ -15,7 +15,7 @@ export const getPopularNewsTC = createAsyncThunk(
         status,
       } = await newsRequests.getPopularNews()
       if (status === StatusCode.GET_NEWS_SUCCESS) {
-        dispatch(getNewsByKeyWordTC.fulfilled(Data, '', ''))
+        dispatch(getSearchNewsTC.fulfilled(Data, '', ''))
       }
 
       return null

@@ -32,7 +32,7 @@ export const newsRequests = {
   addNewsViewsValue: (newsId: number) =>
     instance.patch(`${RequestSource.NEWS}/${newsId}`),
 
-  getNewsByKeyWord: (keyWord: string) =>
+  getSearchNews: (keyWord: string) =>
     instance.get<{ Data: NewsType[] }>(
       `${RequestSource.NEWS}/${RequestSource.SEARCH}?search_query="${keyWord}"`,
     ),

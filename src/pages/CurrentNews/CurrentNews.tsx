@@ -5,9 +5,9 @@ import { useSelector } from 'react-redux'
 import { Comments } from './Comments/Comments'
 import style from './CurrentNews.module.scss'
 import { NewsBody } from './NewsBody/NewsBody'
-import { NewsPreview } from './NewsPreview/NewsPreview'
 
 import { Navigation, NavLinkComponent, PopularNewsPreview } from 'components'
+import { CoursePreview } from 'components/Footer/CoursePreview/CoursePreview'
 import { Path } from 'enums/enums'
 import { setCurrentNewsAC } from 'store/reducers'
 import {
@@ -50,11 +50,11 @@ export const CurrentNews: FC = () => {
         <NewsBody news={news} isAdmin={isAdmin} />
         <PopularNewsPreview news={popularNews} setCurrentNews={setCurrentNews} />
       </div>
-      <div>
-        <NewsPreview />
-        <NewsPreview />
-      </div>
       <Comments newsId={news.id} />
+      <div className={style.footer}>
+        <CoursePreview />
+        <CoursePreview />
+      </div>
     </div>
   )
 }

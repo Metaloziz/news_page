@@ -2,6 +2,8 @@ import React, { FC, memo } from 'react'
 
 import { SubmitHandler, useForm } from 'react-hook-form'
 
+import style from './CommentForm.module.scss'
+
 import { Button } from 'components/Button/Button'
 import { CommentType } from 'store/types'
 
@@ -23,22 +25,26 @@ export const CommentForm: FC<CommentFormPropsType> = memo(({ postComment }) => {
   }
 
   return (
-    <div>
-      Ваш комментарий:
+    <div className={style.container}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <input defaultValue="boss" {...register('author')} placeholder="автор" />
-        </div>
-        {errors.text && <span>This field is required</span>}
-        <div>
+          <label>автор: </label>
           <input
-            {...register('text', { required: true })}
+            defaultValue="boss"
+            {...register('author', { required: true, maxLength: 100 })}
+            placeholder="автор"
+          />
+          {errors.text && <span>This field is required</span>}
+        </div>
+        <div>
+          <label>комментарий: </label>
+          <textarea
+            {...register('text', { required: true, maxLength: 300 })}
             defaultValue="какой хороший сайт"
             placeholder="комментарий"
-            maxLength={300}
           />
+          {errors.text && <span>This field is required</span>}
         </div>
-        {errors.text && <span>This field is required</span>}
         <Button name="отправить" type="submit" />
       </form>
     </div>

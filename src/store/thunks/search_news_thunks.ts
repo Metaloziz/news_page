@@ -5,14 +5,14 @@ import { StatusCode } from 'enums/enums'
 import { ResponseErrorType } from 'store/types/response_error_type'
 import { setError } from 'utils/utils'
 
-export const getNewsByKeyWordTC = createAsyncThunk(
-  'search_news/getNewsByKeyWordTC',
+export const getSearchNewsTC = createAsyncThunk(
+  'search_news/getSearchNewsTC',
   async (keyWord: string, { dispatch }) => {
     try {
       const {
         data: { Data },
         status,
-      } = await newsRequests.getNewsByKeyWord(keyWord)
+      } = await newsRequests.getSearchNews(keyWord)
 
       if (status === StatusCode.GET_NEWS_SUCCESS) {
         return Data

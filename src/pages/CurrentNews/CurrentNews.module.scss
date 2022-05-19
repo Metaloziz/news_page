@@ -17,4 +17,10 @@
     width: auto;
   }
 
+  .footer {
+    @include displayContentCenter();
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
 }

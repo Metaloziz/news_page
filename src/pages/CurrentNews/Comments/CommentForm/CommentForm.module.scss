@@ -1,0 +1,18 @@
+@import "src/styles/mixin";
+
+
+.container {
+
+  input, textarea {
+    @include inputStyle();
+  }
+
+  textarea {
+    @include textColumns(3);
+  }
+
+  button {
+    width: 100%;
+  }
+
+}

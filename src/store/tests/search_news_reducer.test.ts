@@ -5,7 +5,7 @@ import {
   setPartSearchNewsAC,
   setPreviewPageSearchNewsAC,
 } from 'store/reducers'
-import { getNewsByKeyWordTC } from 'store/thunks'
+import { getSearchNewsTC } from 'store/thunks'
 import { SearchNewsInitialStateType } from 'store/types'
 import { NewsType } from 'store/types/news_type'
 
@@ -116,7 +116,7 @@ beforeEach(() => {
 
 describe('search news reducer', () => {
   test('should set search news', () => {
-    const action = getNewsByKeyWordTC.fulfilled(newsData, '', '')
+    const action = getSearchNewsTC.fulfilled(newsData, '', '')
 
     const endState = searchNewsReducer(searchNewsInitialState, action)
     const pageCount = Math.ceil(newsData.length / NEWS_ON_PAGE)

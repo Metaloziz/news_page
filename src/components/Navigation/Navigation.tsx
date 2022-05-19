@@ -10,7 +10,7 @@ import { NEWS_BY_SEARCHING, NEWS_BY_SECTIONS } from 'constants/constants'
 import { changeNewsTypeViewAC, setCurrentSectionAC, setFirstPageAC } from 'store/reducers'
 import { selectorIdActiveSection, selectorSections } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
-import { getNewsByKeyWordTC } from 'store/thunks'
+import { getSearchNewsTC } from 'store/thunks'
 
 export const Navigation: FC = () => {
   const dispatch = useAppDispatch()
@@ -27,7 +27,7 @@ export const Navigation: FC = () => {
   }
 
   const getNewsByKeyWord = (keyWord: string): void => {
-    dispatch(getNewsByKeyWordTC(keyWord))
+    dispatch(getSearchNewsTC(keyWord))
     dispatch(changeNewsTypeViewAC(NEWS_BY_SEARCHING))
   }
 

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 import { NEWS_ON_PAGE } from 'constants/constants'
-import { getNewsByKeyWordTC } from 'store/thunks/search_news_thunks'
+import { getSearchNewsTC } from 'store/thunks/search_news_thunks'
 import { SearchNewsInitialStateType } from 'store/types'
 
 const initialState: SearchNewsInitialStateType = {
@@ -55,7 +55,7 @@ const mainSlice = createSlice({
     },
   },
   extraReducers: builder => {
-    builder.addCase(getNewsByKeyWordTC.fulfilled, (state, action) => {
+    builder.addCase(getSearchNewsTC.fulfilled, (state, action) => {
       if (action.payload) {
         state.news = action.payload
         state.pageCount = Math.ceil(action.payload.length / NEWS_ON_PAGE)

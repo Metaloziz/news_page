@@ -40,8 +40,7 @@
 
       h3 {
         color: $green;
-        font-size: 30px;
-        @include textColumns(2, 36px);
+        @include textColumns(1, 30px);
       }
 
       .text {
