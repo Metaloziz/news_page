@@ -2,12 +2,29 @@
 @import "src/styles/mixin";
 
 .container {
+  @include displayContentCenter() ;
+  flex-direction: column;
+  align-items: start;
   width: 70%;
   height: auto;
-  border: #C4C4C4 1px solid;
+  gap: 30px;
 
-  .date {
-    color: $gray;
+  .header {
+    @include displayContentCenter();
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+    width: 100%;
+
+    div {
+      @include displayContentCenter();
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .date {
+      color: $gray;
+    }
   }
 
   h1 {
@@ -17,21 +34,20 @@
   }
 
   .body {
+    @include displayContentCenter();
+    align-items: start;
     width: 100%;
     height: auto;
-    background-color: rgba(142, 142, 146, 0.44);
-    @include displayContentCenter();
     flex-direction: column;
+    gap: 20px;
 
     img {
-      height: 30vh;
+      height: auto;
       width: 100%;
     }
 
     .description {
-      min-height: 30vh;
       width: auto;
-      padding: 10px;
     }
 
     div {
