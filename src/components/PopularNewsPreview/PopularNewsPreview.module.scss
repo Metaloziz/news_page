@@ -2,7 +2,52 @@
 @import "src/styles/mixin";
 
 .container {
+  @include displayContentCenter();
+  flex-direction: column;
+  gap: 20px;
   width: 30%;
-  height: 500px;
-  background-color: $gray;
+  height: auto;
+
+  h3 {
+    @include displayContentCenter();
+    width: 100%;
+    justify-content: start;
+  }
+
+  .news {
+    @include displayContentCenter();
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    border-bottom: 1px $gray solid;
+    cursor: pointer;
+
+    h4 {
+      @include displayContentCenter();
+      @include textColumns(1);
+      justify-content: start;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    span {
+      @include textColumns(3);
+      color: $gray;
+      margin-bottom: 20px;
+    }
+
+    div {
+      @include displayContentCenter();
+      justify-content: end;
+      color: $gray;
+      font-weight: 500;
+      width: 100%;
+      margin-bottom: 5px;
+
+      &:hover {
+        color: $green;
+      }
+    }
+
+  }
 }
