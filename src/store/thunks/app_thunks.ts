@@ -9,8 +9,22 @@ export const getCoursesTC = createAsyncThunk(
   'app/getCoursesTC',
   async (_, { dispatch }) => {
     try {
-      const { data, status } = await commonDataRequests.getCoursesData()
-      if (status === StatusCode.SUCCESS) {
+      const { data, status } = await commonDataRequests.getCourses()
+      if (status === StatusCode.GET_COURSES_SUCCESS) {
+        return data
+      }
+    } catch (error) {
+      setError(dispatch, error as ResponseErrorType)
+    }
+  },
+)
+
+export const getContactsTC = createAsyncThunk(
+  'app/getContactsTC',
+  async (_, { dispatch }) => {
+    try {
+      const { data, status } = await commonDataRequests.getContacts()
+      if (status === StatusCode.GET_CONTACTS_SUCCESS) {
         return data
       }
     } catch (error) {

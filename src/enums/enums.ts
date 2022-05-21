@@ -24,7 +24,7 @@ export enum RequestSource {
 
 export enum RequestCommonData {
   COURSE = 'course/',
-  CONTACT = 'contact',
+  CONTACT = 'contact/',
 }
 
 export enum StatusCode {
@@ -32,6 +32,7 @@ export enum StatusCode {
   POST_NEWS_SUCCESS = 201,
   GET_NEWS_SUCCESS = 200,
   GET_COURSES_SUCCESS = 200,
+  GET_CONTACTS_SUCCESS = 200,
 }
 
 export enum DeBounceTimer {

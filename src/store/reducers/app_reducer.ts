@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 import { NEWS_BY_SECTIONS } from 'constants/constants'
-import { getCoursesTC } from 'store/thunks/app_thunks'
+import { getContactsTC, getCoursesTC } from 'store/thunks/app_thunks'
 import { InitialAppStateType } from 'store/types'
 
 const initialState: InitialAppStateType = {
@@ -13,6 +13,17 @@ const initialState: InitialAppStateType = {
     { description_course: '', name_course: '' },
     { description_course: '', name_course: '' },
   ],
+  contacts: {
+    address: 'null',
+    number_phone: 'null',
+    socialFacebook: 'null',
+    socialInstagram: 'null',
+    socialSkype: 'null',
+    socialTG: 'null',
+    socialTikTok: 'null',
+    socialViber: 'null',
+    socialVK: 'null',
+  },
 }
 
 const mainSlice = createSlice({
@@ -39,6 +50,11 @@ const mainSlice = createSlice({
     builder.addCase(getCoursesTC.fulfilled, (state, action) => {
       if (action.payload) {
         state.courses = action.payload
+      }
+    })
+    builder.addCase(getContactsTC.fulfilled, (state, action) => {
+      if (action.payload) {
+        state.contacts = action.payload
       }
     })
   },
