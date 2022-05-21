@@ -18,10 +18,13 @@ export const Comment: FC<CommentPropsType> = ({
   isAdmin,
 }) => (
   <div className={style.container}>
-    <div className={style.avatar}>AVATAR</div>
+    <img
+      alt="avatar"
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9lUdyFZOzGJGzdvnIXJ8y-Mmj9bSZ1AxqLQ&usqp=CAU"
+    />
     <div className={style.body}>
       <div className={style.header}>
-        <div>{author}</div>
+        <h3>{author}</h3>
         <span>{date.slice(FIRST_DATE_ELEMENT, LAST_DATE_ELEMENT)}</span>
       </div>
       <p>{text}</p>

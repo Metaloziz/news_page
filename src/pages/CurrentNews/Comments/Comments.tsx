@@ -46,7 +46,7 @@ export const Comments: FC<CommentsPropsType> = memo(({ newsId }) => {
 
   return (
     <div className={style.container}>
-      Comments:
+      <h2>Comments:</h2>
       {comments.map(comment => (
         <Comment
           key={comment.id}

@@ -28,7 +28,7 @@ export const CommentForm: FC<CommentFormPropsType> = memo(({ postComment }) => {
     <div className={style.container}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <label>автор: </label>
+          <label>автор: - должен подтягиваться автоматически </label>
           <input
             defaultValue="boss"
             {...register('author', { required: true, maxLength: 100 })}
