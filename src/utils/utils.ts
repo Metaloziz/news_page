@@ -5,7 +5,7 @@ import { ResponseErrorType } from 'store/types/response_error_type'
 
 const NEXT_MONTH = 1
 
-export const TODAY_DATE = (): string =>
+export const todayDate = (): string =>
   `${new Date().getFullYear()}-${
     new Date().getMonth() + NEXT_MONTH
   }-${new Date().getDate()}`
@@ -13,9 +13,12 @@ export const TODAY_DATE = (): string =>
 export const findIndexElement = (array: any[], elementId: number): number =>
   array.findIndex(el => el.id === elementId)
 
-// надо придумать формулу
-// export const findElement = <T>(array: T[], elementId: number): T | undefined =>
-//   array.find(el => el.id === elementId)
+type ObjectType = {
+  id: number
+}
+
+export const findElement = <T>(array: (T & ObjectType)[], elementId: number): T =>
+  array.find(({ id }) => id === elementId)!
 
 export const setError = (dispatch: Dispatch, errorData: ResponseErrorType): void => {
   const {

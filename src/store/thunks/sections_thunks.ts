@@ -10,11 +10,10 @@ export const getSectionsTC = createAsyncThunk(
   'sections/getSectionsTC',
   async (_, { dispatch }) => {
     try {
-      const response = await sectionsRequests.getSections()
-      return response.data.Data
+      const { data } = await sectionsRequests.getSections()
+      return data.Data
     } catch (error) {
       setError(dispatch, error as ResponseErrorType)
-      return null
     }
   },
 )
@@ -29,12 +28,8 @@ export const postSectionsTC = createAsyncThunk(
       if (id) {
         return { id, name }
       }
-
-      return null
     } catch (error) {
       setError(dispatch, error as ResponseErrorType)
-
-      return null
     }
   },
 )
@@ -43,17 +38,13 @@ export const deleteSectionTC = createAsyncThunk(
   'sections/removeSectionTC',
   async (sectionId: number, { dispatch }) => {
     try {
-      const response = await sectionsRequests.deleteSection(sectionId)
+      const { data } = await sectionsRequests.deleteSection(sectionId)
 
-      if (response.data.id === sectionId) {
-        return response.data.id
+      if (data.id === sectionId) {
+        return data.id
       }
-
-      return null
     } catch (error) {
       setError(dispatch, error as ResponseErrorType)
-
-      return null
     }
   },
 )
@@ -62,15 +53,12 @@ export const changeSectionTC = createAsyncThunk(
   'sections/changeSectionTC',
   async (section: SectionType, { dispatch }) => {
     try {
-      const response = await sectionsRequests.changeSection(section)
-      if (response.status === StatusCode.SUCCESS) {
+      const { status } = await sectionsRequests.changeSection(section)
+      if (status === StatusCode.SUCCESS) {
         return section
       }
-      return null
     } catch (error) {
       setError(dispatch, error as ResponseErrorType)
-
-      return null
     }
   },
 )

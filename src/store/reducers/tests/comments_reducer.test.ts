@@ -1,4 +1,4 @@
-import { commentsReducer, removeCommentsAC } from 'store/reducers'
+import { commentsReducer, removeCommentsAC } from 'store/reducers/index'
 import { deleteCommentTC, getCommentsNewsTC, getCurrentCommentTC } from 'store/thunks'
 import { CommentsInitialStateType, CommentType } from 'store/types'
 

@@ -7,14 +7,14 @@ import { Buttons } from './Buttons'
 import { setCurrentPageAC } from 'store/reducers/pagination_reducer'
 import {
   selectCountNewsOnPage,
-  selectorCurrentPage,
-  selectorTotalCount,
+  selectCurrentPage,
+  selectTotalCount,
 } from 'store/selectors/pagination'
 
 export const Pagination: FC = (): ReactElement => {
   const dispatch = useDispatch()
-  const currentPage = useSelector(selectorCurrentPage)
-  const totalCountNews = useSelector(selectorTotalCount)
+  const currentPage = useSelector(selectCurrentPage)
+  const totalCountNews = useSelector(selectTotalCount)
   const countNewsOnPage = useSelector(selectCountNewsOnPage)
 
   const setCurrentPage = (page: number): void => {

@@ -17,11 +17,8 @@ export const getSearchNewsTC = createAsyncThunk(
       if (status === StatusCode.GET_NEWS_SUCCESS) {
         return Data
       }
-
-      return null
     } catch (error) {
       setError(dispatch, error as ResponseErrorType)
-      return null
     }
   },
 )

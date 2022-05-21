@@ -5,13 +5,13 @@ import { useSelector } from 'react-redux'
 import style from './Menu.module.scss'
 
 import { changeIsAdminModeAC } from 'store/reducers'
-import { selectorIsAdminMode } from 'store/selectors'
+import { selectIsAdminMode } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
 
 export const Menu: FC = () => {
   const dispatch = useAppDispatch()
 
-  const isAdmin = useSelector(selectorIsAdminMode)
+  const isAdmin = useSelector(selectIsAdminMode)
 
   const switchIsAdminMode = (): void => {
     if (isAdmin) {

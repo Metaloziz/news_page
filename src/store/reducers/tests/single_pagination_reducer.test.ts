@@ -3,7 +3,7 @@ import {
   setPagesCountAC,
   setPreviousPageAC,
   singlePaginationReducer,
-} from 'store/reducers'
+} from 'store/reducers/index'
 import { SinglePaginationInitialStateType } from 'store/types'
 
 const DIFFERENCE_COUNTER_PAGES: number = 1

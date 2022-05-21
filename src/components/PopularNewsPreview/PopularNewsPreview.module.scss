@@ -11,7 +11,7 @@
   h3 {
     @include displayContentCenter();
     width: 100%;
-    justify-content: start;
+    justify-content: flex-start;
   }
 
   .news {
@@ -25,7 +25,7 @@
     h4 {
       @include displayContentCenter();
       @include textColumns(1);
-      justify-content: start;
+      justify-content: flex-start;
       width: 100%;
       margin-bottom: 10px;
     }
@@ -38,7 +38,7 @@
 
     div {
       @include displayContentCenter();
-      justify-content: end;
+      justify-content: flex-end;
       color: $gray;
       font-weight: 500;
       width: 100%;

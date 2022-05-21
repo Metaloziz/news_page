@@ -5,7 +5,7 @@ import {
   changeNewsTypeViewAC,
   setErrorFalseAC,
   setErrorTrueAC,
-} from 'store/reducers'
+} from 'store/reducers/index'
 import { InitialAppStateType } from 'store/types'
 
 let appInitialState: InitialAppStateType

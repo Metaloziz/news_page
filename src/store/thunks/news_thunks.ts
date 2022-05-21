@@ -52,10 +52,10 @@ export const deleteNewsTC = createAsyncThunk(
   'section_news/deleteNewsTC',
   async (newsId: number, { dispatch }) => {
     try {
-      const response = await newsRequests.deleteNews(newsId)
+      const { data } = await newsRequests.deleteNews(newsId)
 
-      if (response.data.id === newsId) {
-        return response.data.id
+      if (data.id === newsId) {
+        return data.id
       }
 
       return null
@@ -70,14 +70,12 @@ export const addNewsViewsValueTC = createAsyncThunk(
   'section_news/addNewsViewsValueTC',
   async (newsId: number, { dispatch }) => {
     try {
-      const response = await newsRequests.addNewsViewsValue(newsId)
-      if (response.data.id === newsId) {
-        return response.data.id
+      const { data } = await newsRequests.addNewsViewsValue(newsId)
+      if (data.id === newsId) {
+        return data.id
       }
-      return null
     } catch (error) {
       setError(dispatch, error as ResponseErrorType)
-      return null
     }
   },
 )
@@ -86,14 +84,12 @@ export const postNewsTC = createAsyncThunk(
   'section_news/postNewsTC',
   async (news: NewsPayloadType, { dispatch }) => {
     try {
-      const response = await newsRequests.postNews(news)
-      if (response.status === StatusCode.POST_NEWS_SUCCESS) {
+      const { status } = await newsRequests.postNews(news)
+      if (status === StatusCode.POST_NEWS_SUCCESS) {
         // dispatch(getNewsByIdTC(response.data.id)) // пока не нужно
       }
-      return null
     } catch (error) {
       setError(dispatch, error as ResponseErrorType)
-      return null
     }
   },
 )

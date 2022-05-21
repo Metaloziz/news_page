@@ -4,7 +4,7 @@
 .container {
   @include displayContentCenter();
   flex-direction: column;
-  align-items: end;
+  align-items: flex-end;
   max-width: 600px;
   min-width: 300px;
   border-radius: $border_radius;
@@ -16,7 +16,7 @@
   .body {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     background-color: $back_card;
     border-radius: $border_radius;
     width: 100%;

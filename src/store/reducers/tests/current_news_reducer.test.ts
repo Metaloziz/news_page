@@ -1,4 +1,4 @@
-import { currentNewsReducer, setCurrentNewsAC } from 'store/reducers'
+import { currentNewsReducer, setCurrentNewsAC } from 'store/reducers/index'
 import { CurrentNewsInitialStateType, NewsType } from 'store/types'
 
 let currentNewsInitialState: CurrentNewsInitialStateType

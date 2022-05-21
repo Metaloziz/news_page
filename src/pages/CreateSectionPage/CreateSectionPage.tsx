@@ -10,7 +10,7 @@ import { NavLinkComponent } from 'components'
 import { OTHER_SECTION_ID } from 'constants/constants'
 import { Path } from 'enums/enums'
 import { setErrorTrueAC } from 'store/reducers'
-import { selectorSections } from 'store/selectors'
+import { selectSections } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
 import { changeSectionTC, deleteSectionTC, postSectionsTC } from 'store/thunks'
 import { SectionType } from 'store/types'
@@ -18,7 +18,7 @@ import { SectionType } from 'store/types'
 export const CreateSectionPage: FC = () => {
   const dispatch = useAppDispatch()
 
-  const sections = useSelector(selectorSections)
+  const sections = useSelector(selectSections)
 
   const sectionsId = sections.map(section => section.id)
 
@@ -42,6 +42,10 @@ export const CreateSectionPage: FC = () => {
     dispatch(setErrorTrueAC('нельзя удалять'))
   }, [])
 
+  const sectionTags = sections.map(section => (
+    <Section key={section.id} section={section} deleteSection={deleteSection} />
+  ))
+
   return (
     <div className={style.container}>
       <NavLinkComponent nameButton="на главную" path={Path.MAIN} />
@@ -62,9 +66,7 @@ export const CreateSectionPage: FC = () => {
         </div>
         <div className={style.list}>
           <span>все секции:</span>
-          {sections.map(section => (
-            <Section key={section.id} section={section} deleteSection={deleteSection} />
-          ))}
+          {sectionTags}
         </div>
       </div>
     </div>

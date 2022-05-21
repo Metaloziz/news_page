@@ -2,7 +2,7 @@ import {
   PaginationInitialStateType,
   paginationReducer,
   sectionNewsReducer,
-} from 'store/reducers'
+} from 'store/reducers/index'
 import {
   addNewsViewsValueTC,
   deleteNewsTC,
@@ -10,7 +10,7 @@ import {
   getNewsPartTC,
 } from 'store/thunks'
 import { SectionNewsInitialStateType, NewsType } from 'store/types'
-import { findIndexElement } from 'utils/utils'
+import { findElement, findIndexElement } from 'utils/utils'
 
 const firstItem: number = 0
 const currentNewsId: number = 10
@@ -151,8 +151,8 @@ describe('section news reducer', () => {
 
     const endState = sectionNewsReducer(sectionNewsInitialState, action)
 
-    const indexElement = findIndexElement(endState.news, newNews.id)
+    const news = findElement(endState.news, newNews.id)
 
-    expect(endState.news[indexElement]).toBe(newNews)
+    expect(news).toBe(newNews)
   })
 })

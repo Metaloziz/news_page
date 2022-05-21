@@ -42,7 +42,7 @@ const mainSlice = createSlice({
     })
     builder.addCase(
       changeSectionTC.fulfilled,
-      (state, action: PayloadAction<SectionType | null>) => {
+      (state, action: PayloadAction<SectionType | undefined>) => {
         if (action.payload) {
           const indexSection = findIndexElement(state.sections, action.payload.id)
           state.sections[indexSection].name = action.payload.name

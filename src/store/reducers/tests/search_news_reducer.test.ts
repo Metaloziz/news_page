@@ -4,7 +4,7 @@ import {
   setNextPageSearchNewsAC,
   setPartSearchNewsAC,
   setPreviewPageSearchNewsAC,
-} from 'store/reducers'
+} from 'store/reducers/index'
 import { getSearchNewsTC } from 'store/thunks'
 import { SearchNewsInitialStateType } from 'store/types'
 import { NewsType } from 'store/types/news_type'

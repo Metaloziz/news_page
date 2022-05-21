@@ -7,7 +7,7 @@ import { CommentForm, CommentFormType } from './CommentForm/CommentForm'
 import style from './Comments.module.scss'
 
 import { FIRST_INDEX_NEWS } from 'constants/constants'
-import { selectorCommentsNews, selectorIsAdminMode } from 'store/selectors'
+import { selectCommentsNews, selectIsAdminMode } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
 import {
   deleteCommentTC,
@@ -22,8 +22,8 @@ type CommentsPropsType = {
 export const Comments: FC<CommentsPropsType> = memo(({ newsId }) => {
   const dispatch = useAppDispatch()
 
-  const comments = useSelector(selectorCommentsNews)
-  const isAdmin = useSelector(selectorIsAdminMode)
+  const comments = useSelector(selectCommentsNews)
+  const isAdmin = useSelector(selectIsAdminMode)
 
   useEffect(() => {
     if (newsId === FIRST_INDEX_NEWS) return

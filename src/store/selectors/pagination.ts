@@ -1,8 +1,8 @@
 import { RootState } from 'store/store'
 
-export const selectorCurrentPage = (state: RootState): number =>
+export const selectCurrentPage = (state: RootState): number =>
   state.pagination.currentPage
-export const selectorTotalCount = (state: RootState): number =>
+export const selectTotalCount = (state: RootState): number =>
   state.pagination.totalCountNews
 export const selectCountNewsOnPage = (state: RootState): number =>
   state.pagination.countNewsOnPage

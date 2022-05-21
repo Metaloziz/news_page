@@ -9,16 +9,16 @@ import { Button, NavLinkComponent } from 'components'
 import { Path } from 'enums/enums'
 import { NewsBodyForm } from 'pages/CreateNewsPage/NewsBodyForm/NewsBodyForm'
 import { Options } from 'pages/CreateNewsPage/Options/Options'
-import { selectorSections } from 'store/selectors'
+import { selectSections } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
 import { postNewsTC } from 'store/thunks'
 import { FormType } from 'store/types'
-import { TODAY_DATE } from 'utils/utils'
+import { todayDate } from 'utils/utils'
 
 export const CreateNewsPage: FC = () => {
   const dispatch = useAppDispatch()
 
-  const sections = useSelector(selectorSections)
+  const sections = useSelector(selectSections)
 
   const {
     register,
@@ -42,7 +42,7 @@ export const CreateNewsPage: FC = () => {
         <div className={style.header}>
           <div>
             <label>date </label>
-            <input {...register('date')} placeholder="date" value={TODAY_DATE()} />
+            <input {...register('date')} placeholder="date" value={todayDate()} />
             {errors.date && <span>This field is required</span>}
           </div>
           <div>

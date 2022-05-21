@@ -10,14 +10,14 @@ import {
   setNextPageAC,
   setPreviousPageAC,
 } from 'store/reducers/single_pagination_reducer'
-import { selectorCountPage, selectorNumberPage } from 'store/selectors/singlePagination'
+import { selectCountPage, selectNumberPage } from 'store/selectors/singlePagination'
 import { useAppDispatch } from 'store/store'
 
 export const SinglePaginationSectionNews: FC = () => {
   const dispatch = useAppDispatch()
 
-  const pagesCount = useSelector(selectorCountPage)
-  const pageNumber = useSelector(selectorNumberPage)
+  const pagesCount = useSelector(selectCountPage)
+  const pageNumber = useSelector(selectNumberPage)
 
   const setPreviousPage = (): void => {
     dispatch(setPreviousPageAC())

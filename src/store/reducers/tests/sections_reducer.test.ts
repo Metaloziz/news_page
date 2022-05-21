@@ -1,4 +1,4 @@
-import { sectionsReducer, setCurrentSectionAC } from 'store/reducers'
+import { sectionsReducer, setCurrentSectionAC } from 'store/reducers/index'
 import {
   changeSectionTC,
   deleteSectionTC,

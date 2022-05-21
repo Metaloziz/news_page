@@ -9,16 +9,16 @@ import {
   setPreviewPageSearchNewsAC,
 } from 'store/reducers/search_news_reducer'
 import {
-  selectorCountPageSearchNews,
-  selectorCurrentPageSearchNews,
+  selectCountPageSearchNews,
+  selectCurrentPageSearchNews,
 } from 'store/selectors/searchNews'
 import { useAppDispatch } from 'store/store'
 
 export const SinglePaginationSearchNews: FC = () => {
   const dispatch = useAppDispatch()
 
-  const pagesCount = useSelector(selectorCountPageSearchNews)
-  const pageNumber = useSelector(selectorCurrentPageSearchNews)
+  const pagesCount = useSelector(selectCountPageSearchNews)
+  const pageNumber = useSelector(selectCurrentPageSearchNews)
 
   const setPreviousPage = (): void => {
     dispatch(setPreviewPageSearchNewsAC())

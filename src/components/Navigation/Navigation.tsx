@@ -8,15 +8,15 @@ import { SearchField } from 'components/SearchField'
 import { SectionButton } from 'components/SectionButton/SectionButton'
 import { NEWS_BY_SEARCHING, NEWS_BY_SECTIONS } from 'constants/constants'
 import { changeNewsTypeViewAC, setCurrentSectionAC, setFirstPageAC } from 'store/reducers'
-import { selectorIdActiveSection, selectorSections } from 'store/selectors'
+import { selectIdActiveSection, selectSections } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
 import { getSearchNewsTC } from 'store/thunks'
 
 export const Navigation: FC = () => {
   const dispatch = useAppDispatch()
 
-  const sections = useSelector(selectorSections)
-  const activeSection = useSelector(selectorIdActiveSection)
+  const sections = useSelector(selectSections)
+  const activeSection = useSelector(selectIdActiveSection)
 
   const isActiveStyle = (id: number): boolean => id === activeSection
 

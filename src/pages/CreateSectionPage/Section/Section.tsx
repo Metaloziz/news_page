@@ -8,10 +8,13 @@ type SectionPropsType = {
   section: SectionType
   deleteSection: (id: number) => void
 }
-export const Section: FC<SectionPropsType> = ({ section, deleteSection }) => (
+export const Section: FC<SectionPropsType> = ({
+  section: { id, name },
+  deleteSection,
+}) => (
   <div className={style.container}>
-    <div>{section.id}</div>
-    <div>{section.name}</div>
-    <Button name="удалить" onClick={() => deleteSection(section.id)} />
+    <div>{id}</div>
+    <div>{name}</div>
+    <Button name="удалить" onClick={() => deleteSection(id)} />
   </div>
 )

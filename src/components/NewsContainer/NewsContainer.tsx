@@ -12,13 +12,13 @@ import { NEWS_BY_SECTIONS } from 'constants/constants'
 import { Path } from 'enums/enums'
 import { setCurrentNewsAC, setPartSearchNewsAC } from 'store/reducers'
 import {
-  selectorCurrentPageSearchNews,
-  selectorIdActiveSection,
-  selectorIsAdminMode,
-  selectorNews,
-  selectorNewsTypeView,
-  selectorNumberPage,
-  selectorPartSearchNews,
+  selectCurrentPageSearchNews,
+  selectIdActiveSection,
+  selectIsAdminMode,
+  selectNews,
+  selectNewsTypeView,
+  selectNumberPage,
+  selectPartSearchNews,
 } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
 import { addNewsViewsValueTC, deleteNewsTC, getNewsPartTC } from 'store/thunks'
@@ -28,17 +28,17 @@ export const NewsContainer: FC = () => {
 
   const navigate = useNavigate()
 
-  const viewMode = useSelector(selectorNewsTypeView)
+  const viewMode = useSelector(selectNewsTypeView)
 
-  const news =
+  const allNews =
     viewMode === NEWS_BY_SECTIONS
-      ? useSelector(selectorNews)
-      : useSelector(selectorPartSearchNews)
+      ? useSelector(selectNews)
+      : useSelector(selectPartSearchNews)
 
-  const pageNumber = useSelector(selectorNumberPage)
-  const activeSection = useSelector(selectorIdActiveSection)
-  const pageNumberSearchNews = useSelector(selectorCurrentPageSearchNews)
-  const isAdmin = useSelector(selectorIsAdminMode)
+  const pageNumber = useSelector(selectNumberPage)
+  const activeSection = useSelector(selectIdActiveSection)
+  const pageNumberSearchNews = useSelector(selectCurrentPageSearchNews)
+  const isAdmin = useSelector(selectIsAdminMode)
 
   useEffect(() => {
     dispatch(getNewsPartTC(pageNumber))
@@ -50,7 +50,7 @@ export const NewsContainer: FC = () => {
 
   const setCurrentNews = useCallback(
     (newsId: number) => {
-      const currentNews = news.find(item => item.id === newsId)
+      const currentNews = allNews.find(({ id }) => id === newsId)
 
       if (currentNews) {
         dispatch(setCurrentNewsAC(currentNews))
@@ -58,16 +58,27 @@ export const NewsContainer: FC = () => {
 
       dispatch(addNewsViewsValueTC(newsId))
     },
-    [dispatch, news],
+    [dispatch, allNews],
   )
 
-  const newsRouteHandle = (): void => {
+  const newsRouteHandle = useCallback((): void => {
     navigate(`/${Path.CURRENT_NEWS}`)
-  }
+  }, [])
 
-  const deleteNews = (newsId: number): void => {
+  const deleteNews = useCallback((newsId: number): void => {
     dispatch(deleteNewsTC(newsId))
-  }
+  }, [])
+
+  const allNewsTags = allNews.map(newsItem => (
+    <NewsPreview
+      key={newsItem.id}
+      data={newsItem}
+      newsRouteHandle={newsRouteHandle}
+      setCurrentNews={setCurrentNews}
+      isAdmin={isAdmin}
+      deleteNews={deleteNews}
+    />
+  ))
 
   return (
     <div className={style.container}>
@@ -77,18 +88,7 @@ export const NewsContainer: FC = () => {
           <NavLinkComponent nameButton="создать новость" path={Path.CREATE_NEWS} />
         </div>
       )}
-      <div className={style.body}>
-        {news.map(newsItem => (
-          <NewsPreview
-            key={newsItem.id}
-            data={newsItem}
-            newsRouteHandle={newsRouteHandle}
-            setCurrentNews={setCurrentNews}
-            isAdmin={isAdmin}
-            deleteNews={deleteNews}
-          />
-        ))}
-      </div>
+      <div className={style.body}>{allNewsTags}</div>
       <Pagination viewMode={viewMode} />
     </div>
   )
