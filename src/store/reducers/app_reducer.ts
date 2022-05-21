@@ -1,20 +1,25 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 import { NEWS_BY_SECTIONS } from 'constants/constants'
-import { InitialAppStateType, NewsViewType } from 'store/types'
+import { getCoursesTC } from 'store/thunks/app_thunks'
+import { InitialAppStateType } from 'store/types'
 
 const initialState: InitialAppStateType = {
   isError: false,
   errorMessage: '',
   newsModeView: NEWS_BY_SECTIONS,
   isAdmin: false,
+  courses: [
+    { description_course: '', name_course: '' },
+    { description_course: '', name_course: '' },
+  ],
 }
 
 const mainSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    setErrorTrueAC: (state, action: PayloadAction<string>) => {
+    setErrorTrueAC: (state, action) => {
       state.errorMessage = action.payload
       state.isError = true
     },
@@ -22,13 +27,20 @@ const mainSlice = createSlice({
       state.errorMessage = ''
       state.isError = false
     },
-    changeNewsTypeViewAC: (state, action: PayloadAction<NewsViewType>) => {
+    changeNewsTypeViewAC: (state, action) => {
       if (state.newsModeView === action.payload) return
       state.newsModeView = action.payload
     },
-    changeIsAdminModeAC: (state, action: PayloadAction<boolean>) => {
+    changeIsAdminModeAC: (state, action) => {
       state.isAdmin = action.payload
     },
+  },
+  extraReducers: builder => {
+    builder.addCase(getCoursesTC.fulfilled, (state, action) => {
+      if (action.payload) {
+        state.courses = action.payload
+      }
+    })
   },
 })
 

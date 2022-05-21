@@ -1,3 +1,4 @@
+import { CoursesData } from 'api/commonDataRequests'
 import { NEWS_BY_SEARCHING, NEWS_BY_SECTIONS } from 'constants/constants'
 import {
   appReducer,
@@ -6,11 +7,13 @@ import {
   setErrorFalseAC,
   setErrorTrueAC,
 } from 'store/reducers/index'
+import { getCoursesTC } from 'store/thunks/app_thunks'
 import { InitialAppStateType } from 'store/types'
 
 let appInitialState: InitialAppStateType
 let errorMessage: string
 let isAdmin: boolean
+let newCourses: CoursesData[]
 
 beforeEach(() => {
   appInitialState = {
@@ -18,11 +21,17 @@ beforeEach(() => {
     errorMessage: '',
     newsModeView: NEWS_BY_SECTIONS,
     isAdmin: false,
+    courses: [],
   }
 
   isAdmin = true
 
   errorMessage = 'some error'
+
+  newCourses = [
+    { name_course: 'qwe', description_course: 'qwe' },
+    { name_course: 'qwe', description_course: 'qwe' },
+  ]
 })
 
 describe('app reducer', () => {
@@ -66,5 +75,13 @@ describe('app reducer', () => {
     const endState = appReducer(appInitialState, action)
 
     expect(endState.isAdmin).toBe(isAdmin)
+  })
+
+  test('should set courses', () => {
+    const action = getCoursesTC.fulfilled(newCourses, '')
+
+    const endState = appReducer(appInitialState, action)
+
+    expect(endState.courses).toBe(newCourses)
   })
 })

@@ -1,3 +1,4 @@
+import { CoursesData } from 'api/commonDataRequests'
 import { NewsViewType } from 'store/types/news_view_type'
 
 export type InitialAppStateType = {
@@ -5,4 +6,5 @@ export type InitialAppStateType = {
   errorMessage: string
   newsModeView: NewsViewType
   isAdmin: boolean
+  courses: CoursesData[]
 }

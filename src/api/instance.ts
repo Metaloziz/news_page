@@ -9,3 +9,13 @@ export const instance = axios.create({
     'Content-Type': 'application/json',
   },
 })
+
+export const instanceCommonData = axios.create({
+  baseURL: process.env.REACT_APP_GET_COURSES,
+  headers: {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, HEAD, OPTIONS',
+    'Access-Control-Allow-Headers': '*',
+    'Content-Type': 'application/json',
+  },
+})

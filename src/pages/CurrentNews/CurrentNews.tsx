@@ -8,11 +8,13 @@ import { NewsBody } from './NewsBody/NewsBody'
 
 import { Navigation, NavLinkComponent, PopularNewsPreview } from 'components'
 import { CoursePreview } from 'components/Footer/CoursePreview/CoursePreview'
+import { FIRST_ARRAY_ITEM, SECOND_ARRAY_ITEM } from 'components/Footer/Footer'
 import { Path } from 'enums/enums'
 import { setCurrentNewsAC } from 'store/reducers'
 import {
   selectCurrentNews,
   selectIsAdminMode,
+  selectIsCourses,
   selectPartSearchNews,
 } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
@@ -24,6 +26,7 @@ export const CurrentNews: FC = () => {
   const currentNews = useSelector(selectCurrentNews)
   const popularNews = useSelector(selectPartSearchNews) // пока редьюсер свободен туда сетаются популярные новости
   const isAdmin = useSelector(selectIsAdminMode)
+  const courses = useSelector(selectIsCourses)
 
   useEffect(() => {
     dispatch(getPopularNewsTC())
@@ -52,8 +55,8 @@ export const CurrentNews: FC = () => {
       </div>
       <Comments newsId={currentNews.id} />
       <div className={style.footer}>
-        <CoursePreview />
-        <CoursePreview />
+        <CoursePreview courses={courses[FIRST_ARRAY_ITEM]} />
+        <CoursePreview courses={courses[SECOND_ARRAY_ITEM]} />
       </div>
     </div>
   )
