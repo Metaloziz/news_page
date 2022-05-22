@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { NEWS_BY_SECTIONS } from 'constants/constants'
 import { getContactsTC, getCoursesTC } from 'store/thunks/app_thunks'
 import { InitialAppStateType } from 'store/types'
+import { separateAddress } from 'utils/utils'
 
 const initialState: InitialAppStateType = {
   isError: false,
@@ -55,6 +56,7 @@ const mainSlice = createSlice({
     builder.addCase(getContactsTC.fulfilled, (state, action) => {
       if (action.payload) {
         state.contacts = action.payload
+        state.contacts.address = separateAddress(action.payload.address)
       }
     })
   },

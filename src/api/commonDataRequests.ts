@@ -21,5 +21,6 @@ export type ContactsType = {
 export const commonDataRequests = {
   getCourses: () => instanceCommonData.get<CoursesType[]>(`${RequestCommonData.COURSE}`),
 
-  getContacts: () => instanceCommonData.get<ContactsType>(`${RequestCommonData.CONTACT}`),
+  getContacts: () =>
+    instanceCommonData.get<ContactsType[]>(`${RequestCommonData.CONTACT}`),
 }
