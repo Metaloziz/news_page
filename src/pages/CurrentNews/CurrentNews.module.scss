@@ -19,8 +19,15 @@
 
   .footer {
     @include displayContentCenter();
+    align-items: flex-start;
     flex-direction: row;
     justify-content: space-between;
+
+    .text {
+      width: auto;
+      height: 300px;
+    }
+
   }
 
 }

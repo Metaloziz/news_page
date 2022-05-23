@@ -2,6 +2,8 @@
 @import "src/styles/variables";
 
 .container {
+  display: flex;
+  flex-direction: column;
   width: 450px;
   min-height: 225px;
   background-color: $green;
@@ -9,14 +11,15 @@
   color: $back;
   padding: 15px;
   cursor: pointer;
+  gap: 10px;
 
   h1 {
     margin-bottom: 30px;
   }
 
   div {
-    @include textColumns(3, 16px);
-    margin-bottom: 30px;
+    @include textColumns(6, 16px);
+    margin-bottom: 10px;
   }
 
   span {
