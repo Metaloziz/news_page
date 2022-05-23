@@ -5,6 +5,7 @@ import style from "./News.module.scss";
 import { NewsType } from "store/types";
 import { DeleteButton } from "components/DeleteButton/DeleteButton";
 import eye from "assets/images/common/eye.svg";
+import { convertDateView } from "utils/utils";
 
 type NewsPropsType = {
   data: NewsType
@@ -35,7 +36,7 @@ export const NewsPreview: FC<NewsPropsType> = memo(
           </div>
           <div className={style.description}>
             <div className={style.date_and_view}>
-              <div>{date}</div>
+              <div>{convertDateView(date)}</div>
               <div className={style.eye}>
                 <img alt={"eye"} src={eye} />
                 <div>{views}</div>
