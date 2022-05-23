@@ -42,7 +42,6 @@ export const newsRequests = {
 
   getPopularNews: () =>
     instance.get<{ Data: NewsType[] }>(
-      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-      `${RequestSource.NEWS}/${RequestSource.POPULAR}?limit=${2}`,
+      `${RequestSource.NEWS}/${RequestSource.POPULAR}?limit=${NEWS_ON_PAGE}`,
     ),
 }

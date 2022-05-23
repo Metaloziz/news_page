@@ -36,6 +36,7 @@ export const Navigation: FC = () => {
   }
 
   const setPopularNews = (sectionId: number): void => {
+    dispatch(changeNewsTypeViewAC(NEWS_BY_SEARCHING))
     dispatch(setCurrentSectionAC(sectionId))
     dispatch(getPopularNewsTC())
     dispatch(setFirstPageAC())
