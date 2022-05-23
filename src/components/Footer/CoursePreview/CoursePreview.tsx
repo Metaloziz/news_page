@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 import style from './CoursePreview.module.scss'
 
-import { CoursesType } from 'api/commonDataRequests'
+import { CoursesType } from 'store/types/courses_type'
 
 export const CoursePreview: FC<{ courses: CoursesType }> = ({ courses }) => {
   const bufferDiv = document.createElement('div')

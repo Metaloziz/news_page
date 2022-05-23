@@ -1,4 +1,3 @@
-import { ContactsType, CoursesType } from 'api/commonDataRequests'
 import { NEWS_BY_SEARCHING, NEWS_BY_SECTIONS } from 'constants/constants'
 import {
   appReducer,
@@ -9,6 +8,8 @@ import {
 } from 'store/reducers/index'
 import { getContactsTC, getCoursesTC } from 'store/thunks/app_thunks'
 import { InitialAppStateType } from 'store/types'
+import { ContactsType } from 'store/types/contacts_type'
+import { CoursesType } from 'store/types/courses_type'
 
 let appInitialState: InitialAppStateType
 let errorMessage: string

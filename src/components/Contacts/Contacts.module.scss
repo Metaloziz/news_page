@@ -13,12 +13,18 @@
 
   .links {
     @include displayContentCenter();
-    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 5%;
     justify-content: flex-start;
     align-items: flex-start;
+
+    img {
+      height: 30px;
+    }
+
   }
 
-  .footer{
+  .footer {
     color: $gray;
   }
 }

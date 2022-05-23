@@ -1,6 +1,7 @@
-import { ContactsType, CoursesType } from 'api/commonDataRequests'
 import { RootState } from 'store/store'
 import { NewsViewType } from 'store/types'
+import { ContactsType } from 'store/types/contacts_type'
+import { CoursesType } from 'store/types/courses_type'
 
 export const selectErrorMessage = (state: RootState): string => state.app.errorMessage
 export const selectIsError = (state: RootState): boolean => state.app.isError
