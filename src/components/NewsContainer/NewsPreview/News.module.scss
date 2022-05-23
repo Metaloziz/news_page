@@ -32,10 +32,31 @@
       padding: 15px 15px 10px 25px;
 
       .date_and_view {
-        color: $gray;
         @include displayContentCenter();
+        color: $gray;
         justify-content: space-between;
         margin: 10px 0 10px 0;
+
+        .eye {
+          @include displayContentCenter();
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+
+          img {
+            object-fit: scale-down;
+            width: 20px;
+            height: 20px;
+            opacity: 45%;
+          }
+
+          div {
+            margin-bottom: 2.3px;
+            padding: 0;
+          }
+
+
+        }
       }
 
       h3 {
