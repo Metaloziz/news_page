@@ -39,3 +39,8 @@ export enum DeBounceTimer {
   SEARCH_DELAY = 1500,
   CLOSE_ERROR = 3000,
 }
+
+export enum Error {
+  EMPTY_NEWS = 'нету новостей',
+  PROTECT_SECTION = 'нельзя удалять',
+}

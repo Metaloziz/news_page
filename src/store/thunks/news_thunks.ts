@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { NewsPayloadType, newsRequests } from 'api/newsRequests'
-import { StatusCode } from 'enums/enums'
+import { Error, StatusCode } from 'enums/enums'
+import { setErrorTrueAC } from 'store/reducers'
 import { setPagesCountAC } from 'store/reducers/single_pagination_reducer'
 import { RootState } from 'store/store'
 import { ResponseErrorType } from 'store/types/response_error_type'
@@ -22,8 +23,9 @@ export const getNewsPartTC = createAsyncThunk(
 
       if (Data) {
         dispatch(setPagesCountAC(Number(pages)))
+        return Data
       }
-      return Data
+      dispatch(setErrorTrueAC(Error.EMPTY_NEWS))
     } catch (error) {
       setError(dispatch, error as ResponseErrorType)
       return null

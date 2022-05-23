@@ -8,7 +8,7 @@ import { NewsPreview } from './NewsPreview'
 import { Pagination } from './Pagination/Pagination'
 
 import { NavLinkComponent } from 'components/NavlinkComponent'
-import { NEWS_BY_SECTIONS } from 'constants/constants'
+import { NEWS_BY_SECTIONS, POPULAR_SECTION_ID } from 'constants/constants'
 import { Path } from 'enums/enums'
 import { setCurrentNewsAC, setPartSearchNewsAC } from 'store/reducers'
 import {
@@ -41,7 +41,9 @@ export const NewsContainer: FC = () => {
   const isAdmin = useSelector(selectIsAdminMode)
 
   useEffect(() => {
-    dispatch(getNewsPartTC(pageNumber))
+    if (activeSection !== POPULAR_SECTION_ID) {
+      dispatch(getNewsPartTC(pageNumber))
+    }
   }, [pageNumber, activeSection])
 
   useEffect(() => {

@@ -9,6 +9,7 @@ import { selectIsCourses } from 'store/selectors'
 
 export const FIRST_ARRAY_ITEM = 0
 export const SECOND_ARRAY_ITEM = 1
+export const THIRD_ARRAY_ITEM = 2
 
 export const Footer: FC = () => {
   const courses = useSelector(selectIsCourses)

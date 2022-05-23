@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+import { FIRST_ARRAY_ITEM } from 'components/Footer/Footer'
+import { OTHER_SECTION_ID } from 'constants/constants'
 import {
   changeSectionTC,
   deleteSectionTC,
@@ -11,7 +13,7 @@ import { SectionType } from 'store/types/section_type'
 import { findIndexElement } from 'utils/utils'
 
 const initialState: SectionsInitialStateType = {
-  sections: [{ id: 0, name: 'все' }],
+  sections: [{ id: 0, name: 'Все новости' }],
   defaultSection: { id: 0, name: 'все' },
   activeSectionId: 0,
 }
@@ -27,6 +29,12 @@ const mainSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(getSectionsTC.fulfilled, (state, action) => {
       if (action.payload) {
+        const otherSectionIndex = findIndexElement(action.payload, OTHER_SECTION_ID)
+        const count = 1
+        const otherSection = action.payload.splice(otherSectionIndex, count)[
+          FIRST_ARRAY_ITEM
+        ]
+        action.payload.push(otherSection)
         state.sections.push(...action.payload)
       }
     })

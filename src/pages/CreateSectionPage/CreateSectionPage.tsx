@@ -7,7 +7,11 @@ import { Section } from './Section/Section'
 import { NewSectionForm } from './SectionForm/NewSectionForm'
 
 import { NavLinkComponent } from 'components'
-import { OTHER_SECTION_ID } from 'constants/constants'
+import {
+  ITEC_SECTION_ID,
+  OTHER_SECTION_ID,
+  POPULAR_SECTION_ID,
+} from 'constants/constants'
 import { Path } from 'enums/enums'
 import { setErrorTrueAC } from 'store/reducers'
 import { selectSections } from 'store/selectors'
@@ -27,7 +31,11 @@ export const CreateSectionPage: FC = () => {
   }, [])
 
   const changeSection = useCallback((section: SectionType): void => {
-    if (section.id !== OTHER_SECTION_ID) {
+    if (
+      section.id !== OTHER_SECTION_ID &&
+      section.id !== POPULAR_SECTION_ID &&
+      section.id !== ITEC_SECTION_ID
+    ) {
       dispatch(changeSectionTC(section))
       return
     }
@@ -35,7 +43,7 @@ export const CreateSectionPage: FC = () => {
   }, [])
 
   const deleteSection = useCallback((id: number): void => {
-    if (id !== OTHER_SECTION_ID) {
+    if (id !== OTHER_SECTION_ID && id !== POPULAR_SECTION_ID && id !== ITEC_SECTION_ID) {
       dispatch(deleteSectionTC(id))
       return
     }
