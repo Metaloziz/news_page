@@ -5,6 +5,7 @@ import style from './NewsBody.module.scss'
 
 import { Button } from 'components'
 import { NewsType } from 'store/types'
+import {convertDateView} from "utils/utils";
 
 type NewsBodyPropsType = {
   news: NewsType
@@ -30,7 +31,7 @@ export const NewsBody: FC<NewsBodyPropsType> = ({
   <div className={style.container}>
     <div className={style.header}>
       <div>
-        <div className={style.date}>{date}</div>
+        <div className={style.date}>{convertDateView(date)}</div>
         {isAdmin && <Button name="change" />}
       </div>
       <h1>{name}</h1>

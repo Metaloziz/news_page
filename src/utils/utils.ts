@@ -59,5 +59,5 @@ export const convertDateView = (date: string): string => {
     .reverse()
     .map(number => (number.length === SINGLE_DATE_NUMBER ? `0${number}` : number))
 
-  return `${draftArr[DAY_INDEX]}-${draftArr[MONTH_INDEX]}-${draftArr[YEAR_INDEX]}`
+  return `${draftArr[DAY_INDEX]}.${draftArr[MONTH_INDEX]}.${draftArr[YEAR_INDEX]}`
 }
