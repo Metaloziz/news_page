@@ -1,6 +1,7 @@
 import { FC } from 'react'
 
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import style from './Navigation.module.scss'
 
@@ -13,6 +14,7 @@ import {
 import { SearchField } from 'components/SearchField'
 import { SectionButton } from 'components/SectionButton/SectionButton'
 import { NEWS_BY_SEARCHING, NEWS_BY_SECTIONS } from 'constants/constants'
+import { Path } from 'enums/enums'
 import { changeNewsTypeViewAC, setCurrentSectionAC, setFirstPageAC } from 'store/reducers'
 import { selectIdActiveSection, selectSections } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
@@ -22,18 +24,22 @@ import { getSelectSection } from 'utils/utils'
 export const Navigation: FC = () => {
   const dispatch = useAppDispatch()
 
+  const navigate = useNavigate()
+
   const sections = useSelector(selectSections)
   const activeSection = useSelector(selectIdActiveSection)
 
   const isActiveStyle = (id: number): boolean => id === activeSection
 
   const setCurrentSection = (sectionId: number): void => {
+    navigate(Path.MAIN)
     dispatch(setCurrentSectionAC(sectionId))
     dispatch(changeNewsTypeViewAC(NEWS_BY_SECTIONS))
     dispatch(setFirstPageAC())
   }
 
   const setPopularNews = (sectionId: number): void => {
+    navigate(Path.MAIN)
     dispatch(changeNewsTypeViewAC(NEWS_BY_SEARCHING))
     dispatch(setCurrentSectionAC(sectionId))
     dispatch(getPopularNewsTC())
@@ -41,6 +47,7 @@ export const Navigation: FC = () => {
   }
 
   const getNewsByKeyWord = (keyWord: string): void => {
+    navigate(Path.MAIN)
     dispatch(getSearchNewsTC(keyWord))
     dispatch(changeNewsTypeViewAC(NEWS_BY_SEARCHING))
   }
@@ -49,9 +56,9 @@ export const Navigation: FC = () => {
   const POPULAR_SECTION = sections[SECOND_ARRAY_ITEM]
   const ITEC_SECTION = sections[THIRD_ARRAY_ITEM]
 
-  const sectionsSelect = getSelectSection(sections)
+  const SELECT_SECTION = getSelectSection(sections)
 
-  const OTHER_SECTION = sectionsSelect.pop()
+  const OTHER_SECTION = SELECT_SECTION.pop()
 
   return (
     <div className={style.main}>
@@ -79,10 +86,11 @@ export const Navigation: FC = () => {
         )}
 
         <Select
-          sections={sectionsSelect}
+          sections={SELECT_SECTION}
           activeSectionId={activeSection}
           handleCurrentCount={setCurrentSection}
         />
+
         {OTHER_SECTION && (
           <SectionButton
             name={OTHER_SECTION.name}

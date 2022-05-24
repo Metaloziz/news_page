@@ -13,7 +13,7 @@ export const NavLinkComponent: FC<NavLinkComponentPropsType> = ({ nameButton, pa
   const navigate = useNavigate()
 
   const onNavigateButtonClick = (): void => {
-    navigate(`/${path}`)
+    navigate(path)
   }
 
   return <Button name={nameButton} onClick={onNavigateButtonClick} />

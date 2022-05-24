@@ -64,7 +64,7 @@ export const NewsContainer: FC = () => {
   )
 
   const newsRouteHandle = useCallback((): void => {
-    navigate(`/${Path.CURRENT_NEWS}`)
+    navigate(Path.CURRENT_NEWS)
   }, [])
 
   const deleteNews = useCallback((newsId: number): void => {
