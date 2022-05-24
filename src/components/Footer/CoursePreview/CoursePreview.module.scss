@@ -8,10 +8,13 @@
   min-height: 225px;
   background-color: $green;
   border-radius: 10px;
-  color: $back;
   padding: 15px;
   cursor: pointer;
   gap: 10px;
+
+  a {
+    color: $back;
+  }
 
   h1 {
     margin-bottom: 30px;

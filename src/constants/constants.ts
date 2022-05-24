@@ -19,3 +19,5 @@ export const NEWS_BY_SEARCHING = 'NEWS_BY_SEARCHING'
 
 // sections
 export const DEFAULT_FIRST_COUNT_SECTIONS = 3
+
+export const COURSES_URL = 'https://itec.pythonanywhere.com/#upcoming__title'
