@@ -30,7 +30,7 @@
     "no-debugger": "error",
     "no-plusplus": "error",
     "no-unused-vars": "off",
-    "no-magic-numbers": "off",
+    "no-magic-numbers": "warn",
     "consistent-return": "off",
     "default-param-last": "off",
     "no-use-before-define": "warn",
@@ -48,7 +48,7 @@
       "warn"
     ],
     "@typescript-eslint/no-magic-numbers": [
-      "error",
+      "warn",
       {
         "ignoreEnums": true,
         "ignoreNumericLiteralTypes": true

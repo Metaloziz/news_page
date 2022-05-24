@@ -1,7 +1,9 @@
 import { Dispatch } from 'redux'
 
 import { FIRST_ARRAY_ITEM, SECOND_ARRAY_ITEM } from 'components/Footer/Footer'
+import { DEFAULT_FIRST_COUNT_SECTIONS } from 'constants/constants'
 import { setErrorTrueAC } from 'store/reducers/app_reducer'
+import { SectionType } from 'store/types'
 import { ResponseErrorType } from 'store/types/response_error_type'
 
 const NEXT_MONTH = 1
@@ -60,4 +62,13 @@ export const convertDateView = (date: string): string => {
     .map(number => (number.length === SINGLE_DATE_NUMBER ? `0${number}` : number))
 
   return `${draftArr[DAY_INDEX]}.${draftArr[MONTH_INDEX]}.${draftArr[YEAR_INDEX]}`
+}
+
+// get section for select
+export const getSelectSection = (sections: SectionType[]): SectionType[] => {
+  const copySections = [...sections]
+
+  copySections.splice(FIRST_ARRAY_ITEM, DEFAULT_FIRST_COUNT_SECTIONS)
+
+  return copySections
 }
