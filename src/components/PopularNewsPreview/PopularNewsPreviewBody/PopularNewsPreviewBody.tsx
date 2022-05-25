@@ -17,7 +17,7 @@ export const PopularNewsPreviewBody: FC<PopularNewsPreviewBodyPropsType> = ({
     className={style.news}
     onClick={() => setCurrentNews(news.id)}
   >
-    <h4> {news.subtitle_1}</h4>
+    <h4> {news.name}</h4>
     <span>{news.full_text_1}</span>
     <div>Читать далее</div>
   </div>

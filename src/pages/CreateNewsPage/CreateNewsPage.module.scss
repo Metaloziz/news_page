@@ -3,7 +3,11 @@
 
 .container {
   @include container();
-  align-items: center;
+  align-items: flex-start;
+
+  h2 {
+    color: $green;
+  }
 
   form {
     width: 90%;
@@ -17,6 +21,34 @@
     .header {
       @include displayContentCenter();
       justify-content: space-between;
+
+      .date {
+        @include labelForm();
+
+        input {
+          width: 90px;
+          color: $gray;
+        }
+
+      }
+
+      .sections {
+        @include labelForm();
+
+        select {
+          @include inputStyle();
+          color: $gray;
+        }
+      }
+    }
+
+    .name {
+      //@include labelForm();
+
+      label {
+        margin-left: 20px;
+        color: #B00D23;
+      }
     }
 
     .fullText {

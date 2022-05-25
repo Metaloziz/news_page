@@ -1,8 +1,7 @@
 import { FC, useEffect, useRef, useState, KeyboardEvent } from 'react'
 
-import style from './Select.module.scss'
-
 import arrow from 'assets/images/common/arrow.svg'
+import style from 'components/commonComponents/NavigationSelect/NavigationSelect.module.scss'
 import { SectionButton } from 'components/SectionButton/SectionButton'
 import { SectionType } from 'store/types'
 import { findIndexElement } from 'utils/utils'
@@ -15,7 +14,7 @@ type SelectType = {
 
 const NEX_PREVIOUS_ITEM = 1
 
-export const Select: FC<SelectType> = ({
+export const NavigationSelect: FC<SelectType> = ({
   sections,
   activeSectionId,
   handleCurrentCount,

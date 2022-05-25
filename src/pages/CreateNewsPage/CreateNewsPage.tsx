@@ -8,7 +8,7 @@ import style from './CreateNewsPage.module.scss'
 import { Button, NavLinkComponent } from 'components'
 import { Path } from 'enums/enums'
 import { NewsBodyForm } from 'pages/CreateNewsPage/NewsBodyForm/NewsBodyForm'
-import { Options } from 'pages/CreateNewsPage/Options/Options'
+import { SelectOptions } from 'pages/CreateNewsPage/SelectOptions/SelectOptions'
 import { selectSections } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
 import { postNewsTC } from 'store/thunks'
@@ -37,23 +37,23 @@ export const CreateNewsPage: FC = () => {
   return (
     <div className={style.container}>
       <NavLinkComponent nameButton="на главную" path={Path.MAIN} />
-      <span>Создать новость:</span>
+      <h2>Добавьте новость</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={style.header}>
-          <div>
-            <label>date </label>
+          <div className={style.date}>
+            <label>Date </label>
             <input {...register('date')} placeholder="date" value={todayDate()} />
             {errors.date && <span>This field is required</span>}
           </div>
-          <div>
-            <label htmlFor="section">section </label>
+          <div className={style.sections}>
+            <label htmlFor="section">Section</label>
             <select id="section" defaultValue={1} {...register('section')}>
-              <Options data={sections} />
+              <SelectOptions data={sections} />
             </select>
           </div>
         </div>
         <div className={style.name}>
-          <label>name </label>
+          <label>Name</label>
           <input {...register('name')} placeholder="name" required defaultValue="title" />
           {errors.name && <span>This field is required</span>}
         </div>

@@ -7,7 +7,7 @@ import { Button, NavLinkComponent } from 'components'
 import { Path } from 'enums/enums'
 import style from 'pages/CreateNewsPage/CreateNewsPage.module.scss'
 import { NewsBodyForm } from 'pages/CreateNewsPage/NewsBodyForm/NewsBodyForm'
-import { Options } from 'pages/CreateNewsPage/Options/Options'
+import { SelectOptions } from 'pages/CreateNewsPage/SelectOptions/SelectOptions'
 import { selectCurrentNews, selectSections } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
 import { updateNewsTC } from 'store/thunks/current_news_thunks'
@@ -48,7 +48,7 @@ export const ChangeNewsPage: FC = () => {
           <div>
             <label htmlFor="section">section </label>
             <select id="section" defaultValue={news.section} {...register('section')}>
-              <Options data={sections} />
+              <SelectOptions data={sections} />
             </select>
           </div>
         </div>

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 import style from './Navigation.module.scss'
 
-import { Select } from 'components/commonComponents/Select'
+import { NavigationSelect } from 'components/commonComponents/NavigationSelect'
 import {
   FIRST_ARRAY_ITEM,
   SECOND_ARRAY_ITEM,
@@ -85,7 +85,7 @@ export const Navigation: FC = () => {
           />
         )}
 
-        <Select
+        <NavigationSelect
           sections={SELECT_SECTION}
           activeSectionId={activeSection}
           handleCurrentCount={setCurrentSection}

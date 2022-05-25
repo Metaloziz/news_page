@@ -43,3 +43,14 @@
     border-color: $green;
   }
 }
+
+
+@mixin labelForm {
+  @include displayContentCenter();
+  flex-direction: column;
+  align-items: flex-start;
+
+  label {
+    @include labelForm();
+  }
+}
