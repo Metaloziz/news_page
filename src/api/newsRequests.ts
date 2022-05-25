@@ -3,9 +3,9 @@ import { ALL_SECTION_ID, NEWS_ON_PAGE } from 'constants/constants'
 import { RequestSource } from 'enums/enums'
 import { NewsBodyType, NewsFileType, NewsType } from 'store/types'
 
-export type NewsPayloadType = {
+export type NewsPayloadType = NewsFileType & {
   body: NewsBodyType
-} & NewsFileType
+}
 
 export const newsRequests = {
   postNews: (news: NewsPayloadType) => {
@@ -14,11 +14,16 @@ export const newsRequests = {
     formDataObject.append('body', JSON.stringify(news.body))
     formDataObject.append('file', news.file)
 
-    return instance.post<{ id: number }>(`${RequestSource.NEWS}/`, formDataObject, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
+    return instance.post<{ id: number }>(`${RequestSource.NEWS}/`, formDataObject)
+  },
+
+  updateNews: (news: NewsPayloadType, newsId: number) => {
+    const formDataObject = new FormData()
+
+    formDataObject.append('body', JSON.stringify(news.body))
+    formDataObject.append('file', news.file)
+
+    return instance.put(`${RequestSource.NEWS}/${newsId}`, formDataObject)
   },
 
   getNewsPart: (pageNumber: number, section: number = ALL_SECTION_ID) =>

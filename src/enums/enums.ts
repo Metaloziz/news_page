@@ -11,6 +11,7 @@ export enum Path {
   MAIN = '/main',
   CURRENT_NEWS = '/current_news',
   CREATE_NEWS = '/create_news',
+  CHANGE_NEWS = '/change_section',
   CREATE_SECTION = '/create_section',
 }
 
@@ -33,6 +34,7 @@ export enum StatusCode {
   GET_NEWS_SUCCESS = 200,
   GET_COURSES_SUCCESS = 200,
   GET_CONTACTS_SUCCESS = 200,
+  UPDATE_NEWS_SUCCESS = 204,
 }
 
 export enum DeBounceTimer {
@@ -42,5 +44,5 @@ export enum DeBounceTimer {
 
 export enum Error {
   EMPTY_NEWS = 'нету новостей',
-  PROTECT_SECTION = 'нельзя удалять',
+  PROTECT_SECTION = 'нельзя редактировтаь',
 }

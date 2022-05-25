@@ -12,7 +12,7 @@ import {
   OTHER_SECTION_ID,
   POPULAR_SECTION_ID,
 } from 'constants/constants'
-import { Path } from 'enums/enums'
+import { Error, Path } from 'enums/enums'
 import { setErrorTrueAC } from 'store/reducers'
 import { selectSections } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
@@ -39,7 +39,7 @@ export const CreateSectionPage: FC = () => {
       dispatch(changeSectionTC(section))
       return
     }
-    dispatch(setErrorTrueAC('нельзя изменять'))
+    dispatch(setErrorTrueAC(Error.PROTECT_SECTION))
   }, [])
 
   const deleteSection = useCallback((id: number): void => {
@@ -47,7 +47,7 @@ export const CreateSectionPage: FC = () => {
       dispatch(deleteSectionTC(id))
       return
     }
-    dispatch(setErrorTrueAC('нельзя удалять'))
+    dispatch(setErrorTrueAC(Error.PROTECT_SECTION))
   }, [])
 
   const sectionTags = sections.map(section => (

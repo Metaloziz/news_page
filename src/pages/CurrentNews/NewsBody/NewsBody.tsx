@@ -1,11 +1,12 @@
 /* eslint-disable */
-import { FC } from 'react'
+import { FC } from "react";
 
-import style from './NewsBody.module.scss'
+import style from "./NewsBody.module.scss";
 
-import { Button } from 'components'
-import { NewsType } from 'store/types'
-import {convertDateView} from "utils/utils";
+import { NavLinkComponent } from "components";
+import { NewsType } from "store/types";
+import { convertDateView } from "utils/utils";
+import { Path } from "enums/enums";
 
 type NewsBodyPropsType = {
   news: NewsType
@@ -32,7 +33,7 @@ export const NewsBody: FC<NewsBodyPropsType> = ({
     <div className={style.header}>
       <div>
         <div className={style.date}>{convertDateView(date)}</div>
-        {isAdmin && <Button name="change" />}
+        {isAdmin && <NavLinkComponent nameButton="редактировать" path={Path.CHANGE_NEWS} />}
       </div>
       <h1>{name}</h1>
     </div>

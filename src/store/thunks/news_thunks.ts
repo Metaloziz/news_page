@@ -9,7 +9,7 @@ import { ResponseErrorType } from 'store/types/response_error_type'
 import { setError } from 'utils/utils'
 
 export const getNewsPartTC = createAsyncThunk(
-  'news/getNewsPartTC',
+  'section_news/getNewsPartTC',
   async (pageNumber: number, { dispatch, getState }) => {
     const {
       sections: { activeSectionId },
