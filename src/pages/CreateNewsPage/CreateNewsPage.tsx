@@ -73,6 +73,7 @@ export const CreateNewsPage: FC = () => {
           useFormRegisterReturn={register('subtitle_1')}
           useFormRegisterReturn1={register('full_text_1')}
           useFormRegisterReturn2={register('image_1')}
+          useFormRegisterReturn3={register('file')}
           errors={errors}
         />
 
@@ -85,6 +86,7 @@ export const CreateNewsPage: FC = () => {
             useFormRegisterReturn={register('subtitle_2')}
             useFormRegisterReturn1={register('full_text_2')}
             useFormRegisterReturn2={register('image_2')}
+            useFormRegisterReturn3={register('file')}
             errors={errors}
           />
         )}
@@ -97,6 +99,7 @@ export const CreateNewsPage: FC = () => {
             useFormRegisterReturn={register('subtitle_3')}
             useFormRegisterReturn1={register('full_text_3')}
             useFormRegisterReturn2={register('image_3')}
+            useFormRegisterReturn3={register('file')}
             errors={errors}
           />
         )}

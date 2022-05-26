@@ -1,4 +1,5 @@
 import { instance } from 'api/instance'
+import { FIRST_ARRAY_ITEM } from 'components/Footer/Footer'
 import { ALL_SECTION_ID, NEWS_ON_PAGE } from 'constants/constants'
 import { RequestSource } from 'enums/enums'
 import { NewsBodyType, NewsFileType, NewsType } from 'store/types'
@@ -12,7 +13,9 @@ export const newsRequests = {
     const formDataObject = new FormData()
 
     formDataObject.append('body', JSON.stringify(news.body))
-    formDataObject.append('file', news.file)
+    if (news.file?.length) {
+      formDataObject.append('file', news.file[FIRST_ARRAY_ITEM])
+    }
 
     return instance.post<{ id: number }>(`${RequestSource.NEWS}/`, formDataObject)
   },
@@ -21,7 +24,9 @@ export const newsRequests = {
     const formDataObject = new FormData()
 
     formDataObject.append('body', JSON.stringify(news.body))
-    formDataObject.append('file', news.file)
+    if (news.file?.length) {
+      formDataObject.append('file', news.file[FIRST_ARRAY_ITEM])
+    }
 
     return instance.put(`${RequestSource.NEWS}/${newsId}`, formDataObject)
   },

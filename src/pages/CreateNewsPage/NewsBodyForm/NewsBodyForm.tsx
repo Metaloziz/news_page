@@ -16,6 +16,7 @@ type NewsBodyFormPropsType = {
   errors: FieldErrors<NewsBodyType & NewsFileType>
   useFormRegisterReturn1: UseFormRegisterReturn
   useFormRegisterReturn2: UseFormRegisterReturn
+  useFormRegisterReturn3?: UseFormRegisterReturn
 }
 
 export const NewsBodyForm: FC<NewsBodyFormPropsType> = props => {
@@ -59,10 +60,12 @@ export const NewsBodyForm: FC<NewsBodyFormPropsType> = props => {
           defaultValue={setDefaultValue(props.useFormRegisterReturn2.name)}
         />
       </div>
-      {/* <div> */}
-      {/*  <label>file </label> */}
-      {/*  <input {...register('file')} type="file" /> */}
-      {/* </div> */}
+      {props.useFormRegisterReturn3 && (
+        <div>
+          <label>file </label>
+          <input {...props.useFormRegisterReturn3} type="file" multiple />
+        </div>
+      )}
     </div>
   )
 }
