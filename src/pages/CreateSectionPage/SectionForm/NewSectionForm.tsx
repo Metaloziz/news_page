@@ -1,6 +1,8 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 import { SubmitHandler, useForm } from 'react-hook-form'
+
+import style from './NewSectionForm.module.scss'
 
 import { Button } from 'components/Button/Button'
 import { SectionType } from 'store/types/section_type'
@@ -8,19 +10,15 @@ import { SectionType } from 'store/types/section_type'
 type SectionFormPropsType = {
   setSectionData: (data: SectionType) => void
   mode: 'add' | 'edit'
-  sectionsId?: number[]
+  sections?: SectionType[]
 }
 
 export const NewSectionForm: FC<SectionFormPropsType> = ({
   setSectionData,
   mode,
-  sectionsId,
+  sections,
 }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<SectionType>()
+  const { register, handleSubmit } = useForm<SectionType>()
 
   const onSubmit: SubmitHandler<SectionType> = data => {
     setSectionData({ ...data, id: Number(data.id) })
@@ -29,23 +27,24 @@ export const NewSectionForm: FC<SectionFormPropsType> = ({
   const select =
     mode === 'edit' ? (
       <div>
-        <label htmlFor="section">section </label>
+        <label htmlFor="section">Cекция</label>
         <select id="section" defaultValue={1} {...register('id')}>
-          {sectionsId?.map(id => (
-            <option key={id}>{id}</option>
+          {sections?.map(({ id, name }) => (
+            <option key={id} value={id}>
+              {name}
+            </option>
           ))}
         </select>
       </div>
     ) : null
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      {select}
+    <form onSubmit={handleSubmit(onSubmit)} className={style.container}>
       <div>
-        <label>name section </label>
-        <input {...register('name')} placeholder="name" required defaultValue="test" />
-        {errors.name && <span>This field is required</span>}
+        <label>Имя секции</label>
+        <input {...register('name')} placeholder="имя" required />
       </div>
+      {select}
       <Button name="отправить" type="submit" />
     </form>
   )

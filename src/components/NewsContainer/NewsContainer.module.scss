@@ -6,7 +6,6 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  //border: black 1px solid;
 
   .body {
     @include displayContentCenter();
@@ -14,7 +13,6 @@
     gap: 10px;
     row-gap: 60px;
     align-items: flex-start;
-    //border: black 1px solid;
     justify-content: space-between;
     width: 100%;
   }

@@ -1,6 +1,5 @@
 import { instance } from 'api/instance'
-import { FIRST_ARRAY_ITEM } from 'components/Footer/Footer'
-import { ALL_SECTION_ID, NEWS_ON_PAGE } from 'constants/constants'
+import { ALL_SECTION_ID, FIRST_ARRAY_ITEM, NEWS_ON_PAGE } from 'constants/constants'
 import { RequestSource } from 'enums/enums'
 import { NewsBodyType, NewsFileType, NewsType } from 'store/types'
 

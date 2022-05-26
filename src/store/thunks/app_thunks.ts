@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { commonDataRequests } from 'api/commonDataRequests'
-import { FIRST_ARRAY_ITEM } from 'components/Footer/Footer'
+import { FIRST_ARRAY_ITEM } from 'constants/constants'
 import { StatusCode } from 'enums/enums'
 import { ResponseErrorType } from 'store/types/response_error_type'
 import { setError } from 'utils/utils'

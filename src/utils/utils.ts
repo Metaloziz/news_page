@@ -1,14 +1,21 @@
 import { Dispatch } from 'redux'
 
-import { FIRST_ARRAY_ITEM, SECOND_ARRAY_ITEM } from 'components/Footer/Footer'
-import { DEFAULT_FIRST_COUNT_SECTIONS } from 'constants/constants'
+import {
+  ALL_SECTION_ID,
+  DEFAULT_FIRST_COUNT_SECTIONS,
+  FIRST_ARRAY_ITEM,
+  ITEC_SECTION_ID,
+  OTHER_SECTION_ID,
+  POPULAR_SECTION_ID,
+  SECOND_ARRAY_ITEM,
+} from 'constants/constants'
 import { setErrorTrueAC } from 'store/reducers/app_reducer'
 import { SectionType } from 'store/types'
 import { ResponseErrorType } from 'store/types/response_error_type'
 
+// today date
 const NEXT_MONTH = 1
 
-// today date
 export const todayDate = (): string =>
   `${new Date().getFullYear()}-${
     new Date().getMonth() + NEXT_MONTH
@@ -72,3 +79,10 @@ export const getSelectSection = (sections: SectionType[]): SectionType[] => {
 
   return copySections
 }
+
+// is disable sections edit button
+export const isDisable = (sectionId: number): boolean =>
+  sectionId !== OTHER_SECTION_ID &&
+  sectionId !== POPULAR_SECTION_ID &&
+  sectionId !== ITEC_SECTION_ID &&
+  sectionId !== ALL_SECTION_ID

@@ -6,14 +6,15 @@ import { useNavigate } from 'react-router-dom'
 import style from './Navigation.module.scss'
 
 import { NavigationSelect } from 'components/commonComponents/NavigationSelect'
-import {
-  FIRST_ARRAY_ITEM,
-  SECOND_ARRAY_ITEM,
-  THIRD_ARRAY_ITEM,
-} from 'components/Footer/Footer'
 import { SearchField } from 'components/SearchField'
 import { SectionButton } from 'components/SectionButton/SectionButton'
-import { NEWS_BY_SEARCHING, NEWS_BY_SECTIONS } from 'constants/constants'
+import {
+  FIRST_ARRAY_ITEM,
+  NEWS_BY_SEARCHING,
+  NEWS_BY_SECTIONS,
+  SECOND_ARRAY_ITEM,
+  THIRD_ARRAY_ITEM,
+} from 'constants/constants'
 import { Path } from 'enums/enums'
 import { changeNewsTypeViewAC, setCurrentSectionAC, setFirstPageAC } from 'store/reducers'
 import { selectIdActiveSection, selectSections } from 'store/selectors'

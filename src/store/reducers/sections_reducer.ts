@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { FIRST_ARRAY_ITEM } from 'components/Footer/Footer'
-import { OTHER_SECTION_ID } from 'constants/constants'
+import { FIRST_ARRAY_ITEM, OTHER_SECTION_ID } from 'constants/constants'
 import {
   changeSectionTC,
   deleteSectionTC,

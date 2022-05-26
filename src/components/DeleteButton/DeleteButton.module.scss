@@ -13,6 +13,7 @@
 
   span {
     transition: 200ms;
+    margin: 15px 0 16px 25px;
   }
 
   .text {
@@ -23,7 +24,7 @@
 
   .icon {
     position: absolute;
-    transform: translateX(75px);
+    transform: translateX(75px) translateY(1px);
     height: 40px;
     width: 40px;
     display: flex;
@@ -43,7 +44,7 @@
   &:hover .icon {
     width: 90px;
     border-left: none;
-    transform: translateX(0);
+    transform: translateX(0) translateY(1px);
   }
 
   &:hover .text {
@@ -56,6 +57,10 @@
 
   &:active .icon svg {
     transform: scale(0.8);
+  }
+
+  &:disabled {
+    background: $gray;
   }
 
 }

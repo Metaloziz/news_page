@@ -56,3 +56,9 @@
     margin: 0 0 10px 10px;
   }
 }
+
+@mixin imageCenterProperty() {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}

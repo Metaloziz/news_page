@@ -8,7 +8,7 @@ import { NewsBody } from './NewsBody/NewsBody'
 
 import { Navigation, NavLinkComponent, PopularNewsPreview } from 'components'
 import { CoursePreview } from 'components/Footer/CoursePreview/CoursePreview'
-import { FIRST_ARRAY_ITEM, SECOND_ARRAY_ITEM } from 'components/Footer/Footer'
+import { FIRST_ARRAY_ITEM, SECOND_ARRAY_ITEM } from 'constants/constants'
 import { Path } from 'enums/enums'
 import { setCurrentNewsAC } from 'store/reducers'
 import {
