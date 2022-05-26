@@ -45,12 +45,14 @@
 }
 
 
-@mixin labelForm {
+@mixin labelStyle {
+
   @include displayContentCenter();
   flex-direction: column;
   align-items: flex-start;
 
   label {
-    @include labelForm();
+    color: $gray;
+    margin: 0 0 10px 10px;
   }
 }

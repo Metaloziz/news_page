@@ -2,7 +2,8 @@ import { FC } from 'react'
 
 import { FieldErrors, UseFormRegisterReturn } from 'react-hook-form'
 
-import style from 'pages/CreateNewsPage/CreateNewsPage.module.scss'
+import style from './NewsBodyForm.module.scss'
+
 import { NewsBodyType, NewsFileType } from 'store/types'
 
 type DefaultValuesFormBlockType = {
@@ -29,38 +30,34 @@ export const NewsBodyForm: FC<NewsBodyFormPropsType> = props => {
   }
 
   return (
-    <div className={style.fullText}>
-      <h3>Блок 1</h3>
-      <div>
-        <label>Заголовок</label>
+    <div className={style.container}>
+      <div className={style.subtitle}>
+        <label>Подзаголовок</label>
         <input
           {...props.useFormRegisterReturn}
-          placeholder="subtitle_1"
+          placeholder="Подзаголовок"
           required
           defaultValue={setDefaultValue(props.useFormRegisterReturn.name)}
         />
-        {props.errors.subtitle_1 && <span>This field is required</span>}
       </div>
 
-      <div>
-        <label>Основной текс </label>
+      <div className={style.text}>
+        <label>Текст</label>
         <textarea
           {...props.useFormRegisterReturn1}
-          placeholder="full_text_1"
+          placeholder="основной текст блока"
           required
           rows={5}
           defaultValue={setDefaultValue(props.useFormRegisterReturn1.name)}
         />
-        {props.errors.full_text_1 && <span>This field is required</span>}
       </div>
-      <div>
-        <label>ссылка на картинку</label>
+      <div className={style.image}>
+        <label>Ссылка на картинку из интернета</label>
         <input
           {...props.useFormRegisterReturn2}
-          placeholder="image_1"
+          placeholder="https://www.ixbt.com/img.jpg"
           defaultValue={setDefaultValue(props.useFormRegisterReturn2.name)}
         />
-        {props.errors.image_1 && <span>This field is required</span>}
       </div>
       {/* <div> */}
       {/*  <label>file </label> */}

@@ -5,62 +5,73 @@
   @include container();
   align-items: flex-start;
 
+
   h2 {
     color: $green;
   }
 
   form {
-    width: 90%;
     @include container();
+    @include labelStyle();
+    width: 90%;
     gap: 20px;
 
     input, textarea {
       @include inputStyle();
+
+      &::placeholder {
+        color: $gray2;
+      }
     }
 
     .header {
       @include displayContentCenter();
       justify-content: space-between;
+      width: 100%;
 
       .date {
-        @include labelForm();
+        @include displayContentCenter();
+        flex-direction: column;
+        align-items: flex-start;
+        @include labelStyle();
 
         input {
           width: 90px;
-          color: $gray;
         }
 
       }
 
       .sections {
-        @include labelForm();
+        @include displayContentCenter();
+        @include labelStyle();
+        flex-direction: column;
+        align-items: flex-start;
 
         select {
           @include inputStyle();
-          color: $gray;
         }
       }
     }
 
     .name {
-      //@include labelForm();
-
-      label {
-        margin-left: 20px;
-        color: #B00D23;
-      }
-    }
-
-    .fullText {
       @include displayContentCenter();
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       width: 100%;
-
-      div {
-        width: 100%;
-      }
-
     }
+
+    .blockTitle {
+      @include displayContentCenter();
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+
+      label {
+        margin: 0;
+      }
+    }
+
+
   }
+
 }
