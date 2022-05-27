@@ -50,7 +50,7 @@ export const DebounceSearchField: FC<DebounceSearchFieldPropsType> = memo(
           ref={ref}
           value={value}
           onChange={onSearchQuestionChange}
-          placeholder="Поиск"
+          placeholder="Поиск по заголовкам"
           type="search"
           {...restProps}
         />

@@ -19,7 +19,7 @@ export const NavigationSelect: FC<SelectType> = ({
   activeSectionId,
   handleCurrentCount,
 }) => {
-  const defaultSection: SectionType = { id: -1, name: 'новости по темам' }
+  const defaultSection: SectionType = { id: -1, name: 'темы' }
 
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false)
   const [activeSection, setActiveSection] = useState<SectionType>(defaultSection)
