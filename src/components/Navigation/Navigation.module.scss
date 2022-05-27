@@ -5,7 +5,6 @@
 .main {
   @include displayContentCenter();
   justify-content: space-between;
-  //border: black 1px solid;
 
   .container {
     @include displayContentCenter();

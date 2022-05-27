@@ -3,8 +3,8 @@
 
 .container {
   @include container();
-  margin: 20px;
   flex-direction: row;
+  align-items: flex-start;
   height: auto;
   background-color: $back;
   width: 100%;

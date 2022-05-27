@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux'
 import style from './Menu.module.scss'
 
 import { Contacts } from 'components/Contacts/Contacts'
+import { MenuItem } from 'components/Menu/MenuItem/MenuItem'
+import { menuNames } from 'constants/menuNames/menuNames'
 import { changeIsAdminModeAC } from 'store/reducers'
 import { selectIsAdminMode } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
@@ -21,9 +23,18 @@ export const Menu: FC = () => {
       dispatch(changeIsAdminModeAC(true))
     }
   }
+
+  const menuItems = menuNames.map(element => (
+    <MenuItem key={element.name} item={element} />
+  ))
+
   return (
     <div className={style.container}>
-      <div>МЕНЮ</div>
+      <div className={style.header}>
+        <span>ITEC</span>
+        <p>Education complex</p>
+      </div>
+      <div className={style.menuItems}>{menuItems}</div>
       <div>новости</div>
       <h4>режим админа:</h4>
       <span>вкл\выкл</span> <input type="checkbox" onClick={switchIsAdminMode} />
