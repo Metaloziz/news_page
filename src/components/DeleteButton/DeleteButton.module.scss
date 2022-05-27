@@ -16,7 +16,7 @@
     margin: 15px 0 16px 25px;
   }
 
-  .text {
+  .preview {
     transform: translateX(12px);
     color: #E5E5E5;
     font-weight: bold;
@@ -47,7 +47,7 @@
     transform: translateX(0) translateY(1px);
   }
 
-  &:hover .text {
+  &:hover .preview {
     color: transparent;
   }
 

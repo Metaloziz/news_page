@@ -62,7 +62,7 @@
         @include textColumns(1, 30px);
       }
 
-      .text {
+      .preview {
         @include textColumns(4);
         color: $dark;
       }
