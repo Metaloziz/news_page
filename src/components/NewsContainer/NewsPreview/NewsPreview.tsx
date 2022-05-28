@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { FC, memo } from "react";
 
-import style from "./News.module.scss";
+import style from "./NewsPreview.module.scss";
 import { NewsType } from "store/types";
 import { DeleteButton } from "components/DeleteButton/DeleteButton";
 import eye from "assets/images/common/eye.svg";
@@ -36,10 +36,10 @@ export const NewsPreview: FC<NewsPropsType> = memo(
           </div>
           <div className={style.description}>
             <div className={style.date_and_view}>
-              <div>{convertDateView(date)}</div>
+              <span>{convertDateView(date)}</span>
               <div className={style.eye}>
                 <img alt={"eye"} src={eye} />
-                <div>{views}</div>
+                <span>{views}</span>
               </div>
             </div>
             <h3>{name}</h3>

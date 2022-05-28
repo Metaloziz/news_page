@@ -9,6 +9,7 @@
   width: 315px;
   background-color: $back_card;
   border-radius: 0 20px 0 0;
+  box-shadow: 0 0 10px rgba(28, 29, 37, 0.26);
 
   .header {
     display: flex;
@@ -56,6 +57,7 @@
       width: 100%;
       height: 50px;
       color: $dark;
+      cursor: pointer;
 
       .icon {
         width: 20px;

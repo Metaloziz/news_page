@@ -19,7 +19,6 @@
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: $columns; /* number of lines to show */
-  line-clamp: $columns;
   -webkit-box-orient: vertical;
 }
 
@@ -61,4 +60,37 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+
+@mixin titleH3 {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 47px;
+
+  /* Зелёный */
+
+  color: $green;
+
+}
+
+@mixin testPreview($fontSize: 16px) {
+  /* web/text */
+
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: $fontSize;
+  line-height: 130%;
+  /* or 21px */
+
+  display: flex;
+  align-items: center;
+
+  /* Dark */
+
+  color: $dark;
+
 }

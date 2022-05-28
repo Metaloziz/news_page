@@ -5,11 +5,10 @@
   @include displayContentCenter();
   flex-direction: column;
   align-items: flex-end;
-  max-width: 600px;
-  min-width: 300px;
+  max-width: 420px;
+  min-width: 327px;
   border-radius: $border_radius;
   height: auto;
-  width: 30vw;
   cursor: pointer;
   box-shadow: 0 0 10px rgba(28, 29, 37, 0.26);
 
@@ -37,6 +36,17 @@
         justify-content: space-between;
         margin: 10px 0 10px 0;
 
+        span {
+
+          font-family: 'IBM Plex Sans', sans-serif;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 130%;
+
+          color: $gray;
+        }
+
         .eye {
           @include displayContentCenter();
           justify-content: center;
@@ -50,21 +60,27 @@
             opacity: 45%;
           }
 
-          div {
-            margin-bottom: 2.3px;
-            padding: 0;
+          span {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 130%;
+            padding-top: 1px;
+
+            color: $gray;
           }
         }
       }
 
       h3 {
-        color: $green;
-        @include textColumns(1, 30px);
+        @include textColumns(1);
+        @include titleH3();
       }
 
-      .preview {
+      .text {
+        @include testPreview();
         @include textColumns(4);
-        color: $dark;
       }
     }
   }
@@ -72,6 +88,12 @@
   .footerText {
     color: $gray;
     margin: 15px 0 15px 25px;
+
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
 
     &:hover {
       color: $green;
