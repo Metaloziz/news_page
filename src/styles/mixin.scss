@@ -70,14 +70,10 @@
   font-size: 36px;
   line-height: 47px;
 
-  /* Зелёный */
-
   color: $green;
-
 }
 
 @mixin testPreview($fontSize: 16px) {
-  /* web/text */
 
   font-family: 'IBM Plex Sans', sans-serif;
   font-style: normal;
@@ -89,8 +85,15 @@
   display: flex;
   align-items: center;
 
-  /* Dark */
-
   color: $dark;
+}
 
+
+@mixin textDescription {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 140%;
+  color: $dark;
 }

@@ -11,20 +11,23 @@
   background: #ad4242;
   margin: 5px 0;
 
-  span {
+  .text {
     transition: 200ms;
-    margin: 15px 0 16px 25px;
+    margin: 15px 0 16px 40px;
+    color: #E5E5E5;
   }
 
-  .preview {
-    transform: translateX(12px);
-    color: #E5E5E5;
-    font-weight: bold;
-  }
+  //.preview {
+  //  transform: translateX(12px);
+  //  color: #E5E5E5;
+  //  font-weight: bold;
+  //}
 
   .icon {
     position: absolute;
     transform: translateX(75px) translateY(1px);
+    transition: 200ms;
+    margin: 15px 0 16px 25px;
     height: 40px;
     width: 40px;
     display: flex;
@@ -47,7 +50,7 @@
     transform: translateX(0) translateY(1px);
   }
 
-  &:hover .preview {
+  &:hover .text {
     color: transparent;
   }
 

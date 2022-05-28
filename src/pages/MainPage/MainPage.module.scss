@@ -4,8 +4,6 @@
 .container {
   @include container();
   margin: 0;
-  //border: #1C1D25 1px solid;
-  //height: 100vh;
   width: 70vw;
   gap: 20px;
 }

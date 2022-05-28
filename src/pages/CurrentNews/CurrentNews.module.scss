@@ -3,6 +3,7 @@
 
 .container {
   @include container();
+  width: 75vw;
 
   .body {
     @include displayContentCenter();

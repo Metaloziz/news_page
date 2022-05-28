@@ -14,32 +14,31 @@ type NewsBodyPropsType = {
 }
 
 export const NewsBody: FC<NewsBodyPropsType> = ({
-  news: {
-    date,
-    name,
-    subtitle_1,
-    image_1,
-    full_text_1,
-    full_text_3,
-    subtitle_2,
-    full_text_2,
-    image_2,
-    image_3,
-    subtitle_3,
-  },
-  isAdmin,
-}) => (
+                                                  news: {
+                                                    date,
+                                                    name,
+                                                    subtitle_1,
+                                                    image_1,
+                                                    full_text_1,
+                                                    full_text_3,
+                                                    subtitle_2,
+                                                    full_text_2,
+                                                    image_2,
+                                                    image_3,
+                                                    subtitle_3
+                                                  },
+                                                  isAdmin
+                                                }) => (
   <div className={style.container}>
     <div className={style.header}>
-      <div>
-        <div className={style.date}>{convertDateView(date)}</div>
-        {isAdmin && <NavLinkComponent nameButton="редактировать" path={Path.CHANGE_NEWS} />}
-      </div>
-      <h1>{name}</h1>
+      <div className={style.date}>{convertDateView(date)}</div>
+
+      <div><h1>{name}</h1>  {isAdmin &&
+        <NavLinkComponent nameButton="редактировать" path={Path.CHANGE_NEWS} />}</div>
     </div>
     <div className={style.body}>
-      <h3>{subtitle_1}</h3>
       <img alt="logo" src={image_1} />
+      <h3>{subtitle_1}</h3>
       <div className={style.description}>{full_text_1}</div>
     </div>
     <div className={style.body}>
@@ -53,4 +52,4 @@ export const NewsBody: FC<NewsBodyPropsType> = ({
       <div className={style.description}>{full_text_3}</div>
     </div>
   </div>
-)
+);
