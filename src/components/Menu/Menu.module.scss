@@ -6,17 +6,19 @@
   flex-direction: column;
   justify-content: flex-start;
   gap: 10px;
-  width: 285px;
+  flex-basis: 300px;
+  //flex-grow: 0;
   background-color: $back_card;
   border-radius: 0 20px 0 0;
   box-shadow: 0 0 10px rgba(28, 29, 37, 0.26);
+  //flex-grow: 0;
 
   .header {
     display: flex;
     align-items: flex-end;
     padding-left: 10%;
     gap: 10px;
-    width: 315px;
+    //width: 315px;
     height: 50px;
     margin-bottom: 30px;
 
@@ -109,5 +111,14 @@
     width: 20px;
     height: 20px;
   }
+
+  @media screen and (max-width: $width-menu) {
+
+    & {
+      display: none;
+    }
+
+  }
+
 }
 

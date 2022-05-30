@@ -3,49 +3,39 @@
 
 .container {
   @include container();
-  width: auto;
+  width: 100%;
   min-height: 300px;
   flex-direction: row;
+  justify-content: space-between;
   align-items: flex-start;
-  padding-top: 20px;
+  height: auto;
 
   .preview {
     @include container();
+    width: 70%;
 
     h1 {
-      height: 58px;
-
       font-family: 'IBM Plex Sans', sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 48px;
       line-height: 120%;
 
-      display: flex;
-      align-items: center;
-
       color: $dark;
     }
 
     h3 {
-
-      height: 94px;
-
       font-family: 'IBM Plex Sans', sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 36px;
-      line-height: 47px;
-      display: flex;
-      align-items: center;
+      line-height: 120%;
 
       color: $green;
     }
   }
 
   .text {
-
-    width: 558px;
 
     font-family: 'IBM Plex Sans', sans-serif;
     font-style: normal;
@@ -60,7 +50,27 @@
   }
 
   .image {
-    max-width: 30%;
-    max-height: 350px;
+    width: 40%;
+    min-width: 200px;
+    left: 65%;
   }
+
+  @media screen and (max-width: $width-page) {
+
+    & {
+
+      .preview {
+        h1 {
+          font-size: 24px;
+        }
+
+        h3 {
+          font-size: 18px;
+        }
+      }
+
+    }
+  }
+
+
 }

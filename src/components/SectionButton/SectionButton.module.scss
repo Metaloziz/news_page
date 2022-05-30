@@ -2,10 +2,7 @@
 @import "src/styles/mixin";
 
 .container {
-  //font-size: 16px;
   color: $gray;
-  //font-family: inherit;
-  //font-weight: 500;
   cursor: pointer;
   position: relative;
   border: none;
@@ -20,18 +17,6 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 23px;
-
-  /* Gray */
-
-  //color: #8E8E92;
-
-
-  /* Inside auto layout */
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-
 
   &:focus, &:hover {
     color: $dark;
