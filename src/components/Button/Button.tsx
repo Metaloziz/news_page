@@ -7,11 +7,12 @@ export type DefaultButtonPropsType = DetailedHTMLProps<
   HTMLButtonElement
 >
 export type ButtonCommonType = DefaultButtonPropsType & {
-  name: string
+  name: string // если передать пустую строку, можно вместо имени передать иконку как children
 }
 
 export const Button: FC<ButtonCommonType> = ({ name, ...restProps }) => (
   <button className={style.item} type="button" {...restProps}>
-    {name}
+    <span>{name}</span>
+    {restProps.children}
   </button>
 )

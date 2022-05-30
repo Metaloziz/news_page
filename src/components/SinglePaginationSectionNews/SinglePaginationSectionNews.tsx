@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 
 import style from './SinglePaginationSectionNews.module.scss'
 
+import arrow from 'assets/images/common/arrow.svg'
 import { Button } from 'components/Button/Button'
 import { FIRST_PAGE_PAGINATION } from 'constants/constants'
 import {
@@ -29,12 +30,24 @@ export const SinglePaginationSectionNews: FC = () => {
   return (
     <div className={style.container}>
       <Button
-        name="<<"
+        name=""
         onClick={setPreviousPage}
         disabled={pageNumber === FIRST_PAGE_PAGINATION}
-      />
-      <h3>page number: {pageNumber}</h3>
-      <Button name=">>" onClick={setNextPage} disabled={pageNumber === pagesCount} />
+        className={style.leftButton}
+      >
+        <img alt="" src={arrow} />
+      </Button>
+      <h4>
+        {pageNumber} / {pagesCount}
+      </h4>
+      <Button
+        name=""
+        onClick={setNextPage}
+        disabled={pageNumber === pagesCount}
+        className={style.rightButton}
+      >
+        <img alt="" src={arrow} />
+      </Button>
     </div>
   )
 }

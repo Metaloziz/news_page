@@ -3,5 +3,47 @@
 
 .container {
   @include container();
+  justify-content: center;
+  align-items: center;
   flex-direction: row;
+
+  h4 {
+    color: $gray;
+  }
+
+
+  Button {
+    height: 40px;
+    width: 35px;
+    padding: 0;
+    min-height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: unset;
+    cursor: pointer;
+    font-weight: 900;
+    color: $gray;
+
+    img {
+      width: 20px;
+      height: 20px;
+      opacity: 50%;
+    }
+
+    &:disabled {
+      img {
+        opacity: 15%;
+      }
+    }
+  }
+
+  .leftButton {
+    transform: rotate(90deg);
+  }
+
+  .rightButton {
+    transform: rotate(-90deg);
+  }
 }

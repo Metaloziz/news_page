@@ -72,9 +72,11 @@
   .footerText {
     color: $gray;
     margin: 15px 0 15px 25px;
+  }
 
-    &:hover {
-      color: $green;
+  &:hover {
+    .footerText {
+      color: $green
     }
   }
 }

@@ -2,7 +2,9 @@ import { FC } from 'react'
 
 import { useSelector } from 'react-redux'
 
+import arrow from 'assets/images/common/arrow.svg'
 import { Button } from 'components/Button/Button'
+import style from 'components/SinglePaginationSectionNews/SinglePaginationSectionNews.module.scss'
 import { FIRST_PAGE_PAGINATION } from 'constants/constants'
 import {
   setNextPageSearchNewsAC,
@@ -28,14 +30,26 @@ export const SinglePaginationSearchNews: FC = () => {
   }
 
   return (
-    <div>
+    <div className={style.container}>
       <Button
-        name="<<"
+        name=""
         onClick={setPreviousPage}
         disabled={pageNumber === FIRST_PAGE_PAGINATION}
-      />
-      <h3>page number Search news: {pageNumber}</h3>
-      <Button name=">>" onClick={setNextPage} disabled={pageNumber === pagesCount} />
+        className={style.leftButton}
+      >
+        <img alt="" src={arrow} />
+      </Button>
+      <h4>
+        {pageNumber} / {pagesCount}
+      </h4>
+      <Button
+        name=""
+        onClick={setNextPage}
+        disabled={pageNumber === pagesCount}
+        className={style.rightButton}
+      >
+        <img alt="" src={arrow} />
+      </Button>
     </div>
   )
 }

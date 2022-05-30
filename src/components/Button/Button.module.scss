@@ -26,7 +26,12 @@
   width: auto;
 
   &:disabled {
-    background-color: gray;
+    background-color: $gray2;
+    box-shadow: none;
+
+    &:hover {
+      transform: none;
+    }
   }
 
   &:hover {

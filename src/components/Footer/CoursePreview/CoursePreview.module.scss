@@ -16,12 +16,21 @@
     color: $back;
   }
 
-  h1 {
-    margin-bottom: 30px;
+  h2 {
+    margin-bottom: 10px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 47px;
+
+    color: $back_card;
+
+    display: flex;
+    align-items: center;
   }
 
   div {
-    @include textColumns(6, 16px);
+    @include textColumns(5, 16px);
     margin-bottom: 10px;
   }
 
