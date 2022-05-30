@@ -35,9 +35,9 @@ export const Menu: FC = () => {
         <p>Education complex</p>
       </div>
       <div className={style.menuItems}>{menuItems}</div>
-      <div>новости</div>
-      <h4>режим админа:</h4>
-      <span>вкл\выкл</span> <input type="checkbox" onClick={switchIsAdminMode} />
+      <h4>
+        режим админа: вкл\выкл <input type="checkbox" onClick={switchIsAdminMode} />
+      </h4>
       <Contacts />
     </div>
   )

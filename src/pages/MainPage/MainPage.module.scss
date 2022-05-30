@@ -3,7 +3,7 @@
 
 .container {
   @include container();
-  margin: 0;
+  margin: 10px;
   width: 70vw;
   gap: 20px;
 }
