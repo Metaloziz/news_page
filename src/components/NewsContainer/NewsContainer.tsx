@@ -15,13 +15,12 @@ import {
   selectCurrentPageSearchNews,
   selectIdActiveSection,
   selectIsAdminMode,
-  selectNews,
   selectNewsTypeView,
   selectNumberPage,
-  selectPartSearchNews,
 } from 'store/selectors'
-import { useAppDispatch } from 'store/store'
+import { RootState, useAppDispatch } from 'store/store'
 import { addNewsViewsValueTC, deleteNewsTC, getNewsPartTC } from 'store/thunks'
+import { NewsType } from 'store/types'
 
 export const NewsContainer: FC = () => {
   const dispatch = useAppDispatch()
@@ -30,10 +29,9 @@ export const NewsContainer: FC = () => {
 
   const viewMode = useSelector(selectNewsTypeView)
 
-  const allNews =
-    viewMode === NEWS_BY_SECTIONS
-      ? useSelector(selectNews)
-      : useSelector(selectPartSearchNews)
+  const allNews = useSelector<RootState, NewsType[]>(state =>
+    viewMode === NEWS_BY_SECTIONS ? state.sectionNews.news : state.searchNews.news,
+  )
 
   const pageNumber = useSelector(selectNumberPage)
   const activeSection = useSelector(selectIdActiveSection)
