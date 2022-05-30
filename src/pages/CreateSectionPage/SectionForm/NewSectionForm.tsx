@@ -18,7 +18,11 @@ export const NewSectionForm: FC<SectionFormPropsType> = ({
   mode,
   sections,
 }) => {
-  const { register, handleSubmit } = useForm<SectionType>()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SectionType>({ mode: 'onChange' })
 
   const onSubmit: SubmitHandler<SectionType> = data => {
     setSectionData({ ...data, id: Number(data.id) })
@@ -42,7 +46,15 @@ export const NewSectionForm: FC<SectionFormPropsType> = ({
     <form onSubmit={handleSubmit(onSubmit)} className={style.container}>
       <div>
         <label>Имя секции</label>
-        <input {...register('name')} placeholder="имя" required />
+        <input
+          {...register('name', {
+            maxLength: { value: 15, message: '15 символов максимум' },
+            minLength: { value: 3, message: '3 символа минимум' },
+            required: { value: true, message: 'обязательное поле' },
+          })}
+          placeholder="имя"
+        />
+        <p>{errors.name?.message}</p>
       </div>
       {select}
       <Button name="отправить" type="submit" />

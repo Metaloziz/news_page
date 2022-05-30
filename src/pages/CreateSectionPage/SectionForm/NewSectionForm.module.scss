@@ -10,4 +10,10 @@
     @include labelStyle();
     width: 100%;
   }
+
+  p {
+    color: $accent;
+    font-weight: 500;
+    margin-left: 10px;
+  }
 }

@@ -5,13 +5,19 @@
 .main {
   @include displayContentCenter();
   justify-content: space-between;
+  width: 100%;
 
   .container {
     @include displayContentCenter();
+    align-items: flex-start;
     flex-wrap: wrap;
-    width: 45vw;
-    height: auto;
     justify-content: flex-start;
     gap: 10px;
+    width: 70%;
+
+    @media screen and (max-width: $width-menu) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 }

@@ -4,8 +4,7 @@
 .container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   min-width: 150px;
   height: auto;
   cursor: pointer;
@@ -16,10 +15,9 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 5px;
-    transform: translate(0, +60%); // отступ от заголовка
+    transform: translate(0, +5%); // отступ от заголовка
     margin-top: 15px;
     position: absolute;
-    width: 100%;
     height: auto;
     opacity: 0;
     background-color: $back;
@@ -38,7 +36,6 @@
     &.active {
       opacity: 1;
     }
-
   }
 
 
@@ -66,8 +63,5 @@
         opacity: 100%;
       }
     }
-
   }
-
-
 }
