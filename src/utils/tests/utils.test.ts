@@ -1,4 +1,4 @@
-import { separateAddress } from 'utils/utils'
+import { separateAddress } from 'utils/separate_address'
 
 let someString: string
 let separator: string

@@ -5,9 +5,8 @@ import { useNavigate } from 'react-router-dom'
 
 import style from './Navigation.module.scss'
 
-import { NavigationSelect } from 'components/commonComponents/NavigationSelect'
-import { SearchField } from 'components/SearchField'
-import { SectionButton } from 'components/SectionButton/SectionButton'
+import { NavigationSelect, SearchField } from 'components/commonComponents'
+import { SectionButton } from 'components/SectionButton'
 import {
   FIRST_ARRAY_ITEM,
   NEWS_BY_SEARCHING,
@@ -15,12 +14,12 @@ import {
   SECOND_ARRAY_ITEM,
   THIRD_ARRAY_ITEM,
 } from 'constants/constants'
-import { Path } from 'enums/enums'
+import { Path } from 'enums'
 import { changeNewsTypeViewAC, setCurrentSectionAC, setFirstPageAC } from 'store/reducers'
 import { selectIdActiveSection, selectSections } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
 import { getPopularNewsTC, getSearchNewsTC } from 'store/thunks'
-import { getSelectSection } from 'utils/utils'
+import { getSelectSection } from 'utils/get_select_section'
 
 export const Navigation: FC = () => {
   const dispatch = useAppDispatch()

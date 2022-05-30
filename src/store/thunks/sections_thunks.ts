@@ -4,7 +4,7 @@ import { sectionsRequests } from 'api/sectionsRequests'
 import { StatusCode } from 'enums/enums'
 import { ResponseErrorType } from 'store/types/response_error_type'
 import { SectionType } from 'store/types/section_type'
-import { setError } from 'utils/utils'
+import { setThunkError } from 'utils/set_thunk_error'
 
 export const getSectionsTC = createAsyncThunk(
   'sections/getSectionsTC',
@@ -13,7 +13,7 @@ export const getSectionsTC = createAsyncThunk(
       const { data } = await sectionsRequests.getSections()
       return data.Data
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
+      setThunkError(dispatch, error as ResponseErrorType)
     }
   },
 )
@@ -29,7 +29,7 @@ export const postSectionsTC = createAsyncThunk(
         return { id, name }
       }
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
+      setThunkError(dispatch, error as ResponseErrorType)
     }
   },
 )
@@ -44,7 +44,7 @@ export const deleteSectionTC = createAsyncThunk(
         return data.id
       }
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
+      setThunkError(dispatch, error as ResponseErrorType)
     }
   },
 )
@@ -58,7 +58,7 @@ export const changeSectionTC = createAsyncThunk(
         return section
       }
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
+      setThunkError(dispatch, error as ResponseErrorType)
     }
   },
 )

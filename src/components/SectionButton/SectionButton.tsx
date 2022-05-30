@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 import style from './SectionButton.module.scss'
 
-import { ButtonCommonType } from 'components/Button/Button'
+import { ButtonCommonType } from 'store/types'
 
 type SectionButtonPropsType = ButtonCommonType & {
   isActive: boolean

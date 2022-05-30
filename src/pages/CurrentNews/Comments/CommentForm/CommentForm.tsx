@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 
 import style from './CommentForm.module.scss'
 
-import { Button } from 'components/Button/Button'
+import { Button } from 'components/commonComponents/Button/Button'
 import { CommentType } from 'store/types'
 
 export type CommentFormType = Pick<CommentType, 'author' | 'text'>

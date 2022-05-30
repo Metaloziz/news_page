@@ -1,8 +1,8 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 import style from './DeleteButton.module.scss'
 
-import { DefaultButtonPropsType } from 'components/Button/Button'
+import { DefaultButtonPropsType } from 'store/types'
 
 export const DeleteButton: FC<DefaultButtonPropsType> = ({ ...props }) => (
   <button type="button" className={style.container} {...props}>

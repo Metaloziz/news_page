@@ -1,9 +1,9 @@
 import { FC } from 'react'
 
-import { DeleteButton } from 'components/DeleteButton/DeleteButton'
+import { DeleteButton } from 'components'
 import style from 'pages/CreateSectionPage/Section/Section.module.scss'
-import { SectionType } from 'store/types/section_type'
-import { isDisable } from 'utils/utils'
+import { SectionType } from 'store/types'
+import { isProtectedSection } from 'utils/is_protected_section'
 
 type SectionPropsType = {
   section: SectionType
@@ -21,7 +21,7 @@ export const Section: FC<SectionPropsType> = ({
         </span>
       </div>
       <DeleteButton
-        disabled={!isDisable(id)}
+        disabled={!isProtectedSection(id)}
         name="удалить"
         onClick={() => deleteSection(id)}
       />

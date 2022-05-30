@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { commentsRequests, PostCommentPayloadType } from 'api/commentsRequests'
 import { ResponseErrorType } from 'store/types/response_error_type'
-import { setError } from 'utils/utils'
+import { setThunkError } from 'utils/set_thunk_error'
 
 export const getCommentsNewsTC = createAsyncThunk(
   'comments/getCommentsNewsTC',
@@ -11,7 +11,7 @@ export const getCommentsNewsTC = createAsyncThunk(
       const { data } = await commentsRequests.getComments(newsId)
       return data.data
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
+      setThunkError(dispatch, error as ResponseErrorType)
     }
   },
 )
@@ -24,7 +24,7 @@ export const deleteCommentTC = createAsyncThunk(
         return data.id
       }
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
+      setThunkError(dispatch, error as ResponseErrorType)
     }
   },
 )
@@ -37,7 +37,7 @@ export const getCurrentCommentTC = createAsyncThunk(
         return data
       }
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
+      setThunkError(dispatch, error as ResponseErrorType)
     }
   },
 )
@@ -48,7 +48,7 @@ export const postCommentTC = createAsyncThunk(
       const { data } = await commentsRequests.postComment(comment)
       dispatch(getCurrentCommentTC(data.id)) // потом улучшить, чтобы не было запроса
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
+      setThunkError(dispatch, error as ResponseErrorType)
     }
   },
 )

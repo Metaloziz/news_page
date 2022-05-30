@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
-import { Button } from 'components/Button/Button'
+import { Button } from 'components/commonComponents'
 
 type NavLinkComponentPropsType = {
   nameButton: string

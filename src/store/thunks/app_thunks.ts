@@ -4,7 +4,7 @@ import { commonDataRequests } from 'api/commonDataRequests'
 import { FIRST_ARRAY_ITEM } from 'constants/constants'
 import { StatusCode } from 'enums/enums'
 import { ResponseErrorType } from 'store/types/response_error_type'
-import { setError } from 'utils/utils'
+import { setThunkError } from 'utils/set_thunk_error'
 
 export const getCoursesTC = createAsyncThunk(
   'app/getCoursesTC',
@@ -15,7 +15,7 @@ export const getCoursesTC = createAsyncThunk(
         return data
       }
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
+      setThunkError(dispatch, error as ResponseErrorType)
     }
   },
 )
@@ -29,7 +29,7 @@ export const getContactsTC = createAsyncThunk(
         return data[FIRST_ARRAY_ITEM]
       }
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
+      setThunkError(dispatch, error as ResponseErrorType)
     }
   },
 )

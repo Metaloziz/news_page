@@ -1,8 +1,8 @@
 import { FC } from 'react'
 
 import style from './PopularNewsPreview.module.scss'
+import { PopularNewsPreviewBody } from './PopularNewsPreviewBody/PopularNewsPreviewBody'
 
-import { PopularNewsPreviewBody } from 'components/PopularNewsPreview/PopularNewsPreviewBody/PopularNewsPreviewBody'
 import { NewsType } from 'store/types'
 
 type PopularNewsPreviewPropsType = {

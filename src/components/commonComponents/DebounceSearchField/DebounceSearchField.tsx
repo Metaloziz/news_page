@@ -11,8 +11,8 @@ import {
   useState,
 } from 'react'
 
-import { DeBounceTimer } from 'enums/enums'
-import { useDebounce } from 'hooks/useDebounce'
+import { DeBounceTimer } from 'enums'
+import { useDebounce } from 'hooks'
 
 type DefaultInputPropsType = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,

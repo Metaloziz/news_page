@@ -2,7 +2,7 @@ import { FC, useCallback } from 'react'
 
 import style from './SearchField.module.scss'
 
-import { DebounceSearchField } from 'components/DebounceSearchField'
+import { DebounceSearchField } from 'components/commonComponents/DebounceSearchField'
 
 type SearchFieldPropsType = {
   getNewsByKeyWord: (keyWord: string) => void

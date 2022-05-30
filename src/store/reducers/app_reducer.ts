@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { NEWS_BY_SECTIONS } from 'constants/constants'
 import { getContactsTC, getCoursesTC } from 'store/thunks/app_thunks'
 import { InitialAppStateType } from 'store/types'
-import { separateAddress } from 'utils/utils'
+import { separateAddress } from 'utils/separate_address'
 
 const initialState: InitialAppStateType = {
   isError: false,

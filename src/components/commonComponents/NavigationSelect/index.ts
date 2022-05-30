@@ -1,1 +1,1 @@
-export { NavigationSelect } from 'components/commonComponents/NavigationSelect/NavigationSelect'
+export * from './NavigationSelect'

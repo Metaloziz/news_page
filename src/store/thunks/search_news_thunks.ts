@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { newsRequests } from 'api/newsRequests'
 import { StatusCode } from 'enums/enums'
 import { ResponseErrorType } from 'store/types/response_error_type'
-import { setError } from 'utils/utils'
+import { setThunkError } from 'utils/set_thunk_error'
 
 export const getSearchNewsTC = createAsyncThunk(
   'search_news/getSearchNewsTC',
@@ -18,7 +18,7 @@ export const getSearchNewsTC = createAsyncThunk(
         return Data
       }
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
+      setThunkError(dispatch, error as ResponseErrorType)
     }
   },
 )

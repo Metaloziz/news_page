@@ -2,18 +2,13 @@ import { FC } from 'react'
 
 import { useSelector } from 'react-redux'
 
+import style from '../SinglePaginationSectionNews/SinglePaginationSectionNews.module.scss'
+
 import arrow from 'assets/images/common/arrow.svg'
-import { Button } from 'components/Button/Button'
-import style from 'components/SinglePaginationSectionNews/SinglePaginationSectionNews.module.scss'
+import { Button } from 'components/commonComponents'
 import { FIRST_PAGE_PAGINATION } from 'constants/constants'
-import {
-  setNextPageSearchNewsAC,
-  setPreviewPageSearchNewsAC,
-} from 'store/reducers/search_news_reducer'
-import {
-  selectCountPageSearchNews,
-  selectCurrentPageSearchNews,
-} from 'store/selectors/searchNews'
+import { setNextPageSearchNewsAC, setPreviewPageSearchNewsAC } from 'store/reducers'
+import { selectCountPageSearchNews, selectCurrentPageSearchNews } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
 
 export const SinglePaginationSearchNews: FC = () => {

@@ -1,10 +1,11 @@
 import { FC, useEffect, useRef, useState, KeyboardEvent } from 'react'
 
+import style from './NavigationSelect.module.scss'
+
 import arrow from 'assets/images/common/arrow.svg'
-import style from 'components/commonComponents/NavigationSelect/NavigationSelect.module.scss'
-import { SectionButton } from 'components/SectionButton/SectionButton'
+import { SectionButton } from 'components/SectionButton'
 import { SectionType } from 'store/types'
-import { findIndexElement } from 'utils/utils'
+import { findIndexElement } from 'utils'
 
 type SelectType = {
   sections: SectionType[]

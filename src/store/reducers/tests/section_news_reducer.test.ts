@@ -10,7 +10,7 @@ import {
   getNewsPartTC,
 } from 'store/thunks'
 import { SectionNewsInitialStateType, NewsType } from 'store/types'
-import { findElement, findIndexElement } from 'utils/utils'
+import { findElement, findIndexElement } from 'utils/findIndex_element'
 
 const firstItem: number = 0
 const currentNewsId: number = 10

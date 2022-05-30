@@ -7,7 +7,7 @@ import style from './NewsContainer.module.scss'
 import { NewsPreview } from './NewsPreview'
 import { Pagination } from './Pagination/Pagination'
 
-import { NavLinkComponent } from 'components/NavlinkComponent'
+import { NavLinkComponent } from 'components/commonComponents'
 import { NEWS_BY_SECTIONS, POPULAR_SECTION_ID } from 'constants/constants'
 import { Path } from 'enums/enums'
 import { setCurrentNewsAC, setPartSearchNewsAC } from 'store/reducers'

@@ -5,13 +5,13 @@ import { useSelector } from 'react-redux'
 import style from './SinglePaginationSectionNews.module.scss'
 
 import arrow from 'assets/images/common/arrow.svg'
-import { Button } from 'components/Button/Button'
+import { Button } from 'components/commonComponents/Button/Button'
 import { FIRST_PAGE_PAGINATION } from 'constants/constants'
 import {
   setNextPageAC,
   setPreviousPageAC,
 } from 'store/reducers/single_pagination_reducer'
-import { selectCountPage, selectNumberPage } from 'store/selectors/singlePagination'
+import { selectCountPage, selectNumberPage } from 'store/selectors/single_pagination'
 import { useAppDispatch } from 'store/store'
 
 export const SinglePaginationSectionNews: FC = () => {

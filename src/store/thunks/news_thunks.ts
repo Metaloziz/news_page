@@ -6,7 +6,7 @@ import { setErrorTrueAC } from 'store/reducers'
 import { setPagesCountAC } from 'store/reducers/single_pagination_reducer'
 import { RootState } from 'store/store'
 import { ResponseErrorType } from 'store/types/response_error_type'
-import { setError } from 'utils/utils'
+import { setThunkError } from 'utils/set_thunk_error'
 
 export const getNewsPartTC = createAsyncThunk(
   'section_news/getNewsPartTC',
@@ -27,7 +27,7 @@ export const getNewsPartTC = createAsyncThunk(
       }
       dispatch(setErrorTrueAC(Error.EMPTY_NEWS))
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
+      setThunkError(dispatch, error as ResponseErrorType)
       return null
     }
   },
@@ -44,7 +44,7 @@ export const getNewsByIdTC = createAsyncThunk(
       }
       return null
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
+      setThunkError(dispatch, error as ResponseErrorType)
       return null
     }
   },
@@ -62,7 +62,7 @@ export const deleteNewsTC = createAsyncThunk(
 
       return null
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
+      setThunkError(dispatch, error as ResponseErrorType)
       return null
     }
   },
@@ -77,7 +77,7 @@ export const addNewsViewsValueTC = createAsyncThunk(
         return data.id
       }
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
+      setThunkError(dispatch, error as ResponseErrorType)
     }
   },
 )
@@ -91,7 +91,7 @@ export const postNewsTC = createAsyncThunk(
         // dispatch(getNewsByIdTC(response.data.id)) // пока не нужно
       }
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
+      setThunkError(dispatch, error as ResponseErrorType)
     }
   },
 )

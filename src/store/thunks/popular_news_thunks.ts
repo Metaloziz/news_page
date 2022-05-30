@@ -4,7 +4,7 @@ import { newsRequests } from 'api/newsRequests'
 import { StatusCode } from 'enums/enums'
 import { getSearchNewsTC } from 'store/thunks/search_news_thunks'
 import { ResponseErrorType } from 'store/types'
-import { setError } from 'utils/utils'
+import { setThunkError } from 'utils/set_thunk_error'
 
 export const getPopularNewsTC = createAsyncThunk(
   'search_news/getPopularNewsTC',
@@ -18,7 +18,7 @@ export const getPopularNewsTC = createAsyncThunk(
         dispatch(getSearchNewsTC.fulfilled(Data, '', ''))
       }
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
+      setThunkError(dispatch, error as ResponseErrorType)
     }
   },
 )

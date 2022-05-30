@@ -13,7 +13,7 @@ import { selectSections } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
 import { changeSectionTC, deleteSectionTC, postSectionsTC } from 'store/thunks'
 import { SectionType } from 'store/types'
-import { isDisable } from 'utils/utils'
+import { isProtectedSection } from 'utils/is_protected_section'
 
 export const CreateSectionPage: FC = () => {
   const dispatch = useAppDispatch()
@@ -25,7 +25,7 @@ export const CreateSectionPage: FC = () => {
   }, [])
 
   const changeSection = useCallback((section: SectionType): void => {
-    if (isDisable(section.id)) {
+    if (isProtectedSection(section.id)) {
       dispatch(changeSectionTC(section))
       return
     }
@@ -33,7 +33,7 @@ export const CreateSectionPage: FC = () => {
   }, [])
 
   const deleteSection = useCallback((sectionId: number): void => {
-    if (isDisable(sectionId)) {
+    if (isProtectedSection(sectionId)) {
       dispatch(deleteSectionTC(sectionId))
       return
     }

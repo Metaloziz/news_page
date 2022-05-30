@@ -4,17 +4,16 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux'
 
 import style from './CreateNewsPage.module.scss'
+import { NewsBodyForm } from './NewsBodyForm/NewsBodyForm'
+import { SelectOptions } from './SelectOptions/SelectOptions'
 
-import { Button, NavLinkComponent } from 'components'
-import { BlockCheckbox } from 'components/commonComponents/BlockCheckbox/BlockCheckbox'
+import { BlockCheckbox, Button, NavLinkComponent } from 'components'
 import { Path } from 'enums/enums'
-import { NewsBodyForm } from 'pages/CreateNewsPage/NewsBodyForm/NewsBodyForm'
-import { SelectOptions } from 'pages/CreateNewsPage/SelectOptions/SelectOptions'
 import { selectSections } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
 import { postNewsTC } from 'store/thunks'
 import { FormType } from 'store/types'
-import { todayDate } from 'utils/utils'
+import { todayDate } from 'utils/today_date'
 
 export const CreateNewsPage: FC = () => {
   const dispatch = useAppDispatch()

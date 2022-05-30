@@ -5,7 +5,7 @@ import { StatusCode } from 'enums/enums'
 import { setCurrentNewsAC } from 'store/reducers'
 import { RootState } from 'store/store'
 import { ResponseErrorType } from 'store/types'
-import { setError } from 'utils/utils'
+import { setThunkError } from 'utils/set_thunk_error'
 
 export const updateNewsTC = createAsyncThunk(
   'current_news/updateNewsTC',
@@ -20,7 +20,7 @@ export const updateNewsTC = createAsyncThunk(
         dispatch(setCurrentNewsAC({ ...currentNews, ...news.body }))
       }
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
+      setThunkError(dispatch, error as ResponseErrorType)
     }
   },
 )

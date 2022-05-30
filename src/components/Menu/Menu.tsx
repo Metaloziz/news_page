@@ -3,9 +3,9 @@ import { FC } from 'react'
 import { useSelector } from 'react-redux'
 
 import style from './Menu.module.scss'
+import { MenuItem } from './MenuItem/MenuItem'
 
-import { Contacts } from 'components/Contacts/Contacts'
-import { MenuItem } from 'components/Menu/MenuItem/MenuItem'
+import { Contacts } from 'components/Contacts'
 import { menuNames } from 'constants/menuNames/menuNames'
 import { changeIsAdminModeAC } from 'store/reducers'
 import { selectIsAdminMode } from 'store/selectors'

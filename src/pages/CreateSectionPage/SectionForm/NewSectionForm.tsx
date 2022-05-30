@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 
 import style from './NewSectionForm.module.scss'
 
-import { Button } from 'components/Button/Button'
+import { Button } from 'components/commonComponents/Button/Button'
 import { SectionType } from 'store/types/section_type'
 
 type SectionFormPropsType = {

@@ -9,7 +9,7 @@ import {
 } from 'store/thunks/sections_thunks'
 import { SectionsInitialStateType } from 'store/types'
 import { SectionType } from 'store/types/section_type'
-import { findIndexElement } from 'utils/utils'
+import { findIndexElement } from 'utils/findIndex_element'
 
 const initialState: SectionsInitialStateType = {
   sections: [{ id: 0, name: 'Все новости' }],

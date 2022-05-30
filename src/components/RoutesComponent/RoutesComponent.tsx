@@ -2,9 +2,14 @@ import { FC } from 'react'
 
 import { Navigate, Route, Routes } from 'react-router-dom'
 
-import { Path } from 'enums/enums'
-import { CreateNewsPage, CreateSectionPage, CurrentNews, MainPage } from 'pages'
-import { ChangeNewsPage } from 'pages/ChangeNewsPage/ChangeNewsPage'
+import { Path } from 'enums'
+import {
+  ChangeNewsPage,
+  CreateNewsPage,
+  CreateSectionPage,
+  CurrentNews,
+  MainPage,
+} from 'pages'
 
 export const RoutesComponent: FC = () => (
   <Routes>
