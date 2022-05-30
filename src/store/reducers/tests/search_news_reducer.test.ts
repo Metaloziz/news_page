@@ -122,7 +122,6 @@ describe('search news reducer', () => {
     const pageCount = Math.ceil(newsData.length / NEWS_ON_PAGE)
 
     expect(endState.news).toBe(newsData)
-    expect(endState.partNews.length).toBe(NEWS_ON_PAGE)
     expect(endState.pageCount).toBe(pageCount)
   })
 
