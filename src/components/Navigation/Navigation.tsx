@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from 'react'
+import { FC } from 'react'
 
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -16,6 +16,7 @@ import {
   THIRD_ARRAY_ITEM,
 } from 'constants/constants'
 import { Path } from 'enums'
+import { useElementWidth } from 'hooks'
 import { changeNewsTypeViewAC, setCurrentSectionAC, setFirstPageAC } from 'store/reducers'
 import { selectIdActiveSection, selectSections } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
@@ -30,21 +31,8 @@ export const Navigation: FC = () => {
 
   const sections = useSelector(selectSections)
   const activeSection = useSelector(selectIdActiveSection)
-  const [isDesktopView, setIsDesktopView] = useState<boolean>(true)
 
-  const ref: any = useRef()
-
-  const observer = useRef(
-    new ResizeObserver(entries => {
-      const { width } = entries[FIRST_ARRAY_ITEM].contentRect
-      const resul = width > DESCKTOP_WIDTH
-      setIsDesktopView(resul)
-    }),
-  )
-
-  useEffect(() => {
-    observer.current.observe(ref.current)
-  }, [ref, observer, sections])
+  const [ref, isDescktopWidth] = useElementWidth(DESCKTOP_WIDTH)
 
   const isActiveSection = (id: number): boolean => id === activeSection
 
@@ -77,7 +65,7 @@ export const Navigation: FC = () => {
 
   let OTHER_SECTION: SectionType | undefined
 
-  if (isDesktopView) {
+  if (isDescktopWidth) {
     ALL_SECTION = sections[FIRST_ARRAY_ITEM]
     POPULAR_SECTION = sections[SECOND_ARRAY_ITEM]
     ITEC_SECTION = sections[THIRD_ARRAY_ITEM]
