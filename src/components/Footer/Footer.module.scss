@@ -3,7 +3,22 @@
 
 .container {
   @include displayContentCenter();
+  flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
   flex-wrap: wrap;
+  width: 100%;
+  gap: 70px;
+  border: #ad4242 2px solid;
+  align-self: stretch;
+}
+
+@media screen and (max-width: $news_container_width) {
+
+  .container {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
 }

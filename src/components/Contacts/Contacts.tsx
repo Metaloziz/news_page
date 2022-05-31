@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 import { useSelector } from 'react-redux'
 
@@ -44,7 +44,7 @@ export const Contacts: FC = () => {
         <Link href={socialViber} src={viber} />
       </div>
       <span>Или звоните:</span>
-      <div>{phone}</div>
+      <div className={style.phone}>{phone}</div>
       <div className={style.footer}> © ITEC, 2022</div>
     </div>
   )

@@ -4,9 +4,17 @@
 .container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   flex-basis: 400px;
   padding: 2% 1% 5% 2%;
   flex-grow: 10;
-  //gap: 20px;
+
+  Footer {
+    .container {
+      align-self: stretch;
+    }
+
+    align-self: stretch;
+  }
 }
 
