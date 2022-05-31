@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -8,6 +8,7 @@ import style from './Navigation.module.scss'
 import { NavigationSelect, SearchField } from 'components/commonComponents'
 import { SectionButton } from 'components/SectionButton'
 import {
+  DESCKTOP_WIDTH,
   FIRST_ARRAY_ITEM,
   NEWS_BY_SEARCHING,
   NEWS_BY_SECTIONS,
@@ -19,6 +20,7 @@ import { changeNewsTypeViewAC, setCurrentSectionAC, setFirstPageAC } from 'store
 import { selectIdActiveSection, selectSections } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
 import { getPopularNewsTC, getSearchNewsTC } from 'store/thunks'
+import { SectionType } from 'store/types'
 import { getSelectSection } from 'utils/get_select_section'
 
 export const Navigation: FC = () => {
@@ -28,8 +30,23 @@ export const Navigation: FC = () => {
 
   const sections = useSelector(selectSections)
   const activeSection = useSelector(selectIdActiveSection)
+  const [isDesktopView, setIsDesktopView] = useState<boolean>(true)
 
-  const isActiveStyle = (id: number): boolean => id === activeSection
+  const ref: any = useRef()
+
+  const observer = useRef(
+    new ResizeObserver(entries => {
+      const { width } = entries[FIRST_ARRAY_ITEM].contentRect
+      const resul = width > DESCKTOP_WIDTH
+      setIsDesktopView(resul)
+    }),
+  )
+
+  useEffect(() => {
+    observer.current.observe(ref.current)
+  }, [ref, observer, sections])
+
+  const isActiveSection = (id: number): boolean => id === activeSection
 
   const setCurrentSection = (sectionId: number): void => {
     navigate(Path.MAIN)
@@ -52,36 +69,48 @@ export const Navigation: FC = () => {
     dispatch(changeNewsTypeViewAC(NEWS_BY_SEARCHING))
   }
 
-  const ALL_SECTION = sections[FIRST_ARRAY_ITEM]
-  const POPULAR_SECTION = sections[SECOND_ARRAY_ITEM]
-  const ITEC_SECTION = sections[THIRD_ARRAY_ITEM]
+  let ALL_SECTION: SectionType | undefined
+  let POPULAR_SECTION: SectionType | undefined
+  let ITEC_SECTION: SectionType | undefined
 
-  const SELECT_SECTION = getSelectSection(sections)
+  let SELECT_SECTION: SectionType[] | undefined = sections
 
-  const OTHER_SECTION = SELECT_SECTION.pop()
+  let OTHER_SECTION: SectionType | undefined
+
+  if (isDesktopView) {
+    ALL_SECTION = sections[FIRST_ARRAY_ITEM]
+    POPULAR_SECTION = sections[SECOND_ARRAY_ITEM]
+    ITEC_SECTION = sections[THIRD_ARRAY_ITEM]
+
+    SELECT_SECTION = getSelectSection(sections)
+
+    OTHER_SECTION = SELECT_SECTION.pop()
+  }
 
   return (
-    <div className={style.main}>
+    <div className={style.main} ref={ref}>
       <div className={style.container}>
-        <SectionButton
-          isActive={isActiveStyle(ALL_SECTION.id)}
-          name={ALL_SECTION.name}
-          onClick={() => setCurrentSection(ALL_SECTION.id)}
-        />
-
-        {POPULAR_SECTION && (
+        {!!ALL_SECTION && (
           <SectionButton
-            isActive={isActiveStyle(POPULAR_SECTION.id)}
+            isActive={isActiveSection(ALL_SECTION.id)}
+            name={ALL_SECTION.name}
+            onClick={() => setCurrentSection(ALL_SECTION!.id)}
+          />
+        )}
+
+        {!!POPULAR_SECTION && (
+          <SectionButton
+            isActive={isActiveSection(POPULAR_SECTION.id)}
             name={POPULAR_SECTION.name}
-            onClick={() => setPopularNews(POPULAR_SECTION.id)}
+            onClick={() => setPopularNews(POPULAR_SECTION!.id)}
           />
         )}
 
         {ITEC_SECTION && (
           <SectionButton
-            isActive={isActiveStyle(ITEC_SECTION.id)}
+            isActive={isActiveSection(ITEC_SECTION.id)}
             name={ITEC_SECTION.name}
-            onClick={() => setCurrentSection(ITEC_SECTION.id)}
+            onClick={() => setCurrentSection(ITEC_SECTION!.id)}
           />
         )}
 
@@ -94,8 +123,8 @@ export const Navigation: FC = () => {
         {OTHER_SECTION && (
           <SectionButton
             name={OTHER_SECTION.name}
-            isActive={isActiveStyle(OTHER_SECTION.id)}
-            onClick={() => setCurrentSection(OTHER_SECTION.id)}
+            isActive={isActiveSection(OTHER_SECTION.id)}
+            onClick={() => setCurrentSection(OTHER_SECTION!.id)}
           />
         )}
       </div>

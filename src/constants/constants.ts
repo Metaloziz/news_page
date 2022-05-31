@@ -23,3 +23,6 @@ export const COURSES_URL = 'https://itec.pythonanywhere.com/#upcoming__title'
 export const FIRST_ARRAY_ITEM = 0
 export const SECOND_ARRAY_ITEM = 1
 export const THIRD_ARRAY_ITEM = 2
+
+// max desktop width
+export const DESCKTOP_WIDTH = 800
