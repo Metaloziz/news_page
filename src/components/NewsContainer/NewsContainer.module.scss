@@ -7,18 +7,17 @@
   align-items: center;
   margin-bottom: 30px;
   max-width: 1200px;
-  border: #B00D23 1px solid;
 
   .body {
-    @include displayContentCenter();
+    display: flex;
     flex-wrap: wrap;
-    gap: 10px;
     row-gap: 20px;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     width: 100%;
     margin-bottom: 20px;
   }
+
 
   @media screen and (max-width: $news_container_width) {
     .body {

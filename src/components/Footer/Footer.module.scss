@@ -4,13 +4,10 @@
 .container {
   @include displayContentCenter();
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   width: 100%;
-  gap: 70px;
-  border: #ad4242 2px solid;
-  align-self: stretch;
 }
 
 @media screen and (max-width: $news_container_width) {
@@ -20,5 +17,4 @@
     align-items: center;
     gap: 10px;
   }
-
 }
