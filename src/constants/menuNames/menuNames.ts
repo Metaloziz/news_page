@@ -17,15 +17,26 @@ export type MenuItemsType = {
   fire?: string
 }
 
+const BASE_URL = 'https://itec.pythonanywhere.com/'
+
 export const menuNames: MenuItemsType[] = [
-  { name: 'Главная', link: '', icon: main },
-  { name: 'Католог курсов', link: '', icon: courses },
-  { name: 'Процесс обучения', link: '', icon: processLeading },
-  { name: 'StartWork', link: '', icon: startWork, fire },
-  { name: 'Ближайшие старты групп', link: '', icon: start, fire },
-  { name: 'Преподаватели', link: '', icon: teacher },
-  { name: 'Что такое ITEC ?', link: '', icon: about },
-  { name: 'Библиотека', link: '', icon: library },
-  { name: 'IT - новости', link: '', icon: news },
-  { name: 'Блог', link: '', icon: blog },
+  { name: 'Главная', link: `${BASE_URL}`, icon: main },
+  { name: 'Католог курсов', link: `${BASE_URL}#catalog`, icon: courses },
+  {
+    name: 'Процесс обучения',
+    link: `${BASE_URL}#learning_process`,
+    icon: processLeading,
+  },
+  { name: 'StartWork', link: `${BASE_URL}#start_work`, icon: startWork, fire },
+  {
+    name: 'Ближайшие старты групп',
+    link: `${BASE_URL}#upcoming_group_starts`,
+    icon: start,
+    fire,
+  },
+  { name: 'Преподаватели', link: `${BASE_URL}#our_teachers`, icon: teacher },
+  { name: 'Что такое ITEC ?', link: `${BASE_URL}#what_itec`, icon: about },
+  { name: 'Библиотека', link: `${BASE_URL}#library`, icon: library },
+  { name: 'IT - новости', link: `${BASE_URL}#news`, icon: news },
+  { name: 'Блог', link: `${BASE_URL}#blog`, icon: blog },
 ]

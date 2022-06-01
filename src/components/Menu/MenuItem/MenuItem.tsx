@@ -8,12 +8,14 @@ type MenuItemPropsType = {
   item: MenuItemsType
 }
 
-export const MenuItem: FC<MenuItemPropsType> = ({ item: { name, fire, icon } }) => (
-  <div className={style.item}>
-    <img className={style.icon} alt="icon" src={icon} />
-    <span>
-      {name}
-      {fire && <img className={style.fire} alt="fire" src={fire} />}
-    </span>
-  </div>
+export const MenuItem: FC<MenuItemPropsType> = ({ item: { name, fire, icon, link } }) => (
+  <a href={link}>
+    <div className={style.item}>
+      <img className={style.icon} alt="icon" src={icon} />
+      <span>
+        {name}
+        {fire && <img className={style.fire} alt="fire" src={fire} />}
+      </span>
+    </div>
+  </a>
 )
