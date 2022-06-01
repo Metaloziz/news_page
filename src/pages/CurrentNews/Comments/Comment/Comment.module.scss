@@ -6,6 +6,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   min-height: 100px;
+  max-width: 500px;
   margin-bottom: 10px;
 
   img {
@@ -20,21 +21,39 @@
     justify-content: flex-start;
     align-items: flex-start;
     width: 100%;
-    gap: 20%;
+    gap: 20px;
     margin-left: 3%;
 
     div {
-      @include displayContentCenter();
-      flex-direction: row;
-      width: auto;
-      column-gap: 20%;
+      display: flex;
+      justify-content: flex-start;
+      gap: 20%;
+      width: 30%;
+
+      h4 {
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 120%;
+        color: $dark;
+      }
 
       span {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
         color: $gray;
         width: 180px;
+        text-align: start;
       }
     }
 
+    p {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 130%;
+    }
   }
-
 }

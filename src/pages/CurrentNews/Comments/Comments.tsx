@@ -46,15 +46,17 @@ export const Comments: FC<CommentsPropsType> = memo(({ newsId }) => {
 
   return (
     <div className={style.container}>
-      <h2>Comments:</h2>
-      {comments.map(comment => (
-        <Comment
-          key={comment.id}
-          comment={comment}
-          deleteComment={deleteComment}
-          isAdmin={isAdmin}
-        />
-      ))}
+      <h3>Комментарии:</h3>
+      <div className={style.body}>
+        {comments.map(comment => (
+          <Comment
+            key={comment.id}
+            comment={comment}
+            deleteComment={deleteComment}
+            isAdmin={isAdmin}
+          />
+        ))}
+      </div>
       <CommentForm postComment={postComment} />
     </div>
   )

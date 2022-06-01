@@ -17,6 +17,7 @@
     font-weight: 600;
     font-size: 24px;
     line-height: 120%;
+    color: $gray;
   }
 
   .news {
@@ -63,6 +64,13 @@
       font-weight: 500;
       width: 100%;
       margin-bottom: 5px;
+    }
+  }
+
+  @media screen and (max-width: $news_container_width) {
+
+    & {
+      display: none;
     }
   }
 }

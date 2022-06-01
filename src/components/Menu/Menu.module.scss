@@ -111,13 +111,11 @@
     height: 20px;
   }
 
-  @media screen and (max-width: $width-menu) {
+  @media screen and (max-width: $width_menu) {
 
     & {
       display: none;
     }
-
   }
-
 }
 

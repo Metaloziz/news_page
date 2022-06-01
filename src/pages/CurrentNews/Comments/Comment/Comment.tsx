@@ -27,8 +27,8 @@ export const Comment: FC<CommentPropsType> = ({
         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9lUdyFZOzGJGzdvnIXJ8y-Mmj9bSZ1AxqLQ&usqp=CAU"
       />
       <div className={style.body}>
-        <div className={style.header}>
-          <h3>{author}</h3>
+        <div>
+          <h4>{author}</h4>
           <span>{correctDate}</span>
         </div>
         <p>{text}</p>

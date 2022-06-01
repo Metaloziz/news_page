@@ -5,7 +5,7 @@
   @include displayContentCenter() ;
   flex-direction: column;
   align-items: flex-start;
-  width: 70%;
+  //width: 70%;
   height: auto;
   gap: 20px;
 
@@ -14,7 +14,7 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
-    width: 100%;
+    //width: 100%;
     gap: 10px;
 
     h1 {
@@ -63,6 +63,26 @@
     div {
       width: 100%;
       color: #1C1D25;
+    }
+  }
+
+  @media screen and (max-width: $width_page) {
+    & {
+      .header {
+        h1 {
+          font-size: 24px;
+        }
+      }
+
+      .body {
+        h3 {
+          font-size: 18px;
+        }
+
+        .description {
+          font-size: 14px;
+        }
+      }
     }
   }
 }
