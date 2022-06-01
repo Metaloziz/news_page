@@ -1,10 +1,10 @@
-import React, { FC, memo, useState } from 'react'
+import { FC, memo, useState } from 'react'
 
 import { SubmitHandler, useForm } from 'react-hook-form'
 
 import style from './CommentForm.module.scss'
 
-import { Button } from 'components/commonComponents/Button/Button'
+import { Button } from 'components'
 import { COMMENT_AUTHOR_LENGTH, COMMENT_LENGTH } from 'constants/constants'
 import { CommentType } from 'store/types'
 
@@ -34,9 +34,7 @@ export const CommentForm: FC<CommentFormPropsType> = memo(({ postComment }) => {
     <div className={style.container}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <label>автор: - должен подтягиваться автоматически ? </label>
           <input
-            defaultValue="boss"
             {...register('author', {
               required: { value: true, message: 'обяазаетельно поле' },
               maxLength: {
@@ -44,7 +42,7 @@ export const CommentForm: FC<CommentFormPropsType> = memo(({ postComment }) => {
                 message: `максимальная длинна:  ${COMMENT_AUTHOR_LENGTH} символов`,
               },
             })}
-            placeholder="автор"
+            placeholder="ваше имя"
           />
           <p>{errors.author?.message}</p>
         </div>
