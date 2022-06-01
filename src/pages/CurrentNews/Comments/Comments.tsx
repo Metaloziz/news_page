@@ -47,6 +47,7 @@ export const Comments: FC<CommentsPropsType> = memo(({ newsId }) => {
   return (
     <div className={style.container}>
       <h3>Комментарии:</h3>
+      <CommentForm postComment={postComment} />
       <div className={style.body}>
         {comments.map(comment => (
           <Comment
@@ -57,7 +58,6 @@ export const Comments: FC<CommentsPropsType> = memo(({ newsId }) => {
           />
         ))}
       </div>
-      <CommentForm postComment={postComment} />
     </div>
   )
 })

@@ -1,4 +1,4 @@
-@import "../../../styles/variables";
+@import "/src/styles/variables";
 
 .item {
   align-items: center;
@@ -28,6 +28,7 @@
   &:disabled {
     background-color: $gray2;
     box-shadow: none;
+    opacity: 50%;
 
     &:hover {
       transform: none;
@@ -45,7 +46,7 @@
   }
 
   &:active {
-    background-color: #F0F0F1;
+    background-color: $back;
     border-color: rgba(0, 0, 0, 0.15);
     box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
     color: rgba(0, 0, 0, 0.65);

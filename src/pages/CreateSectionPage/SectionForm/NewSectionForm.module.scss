@@ -12,8 +12,6 @@
   }
 
   p {
-    color: $accent;
-    font-weight: 500;
-    margin-left: 10px;
+    @include formErrorMessage();
   }
 }

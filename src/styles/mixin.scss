@@ -95,3 +95,9 @@
   line-height: 140%;
   color: $dark;
 }
+
+@mixin formErrorMessage {
+  color: $accent;
+  font-weight: 500;
+  margin-left: 10px;
+}
