@@ -31,6 +31,7 @@ const mainSlice = createSlice({
     builder.addCase(getNewsByIdTC.fulfilled, (state, action) => {
       if (action.payload) {
         state.currentNews = action.payload
+        localStorage.setItem('currentNews', JSON.stringify(action.payload))
       }
     })
   },

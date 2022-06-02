@@ -19,6 +19,7 @@ export const CurrentNews: FC = () => {
   const dispatch = useAppDispatch()
 
   const currentNews = useSelector(selectCurrentNews)
+
   const popularNews = useSelector(selectPartSearchNews) // пока редьюсер свободен туда сетаются популярные новости
   const isAdmin = useSelector(selectIsAdminMode)
 
