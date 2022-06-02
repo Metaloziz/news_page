@@ -28,7 +28,7 @@ export const Comments: FC<CommentsPropsType> = memo(({ newsId }) => {
   useEffect(() => {
     if (newsId === FIRST_INDEX_NEWS) return
     dispatch(getCommentsNewsTC(newsId))
-  }, [])
+  }, [newsId])
 
   const deleteComment = useCallback(
     (commentId: number) => {

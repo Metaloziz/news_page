@@ -1,4 +1,4 @@
-import { FC, memo, useState } from 'react'
+import { FC, memo, useEffect, useState } from 'react'
 
 import { SubmitHandler, useForm } from 'react-hook-form'
 
@@ -17,6 +17,11 @@ type CommentFormPropsType = {
 export const CommentForm: FC<CommentFormPropsType> = memo(({ postComment }) => {
   const [isDisable, setIsDisable] = useState<boolean>(false)
   const [buttonName, setButtonName] = useState<string>('отправить')
+
+  useEffect(() => {
+    setIsDisable(false)
+    setButtonName('отправить')
+  }, [postComment])
 
   const {
     register,
