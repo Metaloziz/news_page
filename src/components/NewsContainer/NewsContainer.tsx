@@ -10,7 +10,7 @@ import { Pagination } from './Pagination/Pagination'
 import { NavLinkComponent } from 'components/commonComponents'
 import { NEWS_BY_SECTIONS, POPULAR_SECTION_ID } from 'constants/constants'
 import { Path } from 'enums/enums'
-import { setCurrentNewsAC, setPartSearchNewsAC } from 'store/reducers'
+import { setPartSearchNewsAC } from 'store/reducers'
 import {
   selectCurrentPageSearchNews,
   selectIdActiveSection,
@@ -19,7 +19,12 @@ import {
   selectNumberPage,
 } from 'store/selectors'
 import { RootState, useAppDispatch } from 'store/store'
-import { addNewsViewsValueTC, deleteNewsTC, getNewsPartTC } from 'store/thunks'
+import {
+  addNewsViewsValueTC,
+  deleteNewsTC,
+  getNewsByIdTC,
+  getNewsPartTC,
+} from 'store/thunks'
 import { NewsType } from 'store/types'
 
 export const NewsContainer: FC = () => {
@@ -53,7 +58,7 @@ export const NewsContainer: FC = () => {
       const currentNews = allNews.find(({ id }) => id === newsId)
 
       if (currentNews) {
-        dispatch(setCurrentNewsAC(currentNews))
+        dispatch(getNewsByIdTC.fulfilled(currentNews, '', currentNews.id))
       }
 
       dispatch(addNewsViewsValueTC(newsId))

@@ -7,14 +7,13 @@ import style from './CurrentNews.module.scss'
 import { NewsBody } from './NewsBody/NewsBody'
 
 import { Footer, Navigation, PopularNewsPreview } from 'components'
-import { setCurrentNewsAC } from 'store/reducers'
 import {
   selectCurrentNews,
   selectIsAdminMode,
   selectPartSearchNews,
 } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
-import { addNewsViewsValueTC, getPopularNewsTC } from 'store/thunks'
+import { addNewsViewsValueTC, getNewsByIdTC, getPopularNewsTC } from 'store/thunks'
 
 export const CurrentNews: FC = () => {
   const dispatch = useAppDispatch()
@@ -32,7 +31,7 @@ export const CurrentNews: FC = () => {
       const currentNewsItem = popularNews.find(item => item.id === newsId)
 
       if (currentNewsItem) {
-        dispatch(setCurrentNewsAC(currentNewsItem))
+        dispatch(getNewsByIdTC.fulfilled(currentNewsItem, '', currentNewsItem.id))
       }
 
       dispatch(addNewsViewsValueTC(newsId))

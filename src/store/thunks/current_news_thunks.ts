@@ -2,8 +2,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { NewsPayloadType, newsRequests } from 'api'
 import { StatusCode } from 'enums'
-import { setCurrentNewsAC, setIsLoadingStatusAC } from 'store/reducers'
+import { setIsLoadingStatusAC } from 'store/reducers'
 import { RootState } from 'store/store'
+import { getNewsByIdTC } from 'store/thunks/news_thunks'
 import { ResponseErrorType } from 'store/types'
 import { setThunkError } from 'utils'
 
@@ -18,7 +19,9 @@ export const updateNewsTC = createAsyncThunk(
       dispatch(setIsLoadingStatusAC(true))
       const { status } = await newsRequests.updateNews(news, currentNews.id)
       if (status === StatusCode.UPDATE_NEWS_SUCCESS) {
-        dispatch(setCurrentNewsAC({ ...currentNews, ...news.body }))
+        dispatch(
+          getNewsByIdTC.fulfilled({ ...currentNews, ...news.body }, '', currentNews.id),
+        )
       }
     } catch (error) {
       setThunkError(dispatch, error as ResponseErrorType)

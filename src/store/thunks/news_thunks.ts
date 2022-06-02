@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { NewsPayloadType, newsRequests } from 'api'
-import { StatusCode, Error } from 'enums'
+import { Error, StatusCode } from 'enums'
 import { setErrorTrueAC, setIsLoadingStatusAC, setPagesCountAC } from 'store/reducers'
 import { RootState } from 'store/store'
 import { ResponseErrorType } from 'store/types'
@@ -92,9 +92,13 @@ export const postNewsTC = createAsyncThunk(
   async (news: NewsPayloadType, { dispatch }) => {
     try {
       dispatch(setIsLoadingStatusAC(true))
-      const { status } = await newsRequests.postNews(news)
+      const {
+        status,
+        data: { id },
+      } = await newsRequests.postNews(news)
       if (status === StatusCode.POST_NEWS_SUCCESS) {
-        // dispatch(getNewsByIdTC(response.data.id)) // пока не нужно
+        dispatch(getNewsByIdTC(id)) // пока не нужно
+        // dispatch(setCurrentNewsAC(news))
       }
     } catch (error) {
       setThunkError(dispatch, error as ResponseErrorType)

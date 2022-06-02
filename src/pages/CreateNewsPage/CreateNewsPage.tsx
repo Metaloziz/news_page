@@ -105,6 +105,7 @@ export const CreateNewsPage: FC = () => {
 
         <Button name="отправить" type="submit" />
       </form>
+      <NavLinkComponent nameButton="ПОСМОТРЕТЬ РЕЗУЛЬТАТ" path={Path.CURRENT_NEWS} />
     </div>
   )
 }

@@ -1,4 +1,5 @@
-import { currentNewsReducer, setCurrentNewsAC } from 'store/reducers/index'
+import { currentNewsReducer } from 'store/reducers/index'
+import { getNewsByIdTC } from 'store/thunks'
 import { CurrentNewsInitialStateType, NewsType } from 'store/types'
 
 let currentNewsInitialState: CurrentNewsInitialStateType
@@ -46,7 +47,7 @@ beforeEach(() => {
 
 describe('current news reducer', () => {
   test('should add one news to state', () => {
-    const action = setCurrentNewsAC(newNews)
+    const action = getNewsByIdTC.fulfilled(newNews, '', newNews.id)
 
     const endState = currentNewsReducer(currentNewsInitialState, action)
 
