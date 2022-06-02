@@ -5,6 +5,7 @@ import {
   changeNewsTypeViewAC,
   setErrorFalseAC,
   setErrorTrueAC,
+  setIsLoadingStatusAC,
 } from 'store/reducers/index'
 import { getContactsTC, getCoursesTC } from 'store/thunks/app_thunks'
 import { InitialAppStateType } from 'store/types'
@@ -35,6 +36,7 @@ beforeEach(() => {
       socialViber: '',
       socialVK: '',
     },
+    isLoading: false,
   }
 
   isAdmin = true
@@ -116,5 +118,13 @@ describe('app reducer', () => {
     const endState = appReducer(appInitialState, action)
 
     expect(endState.contacts).toBe(newContacts)
+  })
+
+  test('should set loading status', () => {
+    const action = setIsLoadingStatusAC(true)
+
+    const endState = appReducer(appInitialState, action)
+
+    expect(endState.isLoading).toBeTruthy()
   })
 })

@@ -1,14 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-import { newsRequests } from 'api/newsRequests'
-import { StatusCode } from 'enums/enums'
-import { ResponseErrorType } from 'store/types/response_error_type'
-import { setThunkError } from 'utils/set_thunk_error'
+import { newsRequests } from 'api'
+import { StatusCode } from 'enums'
+import { setIsLoadingStatusAC } from 'store/reducers'
+import { ResponseErrorType } from 'store/types'
+import { setThunkError } from 'utils'
 
 export const getSearchNewsTC = createAsyncThunk(
   'search_news/getSearchNewsTC',
   async (keyWord: string, { dispatch }) => {
     try {
+      dispatch(setIsLoadingStatusAC(true))
       const {
         data: { Data },
         status,
@@ -19,6 +21,8 @@ export const getSearchNewsTC = createAsyncThunk(
       }
     } catch (error) {
       setThunkError(dispatch, error as ResponseErrorType)
+    } finally {
+      dispatch(setIsLoadingStatusAC(false))
     }
   },
 )

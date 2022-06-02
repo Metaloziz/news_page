@@ -1,6 +1,6 @@
-import { ContactsType } from 'store/types/contacts_type'
-import { CoursesType } from 'store/types/courses_type'
-import { NewsViewType } from 'store/types/news_view_type'
+import { ContactsType } from './contacts_type'
+import { CoursesType } from './courses_type'
+import { NewsViewType } from './news_view_type'
 
 export type InitialAppStateType = {
   isError: boolean
@@ -9,4 +9,5 @@ export type InitialAppStateType = {
   isAdmin: boolean
   courses: CoursesType[]
   contacts: ContactsType
+  isLoading: boolean
 }

@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import { FC, useState } from 'react'
 
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux'
@@ -8,12 +8,12 @@ import { NewsBodyForm } from './NewsBodyForm/NewsBodyForm'
 import { SelectOptions } from './SelectOptions/SelectOptions'
 
 import { BlockCheckbox, Button, NavLinkComponent } from 'components'
-import { Path } from 'enums/enums'
+import { Path } from 'enums'
 import { selectSections } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
 import { postNewsTC } from 'store/thunks'
 import { FormType } from 'store/types'
-import { todayDate } from 'utils/today_date'
+import { todayDate } from 'utils'
 
 export const CreateNewsPage: FC = () => {
   const dispatch = useAppDispatch()

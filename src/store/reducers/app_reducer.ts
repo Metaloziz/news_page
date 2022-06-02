@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 import { NEWS_BY_SECTIONS } from 'constants/constants'
-import { getContactsTC, getCoursesTC } from 'store/thunks/app_thunks'
+import { getContactsTC, getCoursesTC } from 'store/thunks'
 import { InitialAppStateType } from 'store/types'
-import { separateAddress } from 'utils/separate_address'
+import { separateAddress } from 'utils'
 
 const initialState: InitialAppStateType = {
   isError: false,
@@ -25,6 +25,7 @@ const initialState: InitialAppStateType = {
     socialViber: 'null',
     socialVK: 'null',
   },
+  isLoading: false,
 }
 
 const mainSlice = createSlice({
@@ -45,6 +46,10 @@ const mainSlice = createSlice({
     },
     changeIsAdminModeAC: (state, action) => {
       state.isAdmin = action.payload
+    },
+    setIsLoadingStatusAC: (state, action) => {
+      if (state.isLoading === action.payload) return
+      state.isLoading = action.payload
     },
   },
   extraReducers: builder => {
@@ -67,5 +72,6 @@ export const {
   setErrorFalseAC,
   changeNewsTypeViewAC,
   changeIsAdminModeAC,
+  setIsLoadingStatusAC,
 } = mainSlice.actions
 export const appReducer = mainSlice.reducer

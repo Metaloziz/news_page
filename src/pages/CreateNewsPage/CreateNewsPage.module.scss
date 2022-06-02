@@ -2,9 +2,14 @@
 @import "src/styles/variables";
 
 .container {
-  @include container();
-  align-items: flex-start;
-
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex-basis: 400px;
+  padding: 2% 1% 5% 2%;
+  flex-grow: 10;
+  background-color: $back;
+  width: 1000px;
 
   h2 {
     color: $green;
