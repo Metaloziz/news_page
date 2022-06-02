@@ -23,4 +23,6 @@
       align-items: flex-start;
     }
   }
+
+  @include paddingMobileMenu();
 }

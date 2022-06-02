@@ -101,3 +101,11 @@
   font-weight: 500;
   margin-left: 10px;
 }
+
+@mixin paddingMobileMenu {
+  @media screen and (max-width: $width_menu) {
+    & {
+      padding: 2% 1% 5% 2%;
+    }
+  }
+}

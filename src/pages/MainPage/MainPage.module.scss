@@ -8,5 +8,11 @@
   flex-basis: 400px;
   padding: 2% 1% 5% 2%;
   flex-grow: 10;
+
+  @media screen and (max-width: $width_menu) {
+    & {
+      padding: 0;
+    }
+  }
 }
 

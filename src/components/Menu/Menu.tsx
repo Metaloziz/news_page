@@ -3,8 +3,8 @@ import { FC } from 'react'
 import { useSelector } from 'react-redux'
 
 import style from './Menu.module.scss'
-import { MenuItem } from './MenuItem/MenuItem'
 
+import { MenuItems } from 'components/commonComponents'
 import { Contacts } from 'components/Contacts'
 import { menuNames } from 'constants/menuNames/menuNames'
 import { changeIsAdminModeAC } from 'store/reducers'
@@ -24,17 +24,13 @@ export const Menu: FC = () => {
     }
   }
 
-  const menuItems = menuNames.map(element => (
-    <MenuItem key={element.name} item={element} />
-  ))
-
   return (
     <div className={style.container}>
       <div className={style.header}>
         <span>ITEC</span>
         <p>Education complex</p>
       </div>
-      <div className={style.menuItems}>{menuItems}</div>
+      <MenuItems elements={menuNames} />
       <h4>
         режим админа: вкл\выкл <input type="checkbox" onClick={switchIsAdminMode} />
       </h4>
