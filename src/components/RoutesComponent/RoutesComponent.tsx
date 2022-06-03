@@ -2,6 +2,7 @@ import { FC } from 'react'
 
 import { Navigate, Route, Routes } from 'react-router-dom'
 
+import { Component404 } from 'components/commonComponents/Component404/Component404'
 import { Path } from 'enums'
 import {
   ChangeNewsPage,
@@ -19,5 +20,6 @@ export const RoutesComponent: FC = () => (
     <Route path={Path.CREATE_NEWS} element={<CreateNewsPage />} />
     <Route path={Path.CREATE_SECTION} element={<CreateSectionPage />} />
     <Route path={Path.CHANGE_NEWS} element={<ChangeNewsPage />} />
+    <Route path="*" element={<Component404 />} />
   </Routes>
 )
