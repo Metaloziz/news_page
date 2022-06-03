@@ -2,12 +2,62 @@
 @import "src/styles/variables";
 
 .container {
-  width: 250px;
-  height: 500px;
-  background-color: $main_background_color;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+  flex-basis: 280px; // не изменять
+  background-color: $back_card;
+  border-radius: 0 20px 0 0;
+  box-shadow: 0 0 10px rgba(28, 29, 37, 0.26);
+  left: 100px;
+
+  .header {
+    display: flex;
+    align-items: flex-end;
+    padding-left: 10%;
+    gap: 10px;
+    width: 250px;
+    height: 50px;
+    margin-bottom: 30px;
+
+    span {
+      height: 18px;
+
+      font-family: 'HelveticaNeueCyr', sans-serif;
+      font-style: normal;
+      font-weight: 550;
+      font-size: 24px;
+      line-height: 24px;
+      letter-spacing: 0.05em;
+      margin-bottom: 1px;
+      color: $dark;
+    }
+
+    p {
+      height: 11px;
+
+      font-family: 'HelveticaNeueCyr', sans-serif;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 14px;
+
+      color: $dark;
+    }
+  }
 
   input {
     width: 20px;
     height: 20px;
   }
+
+  @media screen and (max-width: $width_menu) {
+    & {
+      display: none;
+    }
+  }
 }
+
+
+

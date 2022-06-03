@@ -2,25 +2,41 @@
 @import "src/styles/variables";
 
 .container {
-  width: 450px;
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  min-width: 300px;
   min-height: 225px;
   background-color: $green;
   border-radius: 10px;
-  color: $back;
   padding: 15px;
   cursor: pointer;
+  gap: 10px;
 
-  h1 {
-    margin-bottom: 30px;
+  a {
+    color: $back;
+  }
+
+  h2 {
+    margin-bottom: 10px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 47px;
+
+    color: $back_card;
+
+    display: flex;
+    align-items: center;
   }
 
   div {
-    @include textColumns(3, 16px);
-    margin-bottom: 30px;
+    @include textColumns(5, 16px);
+    margin-bottom: 10px;
   }
 
   span {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
   }
 }

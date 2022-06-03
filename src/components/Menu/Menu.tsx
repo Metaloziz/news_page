@@ -4,14 +4,17 @@ import { useSelector } from 'react-redux'
 
 import style from './Menu.module.scss'
 
+import { MenuItems } from 'components/commonComponents'
+import { Contacts } from 'components/Contacts'
+import { menuNames } from 'constants/menuNames/menuNames'
 import { changeIsAdminModeAC } from 'store/reducers'
-import { selectorIsAdminMode } from 'store/selectors'
+import { selectIsAdminMode } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
 
 export const Menu: FC = () => {
   const dispatch = useAppDispatch()
 
-  const isAdmin = useSelector(selectorIsAdminMode)
+  const isAdmin = useSelector(selectIsAdminMode)
 
   const switchIsAdminMode = (): void => {
     if (isAdmin) {
@@ -20,12 +23,18 @@ export const Menu: FC = () => {
       dispatch(changeIsAdminModeAC(true))
     }
   }
+
   return (
     <div className={style.container}>
-      <div>МЕНЮ</div>
-      <div>новости</div>
-      <h4>режим админа:</h4>
-      <span>вкл\выкл</span> <input type="checkbox" onClick={switchIsAdminMode} />
+      <div className={style.header}>
+        <span>ITEC</span>
+        <p>Education complex</p>
+      </div>
+      <MenuItems elements={menuNames} />
+      <h4>
+        режим админа: вкл\выкл <input type="checkbox" onClick={switchIsAdminMode} />
+      </h4>
+      <Contacts />
     </div>
   )
 }

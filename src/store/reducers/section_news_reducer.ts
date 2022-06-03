@@ -7,7 +7,7 @@ import {
   getNewsPartTC,
 } from 'store/thunks/news_thunks'
 import { SectionNewsInitialStateType } from 'store/types'
-import { findIndexElement } from 'utils/utils'
+import { findIndexElement } from 'utils/findIndex_element'
 
 const initialState: SectionNewsInitialStateType = {
   news: [

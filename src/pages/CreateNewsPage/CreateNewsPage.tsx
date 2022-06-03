@@ -1,24 +1,27 @@
-import React, { FC } from 'react'
+import { FC, useState } from 'react'
 
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux'
 
 import style from './CreateNewsPage.module.scss'
+import { NewsBodyForm } from './NewsBodyForm/NewsBodyForm'
+import { SelectOptions } from './SelectOptions/SelectOptions'
 
-import { Button, NavLinkComponent } from 'components'
-import { Path } from 'enums/enums'
-import { NewsBodyForm } from 'pages/CreateNewsPage/NewsBodyForm/NewsBodyForm'
-import { Options } from 'pages/CreateNewsPage/Options/Options'
-import { selectorSections } from 'store/selectors'
+import { BlockCheckbox, Button, NavLinkComponent } from 'components'
+import { Path } from 'enums'
+import { selectSections } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
 import { postNewsTC } from 'store/thunks'
 import { FormType } from 'store/types'
-import { TODAY_DATE } from 'utils/utils'
+import { todayDate } from 'utils'
 
 export const CreateNewsPage: FC = () => {
   const dispatch = useAppDispatch()
 
-  const sections = useSelector(selectorSections)
+  const sections = useSelector(selectSections)
+
+  const [isActiveSecondBlock, setIsActiveSecondBlock] = useState(false)
+  const [isActiveThirdBlock, setIsActiveThirdBlock] = useState(false)
 
   const {
     register,
@@ -34,49 +37,75 @@ export const CreateNewsPage: FC = () => {
     dispatch(postNewsTC({ body, file }))
   }
 
+  const viewSecondBlockHandel = (): void => {
+    setIsActiveSecondBlock(!isActiveSecondBlock)
+  }
+
+  const viewThirdBlockHandel = (): void => {
+    setIsActiveThirdBlock(!isActiveThirdBlock)
+  }
+
   return (
     <div className={style.container}>
       <NavLinkComponent nameButton="на главную" path={Path.MAIN} />
-      <span>Создать новость:</span>
+      <h2>Добавьте новость</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={style.header}>
-          <div>
-            <label>date </label>
-            <input {...register('date')} placeholder="date" value={TODAY_DATE()} />
-            {errors.date && <span>This field is required</span>}
+          <div className={style.date}>
+            <label>Дата</label>
+            <input {...register('date')} placeholder="date" value={todayDate()} />
           </div>
-          <div>
-            <label htmlFor="section">section </label>
+          <div className={style.sections}>
+            <label htmlFor="section">Section</label>
             <select id="section" defaultValue={1} {...register('section')}>
-              <Options data={sections} />
+              <SelectOptions data={sections} />
             </select>
           </div>
         </div>
         <div className={style.name}>
-          <label>name </label>
+          <label>Главный заголовок статьи</label>
           <input {...register('name')} placeholder="name" required defaultValue="title" />
-          {errors.name && <span>This field is required</span>}
         </div>
+
+        <h3>Блок 1</h3>
         <NewsBodyForm
           useFormRegisterReturn={register('subtitle_1')}
           useFormRegisterReturn1={register('full_text_1')}
           useFormRegisterReturn2={register('image_1')}
+          useFormRegisterReturn3={register('file')}
           errors={errors}
         />
-        <NewsBodyForm
-          useFormRegisterReturn={register('subtitle_2')}
-          useFormRegisterReturn1={register('full_text_2')}
-          useFormRegisterReturn2={register('image_2')}
-          errors={errors}
-        />
-        <NewsBodyForm
-          useFormRegisterReturn={register('subtitle_3')}
-          useFormRegisterReturn1={register('full_text_3')}
-          useFormRegisterReturn2={register('image_3')}
-          errors={errors}
-        />
+
+        <div className={style.blockTitle}>
+          <h3>Блок 2</h3>
+          <BlockCheckbox checked={isActiveSecondBlock} onChange={viewSecondBlockHandel} />
+        </div>
+        {isActiveSecondBlock && (
+          <NewsBodyForm
+            useFormRegisterReturn={register('subtitle_2')}
+            useFormRegisterReturn1={register('full_text_2')}
+            useFormRegisterReturn2={register('image_2')}
+            useFormRegisterReturn3={register('file')}
+            errors={errors}
+          />
+        )}
+        <div className={style.blockTitle}>
+          <h3>Блок 3</h3>
+          <BlockCheckbox checked={isActiveThirdBlock} onChange={viewThirdBlockHandel} />
+        </div>
+        {isActiveThirdBlock && (
+          <NewsBodyForm
+            useFormRegisterReturn={register('subtitle_3')}
+            useFormRegisterReturn1={register('full_text_3')}
+            useFormRegisterReturn2={register('image_3')}
+            useFormRegisterReturn3={register('file')}
+            errors={errors}
+          />
+        )}
+
         <Button name="отправить" type="submit" />
       </form>
+      <NavLinkComponent nameButton="ПОСМОТРЕТЬ РЕЗУЛЬТАТ" path={Path.CURRENT_NEWS} />
     </div>
   )
 }

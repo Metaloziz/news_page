@@ -1,7 +1,15 @@
-@import "../../../styles/mixin";
+@import "/src/styles/mixin";
+@import "/src/styles/variables";
 
 
 .container {
   @include container();
-  background-color: aquamarine;
+  @include inputStyle(); // костыль
+
+  width: auto;
+
+  & div {
+    @include displayContentCenter();
+    align-items: flex-start;
+  }
 }

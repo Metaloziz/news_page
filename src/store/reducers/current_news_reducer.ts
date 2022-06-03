@@ -1,6 +1,7 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
-import { CurrentNewsInitialStateType, NewsType } from 'store/types'
+import { getNewsByIdTC } from 'store/thunks'
+import { CurrentNewsInitialStateType } from 'store/types'
 
 const initialState: CurrentNewsInitialStateType = {
   currentNews: {
@@ -25,12 +26,15 @@ const initialState: CurrentNewsInitialStateType = {
 const mainSlice = createSlice({
   name: 'current_news',
   initialState,
-  reducers: {
-    setCurrentNewsAC: (state, action: PayloadAction<NewsType>) => {
-      state.currentNews = action.payload
-    },
+  reducers: {},
+  extraReducers: builder => {
+    builder.addCase(getNewsByIdTC.fulfilled, (state, action) => {
+      if (action.payload) {
+        state.currentNews = action.payload
+        localStorage.setItem('currentNews', JSON.stringify(action.payload))
+      }
+    })
   },
 })
 
-export const { setCurrentNewsAC } = mainSlice.actions
 export const currentNewsReducer = mainSlice.reducer

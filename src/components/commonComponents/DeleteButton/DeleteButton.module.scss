@@ -1,0 +1,64 @@
+@import "src/styles/variables";
+
+.container {
+  width: 150px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+  background: #ad4242;
+  margin: 5px 0;
+
+  .text {
+    transition: 200ms;
+    margin: 15px 0 16px 40px;
+    color: #E5E5E5;
+  }
+
+  .icon {
+    position: absolute;
+    transform: translateX(75px) translateY(1px);
+    transition: 200ms;
+    margin: 15px 0 16px 25px;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  svg {
+    width: 10px;
+    fill: #eee;
+  }
+
+  &:hover {
+    background: $accent;
+  }
+
+  &:hover .icon {
+    width: 90px;
+    border-left: none;
+    transform: translateX(0) translateY(1px);
+  }
+
+  &:hover .text {
+    color: transparent;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active .icon svg {
+    transform: scale(0.8);
+  }
+
+  &:disabled {
+    background: $gray;
+  }
+
+}
+

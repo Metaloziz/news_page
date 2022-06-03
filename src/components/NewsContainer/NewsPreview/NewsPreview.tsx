@@ -1,9 +1,11 @@
-/* eslint-disable */
 import { FC, memo } from 'react'
 
-import style from './News.module.scss'
+import style from './NewsPreview.module.scss'
+
+import eye from 'assets/images/common/eye.svg'
+import { DeleteButton } from 'components/commonComponents'
 import { NewsType } from 'store/types'
-import { DeleteButton } from 'components/DeleteButton/DeleteButton'
+import { convertDateView } from 'utils'
 
 type NewsPropsType = {
   data: NewsType
@@ -15,11 +17,12 @@ type NewsPropsType = {
 
 export const NewsPreview: FC<NewsPropsType> = memo(
   ({
-     data: { id, date, image_1, name, full_text_1, views },
-     setCurrentNews,
-     newsRouteHandle, deleteNews, isAdmin,
-   }) => {
-
+    data: { id, date, image_1: image, name, full_text_1: fullText, views },
+    setCurrentNews,
+    newsRouteHandle,
+    deleteNews,
+    isAdmin,
+  }) => {
     const openCurrentNews = (): void => {
       setCurrentNews(id)
       newsRouteHandle()
@@ -28,19 +31,22 @@ export const NewsPreview: FC<NewsPropsType> = memo(
     return (
       <div className={style.container}>
         {isAdmin && <DeleteButton onClick={() => deleteNews(id)} />}
-        <div className={style.body} onClick={openCurrentNews}>
+        <div role="button" tabIndex={-1} className={style.body} onClick={openCurrentNews}>
           <div>
-            <img alt='ava' src={image_1} />
+            <img alt="ava" src={image} />
           </div>
           <div className={style.description}>
             <div className={style.date_and_view}>
-              <div>{date}</div>
-              <div>просмотров: {views}</div>
+              <span>{convertDateView(date)}</span>
+              <div className={style.eye}>
+                <img alt="eye" src={eye} />
+                <span>{views}</span>
+              </div>
             </div>
             <h3>{name}</h3>
-            <div className={style.text}>{full_text_1}</div>
+            <div className={style.text}>{fullText}</div>
           </div>
-          <span>Читать далее</span>
+          <span className={style.footerText}>Читать далее</span>
         </div>
       </div>
     )

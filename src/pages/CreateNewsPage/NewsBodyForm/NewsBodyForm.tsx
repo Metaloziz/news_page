@@ -1,55 +1,71 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 import { FieldErrors, UseFormRegisterReturn } from 'react-hook-form'
 
-import { IMAGE } from 'constants/constants'
-import style from 'pages/CreateNewsPage/CreateNewsPage.module.scss'
+import style from './NewsBodyForm.module.scss'
+
 import { NewsBodyType, NewsFileType } from 'store/types'
 
+type DefaultValuesFormBlockType = {
+  [key: string]: string | number
+}
+
 type NewsBodyFormPropsType = {
+  defaultValues?: DefaultValuesFormBlockType
   useFormRegisterReturn: UseFormRegisterReturn
   errors: FieldErrors<NewsBodyType & NewsFileType>
   useFormRegisterReturn1: UseFormRegisterReturn
   useFormRegisterReturn2: UseFormRegisterReturn
+  useFormRegisterReturn3?: UseFormRegisterReturn
 }
 
-export const NewsBodyForm: FC<NewsBodyFormPropsType> = props => (
-  <div className={style.fullText}>
-    <h3>fullText 1</h3>
-    <div>
-      <label>subtitle_1 </label>
-      <input
-        {...props.useFormRegisterReturn}
-        placeholder="subtitle_1"
-        required
-        defaultValue="Lorem  Lorem "
-      />
-      {props.errors.subtitle_1 && <span>This field is required</span>}
-    </div>
+export const NewsBodyForm: FC<NewsBodyFormPropsType> = props => {
+  const setDefaultValue = (str: string): string | number => {
+    const obj = props.defaultValues as DefaultValuesFormBlockType
 
-    <div>
-      <label>full_text_1 </label>
-      <textarea
-        {...props.useFormRegisterReturn1}
-        placeholder="full_text_1"
-        required
-        rows={5}
-        defaultValue=" Lorem Lorem ipsum dolor sit amet, consectetur  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam eaque nemo nulla officiis tenetur ut vero? Dolorem laudantium molestias nulla sequi. A adipisci culpa delectus dolorem laboriosam quisquam sapiente suscipit? "
-      />
-      {props.errors.full_text_1 && <span>This field is required</span>}
+    if (props.defaultValues) {
+      return obj[`${str}`]
+    }
+
+    return ''
+  }
+
+  return (
+    <div className={style.container}>
+      <div className={style.subtitle}>
+        <label>Подзаголовок</label>
+        <input
+          {...props.useFormRegisterReturn}
+          placeholder="Подзаголовок"
+          required
+          defaultValue={setDefaultValue(props.useFormRegisterReturn.name)}
+        />
+      </div>
+
+      <div className={style.text}>
+        <label>Текст</label>
+        <textarea
+          {...props.useFormRegisterReturn1}
+          placeholder="основной текст блока"
+          required
+          rows={5}
+          defaultValue={setDefaultValue(props.useFormRegisterReturn1.name)}
+        />
+      </div>
+      <div className={style.image}>
+        <label>Ссылка на картинку из интернета</label>
+        <input
+          {...props.useFormRegisterReturn2}
+          placeholder="https://www.ixbt.com/img.jpg"
+          defaultValue={setDefaultValue(props.useFormRegisterReturn2.name)}
+        />
+      </div>
+      {props.useFormRegisterReturn3 && (
+        <div>
+          <label>file </label>
+          <input {...props.useFormRegisterReturn3} type="file" multiple />
+        </div>
+      )}
     </div>
-    <div>
-      <label>image_1 </label>
-      <input
-        {...props.useFormRegisterReturn2}
-        placeholder="image_1"
-        defaultValue={IMAGE}
-      />
-      {props.errors.image_1 && <span>This field is required</span>}
-    </div>
-    {/* <div> */}
-    {/*  <label>file </label> */}
-    {/*  <input {...register('file')} type="file" /> */}
-    {/* </div> */}
-  </div>
-)
+  )
+}

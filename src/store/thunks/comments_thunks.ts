@@ -1,18 +1,21 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-import { commentsRequests, PostCommentPayloadType } from 'api/commentsRequests'
-import { ResponseErrorType } from 'store/types/response_error_type'
-import { setError } from 'utils/utils'
+import { commentsRequests, PostCommentPayloadType } from 'api'
+import { setIsLoadingStatusAC } from 'store/reducers'
+import { ResponseErrorType } from 'store/types'
+import { setThunkError } from 'utils'
 
 export const getCommentsNewsTC = createAsyncThunk(
   'comments/getCommentsNewsTC',
   async (newsId: number, { dispatch }) => {
     try {
-      const response = await commentsRequests.getComments(newsId)
-      return response.data.data
+      dispatch(setIsLoadingStatusAC(true))
+      const { data } = await commentsRequests.getComments(newsId)
+      return data.data
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
-      return null
+      setThunkError(dispatch, error as ResponseErrorType)
+    } finally {
+      dispatch(setIsLoadingStatusAC(false))
     }
   },
 )
@@ -20,14 +23,15 @@ export const deleteCommentTC = createAsyncThunk(
   'comments/deleteCommentTC',
   async (commentId: number, { dispatch }) => {
     try {
-      const response = await commentsRequests.deleteComment(commentId)
-      if (response.data.id === commentId) {
-        return response.data.id
+      dispatch(setIsLoadingStatusAC(true))
+      const { data } = await commentsRequests.deleteComment(commentId)
+      if (data.id === commentId) {
+        return data.id
       }
-      return null
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
-      return null
+      setThunkError(dispatch, error as ResponseErrorType)
+    } finally {
+      dispatch(setIsLoadingStatusAC(false))
     }
   },
 )
@@ -35,14 +39,15 @@ export const getCurrentCommentTC = createAsyncThunk(
   'comments/getCurrentCommentTC',
   async (commentId: number, { dispatch }) => {
     try {
-      const response = await commentsRequests.getCurrentComment(commentId)
-      if (response.data.id === commentId) {
-        return response.data
+      dispatch(setIsLoadingStatusAC(true))
+      const { data } = await commentsRequests.getCurrentComment(commentId)
+      if (data.id === commentId) {
+        return data
       }
-      return null
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
-      return null
+      setThunkError(dispatch, error as ResponseErrorType)
+    } finally {
+      dispatch(setIsLoadingStatusAC(false))
     }
   },
 )
@@ -50,12 +55,13 @@ export const postCommentTC = createAsyncThunk(
   'comments/postCommentTC',
   async (comment: PostCommentPayloadType, { dispatch }) => {
     try {
-      const response = await commentsRequests.postComment(comment)
-      dispatch(getCurrentCommentTC(response.data.id)) // потом улучшить, чтобы не было запроса
-      return null
+      dispatch(setIsLoadingStatusAC(true))
+      const { data } = await commentsRequests.postComment(comment)
+      dispatch(getCurrentCommentTC(data.id)) // потом улучшить, чтобы не было запроса
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
-      return null
+      setThunkError(dispatch, error as ResponseErrorType)
+    } finally {
+      dispatch(setIsLoadingStatusAC(false))
     }
   },
 )

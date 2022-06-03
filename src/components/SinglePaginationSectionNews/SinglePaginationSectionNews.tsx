@@ -4,20 +4,21 @@ import { useSelector } from 'react-redux'
 
 import style from './SinglePaginationSectionNews.module.scss'
 
-import { Button } from 'components/Button/Button'
+import arrow from 'assets/images/common/arrow.svg'
+import { Button } from 'components/commonComponents/Button/Button'
 import { FIRST_PAGE_PAGINATION } from 'constants/constants'
 import {
   setNextPageAC,
   setPreviousPageAC,
 } from 'store/reducers/single_pagination_reducer'
-import { selectorCountPage, selectorNumberPage } from 'store/selectors/singlePagination'
+import { selectCountPage, selectNumberPage } from 'store/selectors/single_pagination'
 import { useAppDispatch } from 'store/store'
 
 export const SinglePaginationSectionNews: FC = () => {
   const dispatch = useAppDispatch()
 
-  const pagesCount = useSelector(selectorCountPage)
-  const pageNumber = useSelector(selectorNumberPage)
+  const pagesCount = useSelector(selectCountPage)
+  const pageNumber = useSelector(selectNumberPage)
 
   const setPreviousPage = (): void => {
     dispatch(setPreviousPageAC())
@@ -29,12 +30,24 @@ export const SinglePaginationSectionNews: FC = () => {
   return (
     <div className={style.container}>
       <Button
-        name="<<"
+        name=""
         onClick={setPreviousPage}
         disabled={pageNumber === FIRST_PAGE_PAGINATION}
-      />
-      <h3>page number: {pageNumber}</h3>
-      <Button name=">>" onClick={setNextPage} disabled={pageNumber === pagesCount} />
+        className={style.leftButton}
+      >
+        <img alt="" src={arrow} />
+      </Button>
+      <h4>
+        {pageNumber} / {pagesCount}
+      </h4>
+      <Button
+        name=""
+        onClick={setNextPage}
+        disabled={pageNumber === pagesCount}
+        className={style.rightButton}
+      >
+        <img alt="" src={arrow} />
+      </Button>
     </div>
   )
 }

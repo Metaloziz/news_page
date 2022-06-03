@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+import { FIRST_ARRAY_ITEM, OTHER_SECTION_ID } from 'constants/constants'
 import {
   changeSectionTC,
   deleteSectionTC,
@@ -8,10 +9,10 @@ import {
 } from 'store/thunks/sections_thunks'
 import { SectionsInitialStateType } from 'store/types'
 import { SectionType } from 'store/types/section_type'
-import { findIndexElement } from 'utils/utils'
+import { findIndexElement } from 'utils/findIndex_element'
 
 const initialState: SectionsInitialStateType = {
-  sections: [{ id: 0, name: 'все' }],
+  sections: [{ id: 0, name: 'Все новости' }],
   defaultSection: { id: 0, name: 'все' },
   activeSectionId: 0,
 }
@@ -27,6 +28,12 @@ const mainSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(getSectionsTC.fulfilled, (state, action) => {
       if (action.payload) {
+        const otherSectionIndex = findIndexElement(action.payload, OTHER_SECTION_ID)
+        const count = 1
+        const otherSection = action.payload.splice(otherSectionIndex, count)[
+          FIRST_ARRAY_ITEM
+        ]
+        action.payload.push(otherSection)
         state.sections.push(...action.payload)
       }
     })
@@ -42,7 +49,7 @@ const mainSlice = createSlice({
     })
     builder.addCase(
       changeSectionTC.fulfilled,
-      (state, action: PayloadAction<SectionType | null>) => {
+      (state, action: PayloadAction<SectionType | undefined>) => {
         if (action.payload) {
           const indexSection = findIndexElement(state.sections, action.payload.id)
           state.sections[indexSection].name = action.payload.name

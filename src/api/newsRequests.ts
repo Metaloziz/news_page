@@ -1,24 +1,33 @@
 import { instance } from 'api/instance'
-import { ALL_SECTION_ID, NEWS_ON_PAGE } from 'constants/constants'
+import { ALL_SECTION_ID, FIRST_ARRAY_ITEM, NEWS_ON_PAGE } from 'constants/constants'
 import { RequestSource } from 'enums/enums'
 import { NewsBodyType, NewsFileType, NewsType } from 'store/types'
 
-export type NewsPayloadType = {
+export type NewsPayloadType = NewsFileType & {
   body: NewsBodyType
-} & NewsFileType
+}
 
 export const newsRequests = {
   postNews: (news: NewsPayloadType) => {
     const formDataObject = new FormData()
 
     formDataObject.append('body', JSON.stringify(news.body))
-    formDataObject.append('file', news.file)
+    if (news.file?.length) {
+      formDataObject.append('file', news.file[FIRST_ARRAY_ITEM])
+    }
 
-    return instance.post<{ id: number }>(`${RequestSource.NEWS}/`, formDataObject, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
+    return instance.post<{ id: number }>(`${RequestSource.NEWS}/`, formDataObject)
+  },
+
+  updateNews: (news: NewsPayloadType, newsId: number) => {
+    const formDataObject = new FormData()
+
+    formDataObject.append('body', JSON.stringify(news.body))
+    if (news.file?.length) {
+      formDataObject.append('file', news.file[FIRST_ARRAY_ITEM])
+    }
+
+    return instance.put(`${RequestSource.NEWS}/${newsId}`, formDataObject)
   },
 
   getNewsPart: (pageNumber: number, section: number = ALL_SECTION_ID) =>

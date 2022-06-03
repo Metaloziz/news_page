@@ -1,0 +1,70 @@
+@import "src/styles/variables";
+@import "src/styles/mixin";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: $green;
+  height: 70px;
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 10px;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 0 5%;
+
+    .title {
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+
+      span {
+        font-family: 'HelveticaNeueCyr-Medium', sans-serif;
+        font-style: normal;
+        font-weight: 550;
+        font-size: 6.6vw;
+        line-height: 6.6vw;
+        letter-spacing: 0.05em;
+        color: $back;
+      }
+
+      p {
+        font-family: 'HelveticaNeueCyr-Light', sans-serif;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 3.8vw;
+        line-height: 3.8vw;
+        color: $back;
+        margin-bottom: 3px;
+      }
+    }
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .selector {
+    position: absolute;
+    background-color: $back;
+    width: 100%;
+    margin-top: 70px;
+    z-index: 50;
+  }
+
+
+  @media screen and (min-width: $width_menu) {
+    & {
+      display: none;
+    }
+  }
+}
+
+

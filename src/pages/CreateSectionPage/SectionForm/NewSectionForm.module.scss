@@ -1,0 +1,17 @@
+@import "src/styles/variables";
+@import "src/styles/mixin";
+
+
+.container {
+  @include displayContentCenter();
+  gap: 10px;
+
+  div {
+    @include labelStyle();
+    width: 100%;
+  }
+
+  p {
+    @include formErrorMessage();
+  }
+}

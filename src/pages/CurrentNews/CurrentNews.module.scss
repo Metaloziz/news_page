@@ -2,14 +2,20 @@
 @import "src/styles/variables";
 
 .container {
-  @include container();
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex-basis: 400px; // не менять
+
+  flex-grow: 10;
 
   .body {
     @include displayContentCenter();
     flex-direction: row;
-    align-items: start;
+    align-items: flex-start;
     width: 100%;
     gap: 20px;
+    padding: 2% 1% 5% 2%;
   }
 
   .comments {
@@ -19,8 +25,13 @@
 
   .footer {
     @include displayContentCenter();
+    align-items: flex-start;
     flex-direction: row;
     justify-content: space-between;
-  }
 
+    .preview {
+      width: auto;
+      height: 300px;
+    }
+  }
 }

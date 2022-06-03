@@ -30,6 +30,6 @@ export type NewsBodyType = {
   image_3?: string
 }
 export type NewsFileType = {
-  file: File
+  file?: FileList
 }
 export type FormType = NewsBodyType & NewsFileType

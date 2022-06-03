@@ -2,23 +2,20 @@ import { FC } from 'react'
 
 import { useSelector } from 'react-redux'
 
-import { Button } from 'components/Button/Button'
+import style from '../SinglePaginationSectionNews/SinglePaginationSectionNews.module.scss'
+
+import arrow from 'assets/images/common/arrow.svg'
+import { Button } from 'components/commonComponents'
 import { FIRST_PAGE_PAGINATION } from 'constants/constants'
-import {
-  setNextPageSearchNewsAC,
-  setPreviewPageSearchNewsAC,
-} from 'store/reducers/search_news_reducer'
-import {
-  selectorCountPageSearchNews,
-  selectorCurrentPageSearchNews,
-} from 'store/selectors/searchNews'
+import { setNextPageSearchNewsAC, setPreviewPageSearchNewsAC } from 'store/reducers'
+import { selectCountPageSearchNews, selectCurrentPageSearchNews } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
 
 export const SinglePaginationSearchNews: FC = () => {
   const dispatch = useAppDispatch()
 
-  const pagesCount = useSelector(selectorCountPageSearchNews)
-  const pageNumber = useSelector(selectorCurrentPageSearchNews)
+  const pagesCount = useSelector(selectCountPageSearchNews)
+  const pageNumber = useSelector(selectCurrentPageSearchNews)
 
   const setPreviousPage = (): void => {
     dispatch(setPreviewPageSearchNewsAC())
@@ -28,14 +25,26 @@ export const SinglePaginationSearchNews: FC = () => {
   }
 
   return (
-    <div>
+    <div className={style.container}>
       <Button
-        name="<<"
+        name=""
         onClick={setPreviousPage}
         disabled={pageNumber === FIRST_PAGE_PAGINATION}
-      />
-      <h3>page number Search news: {pageNumber}</h3>
-      <Button name=">>" onClick={setNextPage} disabled={pageNumber === pagesCount} />
+        className={style.leftButton}
+      >
+        <img alt="" src={arrow} />
+      </Button>
+      <h4>
+        {pageNumber} / {pagesCount}
+      </h4>
+      <Button
+        name=""
+        onClick={setNextPage}
+        disabled={pageNumber === pagesCount}
+        className={style.rightButton}
+      >
+        <img alt="" src={arrow} />
+      </Button>
     </div>
   )
 }

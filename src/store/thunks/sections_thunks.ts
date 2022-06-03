@@ -1,20 +1,22 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-import { sectionsRequests } from 'api/sectionsRequests'
-import { StatusCode } from 'enums/enums'
-import { ResponseErrorType } from 'store/types/response_error_type'
-import { SectionType } from 'store/types/section_type'
-import { setError } from 'utils/utils'
+import { sectionsRequests } from 'api'
+import { StatusCode } from 'enums'
+import { setIsLoadingStatusAC } from 'store/reducers'
+import { ResponseErrorType, SectionType } from 'store/types'
+import { setThunkError } from 'utils'
 
 export const getSectionsTC = createAsyncThunk(
   'sections/getSectionsTC',
   async (_, { dispatch }) => {
     try {
-      const response = await sectionsRequests.getSections()
-      return response.data.Data
+      dispatch(setIsLoadingStatusAC(true))
+      const { data } = await sectionsRequests.getSections()
+      return data.Data
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
-      return null
+      setThunkError(dispatch, error as ResponseErrorType)
+    } finally {
+      dispatch(setIsLoadingStatusAC(false))
     }
   },
 )
@@ -23,18 +25,17 @@ export const postSectionsTC = createAsyncThunk(
   'sections/createSectionsTC',
   async (name: string, { dispatch }) => {
     try {
+      dispatch(setIsLoadingStatusAC(true))
       const {
         data: { id },
       } = await sectionsRequests.postSection(name)
       if (id) {
         return { id, name }
       }
-
-      return null
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
-
-      return null
+      setThunkError(dispatch, error as ResponseErrorType)
+    } finally {
+      dispatch(setIsLoadingStatusAC(false))
     }
   },
 )
@@ -43,17 +44,16 @@ export const deleteSectionTC = createAsyncThunk(
   'sections/removeSectionTC',
   async (sectionId: number, { dispatch }) => {
     try {
-      const response = await sectionsRequests.deleteSection(sectionId)
+      dispatch(setIsLoadingStatusAC(true))
+      const { data } = await sectionsRequests.deleteSection(sectionId)
 
-      if (response.data.id === sectionId) {
-        return response.data.id
+      if (data.id === sectionId) {
+        return data.id
       }
-
-      return null
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
-
-      return null
+      setThunkError(dispatch, error as ResponseErrorType)
+    } finally {
+      dispatch(setIsLoadingStatusAC(false))
     }
   },
 )
@@ -62,15 +62,15 @@ export const changeSectionTC = createAsyncThunk(
   'sections/changeSectionTC',
   async (section: SectionType, { dispatch }) => {
     try {
-      const response = await sectionsRequests.changeSection(section)
-      if (response.status === StatusCode.SUCCESS) {
+      dispatch(setIsLoadingStatusAC(true))
+      const { status } = await sectionsRequests.changeSection(section)
+      if (status === StatusCode.SUCCESS) {
         return section
       }
-      return null
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
-
-      return null
+      setThunkError(dispatch, error as ResponseErrorType)
+    } finally {
+      dispatch(setIsLoadingStatusAC(false))
     }
   },
 )

@@ -1,0 +1,41 @@
+@import "src/styles/mixin";
+@import "src/styles/variables";
+
+.container {
+  @include displayContentCenter();
+  align-items: flex-start;
+  flex-direction: column;
+  width: auto;
+  height: auto;
+  padding: 10px;
+  background-color: $gray2;
+  gap: 1rem;
+
+  .links {
+    @include displayContentCenter();
+    flex-wrap: wrap;
+    gap: 5%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+
+    img {
+      height: 30px;
+    }
+
+  }
+
+  .footer {
+    color: $gray;
+  }
+
+  .phone, h5 {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 23px;
+
+    color: $dark;
+  }
+}

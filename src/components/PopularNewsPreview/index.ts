@@ -1,1 +1,1 @@
-export { PopularNewsPreview } from './PopularNewsPreview'
+export { PopularNewsPreview } from 'components/PopularNewsPreview/PopularNewsPreview'

@@ -3,15 +3,21 @@
 
 .container {
   @include displayContentCenter();
+  align-items: flex-start;
   flex-direction: column;
   gap: 20px;
-  width: 30%;
+  max-width: 350px;
   height: auto;
+  margin-top: 103px;
 
   h3 {
     @include displayContentCenter();
-    width: 100%;
-    justify-content: start;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 120%;
+    color: $gray;
   }
 
   .news {
@@ -22,15 +28,29 @@
     border-bottom: 1px $gray solid;
     cursor: pointer;
 
+    &:hover {
+      div {
+        color: $green;
+      }
+    }
+
     h4 {
       @include displayContentCenter();
       @include textColumns(1);
-      justify-content: start;
+      justify-content: flex-start;
       width: 100%;
       margin-bottom: 10px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 120%;
+
+      color: $green;
     }
 
     span {
+      @include testPreview();
       @include textColumns(3);
       color: $gray;
       margin-bottom: 20px;
@@ -38,16 +58,18 @@
 
     div {
       @include displayContentCenter();
-      justify-content: end;
+      justify-content: flex-end;
       color: $gray;
       font-weight: 500;
       width: 100%;
       margin-bottom: 5px;
-
-      &:hover {
-        color: $green;
-      }
     }
+  }
 
+  @media screen and (max-width: $news_container_width) {
+
+    & {
+      display: none;
+    }
   }
 }

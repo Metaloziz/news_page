@@ -6,24 +6,22 @@ import { Comments } from './Comments/Comments'
 import style from './CurrentNews.module.scss'
 import { NewsBody } from './NewsBody/NewsBody'
 
-import { Navigation, NavLinkComponent, PopularNewsPreview } from 'components'
-import { CoursePreview } from 'components/Footer/CoursePreview/CoursePreview'
-import { Path } from 'enums/enums'
-import { setCurrentNewsAC } from 'store/reducers'
+import { Footer, MobileNavigation, Navigation, PopularNewsPreview } from 'components'
 import {
-  selectorCurrentNews,
-  selectorIsAdminMode,
-  selectorPartSearchNews,
+  selectCurrentNews,
+  selectIsAdminMode,
+  selectPartSearchNews,
 } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
-import { addNewsViewsValueTC, getPopularNewsTC } from 'store/thunks'
+import { addNewsViewsValueTC, getNewsByIdTC, getPopularNewsTC } from 'store/thunks'
 
 export const CurrentNews: FC = () => {
   const dispatch = useAppDispatch()
 
-  const news = useSelector(selectorCurrentNews)
-  const popularNews = useSelector(selectorPartSearchNews) // пока редьюсер свободен туда сетаются популярные новости
-  const isAdmin = useSelector(selectorIsAdminMode)
+  const currentNews = useSelector(selectCurrentNews)
+
+  const popularNews = useSelector(selectPartSearchNews) // пока редьюсер свободен туда сетаются популярные новости
+  const isAdmin = useSelector(selectIsAdminMode)
 
   useEffect(() => {
     dispatch(getPopularNewsTC())
@@ -31,30 +29,27 @@ export const CurrentNews: FC = () => {
 
   const setCurrentNews = useCallback(
     (newsId: number) => {
-      const currentNews = popularNews.find(item => item.id === newsId)
+      const currentNewsItem = popularNews.find(item => item.id === newsId)
 
-      if (currentNews) {
-        dispatch(setCurrentNewsAC(currentNews))
+      if (currentNewsItem) {
+        dispatch(getNewsByIdTC.fulfilled(currentNewsItem, '', currentNewsItem.id))
       }
 
       dispatch(addNewsViewsValueTC(newsId))
     },
-    [dispatch, news],
+    [dispatch, currentNews],
   )
 
   return (
     <div className={style.container}>
-      <NavLinkComponent nameButton="на главную" path={Path.MAIN} />
+      <MobileNavigation />
       <Navigation />
       <div className={style.body}>
-        <NewsBody news={news} isAdmin={isAdmin} />
+        <NewsBody news={currentNews} isAdmin={isAdmin} />
         <PopularNewsPreview news={popularNews} setCurrentNews={setCurrentNews} />
       </div>
-      <Comments newsId={news.id} />
-      <div className={style.footer}>
-        <CoursePreview />
-        <CoursePreview />
-      </div>
+      <Comments newsId={currentNews.id} />
+      <Footer />
     </div>
   )
 }

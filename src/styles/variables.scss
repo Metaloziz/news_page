@@ -5,7 +5,6 @@ $error_color_background: #ad4242;
 // from figma
 $main_background_color: #E5E5E5;
 $title_color: #1C1D25;
-//$green: #2F5A53;
 
 $border_radius: 10px;
 
@@ -14,11 +13,16 @@ $dark: #1C1D25;
 $gray: #8E8E92;
 $accent: #B00D23;
 $gray2: #C5C5C5;
-$green: #2F5A53 !global;
+$green: #2F5A53;
 $yellow: #F8C765;
 $back_card: #FBFCF7;
-$back: #F7F8F3;
+$back: #f7f8f3;
 $accent_back: #F0F2E5;
 $yellow2: #ECEB83;
-$gradient: rgba(109, 23, 203, 0.92)
+$gradient: rgba(109, 23, 203, 0.92);
 
+// max width
+$width_menu: 800px;
+$width_page: 600px;
+$news_container_width: 1360px;
+$app_width: 1440px

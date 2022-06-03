@@ -1,8 +1,13 @@
-import { NewsViewType } from 'store/types/news_view_type'
+import { ContactsType } from './contacts_type'
+import { CoursesType } from './courses_type'
+import { NewsViewType } from './news_view_type'
 
 export type InitialAppStateType = {
   isError: boolean
   errorMessage: string
   newsModeView: NewsViewType
   isAdmin: boolean
+  courses: CoursesType[]
+  contacts: ContactsType
+  isLoading: boolean
 }

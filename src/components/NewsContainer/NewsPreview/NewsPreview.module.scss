@@ -1,0 +1,102 @@
+@import "src/styles/variables";
+@import "src/styles/mixin";
+
+.container {
+  @include displayContentCenter();
+  flex-direction: column;
+  align-items: flex-end;
+  max-width: 500px;
+  min-width: 300px;
+  border-radius: $border_radius;
+  height: auto;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(28, 29, 37, 0.26);
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: $back_card;
+    border-radius: $border_radius;
+    width: 100%;
+
+    img {
+      object-fit: cover;
+      height: 200px;
+      width: 100%;
+      border-radius: 5px;
+    }
+
+    .description {
+      padding: 15px 15px 10px 25px;
+
+      .date_and_view {
+        @include displayContentCenter();
+        color: $gray;
+        justify-content: space-between;
+        margin: 10px 0 10px 0;
+
+        span {
+          font-family: 'IBM Plex Sans', sans-serif;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 130%;
+
+          color: $gray;
+        }
+
+        .eye {
+          @include displayContentCenter();
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+
+          img {
+            width: 20px;
+            height: 20px;
+            opacity: 45%;
+          }
+
+          span {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 130%;
+            padding-top: 1px;
+
+            color: $gray;
+          }
+        }
+      }
+
+      h3 {
+        @include textColumns(1);
+        @include titleH3();
+      }
+
+      .text {
+        @include testPreview();
+        @include textColumns(4);
+      }
+    }
+  }
+
+  .footerText {
+    color: $gray;
+    margin: 15px 0 15px 25px;
+
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
+  }
+
+  &:hover {
+    .footerText {
+      color: $green;
+    }
+  }
+}

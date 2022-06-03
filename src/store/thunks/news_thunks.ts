@@ -1,20 +1,21 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-import { NewsPayloadType, newsRequests } from 'api/newsRequests'
-import { StatusCode } from 'enums/enums'
-import { setPagesCountAC } from 'store/reducers/single_pagination_reducer'
+import { NewsPayloadType, newsRequests } from 'api'
+import { Error, StatusCode } from 'enums'
+import { setErrorTrueAC, setIsLoadingStatusAC, setPagesCountAC } from 'store/reducers'
 import { RootState } from 'store/store'
-import { ResponseErrorType } from 'store/types/response_error_type'
-import { setError } from 'utils/utils'
+import { ResponseErrorType } from 'store/types'
+import { setThunkError } from 'utils'
 
 export const getNewsPartTC = createAsyncThunk(
-  'news/getNewsPartTC',
+  'section_news/getNewsPartTC',
   async (pageNumber: number, { dispatch, getState }) => {
     const {
       sections: { activeSectionId },
     } = getState() as RootState
 
     try {
+      dispatch(setIsLoadingStatusAC(true))
       const {
         data: { Data },
         headers: { pages },
@@ -22,11 +23,13 @@ export const getNewsPartTC = createAsyncThunk(
 
       if (Data) {
         dispatch(setPagesCountAC(Number(pages)))
+        return Data
       }
-      return Data
+      dispatch(setErrorTrueAC(Error.EMPTY_NEWS))
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
-      return null
+      setThunkError(dispatch, error as ResponseErrorType)
+    } finally {
+      dispatch(setIsLoadingStatusAC(false))
     }
   },
 )
@@ -35,15 +38,16 @@ export const getNewsByIdTC = createAsyncThunk(
   'section_news/getNewsByIdTC',
   async (newsId: number, { dispatch }) => {
     try {
+      dispatch(setIsLoadingStatusAC(true))
       const { data, status } = await newsRequests.getNewsById(newsId)
 
       if (status === StatusCode.GET_NEWS_SUCCESS) {
         return data
       }
-      return null
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
-      return null
+      setThunkError(dispatch, error as ResponseErrorType)
+    } finally {
+      dispatch(setIsLoadingStatusAC(false))
     }
   },
 )
@@ -52,16 +56,16 @@ export const deleteNewsTC = createAsyncThunk(
   'section_news/deleteNewsTC',
   async (newsId: number, { dispatch }) => {
     try {
-      const response = await newsRequests.deleteNews(newsId)
+      dispatch(setIsLoadingStatusAC(true))
+      const { data } = await newsRequests.deleteNews(newsId)
 
-      if (response.data.id === newsId) {
-        return response.data.id
+      if (data.id === newsId) {
+        return data.id
       }
-
-      return null
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
-      return null
+      setThunkError(dispatch, error as ResponseErrorType)
+    } finally {
+      dispatch(setIsLoadingStatusAC(false))
     }
   },
 )
@@ -70,14 +74,15 @@ export const addNewsViewsValueTC = createAsyncThunk(
   'section_news/addNewsViewsValueTC',
   async (newsId: number, { dispatch }) => {
     try {
-      const response = await newsRequests.addNewsViewsValue(newsId)
-      if (response.data.id === newsId) {
-        return response.data.id
+      dispatch(setIsLoadingStatusAC(true))
+      const { data } = await newsRequests.addNewsViewsValue(newsId)
+      if (data.id === newsId) {
+        return data.id
       }
-      return null
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
-      return null
+      setThunkError(dispatch, error as ResponseErrorType)
+    } finally {
+      dispatch(setIsLoadingStatusAC(false))
     }
   },
 )
@@ -86,14 +91,19 @@ export const postNewsTC = createAsyncThunk(
   'section_news/postNewsTC',
   async (news: NewsPayloadType, { dispatch }) => {
     try {
-      const response = await newsRequests.postNews(news)
-      if (response.status === StatusCode.POST_NEWS_SUCCESS) {
-        // dispatch(getNewsByIdTC(response.data.id)) // пока не нужно
+      dispatch(setIsLoadingStatusAC(true))
+      const {
+        status,
+        data: { id },
+      } = await newsRequests.postNews(news)
+      if (status === StatusCode.POST_NEWS_SUCCESS) {
+        dispatch(getNewsByIdTC(id)) // пока не нужно
+        // dispatch(setCurrentNewsAC(news))
       }
-      return null
     } catch (error) {
-      setError(dispatch, error as ResponseErrorType)
-      return null
+      setThunkError(dispatch, error as ResponseErrorType)
+    } finally {
+      dispatch(setIsLoadingStatusAC(false))
     }
   },
 )

@@ -1,10 +1,10 @@
 import { FC, useEffect } from 'react'
 
 import style from 'App.module.scss'
-import { ErrorComponent, RoutesComponent } from 'components'
-import { Menu } from 'components/Menu/Menu'
+import { ErrorComponent, Loader, RoutesComponent } from 'components'
+import { Menu } from 'components/Menu'
 import { useAppDispatch } from 'store/store'
-import { getSectionsTC } from 'store/thunks/sections_thunks'
+import { getContactsTC, getCoursesTC, getSectionsTC } from 'store/thunks'
 
 const App: FC = () => {
   const dispatch = useAppDispatch()
@@ -12,10 +12,13 @@ const App: FC = () => {
   // возможно есть место получше для useEffect
   useEffect(() => {
     dispatch(getSectionsTC())
+    dispatch(getCoursesTC())
+    dispatch(getContactsTC())
   }, [])
 
   return (
     <div className={style.container}>
+      <Loader />
       <Menu />
       <RoutesComponent />
       <ErrorComponent />

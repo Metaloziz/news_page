@@ -1,18 +1,42 @@
 @import "src/styles/mixin";
 
-
 .container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 20px;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
   input, textarea {
     @include inputStyle();
+    width: 500px;
   }
 
   textarea {
-    @include textColumns(3);
+    @include textColumns(5);
+    height: 200px;
+    margin-top: 10px;
+    resize: none;
   }
 
   button {
-    width: 100%;
+    margin-top: 10px;
+    width: 500px;
+
+    &:disabled {
+      color: #2F5A53;
+      background-color: #E5E5E5;
+      opacity: 100%;
+    }
   }
 
+  p {
+    @include formErrorMessage();
+  }
 }

@@ -1,0 +1,29 @@
+@import "src/styles/mixin";
+@import "src/styles/variables";
+
+
+.container {
+  @include displayContentCenter();
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+
+  div {
+    width: 100%;
+  }
+
+  .subtitle {
+    @include labelStyle();
+
+  }
+
+  .text {
+    @include labelStyle();
+  }
+
+  .image {
+    @include labelStyle();
+  }
+
+}

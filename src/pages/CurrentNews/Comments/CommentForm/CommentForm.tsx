@@ -1,10 +1,11 @@
-import React, { FC, memo } from 'react'
+import { FC, memo, useEffect, useState } from 'react'
 
 import { SubmitHandler, useForm } from 'react-hook-form'
 
 import style from './CommentForm.module.scss'
 
-import { Button } from 'components/Button/Button'
+import { Button } from 'components'
+import { COMMENT_AUTHOR_LENGTH, COMMENT_LENGTH } from 'constants/constants'
 import { CommentType } from 'store/types'
 
 export type CommentFormType = Pick<CommentType, 'author' | 'text'>
@@ -14,13 +15,23 @@ type CommentFormPropsType = {
 }
 
 export const CommentForm: FC<CommentFormPropsType> = memo(({ postComment }) => {
+  const [isDisable, setIsDisable] = useState<boolean>(false)
+  const [buttonName, setButtonName] = useState<string>('отправить')
+
+  useEffect(() => {
+    setIsDisable(false)
+    setButtonName('отправить')
+  }, [postComment])
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<CommentFormType>()
+  } = useForm<CommentFormType>({ mode: 'onChange' })
 
   const onSubmit: SubmitHandler<CommentFormType> = data => {
+    setButtonName('спасибо за отзыв, после модерации комментарий будет опубликован')
+    setIsDisable(true)
     postComment(data)
   }
 
@@ -28,24 +39,32 @@ export const CommentForm: FC<CommentFormPropsType> = memo(({ postComment }) => {
     <div className={style.container}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <label>автор: </label>
           <input
-            defaultValue="boss"
-            {...register('author', { required: true, maxLength: 100 })}
-            placeholder="автор"
+            {...register('author', {
+              required: { value: true, message: 'обяазаетельно поле' },
+              maxLength: {
+                value: COMMENT_AUTHOR_LENGTH,
+                message: `максимальная длинна:  ${COMMENT_AUTHOR_LENGTH} символов`,
+              },
+            })}
+            placeholder="ваше имя"
           />
-          {errors.text && <span>This field is required</span>}
+          <p>{errors.author?.message}</p>
         </div>
         <div>
-          <label>комментарий: </label>
           <textarea
-            {...register('text', { required: true, maxLength: 300 })}
-            defaultValue="какой хороший сайт"
-            placeholder="комментарий"
+            {...register('text', {
+              required: { value: true, message: 'обяазаетельно поле' },
+              maxLength: {
+                value: COMMENT_LENGTH,
+                message: `максимальная длинна:  ${COMMENT_LENGTH} символов`,
+              },
+            })}
+            placeholder="что думаете ?"
           />
-          {errors.text && <span>This field is required</span>}
+          <p>{errors.text?.message}</p>
         </div>
-        <Button name="отправить" type="submit" />
+        <Button disabled={isDisable} name={buttonName} type="submit" />
       </form>
     </div>
   )

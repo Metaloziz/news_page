@@ -3,13 +3,12 @@
 @mixin displayContentCenter {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 @mixin container {
   display: flex;
   flex-direction: column;
-  width: 70vw;
   gap: 10px;
 }
 
@@ -19,7 +18,6 @@
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: $columns; /* number of lines to show */
-  line-clamp: $columns;
   -webkit-box-orient: vertical;
 }
 
@@ -41,5 +39,73 @@
     outline: none;
     background-color: #ffffff;
     border-color: $green;
+  }
+}
+
+
+@mixin labelStyle {
+
+  @include displayContentCenter();
+  flex-direction: column;
+  align-items: flex-start;
+
+  label {
+    color: $gray;
+    margin: 0 0 10px 10px;
+  }
+}
+
+@mixin imageCenterProperty() {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+
+@mixin titleH3 {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 47px;
+
+  color: $green;
+}
+
+@mixin testPreview($fontSize: 16px) {
+
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: $fontSize;
+  line-height: 130%;
+
+  display: flex;
+  align-items: center;
+
+  color: $dark;
+}
+
+
+@mixin textDescription {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 140%;
+  color: $dark;
+}
+
+@mixin formErrorMessage {
+  color: $accent;
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+@mixin paddingMobileMenu {
+  @media screen and (max-width: $width_menu) {
+    & {
+      padding: 2% 1% 5% 2%;
+    }
   }
 }

@@ -1,17 +1,30 @@
 import { FC } from 'react'
 
-import { Button } from 'components/Button/Button'
+import { DeleteButton } from 'components'
 import style from 'pages/CreateSectionPage/Section/Section.module.scss'
-import { SectionType } from 'store/types/section_type'
+import { SectionType } from 'store/types'
+import { isProtectedSection } from 'utils/is_protected_section'
 
 type SectionPropsType = {
   section: SectionType
   deleteSection: (id: number) => void
 }
-export const Section: FC<SectionPropsType> = ({ section, deleteSection }) => (
-  <div className={style.container}>
-    <div>{section.id}</div>
-    <div>{section.name}</div>
-    <Button name="удалить" onClick={() => deleteSection(section.id)} />
+export const Section: FC<SectionPropsType> = ({
+  section: { id, name },
+  deleteSection,
+}) => (
+  <div>
+    <div className={style.container}>
+      <div>
+        <span>
+          {id} - {name}
+        </span>
+      </div>
+      <DeleteButton
+        disabled={!isProtectedSection(id)}
+        name="удалить"
+        onClick={() => deleteSection(id)}
+      />
+    </div>
   </div>
 )

@@ -2,33 +2,77 @@
 @import "src/styles/variables";
 
 .container {
-  @include container();
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex-basis: 400px;
+  padding: 2% 1% 5% 2%;
+  flex-grow: 10;
+  background-color: $back;
+  width: 1100px;
+
+  h2 {
+    color: $green;
+  }
 
   form {
-    width: 90%;
     @include container();
+    @include labelStyle();
+    width: 90%;
     gap: 20px;
 
     input, textarea {
       @include inputStyle();
+
+      &::placeholder {
+        color: $gray2;
+      }
     }
 
     .header {
       @include displayContentCenter();
       justify-content: space-between;
-    }
-
-    .fullText {
-      @include displayContentCenter();
-      flex-direction: column;
-      align-items: center;
       width: 100%;
 
-      div {
-        width: 100%;
+      .date {
+        @include displayContentCenter();
+        @include labelStyle();
+        flex-direction: column;
+        align-items: flex-start;
+
+        input {
+          width: 90px;
+        }
       }
 
+      .sections {
+        @include displayContentCenter();
+        @include labelStyle();
+        flex-direction: column;
+        align-items: flex-start;
+
+        select {
+          @include inputStyle();
+        }
+      }
+    }
+
+    .name {
+      @include displayContentCenter();
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+    }
+
+    .blockTitle {
+      @include displayContentCenter();
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+
+      label {
+        margin: 0;
+      }
     }
   }
 }
