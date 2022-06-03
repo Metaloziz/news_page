@@ -48,3 +48,10 @@ span {
 a {
     text-decoration: none;
 }
+
+@font-face {
+    font-family: "HelveticaNeueCyr-Medium";
+    src: local("HelveticaNeueCyr-Medium"),
+    url("assets/fonts/title/helveticaneuecyr.ttf") format("opentype");
+    font-weight: normal;
+}

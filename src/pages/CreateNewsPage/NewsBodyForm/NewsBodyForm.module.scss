@@ -13,13 +13,12 @@
     width: 100%;
   }
 
-
   .subtitle {
     @include labelStyle();
 
   }
 
-  .preview {
+  .text {
     @include labelStyle();
   }
 

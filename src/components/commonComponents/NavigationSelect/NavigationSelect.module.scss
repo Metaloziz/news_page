@@ -8,8 +8,7 @@
   min-width: 150px;
   height: auto;
   cursor: pointer;
-  z-index: 100;
-
+  z-index: 10;
 
   .items {
     @include displayContentCenter();

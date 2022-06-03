@@ -5,8 +5,8 @@ import style from "./NewsBody.module.scss";
 
 import { NavLinkComponent } from "components";
 import { NewsType } from "store/types";
-import { Path } from "enums/enums";
-import {convertDateView} from "utils/convert_date_view";
+import {convertDateView} from "utils";
+import {Path} from "enums";
 
 type NewsBodyPropsType = {
   news: NewsType

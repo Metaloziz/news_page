@@ -69,20 +69,24 @@ export const ChangeNewsPage: FC = () => {
           useFormRegisterReturn2={register('image_1')}
           errors={errors}
         />
-        <NewsBodyForm
-          defaultValues={news}
-          useFormRegisterReturn={register('subtitle_2')}
-          useFormRegisterReturn1={register('full_text_2')}
-          useFormRegisterReturn2={register('image_2')}
-          errors={errors}
-        />
-        <NewsBodyForm
-          defaultValues={news}
-          useFormRegisterReturn={register('subtitle_3')}
-          useFormRegisterReturn1={register('full_text_3')}
-          useFormRegisterReturn2={register('image_3')}
-          errors={errors}
-        />
+        {news.subtitle_2 && (
+          <NewsBodyForm
+            defaultValues={news}
+            useFormRegisterReturn={register('subtitle_2')}
+            useFormRegisterReturn1={register('full_text_2')}
+            useFormRegisterReturn2={register('image_2')}
+            errors={errors}
+          />
+        )}
+        {news.subtitle_3 && (
+          <NewsBodyForm
+            defaultValues={news}
+            useFormRegisterReturn={register('subtitle_3')}
+            useFormRegisterReturn1={register('full_text_3')}
+            useFormRegisterReturn2={register('image_3')}
+            errors={errors}
+          />
+        )}
         <Button name="отправить" type="submit" />
       </form>
     </div>
