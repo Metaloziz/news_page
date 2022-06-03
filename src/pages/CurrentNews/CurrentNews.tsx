@@ -6,7 +6,7 @@ import { Comments } from './Comments/Comments'
 import style from './CurrentNews.module.scss'
 import { NewsBody } from './NewsBody/NewsBody'
 
-import { Footer, Navigation, PopularNewsPreview } from 'components'
+import { Footer, MobileNavigation, Navigation, PopularNewsPreview } from 'components'
 import {
   selectCurrentNews,
   selectIsAdminMode,
@@ -42,6 +42,7 @@ export const CurrentNews: FC = () => {
 
   return (
     <div className={style.container}>
+      <MobileNavigation />
       <Navigation />
       <div className={style.body}>
         <NewsBody news={currentNews} isAdmin={isAdmin} />
