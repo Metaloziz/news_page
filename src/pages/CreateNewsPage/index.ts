@@ -1,1 +1,0 @@
-export { CreateNewsPage } from './CreateNewsPage'

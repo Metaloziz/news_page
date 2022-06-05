@@ -15,7 +15,7 @@ import {
 import { useAppDispatch } from 'store/store'
 import { addNewsViewsValueTC, getNewsByIdTC, getPopularNewsTC } from 'store/thunks'
 
-export const CurrentNews: FC = () => {
+const CurrentNews: FC = () => {
   const dispatch = useAppDispatch()
 
   const currentNews = useSelector(selectCurrentNews)
@@ -53,3 +53,5 @@ export const CurrentNews: FC = () => {
     </div>
   )
 }
+
+export default CurrentNews

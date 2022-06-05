@@ -14,7 +14,7 @@ import { updateNewsTC } from 'store/thunks/current_news_thunks'
 import { FormType } from 'store/types'
 import { todayDate } from 'utils/today_date'
 
-export const ChangeNewsPage: FC = () => {
+const ChangeNewsPage: FC = () => {
   const dispatch = useAppDispatch()
 
   const sections = useSelector(selectSections)
@@ -92,3 +92,5 @@ export const ChangeNewsPage: FC = () => {
     </div>
   )
 }
+
+export default ChangeNewsPage

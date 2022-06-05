@@ -1,1 +1,0 @@
-export { CurrentNews } from './CurrentNews'
