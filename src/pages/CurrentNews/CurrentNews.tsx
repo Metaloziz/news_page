@@ -43,13 +43,15 @@ const CurrentNews: FC = () => {
   return (
     <div className={style.container}>
       <MobileNavigation />
-      <Navigation />
-      <div className={style.body}>
-        <NewsBody news={currentNews} isAdmin={isAdmin} />
-        <PopularNewsPreview news={popularNews} setCurrentNews={setCurrentNews} />
+      <div className={style.bodyContainer}>
+        <Navigation />
+        <div className={style.body}>
+          <NewsBody news={currentNews} isAdmin={isAdmin} />
+          <PopularNewsPreview news={popularNews} setCurrentNews={setCurrentNews} />
+        </div>
+        <Comments newsId={currentNews.id} />
+        <Footer />
       </div>
-      <Comments newsId={currentNews.id} />
-      <Footer />
     </div>
   )
 }

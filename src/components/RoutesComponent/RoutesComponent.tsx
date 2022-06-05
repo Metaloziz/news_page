@@ -2,6 +2,7 @@ import { FC, Suspense, lazy } from 'react'
 
 import { Navigate, Route, Routes } from 'react-router-dom'
 
+import { PageLoader } from 'components/commonComponents'
 import { Path } from 'enums'
 
 const MainPage = lazy(() => import('../../pages/MainPage/MainPage'))
@@ -14,7 +15,7 @@ const ChangeNewsPage = lazy(() => import('../../pages/ChangeNewsPage/ChangeNewsP
 const Component404 = lazy(() => import('../commonComponents/Component404/Component404'))
 
 export const RoutesComponent: FC = () => (
-  <Suspense fallback={<div>Loading...</div>}>
+  <Suspense fallback={<PageLoader />}>
     <Routes>
       <Route path={Path.DEFAULT} element={<Navigate to={Path.MAIN} />} />
       <Route path={Path.MAIN} element={<MainPage />} />
