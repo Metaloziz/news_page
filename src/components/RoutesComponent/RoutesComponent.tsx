@@ -20,32 +20,11 @@ export const RoutesComponent: FC = () => (
       <Route path={Path.DEFAULT} element={<Navigate to={Path.MAIN} />} />
       <Route path={Path.MAIN} element={<MainPage />} />
       <Route path={Path.CURRENT_NEWS} element={<CurrentNews />} />
-
-      <Route
-        path={Path.CREATE_NEWS}
-        element={
-          <ProtectedRoute>
-            <CreateNewsPage />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path={Path.CREATE_SECTION}
-        element={
-          <ProtectedRoute>
-            <CreateSectionPage />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path={Path.CHANGE_NEWS}
-        element={
-          <ProtectedRoute>
-            <ChangeNewsPage />
-          </ProtectedRoute>
-        }
-      />
-
+      <Route element={<ProtectedRoute redirectPath={Path.MAIN} />}>
+        <Route path={Path.CREATE_NEWS} element={<CreateNewsPage />} />
+        <Route path={Path.CREATE_SECTION} element={<CreateSectionPage />} />
+        <Route path={Path.CHANGE_NEWS} element={<ChangeNewsPage />} />
+      </Route>
       <Route path="*" element={<Component404 />} />
     </Routes>
   </Suspense>

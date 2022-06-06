@@ -1,21 +1,20 @@
-import { FC, ReactElement } from 'react'
+import { FC } from 'react'
 
 import { useSelector } from 'react-redux'
-import { Navigate } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 
-import { Path } from 'enums'
 import { selectIsAdminMode } from 'store/selectors'
 
 type ProtectedRoutePropsType = {
-  children: ReactElement
+  redirectPath: string
 }
 
-export const ProtectedRoute: FC<ProtectedRoutePropsType> = ({ children }) => {
+export const ProtectedRoute: FC<ProtectedRoutePropsType> = ({ redirectPath }) => {
   const isAdmin = useSelector(selectIsAdminMode)
 
   if (!isAdmin) {
-    return <Navigate to={Path.MAIN} />
+    return <Navigate to={redirectPath} />
   }
 
-  return children
+  return <Outlet />
 }
