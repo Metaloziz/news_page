@@ -1,8 +1,8 @@
-import { FC, Suspense, lazy } from 'react'
+import { FC, lazy, Suspense } from 'react'
 
 import { Navigate, Route, Routes } from 'react-router-dom'
 
-import { PageLoader } from 'components/commonComponents'
+import { PageLoader, ProtectedRoute } from 'components/commonComponents'
 import { Path } from 'enums'
 
 const MainPage = lazy(() => import('../../pages/MainPage/MainPage'))
@@ -20,9 +20,32 @@ export const RoutesComponent: FC = () => (
       <Route path={Path.DEFAULT} element={<Navigate to={Path.MAIN} />} />
       <Route path={Path.MAIN} element={<MainPage />} />
       <Route path={Path.CURRENT_NEWS} element={<CurrentNews />} />
-      <Route path={Path.CREATE_NEWS} element={<CreateNewsPage />} />
-      <Route path={Path.CREATE_SECTION} element={<CreateSectionPage />} />
-      <Route path={Path.CHANGE_NEWS} element={<ChangeNewsPage />} />
+
+      <Route
+        path={Path.CREATE_NEWS}
+        element={
+          <ProtectedRoute>
+            <CreateNewsPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path={Path.CREATE_SECTION}
+        element={
+          <ProtectedRoute>
+            <CreateSectionPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path={Path.CHANGE_NEWS}
+        element={
+          <ProtectedRoute>
+            <ChangeNewsPage />
+          </ProtectedRoute>
+        }
+      />
+
       <Route path="*" element={<Component404 />} />
     </Routes>
   </Suspense>
