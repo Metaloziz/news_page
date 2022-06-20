@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -8,7 +8,7 @@ import style from './Navigation.module.scss'
 import { NavigationSelect, SearchField } from 'components/commonComponents'
 import { SectionButton } from 'components/SectionButton'
 import {
-  DESCKTOP_WIDTH,
+  DESKTOP_WIDTH,
   FIRST_ARRAY_ITEM,
   NEWS_BY_SEARCHING,
   NEWS_BY_SECTIONS,
@@ -20,7 +20,7 @@ import { useElementWidth } from 'hooks'
 import { changeNewsTypeViewAC, setCurrentSectionAC, setFirstPageAC } from 'store/reducers'
 import { selectIdActiveSection, selectSections } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
-import { getPopularNewsTC, getSearchNewsTC } from 'store/thunks'
+import { getPopularNewsTC, getSearchNewsTC, getSectionsTC } from 'store/thunks'
 import { SectionType } from 'store/types'
 import { getSelectSection } from 'utils/get_select_section'
 
@@ -29,10 +29,14 @@ export const Navigation: FC = () => {
 
   const navigate = useNavigate()
 
+  useEffect(() => {
+    dispatch(getSectionsTC())
+  }, [])
+
   const sections = useSelector(selectSections)
   const activeSection = useSelector(selectIdActiveSection)
 
-  const [ref, isDescktopWidth] = useElementWidth(DESCKTOP_WIDTH)
+  const [ref, isDesktopWidth] = useElementWidth(DESKTOP_WIDTH)
 
   const isActiveSection = (id: number): boolean => id === activeSection
 
@@ -65,7 +69,7 @@ export const Navigation: FC = () => {
 
   let OTHER_SECTION: SectionType | undefined
 
-  if (isDescktopWidth) {
+  if (isDesktopWidth) {
     ALL_SECTION = sections[FIRST_ARRAY_ITEM]
     POPULAR_SECTION = sections[SECOND_ARRAY_ITEM]
     ITEC_SECTION = sections[THIRD_ARRAY_ITEM]

@@ -25,7 +25,7 @@ export const SECOND_ARRAY_ITEM = 1
 export const THIRD_ARRAY_ITEM = 2
 
 // max desktop width
-export const DESCKTOP_WIDTH = 800
+export const DESKTOP_WIDTH = 800
 
 // form input length
 export const COMMENT_AUTHOR_LENGTH = 20

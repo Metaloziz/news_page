@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 
 import { useSelector } from 'react-redux'
 
@@ -13,8 +13,16 @@ import tikTok from 'assets/images/socialNetworkIcons/tiktok.png'
 import viber from 'assets/images/socialNetworkIcons/viber.png'
 import vk from 'assets/images/socialNetworkIcons/vk.png'
 import { selectContacts } from 'store/selectors'
+import { useAppDispatch } from 'store/store'
+import { getContactsTC } from 'store/thunks'
 
 export const Contacts: FC = () => {
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(getContactsTC())
+  }, [])
+
   const {
     socialVK,
     socialTG,

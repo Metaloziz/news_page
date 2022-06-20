@@ -4,6 +4,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 
 import { PageLoader, ProtectedRoute } from 'components/commonComponents'
 import { Path } from 'enums'
+import { LoginPage } from 'pages/LoginPage/LoginPage'
 
 const MainPage = lazy(() => import('../../pages/MainPage/MainPage'))
 const CurrentNews = lazy(() => import('../../pages/CurrentNews/CurrentNews'))
@@ -20,6 +21,7 @@ export const RoutesComponent: FC = () => (
       <Route path={Path.DEFAULT} element={<Navigate to={Path.MAIN} />} />
       <Route path={Path.MAIN} element={<MainPage />} />
       <Route path={Path.CURRENT_NEWS} element={<CurrentNews />} />
+      <Route path={Path.LOGIN} element={<LoginPage />} />
       <Route element={<ProtectedRoute redirectPath={Path.MAIN} />}>
         <Route path={Path.CREATE_NEWS} element={<CreateNewsPage />} />
         <Route path={Path.CREATE_SECTION} element={<CreateSectionPage />} />

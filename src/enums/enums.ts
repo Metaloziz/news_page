@@ -13,6 +13,7 @@ export enum Path {
   CREATE_NEWS = '/create_news',
   CHANGE_NEWS = '/change_news',
   CREATE_SECTION = '/create_section',
+  LOGIN = '/login',
 }
 
 export enum RequestSource {
