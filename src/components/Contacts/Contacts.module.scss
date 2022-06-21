@@ -7,9 +7,12 @@
   flex-direction: column;
   width: auto;
   height: auto;
-  padding: 10px;
   background-color: $gray2;
-  gap: 1rem;
+  padding: 10px 10px 20px 20px;
+
+  span {
+    font-size: 14px;
+  }
 
   .links {
     @include displayContentCenter();
@@ -33,7 +36,7 @@
     font-family: 'IBM Plex Sans', sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 23px;
 
     color: $dark;

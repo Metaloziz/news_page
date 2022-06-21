@@ -1,8 +1,9 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 
 import { useSelector } from 'react-redux'
 
 import style from './Contacts.module.scss'
+import { Link } from './Link/Link'
 
 import facebook from 'assets/images/socialNetworkIcons/facebook.png'
 import instagram from 'assets/images/socialNetworkIcons/instagram.png'
@@ -11,10 +12,17 @@ import telegram from 'assets/images/socialNetworkIcons/telegram.png'
 import tikTok from 'assets/images/socialNetworkIcons/tiktok.png'
 import viber from 'assets/images/socialNetworkIcons/viber.png'
 import vk from 'assets/images/socialNetworkIcons/vk.png'
-import { Link } from 'components/Contacts/Link/Link'
 import { selectContacts } from 'store/selectors'
+import { useAppDispatch } from 'store/store'
+import { getContactsTC } from 'store/thunks'
 
 export const Contacts: FC = () => {
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(getContactsTC())
+  }, [])
+
   const {
     socialVK,
     socialTG,
@@ -45,7 +53,7 @@ export const Contacts: FC = () => {
       </div>
       <span>Или звоните:</span>
       <div className={style.phone}>{phone}</div>
-      <div className={style.footer}> © ITEC, 2022</div>
+      <div className={style.footer}> © ITEC 2022</div>
     </div>
   )
 }

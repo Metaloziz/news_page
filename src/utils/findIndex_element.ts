@@ -1,5 +1,6 @@
 export const findIndexElement = (array: any[], elementId: number): number =>
   array.findIndex(el => el.id === elementId)
+
 type ObjectType = {
   id: number
 }

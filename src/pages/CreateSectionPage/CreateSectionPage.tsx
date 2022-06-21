@@ -13,9 +13,9 @@ import { selectSections } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
 import { changeSectionTC, deleteSectionTC, postSectionsTC } from 'store/thunks'
 import { SectionType } from 'store/types'
-import { isProtectedSection } from 'utils/is_protected_section'
+import { isProtectedSection } from 'utils'
 
-export const CreateSectionPage: FC = () => {
+const CreateSectionPage: FC = () => {
   const dispatch = useAppDispatch()
 
   const sections = useSelector(selectSections)
@@ -71,3 +71,4 @@ export const CreateSectionPage: FC = () => {
     </div>
   )
 }
+export default CreateSectionPage

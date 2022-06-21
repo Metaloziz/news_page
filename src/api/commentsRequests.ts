@@ -15,6 +15,7 @@ export const commentsRequests = {
 
   postComment: (comment: PostCommentPayloadType) =>
     instance.post<{ id: number }>(`${RequestSource.COMMENTS}/`, comment),
+
   getCurrentComment: (commentId: number) =>
     instance.get<CommentType>(`${RequestSource.COMMENTS}/${commentId}`),
 }

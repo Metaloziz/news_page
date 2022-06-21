@@ -74,4 +74,5 @@ export const {
   changeIsAdminModeAC,
   setIsLoadingStatusAC,
 } = mainSlice.actions
+
 export const appReducer = mainSlice.reducer

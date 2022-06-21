@@ -4,13 +4,13 @@
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  gap: 10px;
-  flex-basis: 280px; // не изменять
+  justify-content: space-between;
+  flex-basis: 230px; // не изменять
   background-color: $back_card;
   border-radius: 0 20px 0 0;
   box-shadow: 0 0 10px rgba(28, 29, 37, 0.26);
   left: 100px;
+  height: 100vh;
 
   .header {
     display: flex;

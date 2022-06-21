@@ -4,11 +4,9 @@
 .container {
   @include container();
   width: 100%;
-  min-height: 300px;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  height: auto;
 
   .preview {
     @include container();
@@ -36,7 +34,6 @@
   }
 
   .text {
-
     font-family: 'IBM Plex Sans', sans-serif;
     font-style: normal;
     font-weight: 400;
@@ -47,6 +44,7 @@
     align-items: center;
 
     color: $dark;
+    margin-bottom: 30px;
   }
 
   .image {
@@ -56,9 +54,11 @@
     max-width: 350px;
   }
 
-  @media screen and (max-width: $width_page) {
+  @media screen and (max-width: $width_menu) {
 
     & {
+
+      margin-top: 80px;
 
       .preview {
         h1 {

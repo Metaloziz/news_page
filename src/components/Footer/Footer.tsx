@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 
 import { useSelector } from 'react-redux'
 
@@ -7,8 +7,16 @@ import style from './Footer.module.scss'
 
 import { FIRST_ARRAY_ITEM, SECOND_ARRAY_ITEM } from 'constants/constants'
 import { selectIsCourses } from 'store/selectors'
+import { useAppDispatch } from 'store/store'
+import { getCoursesTC } from 'store/thunks'
 
 export const Footer: FC = () => {
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(getCoursesTC())
+  }, [])
+
   const courses = useSelector(selectIsCourses)
 
   return (

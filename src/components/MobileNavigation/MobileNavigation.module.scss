@@ -8,8 +8,10 @@
   background-color: $green;
   height: 70px;
   cursor: pointer;
-  position: relative;
+  position: fixed;
   margin-bottom: 10px;
+  width: 100%;
+  z-index: $z_index_mobile_menu;
 
   .header {
     display: flex;

@@ -1,8 +1,5 @@
-import {
-  paginationReducer,
-  PaginationInitialStateType,
-  setCurrentPageAC,
-} from 'store/reducers/pagination_reducer'
+import { paginationReducer, setCurrentPageAC } from 'store/reducers/pagination_reducer'
+import { PaginationInitialStateType } from 'store/types/pagination_initial_state_type'
 
 const newCurrentPage: number = 10
 

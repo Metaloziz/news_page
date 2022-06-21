@@ -26,14 +26,16 @@ export const Menu: FC = () => {
 
   return (
     <div className={style.container}>
-      <div className={style.header}>
-        <span>ITEC</span>
-        <p>Education complex</p>
+      <div>
+        <div className={style.header}>
+          <span>ITEC</span>
+          <p>Education complex</p>
+        </div>
+        <MenuItems elements={menuNames} />
+        <h4>
+          режим админа: вкл\выкл <input type="checkbox" onClick={switchIsAdminMode} />
+        </h4>
       </div>
-      <MenuItems elements={menuNames} />
-      <h4>
-        режим админа: вкл\выкл <input type="checkbox" onClick={switchIsAdminMode} />
-      </h4>
       <Contacts />
     </div>
   )

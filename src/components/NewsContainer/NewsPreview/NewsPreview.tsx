@@ -4,16 +4,9 @@ import style from './NewsPreview.module.scss'
 
 import eye from 'assets/images/common/eye.svg'
 import { DeleteButton } from 'components/commonComponents'
-import { NewsType } from 'store/types'
+import { NewsPropsType } from 'store/types/news_props_type'
 import { convertDateView } from 'utils'
-
-type NewsPropsType = {
-  data: NewsType
-  setCurrentNews: (id: number) => void
-  newsRouteHandle: () => void
-  deleteNews: (id: number) => void
-  isAdmin: boolean
-}
+import { imageUrlHandle } from 'utils/image_url_handle'
 
 export const NewsPreview: FC<NewsPropsType> = memo(
   ({
@@ -33,7 +26,7 @@ export const NewsPreview: FC<NewsPropsType> = memo(
         {isAdmin && <DeleteButton onClick={() => deleteNews(id)} />}
         <div role="button" tabIndex={-1} className={style.body} onClick={openCurrentNews}>
           <div>
-            <img alt="ava" src={image} />
+            <img alt="ava" src={imageUrlHandle(image)} />
           </div>
           <div className={style.description}>
             <div className={style.date_and_view}>

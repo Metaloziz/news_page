@@ -3,7 +3,6 @@ import { createSlice } from '@reduxjs/toolkit'
 import {
   addNewsViewsValueTC,
   deleteNewsTC,
-  getNewsByIdTC,
   getNewsPartTC,
 } from 'store/thunks/news_thunks'
 import { SectionNewsInitialStateType } from 'store/types'
@@ -50,11 +49,6 @@ const mainSlice = createSlice({
       if (action.payload) {
         const indexElement = findIndexElement(state.news, action.payload)
         state.news[indexElement].views += 1
-      }
-    })
-    builder.addCase(getNewsByIdTC.fulfilled, (state, action) => {
-      if (action.payload) {
-        state.news.push(action.payload)
       }
     })
   },

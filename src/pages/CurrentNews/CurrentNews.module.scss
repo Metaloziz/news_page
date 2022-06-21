@@ -8,30 +8,42 @@
   flex-basis: 400px; // не менять
 
   flex-grow: 10;
+  overflow-y: scroll;
+  height: 100vh;
 
-  .body {
-    @include displayContentCenter();
-    flex-direction: row;
-    align-items: flex-start;
-    width: 100%;
-    gap: 20px;
+  .bodyContainer {
     padding: 2% 1% 5% 2%;
-  }
 
-  .comments {
-    height: 100px;
-    width: auto;
-  }
+    .body {
+      @include displayContentCenter();
+      flex-direction: row;
+      align-items: flex-start;
+      margin-bottom: 50px;
+      width: 100%;
+      gap: 20px;
+    }
 
-  .footer {
-    @include displayContentCenter();
-    align-items: flex-start;
-    flex-direction: row;
-    justify-content: space-between;
-
-    .preview {
+    .comments {
+      height: 100px;
       width: auto;
-      height: 300px;
+    }
+
+    .footer {
+      @include displayContentCenter();
+      align-items: flex-start;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .preview {
+        width: auto;
+        height: 300px;
+      }
+    }
+
+    @media screen and (max-width: $width_menu) {
+      & {
+        margin-top: 60px;
+      }
     }
   }
 }

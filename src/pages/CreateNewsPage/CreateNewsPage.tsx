@@ -15,7 +15,7 @@ import { postNewsTC } from 'store/thunks'
 import { FormType } from 'store/types'
 import { todayDate } from 'utils'
 
-export const CreateNewsPage: FC = () => {
+const CreateNewsPage: FC = () => {
   const dispatch = useAppDispatch()
 
   const sections = useSelector(selectSections)
@@ -109,3 +109,5 @@ export const CreateNewsPage: FC = () => {
     </div>
   )
 }
+
+export default CreateNewsPage

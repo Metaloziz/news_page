@@ -1,16 +1,11 @@
+import { paginationReducer, sectionNewsReducer } from 'store/reducers/index'
+import { addNewsViewsValueTC, deleteNewsTC, getNewsPartTC } from 'store/thunks'
 import {
+  NewsType,
   PaginationInitialStateType,
-  paginationReducer,
-  sectionNewsReducer,
-} from 'store/reducers/index'
-import {
-  addNewsViewsValueTC,
-  deleteNewsTC,
-  getNewsByIdTC,
-  getNewsPartTC,
-} from 'store/thunks'
-import { SectionNewsInitialStateType, NewsType } from 'store/types'
-import { findElement, findIndexElement } from 'utils/findIndex_element'
+  SectionNewsInitialStateType,
+} from 'store/types'
+import { findIndexElement } from 'utils/findIndex_element'
 
 const firstItem: number = 0
 const currentNewsId: number = 10
@@ -19,7 +14,6 @@ const countViewsSeparator: number = 1
 let paginationInitialState: PaginationInitialStateType
 let sectionNewsInitialState: SectionNewsInitialStateType
 let newsData: NewsType[]
-let newNews: NewsType
 
 beforeEach(() => {
   sectionNewsInitialState = {
@@ -86,24 +80,6 @@ beforeEach(() => {
     totalCountNews: 1,
     currentPage: 1,
   }
-
-  newNews = {
-    id: 100,
-    name: 'TS',
-    subtitle_1: 'text',
-    full_text_1: 'text',
-    image_1: 'img',
-    subtitle_2: 'text',
-    full_text_2: 'text',
-    image_2: 'img',
-    full_text_3: 'text',
-    image_3: 'img',
-    link: 'some link',
-    date: '9 November 2016 16:16:02 GMT',
-    subtitle_3: 'text',
-    section: 1,
-    views: 11,
-  }
 })
 
 describe('section news reducer', () => {
@@ -144,15 +120,5 @@ describe('section news reducer', () => {
     expect(endState.news[indexElement].views).toBe(
       sectionNewsInitialState.news[indexElement].views + countViewsSeparator,
     )
-  })
-
-  test('should add one news to state', () => {
-    const action = getNewsByIdTC.fulfilled(newNews, '', newNews.id)
-
-    const endState = sectionNewsReducer(sectionNewsInitialState, action)
-
-    const news = findElement(endState.news, newNews.id)
-
-    expect(news).toBe(newNews)
   })
 })
