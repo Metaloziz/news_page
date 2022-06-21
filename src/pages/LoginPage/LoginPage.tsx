@@ -11,7 +11,7 @@ type LoginType = {
   password: string
 }
 
-export const LoginPage: FC = () => {
+const LoginPage: FC = () => {
   const {
     register,
     handleSubmit,
@@ -19,7 +19,7 @@ export const LoginPage: FC = () => {
   } = useForm<LoginType>()
 
   const onSubmit: SubmitHandler<LoginType> = data => {
-    console.log(data)
+    console.log(data) // todo ждём API
   }
 
   return (
@@ -53,3 +53,5 @@ export const LoginPage: FC = () => {
     </div>
   )
 }
+
+export default LoginPage

@@ -1,8 +1,8 @@
-import { FC, useCallback, useEffect } from 'react'
+import { FC, useEffect } from 'react'
 
 import { useSelector } from 'react-redux'
 
-import { Comments } from './Comments/Comments'
+import { Comments } from './Comments/Comments' // todo решить вопрос о их необходимости с Сергеем
 import style from './CurrentNews.module.scss'
 import { NewsBody } from './NewsBody/NewsBody'
 
@@ -27,18 +27,15 @@ const CurrentNews: FC = () => {
     dispatch(getPopularNewsTC())
   }, [])
 
-  const setCurrentNews = useCallback(
-    (newsId: number) => {
-      const currentNewsItem = popularNews.find(item => item.id === newsId)
+  const setCurrentNews = (newsId: number): void => {
+    const currentNewsItem = popularNews.find(item => item.id === newsId)
 
-      if (currentNewsItem) {
-        dispatch(getNewsByIdTC.fulfilled(currentNewsItem, '', currentNewsItem.id))
-      }
+    if (currentNewsItem) {
+      dispatch(getNewsByIdTC.fulfilled(currentNewsItem, '', currentNewsItem.id))
+    }
 
-      dispatch(addNewsViewsValueTC(newsId))
-    },
-    [dispatch, currentNews],
-  )
+    dispatch(addNewsViewsValueTC(newsId))
+  }
 
   return (
     <div className={style.container}>
@@ -49,7 +46,7 @@ const CurrentNews: FC = () => {
           <NewsBody news={currentNews} isAdmin={isAdmin} />
           <PopularNewsPreview news={popularNews} setCurrentNews={setCurrentNews} />
         </div>
-        <Comments newsId={currentNews.id} />
+        {/* <Comments newsId={currentNews.id} /> */}
         <Footer />
       </div>
     </div>

@@ -27,7 +27,9 @@ const mainSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(getSectionsTC.fulfilled, (state, action) => {
-      if (action.payload) {
+      const DEFAULT_SECTION_COUNT = 1
+
+      if (action.payload && state.sections.length === DEFAULT_SECTION_COUNT) {
         const otherSectionIndex = findIndexElement(action.payload, OTHER_SECTION_ID)
         const count = 1
         const otherSection = action.payload.splice(otherSectionIndex, count)[
