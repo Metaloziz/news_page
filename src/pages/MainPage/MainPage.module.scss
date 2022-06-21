@@ -7,8 +7,8 @@
   align-items: stretch;
   padding: 2% 1% 5% 2%;
   flex-grow: 1;
-  //overflow-y: scroll;  // решить баг с сжатием
-  //height: 100vh;
+  overflow-y: scroll; // решить баг с сжатием
+  height: 100vh;
 
   @media screen and (max-width: $width_menu) {
     & {

@@ -9,6 +9,7 @@
   height: auto;
   cursor: pointer;
   z-index: $z_index_navigation;
+  position: relative;
 
   .items {
     @include displayContentCenter();

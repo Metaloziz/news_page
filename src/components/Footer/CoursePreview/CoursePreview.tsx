@@ -7,10 +7,13 @@ import { CoursesType } from 'store/types/courses_type'
 
 export const CoursePreview: FC<{ courses: CoursesType }> = ({ courses }) => {
   const bufferDiv = document.createElement('div')
+
   bufferDiv.innerHTML = courses.description_course
+
   const text = Array.from(bufferDiv.children).map(el => (
     <li key={el.textContent}>{el.textContent}</li>
   ))
+
   return (
     <div className={style.container}>
       <a href={COURSES_URL} target="_blank" rel="noreferrer">
