@@ -24,7 +24,7 @@ const ChangeNewsPage: FC = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormType>()
+  } = useForm<FormType>({ mode: 'onChange' })
 
   const onSubmit: SubmitHandler<FormType> = data => {
     data.section = Number(data.section)

@@ -1,0 +1,51 @@
+@import "src/styles/mixin";
+@import "src/styles/variables";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 70vw;
+
+  .block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+
+    @include labelStyle();
+
+    label {
+      @include titleH3();
+    }
+
+    input {
+      @include inputStyle();
+    }
+
+    .error {
+      @include formErrorMessage();
+    }
+
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      gap: 20px;
+
+      div {
+        width: 100%;
+      }
+    }
+
+    width: 500px;
+    height: 400px;
+    //border: #2F5A53 5px solid;
+    border-radius: 20px;
+    padding: 20px;
+  }
+}
