@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkitec=self.webpackChunkitec||[]).push([[67],{9067:function(n,e,r){r.r(e),r.d(e,{default:function(){return t}});var c="Component404_container__77G1n",s=r(184),t=function(){return(0,s.jsxs)("div",{className:c,children:[(0,s.jsx)("span",{children:"error 404"})," ",(0,s.jsx)("span",{children:"page not found"})]})}}}]);
+//# sourceMappingURL=67.5040fab2.chunk.js.map
