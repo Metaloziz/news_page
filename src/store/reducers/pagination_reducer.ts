@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { getNewsPartTC } from 'store/thunks/news_thunks'
-import { PaginationInitialStateType } from 'store/types'
+import { PaginationInitialStateType } from 'store/types/pagination_initial_state_type'
 
 // не используется на главной странице, пока
 
