@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { getNewsPartTC } from 'store/thunks/news_thunks'
+import { PaginationInitialStateType } from 'store/types/pagination_initial_state_type'
 
 // не используется на главной странице, пока
 
@@ -29,12 +30,3 @@ export const mainSlice = createSlice({
 
 export const { setCurrentPageAC } = mainSlice.actions
 export const paginationReducer = mainSlice.reducer
-
-// types
-export type PaginationInitialStateType = {
-  countNewsOnPage: number
-  totalCountNews: number
-  currentPage: number
-}
-
-export type SetCountNewsAction = Omit<PaginationInitialStateType, 'currentPage'>
