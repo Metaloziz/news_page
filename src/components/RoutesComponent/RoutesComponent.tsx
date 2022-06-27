@@ -4,6 +4,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 
 import { PageLoader, ProtectedRoute } from 'components/commonComponents'
 import { Path } from 'enums'
+import { RegistrationPage } from 'pages/LoginPage/RegistrationPage/RegistrationPage'
 
 const MainPage = lazy(() => import('../../pages/MainPage/MainPage'))
 const LoginPage = lazy(() => import('../../pages/LoginPage/LoginPage'))
@@ -16,12 +17,14 @@ const CreateSectionPage = lazy(
 )
 
 export const RoutesComponent: FC = () => (
+  // todo отформатировать роуты
   <Suspense fallback={<PageLoader />}>
     <Routes>
       <Route path={Path.DEFAULT} element={<Navigate to={Path.MAIN} />} />
       <Route path={Path.MAIN} element={<MainPage />} />
       <Route path={Path.CURRENT_NEWS} element={<CurrentNews />} />
       <Route path={Path.LOGIN} element={<LoginPage />} />
+      <Route path={Path.REGISTRATION} element={<RegistrationPage />} />
       <Route element={<ProtectedRoute redirectPath={Path.MAIN} />}>
         <Route path={Path.CREATE_NEWS} element={<CreateNewsPage />} />
         <Route path={Path.CREATE_SECTION} element={<CreateSectionPage />} />

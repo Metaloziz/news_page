@@ -3,31 +3,27 @@ import { FC } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
-import style from './LoginPage.module.scss'
-
 import { Button } from 'components'
 import { PASSWORD_VALIDATE_REG_EXP } from 'constants/constants'
 import { Path } from 'enums'
-import { useAppDispatch } from 'store/store'
-import { postLoginTC } from 'store/thunks/login_thunks'
-import { UserDataType } from 'store/types/user_data_type'
+import style from 'pages/LoginPage/LoginPage.module.scss'
+import { NewUserDataRegistrationType } from 'store/types/new_user_data_registration_type'
 
-const LoginPage: FC = () => {
-  const dispatch = useAppDispatch()
+export const RegistrationPage: FC = () => {
   const navigate = useNavigate()
 
-  const navigateRegistrationPage = (): void => {
-    navigate(Path.REGISTRATION)
+  const navigateLoginPage = (): void => {
+    navigate(Path.LOGIN)
   }
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<UserDataType>()
+  } = useForm<NewUserDataRegistrationType>()
 
-  const onSubmit: SubmitHandler<UserDataType> = userData => {
-    dispatch(postLoginTC(userData))
+  const onSubmit: SubmitHandler<NewUserDataRegistrationType> = userData => {
+    console.log(userData)
   }
 
   const passwordRegExp = new RegExp(PASSWORD_VALIDATE_REG_EXP)
@@ -49,7 +45,7 @@ const LoginPage: FC = () => {
           <div>
             <label>PASSWORD: </label>
             <input
-              {...register('password', {
+              {...register('newPassword', {
                 required: {
                   value: true,
                   message: 'This field is required',
@@ -62,19 +58,36 @@ const LoginPage: FC = () => {
               })}
               type="password"
             />
-            {errors.password && (
-              <span className={style.error}>{errors.password.message}</span>
+            {errors.newPassword && (
+              <span className={style.error}>{errors.newPassword.message}</span>
+            )}
+          </div>
+          <div>
+            <label>REPEAT PASSWORD: </label>
+            <input
+              {...register('repeatNewPassword', {
+                required: {
+                  value: true,
+                  message: 'This field is required',
+                },
+                pattern: {
+                  value: passwordRegExp,
+                  message:
+                    'пароль должен быть длинной от 8 до 15, содержать хотя бы одну цифру, заглавную, прописную букву и спецсимвол: !@#$%^&*()',
+                },
+              })}
+              type="password"
+            />
+            {errors.repeatNewPassword && (
+              <span className={style.error}>{errors.repeatNewPassword.message}</span>
             )}
           </div>
           <div className={style.buttons}>
             <Button name="отправить" type="submit" />
-            <Button name="забыли пароль ?" />
+            <Button name="обратно на страницу входа" onClick={navigateLoginPage} />
           </div>
         </form>
-        <Button name="зарегистрироваться" onClick={navigateRegistrationPage} />
       </div>
     </div>
   )
 }
-
-export default LoginPage
