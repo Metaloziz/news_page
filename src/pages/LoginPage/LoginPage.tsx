@@ -5,21 +5,21 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import style from './LoginPage.module.scss'
 
 import { Button } from 'components'
-
-type LoginType = {
-  login: string
-  password: string
-}
+import { useAppDispatch } from 'store/store'
+import { postLoginTC } from 'store/thunks/login_thunks'
+import { UserDataType } from 'store/types/user_data_type'
 
 const LoginPage: FC = () => {
+  const dispatch = useAppDispatch()
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginType>()
+  } = useForm<UserDataType>()
 
-  const onSubmit: SubmitHandler<LoginType> = data => {
-    console.log(data) // todo ждём API
+  const onSubmit: SubmitHandler<UserDataType> = userData => {
+    dispatch(postLoginTC(userData))
   }
 
   return (
@@ -29,11 +29,12 @@ const LoginPage: FC = () => {
           <div>
             <label>LOGIN: </label>
             <input
-              {...register('login', {
+              {...register('email', {
                 required: { value: true, message: 'This field is required' },
               })}
+              defaultValue="AndrewGaity@yandex.by"
             />
-            {errors.login && <span className={style.error}>This field is required</span>}
+            {errors.email && <span className={style.error}>This field is required</span>}
           </div>
           <div>
             <label>PASSWORD: </label>
@@ -41,6 +42,7 @@ const LoginPage: FC = () => {
               {...register('password', {
                 required: { value: true, message: 'This field is required' },
               })}
+              defaultValue="12345678Aa%"
             />
             {errors.password && (
               <span className={style.error}>This field is required</span>

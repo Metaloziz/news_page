@@ -14,10 +14,10 @@ import { setPartSearchNewsAC } from 'store/reducers'
 import {
   selectCurrentPageSearchNews,
   selectIdActiveSection,
-  selectIsAdminMode,
   selectNewsTypeView,
   selectNumberPage,
 } from 'store/selectors'
+import { selectIsLogin } from 'store/selectors/login'
 import { RootState, useAppDispatch } from 'store/store'
 import {
   addNewsViewsValueTC,
@@ -41,7 +41,7 @@ export const NewsContainer: FC = () => {
   const pageNumber = useSelector(selectNumberPage)
   const activeSection = useSelector(selectIdActiveSection)
   const pageNumberSearchNews = useSelector(selectCurrentPageSearchNews)
-  const isAdmin = useSelector(selectIsAdminMode)
+  const isAdmin = useSelector(selectIsLogin)
 
   useEffect(() => {
     if (activeSection !== POPULAR_SECTION_ID) {

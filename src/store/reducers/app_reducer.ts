@@ -9,7 +9,6 @@ const initialState: InitialAppStateType = {
   isError: false,
   errorMessage: '',
   newsModeView: NEWS_BY_SECTIONS,
-  isAdmin: false,
   courses: [
     { description_course: '', name_course: '' },
     { description_course: '', name_course: '' },
@@ -44,9 +43,6 @@ const mainSlice = createSlice({
       if (state.newsModeView === action.payload) return
       state.newsModeView = action.payload
     },
-    changeIsAdminModeAC: (state, action) => {
-      state.isAdmin = action.payload
-    },
     setIsLoadingStatusAC: (state, action) => {
       if (state.isLoading === action.payload) return
       state.isLoading = action.payload
@@ -71,7 +67,6 @@ export const {
   setErrorTrueAC,
   setErrorFalseAC,
   changeNewsTypeViewAC,
-  changeIsAdminModeAC,
   setIsLoadingStatusAC,
 } = mainSlice.actions
 

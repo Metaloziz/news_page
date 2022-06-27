@@ -7,20 +7,20 @@ import style from './Menu.module.scss'
 import { MenuItems } from 'components/commonComponents'
 import { Contacts } from 'components/Contacts'
 import { menuNames } from 'constants/menuNames/menuNames'
-import { changeIsAdminModeAC } from 'store/reducers'
-import { selectIsAdminMode } from 'store/selectors'
+import { setIsLoginAC } from 'store/reducers/login_reducer'
+import { selectIsLogin } from 'store/selectors/login'
 import { useAppDispatch } from 'store/store'
 
 export const Menu: FC = () => {
   const dispatch = useAppDispatch()
 
-  const isAdmin = useSelector(selectIsAdminMode)
+  const isAdmin = useSelector(selectIsLogin)
 
   const switchIsAdminMode = (): void => {
     if (isAdmin) {
-      dispatch(changeIsAdminModeAC(false))
+      dispatch(setIsLoginAC(false))
     } else {
-      dispatch(changeIsAdminModeAC(true))
+      dispatch(setIsLoginAC(true))
     }
   }
 

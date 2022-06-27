@@ -24,6 +24,10 @@ export enum RequestSource {
   POPULAR = 'popular',
 }
 
+export enum RequestLogin {
+  LOGIN = 'login',
+}
+
 export enum RequestCommonData {
   COURSE = 'course/',
   CONTACT = 'contact/',
@@ -33,9 +37,12 @@ export enum StatusCode {
   SUCCESS = 204,
   POST_NEWS_SUCCESS = 201,
   GET_NEWS_SUCCESS = 200,
+  UPDATE_NEWS_SUCCESS = 204,
+
   GET_COURSES_SUCCESS = 200,
   GET_CONTACTS_SUCCESS = 200,
-  UPDATE_NEWS_SUCCESS = 204,
+
+  LOGIN_SUCCESS = 200,
 }
 
 export enum DeBounceTimer {

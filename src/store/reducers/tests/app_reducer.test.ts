@@ -1,7 +1,6 @@
 import { NEWS_BY_SEARCHING, NEWS_BY_SECTIONS } from 'constants/constants'
 import {
   appReducer,
-  changeIsAdminModeAC,
   changeNewsTypeViewAC,
   setErrorFalseAC,
   setErrorTrueAC,
@@ -14,7 +13,6 @@ import { CoursesType } from 'store/types/courses_type'
 
 let appInitialState: InitialAppStateType
 let errorMessage: string
-let isAdmin: boolean
 let newCourses: CoursesType[]
 let newContacts: ContactsType
 
@@ -23,7 +21,6 @@ beforeEach(() => {
     isError: false,
     errorMessage: '',
     newsModeView: NEWS_BY_SECTIONS,
-    isAdmin: false,
     courses: [],
     contacts: {
       address: '',
@@ -38,8 +35,6 @@ beforeEach(() => {
     },
     isLoading: false,
   }
-
-  isAdmin = true
 
   errorMessage = 'some error'
 
@@ -94,14 +89,6 @@ describe('app reducer', () => {
     const endState = appReducer(appInitialState, action)
 
     expect(endState.newsModeView).toBe(NEWS_BY_SEARCHING)
-  })
-
-  test('should set admin mod', () => {
-    const action = changeIsAdminModeAC(isAdmin)
-
-    const endState = appReducer(appInitialState, action)
-
-    expect(endState.isAdmin).toBe(isAdmin)
   })
 
   test('should set courses', () => {

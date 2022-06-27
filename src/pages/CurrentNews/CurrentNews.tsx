@@ -7,11 +7,8 @@ import style from './CurrentNews.module.scss'
 import { NewsBody } from './NewsBody/NewsBody'
 
 import { Footer, MobileNavigation, Navigation, PopularNewsPreview } from 'components'
-import {
-  selectCurrentNews,
-  selectIsAdminMode,
-  selectPartSearchNews,
-} from 'store/selectors'
+import { selectCurrentNews, selectPartSearchNews } from 'store/selectors'
+import { selectIsLogin } from 'store/selectors/login'
 import { useAppDispatch } from 'store/store'
 import { addNewsViewsValueTC, getNewsByIdTC, getPopularNewsTC } from 'store/thunks'
 
@@ -21,7 +18,7 @@ const CurrentNews: FC = () => {
   const currentNews = useSelector(selectCurrentNews)
 
   const popularNews = useSelector(selectPartSearchNews) // пока редьюсер свободен туда сетаются популярные новости
-  const isAdmin = useSelector(selectIsAdminMode)
+  const isAdmin = useSelector(selectIsLogin)
 
   useEffect(() => {
     dispatch(getPopularNewsTC())
