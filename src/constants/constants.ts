@@ -30,3 +30,8 @@ export const DESKTOP_WIDTH = 800
 // form input length
 export const COMMENT_AUTHOR_LENGTH = 20
 export const COMMENT_LENGTH = 1000
+
+// password validate regExp
+
+export const PASSWORD_VALIDATE_REG_EXP =
+  /^(?=.*[A-Z])(?=.*[!@#$%^&*()])(?=.*[0-9])(?=.*[a-z]).{8,15}$/
