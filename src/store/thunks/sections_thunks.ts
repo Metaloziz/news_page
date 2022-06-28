@@ -3,6 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { sectionsRequests } from 'api'
 import { StatusCode } from 'enums'
 import { setIsLoadingStatusAC } from 'store/reducers'
+import { RootState } from 'store/store'
 import { ResponseErrorType, SectionType } from 'store/types'
 import { setThunkError } from 'utils'
 
@@ -23,12 +24,18 @@ export const getSectionsTC = createAsyncThunk(
 
 export const postSectionsTC = createAsyncThunk(
   'sections/createSectionsTC',
-  async (name: string, { dispatch }) => {
+  async (name: string, { dispatch, getState }) => {
     try {
       dispatch(setIsLoadingStatusAC(true))
+
+      const {
+        login: { token },
+      } = getState() as RootState
+
       const {
         data: { id },
-      } = await sectionsRequests.postSection(name)
+      } = await sectionsRequests.postSection(name, token)
+
       if (id) {
         return { id, name }
       }
@@ -42,10 +49,15 @@ export const postSectionsTC = createAsyncThunk(
 
 export const deleteSectionTC = createAsyncThunk(
   'sections/removeSectionTC',
-  async (sectionId: number, { dispatch }) => {
+  async (sectionId: number, { dispatch, getState }) => {
     try {
       dispatch(setIsLoadingStatusAC(true))
-      const { data } = await sectionsRequests.deleteSection(sectionId)
+
+      const {
+        login: { token },
+      } = getState() as RootState
+
+      const { data } = await sectionsRequests.deleteSection(sectionId, token)
 
       if (data.id === sectionId) {
         return data.id
@@ -60,10 +72,16 @@ export const deleteSectionTC = createAsyncThunk(
 
 export const changeSectionTC = createAsyncThunk(
   'sections/changeSectionTC',
-  async (section: SectionType, { dispatch }) => {
+  async (section: SectionType, { dispatch, getState }) => {
     try {
       dispatch(setIsLoadingStatusAC(true))
-      const { status } = await sectionsRequests.changeSection(section)
+
+      const {
+        login: { token },
+      } = getState() as RootState
+
+      const { status } = await sectionsRequests.changeSection(section, token)
+
       if (status === StatusCode.SUCCESS) {
         return section
       }
