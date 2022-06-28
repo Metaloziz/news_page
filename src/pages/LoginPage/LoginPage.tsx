@@ -1,6 +1,7 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import style from './LoginPage.module.scss'
@@ -8,6 +9,7 @@ import style from './LoginPage.module.scss'
 import { Button } from 'components'
 import { PASSWORD_VALIDATE_REG_EXP } from 'constants/constants'
 import { Path } from 'enums'
+import { selectIsLogin } from 'store/selectors/login'
 import { useAppDispatch } from 'store/store'
 import { postLoginTC } from 'store/thunks/login_thunks'
 import { UserDataType } from 'store/types/user_data_type'
@@ -16,9 +18,13 @@ const LoginPage: FC = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
-  const navigateRegistrationPage = (): void => {
-    navigate(Path.REGISTRATION)
-  }
+  const isLogin = useSelector(selectIsLogin)
+
+  useEffect(() => {
+    if (isLogin) {
+      navigate(Path.MAIN)
+    }
+  }, [isLogin])
 
   const {
     register,
@@ -28,6 +34,10 @@ const LoginPage: FC = () => {
 
   const onSubmit: SubmitHandler<UserDataType> = userData => {
     dispatch(postLoginTC(userData))
+  }
+
+  const navigateRegistrationPage = (): void => {
+    navigate(Path.REGISTRATION)
   }
 
   const passwordRegExp = new RegExp(PASSWORD_VALIDATE_REG_EXP)
@@ -60,6 +70,7 @@ const LoginPage: FC = () => {
                     'пароль должен быть длинной от 8 до 15, содержать хотя бы одну цифру, заглавную, прописную букву и спецсимвол: !@#$%^&*()',
                 },
               })}
+              defaultValue="12345678Aa%"
               type="password"
             />
             {errors.password && (

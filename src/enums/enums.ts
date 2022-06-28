@@ -28,6 +28,7 @@ export enum RequestSource {
 
 export enum RequestLogin {
   LOGIN = 'login',
+  REGISTRATION = 'registration',
 }
 
 export enum RequestCommonData {

@@ -1,19 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 import { postLoginTC } from 'store/thunks/login_thunks'
-import { UserDataType } from 'store/types/user_data_type'
+import { LoginInitialStateType } from 'store/types/login_initial_state_type'
 
-type InitialLoginStateType = {
-  isLogin: boolean
-  userData: UserDataType
-}
-
-const initialState: InitialLoginStateType = {
+const initialState: LoginInitialStateType = {
   isLogin: true,
-  userData: {
-    email: '',
-    password: '',
-  },
+  token: '',
 }
 
 const mainSlice = createSlice({
@@ -27,7 +19,7 @@ const mainSlice = createSlice({
   extraReducers: ({ addCase }) => {
     addCase(postLoginTC.fulfilled, (state, action) => {
       if (action.payload) {
-        state.userData = action.payload
+        state.token = action.payload
       }
     })
   },
