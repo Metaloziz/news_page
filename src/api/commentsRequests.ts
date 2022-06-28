@@ -10,11 +10,19 @@ export const commentsRequests = {
       `${RequestSource.NEWS}/${newsId}${RequestSource.COMMENTS}`,
     ),
 
-  deleteComment: (commentId: number) =>
-    instance.delete<{ id: number }>(`${RequestSource.COMMENTS}/${commentId}`),
+  deleteComment: (commentId: number, token: string) =>
+    instance.delete<{ id: number }>(`${RequestSource.COMMENTS}/${commentId}`, {
+      headers: {
+        Authorization: token,
+      },
+    }),
 
-  postComment: (comment: PostCommentPayloadType) =>
-    instance.post<{ id: number }>(`${RequestSource.COMMENTS}/`, comment),
+  postComment: (comment: PostCommentPayloadType, token: string) =>
+    instance.post<{ id: number }>(`${RequestSource.COMMENTS}/`, comment, {
+      headers: {
+        Authorization: token,
+      },
+    }),
 
   getCurrentComment: (commentId: number) =>
     instance.get<CommentType>(`${RequestSource.COMMENTS}/${commentId}`),

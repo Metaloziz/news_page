@@ -43,7 +43,7 @@ const CurrentNews: FC = () => {
           <NewsBody news={currentNews} isAdmin={isAdmin} />
           <PopularNewsPreview news={popularNews} setCurrentNews={setCurrentNews} />
         </div>
-        {/* <Comments newsId={currentNews.id} /> */}
+        <Comments newsId={currentNews.id} />
         <Footer />
       </div>
     </div>
