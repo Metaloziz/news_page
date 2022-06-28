@@ -13,11 +13,12 @@ export const updateNewsTC = createAsyncThunk(
   async (news: NewsPayloadType, { dispatch, getState }) => {
     const {
       currentNews: { currentNews },
+      login: { token },
     } = getState() as RootState
 
     try {
       dispatch(setIsLoadingStatusAC(true))
-      const { status } = await newsRequests.updateNews(news, currentNews.id)
+      const { status } = await newsRequests.updateNews(news, currentNews.id, token)
       if (status === StatusCode.UPDATE_NEWS_SUCCESS) {
         dispatch(
           getNewsByIdTC.fulfilled({ ...currentNews, ...news.body }, '', currentNews.id),

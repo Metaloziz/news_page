@@ -8,7 +8,7 @@ export type NewsPayloadType = NewsFileType & {
 }
 
 export const newsRequests = {
-  postNews: (news: NewsPayloadType) => {
+  postNews: (news: NewsPayloadType, token: string) => {
     const formDataObject = new FormData()
 
     formDataObject.append('body', JSON.stringify(news.body))
@@ -16,10 +16,14 @@ export const newsRequests = {
       formDataObject.append('file', news.file[FIRST_ARRAY_ITEM])
     }
 
-    return instance.post<{ id: number }>(`${RequestSource.NEWS}/`, formDataObject)
+    return instance.post<{ id: number }>(`${RequestSource.NEWS}/`, formDataObject, {
+      headers: {
+        Authorization: token,
+      },
+    })
   },
 
-  updateNews: (news: NewsPayloadType, newsId: number) => {
+  updateNews: (news: NewsPayloadType, newsId: number, token: string) => {
     const formDataObject = new FormData()
 
     formDataObject.append('body', JSON.stringify(news.body))
@@ -27,7 +31,11 @@ export const newsRequests = {
       formDataObject.append('file', news.file[FIRST_ARRAY_ITEM])
     }
 
-    return instance.put(`${RequestSource.NEWS}/${newsId}`, formDataObject)
+    return instance.put(`${RequestSource.NEWS}/${newsId}`, formDataObject, {
+      headers: {
+        Authorization: token,
+      },
+    })
   },
 
   getNewsPart: (pageNumber: number, section: number = ALL_SECTION_ID) =>
@@ -35,8 +43,12 @@ export const newsRequests = {
       `${RequestSource.NEWS}/?page=${pageNumber}&limit=${NEWS_ON_PAGE}&section_id=${section}`,
     ),
 
-  deleteNews: (newsId: number) =>
-    instance.delete<{ id: number }>(`${RequestSource.NEWS}/${newsId}`),
+  deleteNews: (newsId: number, token: string) =>
+    instance.delete<{ id: number }>(`${RequestSource.NEWS}/${newsId}`, {
+      headers: {
+        Authorization: token,
+      },
+    }),
 
   addNewsViewsValue: (newsId: number) =>
     instance.patch(`${RequestSource.NEWS}/${newsId}`),
