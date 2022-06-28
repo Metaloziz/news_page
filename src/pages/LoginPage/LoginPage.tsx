@@ -53,6 +53,7 @@ const LoginPage: FC = () => {
                 required: { value: true, message: 'This field is required' },
               })}
               type="email"
+              defaultValue="AndrewGaity@yandex.by"
             />
             {errors.email && <span className={style.error}>{errors.email.message}</span>}
           </div>

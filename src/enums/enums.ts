@@ -28,6 +28,7 @@ export enum RequestSource {
 
 export enum RequestLogin {
   LOGIN = 'login',
+  LOGOUT = 'logout',
   REGISTRATION = 'registration',
 }
 
@@ -46,6 +47,7 @@ export enum StatusCode {
   GET_CONTACTS_SUCCESS = 200,
 
   LOGIN_SUCCESS = 200,
+  LOGOUT_SUCCESS = 200,
 }
 
 export enum DeBounceTimer {

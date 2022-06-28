@@ -4,7 +4,7 @@ import { postLoginTC } from 'store/thunks/login_thunks'
 import { LoginInitialStateType } from 'store/types/login_initial_state_type'
 
 const initialState: LoginInitialStateType = {
-  isLogin: true,
+  isLogin: false,
   token: '',
 }
 

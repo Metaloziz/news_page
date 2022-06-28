@@ -25,7 +25,7 @@ beforeEach(() => {
 })
 
 describe('login reducer', () => {
-  test('should set error message', () => {
+  test('should set isLogin', () => {
     const action = setIsLoginAC(newIsLogin)
 
     const endState = loginReducer(loginInitialState, action)
