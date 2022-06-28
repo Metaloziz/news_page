@@ -1,20 +1,33 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import { Button } from 'components'
 import { PASSWORD_VALIDATE_REG_EXP } from 'constants/constants'
 import { Path } from 'enums'
 import style from 'pages/LoginPage/LoginPage.module.scss'
+import { selectIsRegistered } from 'store/selectors/login'
+import { useAppDispatch } from 'store/store'
+import { registrationUserTC } from 'store/thunks/login_thunks'
 import { NewUserDataRegistrationType } from 'store/types/new_user_data_registration_type'
 
 export const RegistrationPage: FC = () => {
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
+
+  const isRegistered = useSelector(selectIsRegistered)
 
   const navigateLoginPage = (): void => {
     navigate(Path.LOGIN)
   }
+
+  useEffect(() => {
+    if (isRegistered) {
+      navigateLoginPage()
+    }
+  }, [isRegistered])
 
   const {
     register,
@@ -23,7 +36,7 @@ export const RegistrationPage: FC = () => {
   } = useForm<NewUserDataRegistrationType>()
 
   const onSubmit: SubmitHandler<NewUserDataRegistrationType> = userData => {
-    console.log(userData)
+    dispatch(registrationUserTC(userData)) // todo как сделать редирект на логин в санке ?
   }
 
   const passwordRegExp = new RegExp(PASSWORD_VALIDATE_REG_EXP)

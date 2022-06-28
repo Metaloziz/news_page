@@ -48,6 +48,7 @@ export enum StatusCode {
 
   LOGIN_SUCCESS = 200,
   LOGOUT_SUCCESS = 200,
+  REGISTRATION_SUCCESS = 201,
 }
 
 export enum DeBounceTimer {

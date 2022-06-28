@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { postLoginTC } from 'store/thunks/login_thunks'
+import { postLoginTC, registrationUserTC } from 'store/thunks/login_thunks'
 import { LoginInitialStateType } from 'store/types/login_initial_state_type'
 
 const initialState: LoginInitialStateType = {
   isLogin: false,
   token: '',
+  isRegistrationSuccess: false,
 }
 
 const mainSlice = createSlice({
@@ -20,6 +21,12 @@ const mainSlice = createSlice({
     addCase(postLoginTC.fulfilled, (state, action) => {
       if (action.payload) {
         state.token = action.payload
+      }
+    })
+
+    addCase(registrationUserTC.fulfilled, (state, action) => {
+      if (action.payload) {
+        state.isRegistrationSuccess = action.payload
       }
     })
   },

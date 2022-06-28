@@ -20,6 +20,7 @@ export const postLoginTC = createAsyncThunk(
         status,
         headers: { authorization },
       } = await loginRequests.login(userData)
+
       if (status === StatusCode.LOGIN_SUCCESS) {
         dispatch(setIsLoginAC(true))
         return authorization
@@ -43,6 +44,7 @@ export const postLogoutTC = createAsyncThunk(
       } = getState() as RootState
 
       const { status } = await loginRequests.logout(token)
+
       if (status === StatusCode.LOGOUT_SUCCESS) {
         dispatch(setIsLoginAC(false))
       }
@@ -61,9 +63,8 @@ export const registrationUserTC = createAsyncThunk(
       dispatch(setIsLoadingStatusAC(true))
 
       const { status } = await loginRequests.registration(userData)
-      if (status === StatusCode.LOGIN_SUCCESS) {
-        return userData
-      }
+
+      return status === StatusCode.REGISTRATION_SUCCESS
     } catch (error) {
       setLoginError(dispatch, error as ErrorMessageLoginResponse)
     } finally {
