@@ -3,9 +3,9 @@ export const NEWS_ON_PAGE = 4
 export const FIRST_INDEX_NEWS = 0
 export const FIRST_PAGE_PAGINATION = 1
 export const ALL_SECTION_ID = 0
-export const OTHER_SECTION_ID = 45
-export const POPULAR_SECTION_ID = 54
-export const ITEC_SECTION_ID = 55
+export const OTHER_SECTION_ID = 6
+export const POPULAR_SECTION_ID = 11
+export const ITEC_SECTION_ID = 1
 
 // date
 export const FIRST_DATE_ELEMENT = 0

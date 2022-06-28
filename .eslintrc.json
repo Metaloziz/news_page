@@ -34,8 +34,6 @@
     "consistent-return": "off",
     "default-param-last": "off",
     "no-use-before-define": "warn",
-    "prefer-regex-literals": "off",
-    // todo изменить когда придёт ментор
     "no-multiple-empty-lines": [
       "error",
       {

@@ -36,7 +36,7 @@ export const RegistrationPage: FC = () => {
   } = useForm<NewUserDataRegistrationType>()
 
   const onSubmit: SubmitHandler<NewUserDataRegistrationType> = userData => {
-    dispatch(registrationUserTC(userData)) // todo как сделать редирект на логин в санке ?
+    dispatch(registrationUserTC(userData))
   }
 
   const passwordRegExp = new RegExp(PASSWORD_VALIDATE_REG_EXP)
