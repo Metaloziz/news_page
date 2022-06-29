@@ -6,7 +6,7 @@ import { setIsLoadingStatusAC } from 'store/reducers'
 import { setIsLoginAC } from 'store/reducers/login_reducer'
 import { RootState } from 'store/store'
 import { ErrorMessageLoginResponse } from 'store/types/error_message_login_response'
-import { NewUserDataRegistrationType } from 'store/types/new_user_data_registration_type'
+import { UserDataRegistrationType } from 'store/types/new_user_data_registration_type'
 import { UserDataType } from 'store/types/user_data_type'
 import { setLoginError } from 'utils'
 
@@ -58,7 +58,7 @@ export const postLogoutTC = createAsyncThunk(
 
 export const registrationUserTC = createAsyncThunk(
   'login/registrationUserTC',
-  async (userData: NewUserDataRegistrationType, { dispatch }) => {
+  async (userData: UserDataRegistrationType, { dispatch }) => {
     try {
       dispatch(setIsLoadingStatusAC(true))
 

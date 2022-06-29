@@ -16,6 +16,7 @@ export enum Path {
 
   LOGIN = '/login',
   REGISTRATION = '/registration',
+  EDIT_PASSWORD = '/edit_password',
 }
 
 export enum RequestSource {

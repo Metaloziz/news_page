@@ -1,6 +1,6 @@
 import { instanceLogin } from 'api/instance'
 import { RequestLogin } from 'enums/enums'
-import { NewUserDataRegistrationType } from 'store/types/new_user_data_registration_type'
+import { UserDataRegistrationType } from 'store/types/new_user_data_registration_type'
 import { UserDataType } from 'store/types/user_data_type'
 
 export const loginRequests = {
@@ -13,6 +13,6 @@ export const loginRequests = {
       },
     }),
 
-  registration: (newUserData: NewUserDataRegistrationType) =>
+  registration: (newUserData: UserDataRegistrationType) =>
     instanceLogin.post(RequestLogin.REGISTRATION, newUserData),
 }

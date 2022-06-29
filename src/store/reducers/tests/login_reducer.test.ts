@@ -1,7 +1,7 @@
 import { loginReducer, setIsLoginAC } from 'store/reducers/login_reducer'
 import { postLoginTC, registrationUserTC } from 'store/thunks/login_thunks'
 import { LoginInitialStateType } from 'store/types/login_initial_state_type'
-import { NewUserDataRegistrationType } from 'store/types/new_user_data_registration_type'
+import { UserDataRegistrationType } from 'store/types/new_user_data_registration_type'
 import { UserDataType } from 'store/types/user_data_type'
 
 let loginInitialState: LoginInitialStateType
@@ -9,13 +9,14 @@ let newIsLogin: boolean
 let newUserData: UserDataType
 let newToken: string
 let newRegistrationStatus: boolean
-let newRegistrationUserType: NewUserDataRegistrationType
+let newRegistrationUserType: UserDataRegistrationType
 
 beforeEach(() => {
   loginInitialState = {
     isLogin: false,
     token: '',
     isRegistrationSuccess: false,
+    isChangePasswordSuccess: false,
   }
 
   newToken = '124jh3d98423n054230'

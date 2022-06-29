@@ -40,10 +40,15 @@ const LoginPage: FC = () => {
     navigate(Path.REGISTRATION)
   }
 
+  const navigateEditPasswordPage = (): void => {
+    navigate(Path.EDIT_PASSWORD)
+  }
+
   const passwordRegExp = new RegExp(PASSWORD_VALIDATE_REG_EXP)
 
   return (
     <div className={style.container}>
+      <h1>Вход</h1>
       <div className={style.block}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
@@ -81,6 +86,7 @@ const LoginPage: FC = () => {
           <div className={style.buttons}>
             <Button name="отправить" type="submit" />
             <Button name="забыли пароль ?" />
+            <Button name="смена пароля" onClick={navigateEditPasswordPage} />
           </div>
         </form>
         <Button name="зарегистрироваться" onClick={navigateRegistrationPage} />

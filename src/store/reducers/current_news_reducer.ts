@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+import { CURRENT_NEWS } from 'constants/constants'
 import { getNewsByIdTC } from 'store/thunks'
 import { CurrentNewsInitialStateType } from 'store/types'
 
@@ -31,7 +32,7 @@ const mainSlice = createSlice({
     builder.addCase(getNewsByIdTC.fulfilled, (state, action) => {
       if (action.payload) {
         state.currentNews = action.payload
-        localStorage.setItem('currentNews', JSON.stringify(action.payload))
+        localStorage.setItem(CURRENT_NEWS, JSON.stringify(action.payload))
       }
     })
   },

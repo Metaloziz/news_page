@@ -2,6 +2,13 @@
 @import "src/styles/variables";
 
 .container {
+
+  h1 {
+    font-size: 50px;
+    color: $gray;
+    margin-bottom: 30px;
+  }
+
   @include containerFormStyle();
 
   .block {
