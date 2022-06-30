@@ -12,6 +12,7 @@ import {
   sectionsReducer,
   singlePaginationReducer,
 } from 'store/reducers'
+import { loginReducer } from 'store/reducers/login_reducer'
 
 export const store = configureStore({
   reducer: {
@@ -23,6 +24,7 @@ export const store = configureStore({
     comments: commentsReducer,
     pagination: paginationReducer,
     singlePagination: singlePaginationReducer,
+    login: loginReducer,
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunkMiddleware),
 })

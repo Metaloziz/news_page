@@ -13,7 +13,10 @@ export enum Path {
   CREATE_NEWS = '/create_news',
   CHANGE_NEWS = '/change_news',
   CREATE_SECTION = '/create_section',
+
   LOGIN = '/login',
+  REGISTRATION = '/registration',
+  EDIT_PASSWORD = '/edit_password',
 }
 
 export enum RequestSource {
@@ -22,6 +25,12 @@ export enum RequestSource {
   SECTIONS = '/sections',
   SEARCH = 'search',
   POPULAR = 'popular',
+}
+
+export enum RequestLogin {
+  LOGIN = 'login',
+  LOGOUT = 'logout',
+  REGISTRATION = 'registration',
 }
 
 export enum RequestCommonData {
@@ -33,9 +42,14 @@ export enum StatusCode {
   SUCCESS = 204,
   POST_NEWS_SUCCESS = 201,
   GET_NEWS_SUCCESS = 200,
+  UPDATE_NEWS_SUCCESS = 204,
+
   GET_COURSES_SUCCESS = 200,
   GET_CONTACTS_SUCCESS = 200,
-  UPDATE_NEWS_SUCCESS = 204,
+
+  LOGIN_SUCCESS = 200,
+  LOGOUT_SUCCESS = 200,
+  REGISTRATION_SUCCESS = 201,
 }
 
 export enum DeBounceTimer {

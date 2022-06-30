@@ -3,6 +3,7 @@ import { FC } from 'react'
 import style from './Header.module.scss'
 
 import image from 'assets/images/mainPage/mainPageImage.svg'
+import { LogoutButton } from 'components/commonComponents/LogoutButton/LogoutButton'
 
 export const Header: FC = () => (
   <div className={style.container}>
@@ -17,5 +18,6 @@ export const Header: FC = () => (
       </div>
     </div>
     <img src={image} className={style.image} alt="header" />
+    <LogoutButton />
   </div>
 )

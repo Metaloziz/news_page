@@ -54,10 +54,15 @@ export const getNewsByIdTC = createAsyncThunk(
 
 export const deleteNewsTC = createAsyncThunk(
   'section_news/deleteNewsTC',
-  async (newsId: number, { dispatch }) => {
+  async (newsId: number, { dispatch, getState }) => {
     try {
       dispatch(setIsLoadingStatusAC(true))
-      const { data } = await newsRequests.deleteNews(newsId)
+
+      const {
+        login: { token },
+      } = getState() as RootState
+
+      const { data } = await newsRequests.deleteNews(newsId, token)
 
       if (data.id === newsId) {
         return data.id
@@ -89,16 +94,21 @@ export const addNewsViewsValueTC = createAsyncThunk(
 
 export const postNewsTC = createAsyncThunk(
   'section_news/postNewsTC',
-  async (news: NewsPayloadType, { dispatch }) => {
+  async (news: NewsPayloadType, { dispatch, getState }) => {
     try {
       dispatch(setIsLoadingStatusAC(true))
+
+      const {
+        login: { token },
+      } = getState() as RootState
+
       const {
         status,
         data: { id },
-      } = await newsRequests.postNews(news)
+      } = await newsRequests.postNews(news, token)
+
       if (status === StatusCode.POST_NEWS_SUCCESS) {
-        dispatch(getNewsByIdTC(id)) // пока не нужно
-        // dispatch(setCurrentNewsAC(news))
+        dispatch(getNewsByIdTC(id))
       }
     } catch (error) {
       setThunkError(dispatch, error as ResponseErrorType)

@@ -6,7 +6,6 @@ export type InitialAppStateType = {
   isError: boolean
   errorMessage: string
   newsModeView: NewsViewType
-  isAdmin: boolean
   courses: CoursesType[]
   contacts: ContactsType
   isLoading: boolean
