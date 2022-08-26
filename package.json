@@ -1,7 +1,7 @@
 {
   "name": "itec",
   "version": "0.1.0",
-  "homepage": "https://metaloziz.github.io/news_page/",
+  "homepage": "https://itec-company.github.io/news_page/",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
