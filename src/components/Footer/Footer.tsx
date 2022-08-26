@@ -19,11 +19,12 @@ export const Footer: FC = () => {
 
   const courses = useSelector(selectIsCourses)
 
+  // todo теперь с сервера приходит только одно описание
   return (
     <div>
       <div className={style.container}>
         <CoursePreview courses={courses[FIRST_ARRAY_ITEM]} />
-        <CoursePreview courses={courses[SECOND_ARRAY_ITEM]} />
+        <CoursePreview courses={courses[FIRST_ARRAY_ITEM]} />
       </div>
     </div>
   )

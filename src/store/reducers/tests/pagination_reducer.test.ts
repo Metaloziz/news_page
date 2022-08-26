@@ -1,6 +1,6 @@
 import {
-  paginationReducer,
   PaginationInitialStateType,
+  paginationReducer,
   setCurrentPageAC,
 } from 'store/reducers/pagination_reducer'
 

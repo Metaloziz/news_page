@@ -12,6 +12,7 @@ import {
   FIRST_ARRAY_ITEM,
   NEWS_BY_SEARCHING,
   NEWS_BY_SECTIONS,
+  POPULAR_SECTION_ID,
   SECOND_ARRAY_ITEM,
   THIRD_ARRAY_ITEM,
 } from 'constants/constants'
@@ -40,18 +41,23 @@ export const Navigation: FC = () => {
 
   const isActiveSection = (id: number): boolean => id === activeSection
 
-  const setCurrentSection = (sectionId: number): void => {
-    navigate(Path.MAIN)
-    dispatch(setCurrentSectionAC(sectionId))
-    dispatch(changeNewsTypeViewAC(NEWS_BY_SECTIONS))
-    dispatch(setFirstPageAC())
-  }
-
   const setPopularNews = (sectionId: number): void => {
     navigate(Path.MAIN)
     dispatch(changeNewsTypeViewAC(NEWS_BY_SEARCHING))
     dispatch(setCurrentSectionAC(sectionId))
     dispatch(getPopularNewsTC())
+    dispatch(setFirstPageAC())
+  }
+
+  const setCurrentSection = (sectionId: number): void => {
+    if (sectionId === POPULAR_SECTION_ID) {
+      setPopularNews(sectionId)
+      return
+    }
+
+    navigate(Path.MAIN)
+    dispatch(setCurrentSectionAC(sectionId))
+    dispatch(changeNewsTypeViewAC(NEWS_BY_SECTIONS))
     dispatch(setFirstPageAC())
   }
 
@@ -71,8 +77,8 @@ export const Navigation: FC = () => {
 
   if (isDesktopWidth) {
     ALL_SECTION = sections[FIRST_ARRAY_ITEM]
-    POPULAR_SECTION = sections[SECOND_ARRAY_ITEM]
-    ITEC_SECTION = sections[THIRD_ARRAY_ITEM]
+    POPULAR_SECTION = sections[THIRD_ARRAY_ITEM]
+    ITEC_SECTION = sections[SECOND_ARRAY_ITEM]
 
     SELECT_SECTION = getSelectSection(sections)
 

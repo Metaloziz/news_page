@@ -4,6 +4,15 @@ import { getNewsPartTC } from 'store/thunks/news_thunks'
 
 // не используется на главной странице, пока
 
+// types
+export type PaginationInitialStateType = {
+  countNewsOnPage: number
+  totalCountNews: number
+  currentPage: number
+}
+
+export type SetCountNewsAction = Omit<PaginationInitialStateType, 'currentPage'>
+
 export const initialState: PaginationInitialStateType = {
   countNewsOnPage: 2,
   totalCountNews: 1,
@@ -29,12 +38,3 @@ export const mainSlice = createSlice({
 
 export const { setCurrentPageAC } = mainSlice.actions
 export const paginationReducer = mainSlice.reducer
-
-// types
-export type PaginationInitialStateType = {
-  countNewsOnPage: number
-  totalCountNews: number
-  currentPage: number
-}
-
-export type SetCountNewsAction = Omit<PaginationInitialStateType, 'currentPage'>

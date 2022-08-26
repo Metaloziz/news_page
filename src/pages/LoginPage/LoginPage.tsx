@@ -86,7 +86,7 @@ const LoginPage: FC = () => {
           <div className={style.buttons}>
             <Button name="отправить" type="submit" />
             <Button name="забыли пароль ?" />
-            <Button name="смена пароля" onClick={navigateEditPasswordPage} />
+            {/* <Button name="смена пароля" onClick={navigateEditPasswordPage} /> */}
           </div>
         </form>
         <Button name="зарегистрироваться" onClick={navigateRegistrationPage} />

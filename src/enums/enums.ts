@@ -59,5 +59,5 @@ export enum DeBounceTimer {
 
 export enum Error {
   EMPTY_NEWS = 'нету новостей',
-  PROTECT_SECTION = 'нельзя редактировтаь',
+  PROTECT_SECTION = 'нельзя редактировать',
 }

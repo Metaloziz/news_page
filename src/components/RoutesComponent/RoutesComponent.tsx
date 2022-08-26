@@ -20,10 +20,9 @@ const CreateSectionPage = lazy(
 )
 
 export const RoutesComponent: FC = () => (
-  // todo отформатировать роуты
   <Suspense fallback={<PageLoader />}>
     <Routes>
-      <Route path={Path.DEFAULT} element={<Navigate to={Path.LOGIN} />} />
+      <Route path={Path.DEFAULT} element={<Navigate to={Path.MAIN} />} />
       <Route path={Path.MAIN} element={<MainPage />} />
       <Route path={Path.CURRENT_NEWS} element={<CurrentNews />} />
       <Route path={Path.LOGIN} element={<LoginPage />} />

@@ -34,7 +34,7 @@ export const NavigationSelect: FC<SelectType> = ({
   const divLink = useRef<HTMLDivElement>(null)
 
   document.onclick = event => {
-    if (!divLink.current!.contains(event.target as Node)) {
+    if (!divLink.current?.contains(event.target as Node)) {
       setIsCollapsed(false)
     }
   }

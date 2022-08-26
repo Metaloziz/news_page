@@ -3,7 +3,6 @@ import { createSlice } from '@reduxjs/toolkit'
 import { TOKEN } from 'constants/constants'
 import { postLoginTC, registrationUserTC } from 'store/thunks/login_thunks'
 import { LoginInitialStateType } from 'store/types/login_initial_state_type'
-import { separateToken } from 'utils/separate_token'
 
 const initialState: LoginInitialStateType = {
   isLogin: false,
@@ -23,10 +22,8 @@ const mainSlice = createSlice({
   extraReducers: ({ addCase }) => {
     addCase(postLoginTC.fulfilled, (state, action) => {
       if (action.payload) {
-        const token = separateToken(action.payload)
-
-        state.token = token
-        localStorage.setItem(TOKEN, JSON.stringify(token))
+        state.token = action.payload
+        localStorage.setItem(TOKEN, JSON.stringify(action.payload))
       }
     })
 

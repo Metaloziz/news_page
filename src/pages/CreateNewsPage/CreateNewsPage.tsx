@@ -8,6 +8,7 @@ import { NewsBodyForm } from './NewsBodyForm/NewsBodyForm'
 import { SelectOptions } from './SelectOptions/SelectOptions'
 
 import { BlockCheckbox, Button, NavLinkComponent } from 'components'
+import { ALL_SECTION_ID, OTHER_SECTION_ID, POPULAR_SECTION_ID } from 'constants/constants'
 import { Path } from 'enums'
 import { selectSections } from 'store/selectors'
 import { useAppDispatch } from 'store/store'
@@ -19,6 +20,13 @@ const CreateNewsPage: FC = () => {
   const dispatch = useAppDispatch()
 
   const sections = useSelector(selectSections)
+
+  const newSection = sections.filter(
+    el =>
+      el.id !== ALL_SECTION_ID &&
+      el.id !== OTHER_SECTION_ID &&
+      el.id !== POPULAR_SECTION_ID,
+  )
 
   const [isActiveSecondBlock, setIsActiveSecondBlock] = useState(false)
   const [isActiveThirdBlock, setIsActiveThirdBlock] = useState(false)
@@ -58,7 +66,7 @@ const CreateNewsPage: FC = () => {
           <div className={style.sections}>
             <label htmlFor="section">Section</label>
             <select id="section" defaultValue={1} {...register('section')}>
-              <SelectOptions data={sections} />
+              <SelectOptions data={newSection} />
             </select>
           </div>
         </div>

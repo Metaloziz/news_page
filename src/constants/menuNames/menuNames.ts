@@ -17,7 +17,7 @@ export type MenuItemsType = {
   fire?: string
 }
 
-const BASE_URL = 'https://itec.pythonanywhere.com/'
+const BASE_URL = 'https://itec.by/'
 
 export const menuNames: MenuItemsType[] = [
   { name: 'Главная', link: `${BASE_URL}`, icon: main },
