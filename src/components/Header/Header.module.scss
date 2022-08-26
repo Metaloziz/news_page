@@ -31,6 +31,13 @@
 
       color: $green;
     }
+
+    @media screen and (max-width: 600px) {
+
+      padding-top: 30px;
+
+    }
+
   }
 
   .text {
@@ -45,6 +52,8 @@
 
     color: $dark;
     margin-bottom: 30px;
+
+
   }
 
   .image {
@@ -73,4 +82,8 @@
   }
 
   @include paddingMobileMenu();
+}
+
+.mobileText {
+  margin: 10px;
 }
