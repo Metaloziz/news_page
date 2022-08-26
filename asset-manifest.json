@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.css": "/news_page/static/css/main.8b186514.css",
-    "main.js": "/news_page/static/js/main.8d562797.js",
-    "static/css/251.f75c7660.chunk.css": "/news_page/static/css/251.f75c7660.chunk.css",
-    "static/js/251.5f4b4b97.chunk.js": "/news_page/static/js/251.5f4b4b97.chunk.js",
+    "main.css": "/news_page/static/css/main.35903492.css",
+    "main.js": "/news_page/static/js/main.685feb3f.js",
+    "static/css/251.2feec737.chunk.css": "/news_page/static/css/251.2feec737.chunk.css",
+    "static/js/251.90ea7f23.chunk.js": "/news_page/static/js/251.90ea7f23.chunk.js",
     "static/js/591.ccc3cd32.chunk.js": "/news_page/static/js/591.ccc3cd32.chunk.js",
     "static/js/628.2e25cb4d.chunk.js": "/news_page/static/js/628.2e25cb4d.chunk.js",
     "static/css/900.b4c6fdbb.chunk.css": "/news_page/static/css/900.b4c6fdbb.chunk.css",
@@ -41,10 +41,10 @@
     "index.html": "/news_page/index.html",
     "static/media/blog.svg": "/news_page/static/media/blog.61c8fa79e8a47fd4ee8d2b17498efc54.svg",
     "static/media/eye.svg": "/news_page/static/media/eye.e2402f0b2212380ad7a7c1f610d40c20.svg",
-    "main.8b186514.css.map": "/news_page/static/css/main.8b186514.css.map",
-    "main.8d562797.js.map": "/news_page/static/js/main.8d562797.js.map",
-    "251.f75c7660.chunk.css.map": "/news_page/static/css/251.f75c7660.chunk.css.map",
-    "251.5f4b4b97.chunk.js.map": "/news_page/static/js/251.5f4b4b97.chunk.js.map",
+    "main.35903492.css.map": "/news_page/static/css/main.35903492.css.map",
+    "main.685feb3f.js.map": "/news_page/static/js/main.685feb3f.js.map",
+    "251.2feec737.chunk.css.map": "/news_page/static/css/251.2feec737.chunk.css.map",
+    "251.90ea7f23.chunk.js.map": "/news_page/static/js/251.90ea7f23.chunk.js.map",
     "591.ccc3cd32.chunk.js.map": "/news_page/static/js/591.ccc3cd32.chunk.js.map",
     "628.2e25cb4d.chunk.js.map": "/news_page/static/js/628.2e25cb4d.chunk.js.map",
     "900.b4c6fdbb.chunk.css.map": "/news_page/static/css/900.b4c6fdbb.chunk.css.map",
@@ -60,7 +60,7 @@
     "787.76e7cc39.chunk.js.map": "/news_page/static/js/787.76e7cc39.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8b186514.css",
-    "static/js/main.8d562797.js"
+    "static/css/main.35903492.css",
+    "static/js/main.685feb3f.js"
   ]
 }
